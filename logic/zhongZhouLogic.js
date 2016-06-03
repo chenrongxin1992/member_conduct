@@ -25,9 +25,9 @@ ZhongZhou.prototype.Register = function (attribute, callback) {
   var name = attribute.name,
     phone = attribute.phone,
     sex = attribute.sex,
-    openId = attribute.openid;
+    openId = attribute.openId;
   if (!openId) {
-    callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'name不能为空'));
+    callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'openId不能为空'));
     return;
   }
   if (!name) {
@@ -215,6 +215,7 @@ ZhongZhou.prototype.CardModify = function (attribute, callback) {
  */
 ZhongZhou.prototype.GetCardByOpenId = function (attribute, callback) {
   var openId = attribute.openId;
+  console.log('openId:',openId);
   if (!openId) {
     callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'openId不能为空'));
     return;

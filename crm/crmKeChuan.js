@@ -155,8 +155,7 @@ exports.VipModify = function (cardNumber, name, phone, sex, birthday, idNo, addr
     signStr = reqDate + reqTime + cardNumber + key,
     sign = Md5(signStr);
   var _bithday = birthday ? Moment(birthday, 'YYYY/MM/DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss') : '';
-  var xmlOptions = {
-      VipModify: [
+  var xmlOptions = {VipModify: [
         {_attr: {xmlns: 'http://www.tech-trans.com.cn/'}},
         {
           request: [{
@@ -182,8 +181,7 @@ exports.VipModify = function (cardNumber, name, phone, sex, birthday, idNo, addr
               }]
             }]
         }
-      ]
-    },
+      ]},
     strXml = Xml(xmlOptions);
   Soap.createClient(url, function (err, client) {
     if (err) {
@@ -285,8 +283,7 @@ exports.GetVipInfoByMobileOpenId = function (openid, callback) {
     reqTime = Moment().format('HH24mmss'),
     signStr = reqDate + reqTime + key,
     sign = Md5(signStr);
-  var xmlOpentions = {
-      GetVipInfoByMobileOpenID: [
+  var xmlOpentions = {GetVipInfoByMobileOpenID: [
         {_attr: {xmlns: 'http://www.tech-trans.com.cn/'}},
         {
           request: [
@@ -306,8 +303,7 @@ exports.GetVipInfoByMobileOpenId = function (openid, callback) {
             }
           ]
         }
-      ]
-    },
+      ]},
     xmlStr = Xml(xmlOpentions);
   Soap.createClient(url, function (err, client) {
     if (err) {
@@ -326,7 +322,7 @@ exports.GetVipInfoByMobileOpenId = function (openid, callback) {
         callback(Error.ThrowError(Error.ErrorCode.CardUndefined, result.GetVipInfoByMobileOpenIDResult.Header.ERRMSG));
         return;
       }
-      var data = result.GetVipInfoByMobileOpenIDResult.DATA.VIP;
+      var data = result.GetVipInfoByMobileOpenIDResult.DATA.VIP[0];
       var cardDetail = {
         CardNumber: data.xf_vipcode,
         Name: data.surname,
@@ -560,10 +556,9 @@ exports.GetBonusledgerRecord = function (cardNumber, callback) {
       var values = new Array();
       for (var i in data) {
         var item = data[i];
-        console.log('item:',item);
         values.push({
           CardNumber: item.XF_VIPCODE,
-          DateTime: verify.CheckDate(item.EB_CREATE_DATETIME) ? Moment(item.EB_CREATE_DATETIME, 'YYYY/MM/DD HH:mm:ss') : '',
+          DateTime: verify.CheckDate(item.EB_CREATE_DATETIME) ? Moment(item.EB_CREATE_DATETIME, 'YYYY/MM/DD HH:mm:ss').format('YYYY/MM/DD HH:mm:ss') : '',
           ShopId: item.XF_STORECODE,
           ShopName: item.STOREDESC,
           Action: item.XF_ACTION,
