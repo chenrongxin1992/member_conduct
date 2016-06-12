@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="00a831d3-6f98-489a-b9df-c9ed98e0405b" name="Default" comment="V1.06.03.1856&#10;  测试">
+    <list default="true" id="00a831d3-6f98-489a-b9df-c9ed98e0405b" name="Default" comment="V1.06.12.1221&#10;  增加PM2管理  /bin/">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/restart.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/spid.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/start.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/stop.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
     </list>
@@ -20,7 +24,14 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
-    <favorites_list name="MemberConduct" />
+    <favorites_list name="MemberConduct">
+      <favorite_root url="file://$PROJECT_DIR$/bin" module="MemberConduct" type="directory" klass="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode">
+        <favorite_root url="file://$PROJECT_DIR$/bin/spid.sh" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+        <favorite_root url="file://$PROJECT_DIR$/bin/stop.sh" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+        <favorite_root url="file://$PROJECT_DIR$/bin/start.sh" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+        <favorite_root url="file://$PROJECT_DIR$/bin/restart.sh" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+      </favorite_root>
+    </favorites_list>
   </component>
   <component name="FileEditorManager">
     <splitter split-orientation="horizontal" split-proportion="0.48466715">
@@ -29,7 +40,7 @@
           <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="720">
+                <state relative-caret-position="0">
                   <caret line="40" column="39" selection-start-line="40" selection-start-column="39" selection-end-line="40" selection-end-column="39" />
                   <folding />
                 </state>
@@ -39,7 +50,7 @@
           <file leaf-file-name="member.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/routes/member.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="295">
+                <state relative-caret-position="972">
                   <caret line="54" column="3" selection-start-line="54" selection-start-column="3" selection-end-line="54" selection-end-column="3" />
                   <folding />
                 </state>
@@ -51,6 +62,16 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="72">
                   <caret line="4" column="14" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="restart.sh" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/bin/restart.sh">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="36">
+                  <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
                   <folding />
                 </state>
               </provider>
@@ -225,6 +246,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -245,8 +268,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -257,6 +278,11 @@
     <property name="js-jscs-nodeInterpreter" value="C:\nodejs\node.exe" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Node Work\member_conduct\bin" />
+    </key>
   </component>
   <component name="RestClientSettings">
     <option name="REQUEST_HISTORY">
@@ -590,7 +616,8 @@
       <workItem from="1464947637441" duration="4755000" />
       <workItem from="1465181909389" duration="609000" />
       <workItem from="1465262854066" duration="45000" />
-      <workItem from="1465697903414" duration="1949000" />
+      <workItem from="1465697903414" duration="2091000" />
+      <workItem from="1465705171428" duration="125000" />
     </task>
     <task id="LOCAL-00001" summary="测试 push">
       <created>1464938639203</created>
@@ -634,11 +661,18 @@
       <option name="project" value="LOCAL" />
       <updated>1464952183492</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="V1.06.12.1216&#10;  增加PM2管理  /bin/">
+      <created>1465705037900</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1465705037900</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="167015000" />
+    <option name="totallyTimeSpent" value="167282000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -712,7 +746,8 @@
     <MESSAGE value="发布排除错误" />
     <MESSAGE value="V1.06.03.1856&#10;修改成POST 提交数据方式" />
     <MESSAGE value="V1.06.03.1856&#10;  测试" />
-    <option name="LAST_COMMIT_MESSAGE" value="V1.06.03.1856&#10;  测试" />
+    <MESSAGE value="V1.06.12.1216&#10;  增加PM2管理  /bin/" />
+    <option name="LAST_COMMIT_MESSAGE" value="V1.06.12.1216&#10;  增加PM2管理  /bin/" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -721,27 +756,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Exception/error.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logic/zhongZhouLogic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#563#2138#0" expanded="false" />
-            <element signature="e#2338#3609#0" expanded="false" />
-            <element signature="e#3746#4055#0" expanded="false" />
-            <element signature="e#7400#7525#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="558">
@@ -976,7 +990,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
+        <state relative-caret-position="0">
           <caret line="40" column="39" selection-start-line="40" selection-start-column="39" selection-end-line="40" selection-end-column="39" />
           <folding />
         </state>
@@ -997,8 +1011,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/member.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
+        <state relative-caret-position="972">
           <caret line="54" column="3" selection-start-line="54" selection-start-column="3" selection-end-line="54" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/stop.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/restart.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
           <folding />
         </state>
       </provider>
