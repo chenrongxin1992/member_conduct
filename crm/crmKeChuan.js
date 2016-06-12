@@ -499,7 +499,7 @@ exports.BonusChange = function (vipCode, integral, source, desc, callback) {
         callback(Error.ThrowError(error.ErrorCode.Error, result.BonusChangeResult.Header.ERRMSG));
         return;
       }
-      callback(err);
+      callback(err,'');
     });
   });
 };

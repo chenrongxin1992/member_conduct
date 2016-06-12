@@ -1,4 +1,4 @@
-var errorCode = {
+const errorCode = {
   Success: {ErrCode: 0, ErrMsg: ''},
   Error: {ErrCode: -1, ErrMsg: ''},
   Unrealized: {ErrCode: 1000, ErrMsg: '该方法操作未实现'},
@@ -8,23 +8,20 @@ var errorCode = {
   PhoneHasEmploy: {ErrCode: 2002, ErrMsg: 'Phone已注册'},
   CardInfoError: {ErrCode: 2003, ErrMsg: '会员卡信息错误'},
   CardHasBanding: {ErrCode: 2004, ErrMsg: '会员卡已被绑定'},
-  CardUndefined:{ErrorCode:2005,ErrMsg:'会员卡不存在'},
-  IntegralLack:{ErrCode:3001,ErrMsg:'积分不足'}
+  CardUndefined: {ErrorCode: 2005, ErrMsg: '会员卡不存在'},
+  IntegralLack: {ErrCode: 3001, ErrMsg: '积分不足'}
 };
 exports.ThrowError = function (code, errMsg) {
-  var err;
-  if (!code)
-    err = errorCode.Error
-  else
-    err = code;
+  code=code?code:errorCode.Error;
+  var str = {ErrCode:code.ErrCode, ErrMsg: code.ErrMsg};
   if (errMsg)
-    err.ErrMsg = errMsg;
-  return err;
-};
-exports.Success=function (result) {
-  var str=errorCode.Success;
-  if(result)
-    str.Result=result;
+    str.ErrMsg = errMsg;
   return str;
 };
-exports.ErrorCode=errorCode;
+exports.Success = function (result) {
+  var str = {ErrCode: errorCode.Success.ErrCode, ErrMsg: ''};
+  if (result)
+    str.Result = result;
+  return str;
+};
+exports.ErrorCode = errorCode;
