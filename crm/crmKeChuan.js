@@ -14,7 +14,14 @@ var url = 'http://113.105.66.51:1880/CRM_VIP_Proxy.asmx?wsdl',
   key = '20150226152452',
   storeCode = 'ZHZ000041',
   xf_vipcodeprefix = '110',
-  reasoncode = 'WX0001'; //积分调整原因
+  reasoncode = 'WX0001', //积分调整原因
+  vipgrade='DD';//会员卡开卡等级
+
+/**
+ * 导出公用参数
+ * @type {string}
+ */
+exports.VipGrade=vipgrade;  //默认开卡等级，
 
 /**
  * 创建会员卡
@@ -47,7 +54,8 @@ exports.VipCreate = function (name, phone, sex, callback) {
                     {surname: name},
                     {mobile: phone},
                     {sex: sex === 1 ? 'M' : 'F'},
-                    {xf_vipcodeprefix: xf_vipcodeprefix}
+                    {xf_vipcodeprefix: xf_vipcodeprefix},
+                    {vipgrade:vipgrade}
                   ]
                 }
               ]
@@ -256,6 +264,7 @@ exports.GetVipInfo = function (vipCode, callback) {
         callback(err);
         return;
       }
+      console.log('VipInfo:',data);
       var cardDetail = {
         CardNumber: data.xf_vipcode,
         Name: data.xf_surname,
@@ -383,6 +392,7 @@ exports.GetVipBaseInfoByMobile = function (phone, callback) {
       return;
     }
     client.GetVipBaseInfoByMobile(xmlStr, function (err, result) {
+      console.log('Result:',result);
       if (err) {
         console.log('crmKeChuan>client.GetVipInfoByMobileOpenId Error:', err);
         callback(Error.ThrowError(Error.ErrorCode.Error, err));

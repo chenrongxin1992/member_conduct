@@ -111,7 +111,8 @@ ZhongZhou.prototype.CardBinding = function (attribute, callback) {
   //查询OpenId是否已绑定
   //判断当前OpenId是否已有绑定会员卡
   kechuan.GetVipInfoByMobileOpenId(openId, function (err, result) {
-    if (!err) {
+    //判断当前OpenId绑定的卡是否是虚拟卡
+    if (!err || result.Result.CardGrade != kechuan.VipGrade) {
       callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
       return;
     }

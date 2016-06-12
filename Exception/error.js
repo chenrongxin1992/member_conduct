@@ -8,7 +8,7 @@ const errorCode = {
   PhoneHasEmploy: {ErrCode: 2002, ErrMsg: 'Phone已注册'},
   CardInfoError: {ErrCode: 2003, ErrMsg: '会员卡信息错误'},
   CardHasBanding: {ErrCode: 2004, ErrMsg: '会员卡已被绑定'},
-  CardUndefined: {ErrorCode: 2005, ErrMsg: '会员卡不存在'},
+  CardUndefined: {ErrCode: 2005, ErrMsg: '会员卡不存在'},
   IntegralLack: {ErrCode: 3001, ErrMsg: '积分不足'}
 };
 exports.ThrowError = function (code, errMsg) {
