@@ -258,7 +258,7 @@ exports.GetVipInfo = function (vipCode, callback) {
       }
       var cardDetail = {
         CardNumber: data.xf_vipcode,
-        Name: data.surname,
+        Name: data.xf_surname,
         Phone: data.xf_telephone,
         Birthday: data.xf_birthdayyyyy + '/' + data.xf_birthdaymm + '/' + data.xf_birthdaydd,
         Sex: data.xf_sex == 'M' ? 1 : 0,
@@ -325,7 +325,7 @@ exports.GetVipInfoByMobileOpenId = function (openid, callback) {
       var data = result.GetVipInfoByMobileOpenIDResult.DATA.VIP[0];
       var cardDetail = {
         CardNumber: data.xf_vipcode,
-        Name: data.surname,
+        Name: data.xf_surname,
         Phone: data.xf_telephone,
         Birthday: data.xf_birthdayyyyy + '/' + data.xf_birthdaymm + '/' + data.xf_birthdaydd,
         Sex: data.xf_sex == 'M' ? 1 : 0,

@@ -10,7 +10,6 @@ var kechuan = require('../crm/crmKeChuan');
 var verify = require('../Tools/verify');
 function ZhongZhou() {
 };
-
 utils.inherits(ZhongZhou, member);
 /**
  * 会员注册
@@ -215,7 +214,7 @@ ZhongZhou.prototype.CardModify = function (attribute, callback) {
  */
 ZhongZhou.prototype.GetCardByOpenId = function (attribute, callback) {
   var openId = attribute.openId;
-  console.log('openId:',openId);
+  console.log('openId:', openId);
   if (!openId) {
     callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'openId不能为空'));
     return;
