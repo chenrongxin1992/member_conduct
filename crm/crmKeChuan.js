@@ -15,13 +15,13 @@ var url = 'http://113.105.66.51:1880/CRM_VIP_Proxy.asmx?wsdl',
   storeCode = 'ZHZ000041',
   xf_vipcodeprefix = '110',
   reasoncode = 'WX0001', //积分调整原因
-  vipgrade='DD';//会员卡开卡等级
+  vipgrade = 'DD';//会员卡开卡等级
 
 /**
  * 导出公用参数
  * @type {string}
  */
-exports.VipGrade=vipgrade;  //默认开卡等级，
+exports.VipGrade = vipgrade;  //默认开卡等级，
 
 /**
  * 创建会员卡
@@ -55,7 +55,7 @@ exports.VipCreate = function (name, phone, sex, callback) {
                     {mobile: phone},
                     {sex: sex == 1 ? 'M' : 'F'},
                     {xf_vipcodeprefix: xf_vipcodeprefix},
-                    {vipgrade:vipgrade}
+                    {vipgrade: vipgrade}
                   ]
                 }
               ]
@@ -113,8 +113,8 @@ exports.BindOpenID = function (vipcode, phone, openid, callback) {
             },
             {
               Data: [
-                {vipcode: vipcode},
                 {mobile: phone},
+                {vipcode: vipcode},
                 {openid: openid}
               ]
             }
@@ -129,6 +129,7 @@ exports.BindOpenID = function (vipcode, phone, openid, callback) {
       callback(Error.ThrowError(Error.ErrorCode.Error, err));
       return;
     }
+    console.log('StrXml:', strXml);
     client.BindOpenID(strXml, function (err, result) {
       if (err) {
         callback(Error.ThrowError(Error.ErrorCode.Error, err));
@@ -136,7 +137,7 @@ exports.BindOpenID = function (vipcode, phone, openid, callback) {
       }
       var code = result.BindOpenIDResult.Header.ERRCODE;
       if (code != 0) {
-        callback(Error.ThrowError(Error.ErrorCode.Error, err));
+        callback(Error.ThrowError(Error.ErrorCode.Error, result.BindOpenIDResult.Header.ERRMSG));
         return;
       }
       callback(err);
@@ -163,7 +164,8 @@ exports.VipModify = function (cardNumber, name, phone, sex, birthday, idNo, addr
     signStr = reqDate + reqTime + cardNumber + key,
     sign = Md5(signStr);
   var _bithday = birthday ? Moment(birthday, 'YYYY/MM/DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss') : '';
-  var xmlOptions = {VipModify: [
+  var xmlOptions = {
+      VipModify: [
         {_attr: {xmlns: 'http://www.tech-trans.com.cn/'}},
         {
           request: [{
@@ -189,7 +191,8 @@ exports.VipModify = function (cardNumber, name, phone, sex, birthday, idNo, addr
               }]
             }]
         }
-      ]},
+      ]
+    },
     strXml = Xml(xmlOptions);
   Soap.createClient(url, function (err, client) {
     if (err) {
@@ -264,7 +267,6 @@ exports.GetVipInfo = function (vipCode, callback) {
         callback(err);
         return;
       }
-      console.log('VipInfo:',data);
       var cardDetail = {
         CardNumber: data.xf_vipcode,
         Name: data.xf_surname,
@@ -292,7 +294,8 @@ exports.GetVipInfoByMobileOpenId = function (openid, callback) {
     reqTime = Moment().format('HH24mmss'),
     signStr = reqDate + reqTime + key,
     sign = Md5(signStr);
-  var xmlOpentions = {GetVipInfoByMobileOpenID: [
+  var xmlOpentions = {
+      GetVipInfoByMobileOpenID: [
         {_attr: {xmlns: 'http://www.tech-trans.com.cn/'}},
         {
           request: [
@@ -312,7 +315,8 @@ exports.GetVipInfoByMobileOpenId = function (openid, callback) {
             }
           ]
         }
-      ]},
+      ]
+    },
     xmlStr = Xml(xmlOpentions);
   Soap.createClient(url, function (err, client) {
     if (err) {
@@ -392,7 +396,7 @@ exports.GetVipBaseInfoByMobile = function (phone, callback) {
       return;
     }
     client.GetVipBaseInfoByMobile(xmlStr, function (err, result) {
-      console.log('Result:',result);
+      console.log('Result:', result);
       if (err) {
         console.log('crmKeChuan>client.GetVipInfoByMobileOpenId Error:', err);
         callback(Error.ThrowError(Error.ErrorCode.Error, err));
@@ -509,7 +513,7 @@ exports.BonusChange = function (vipCode, integral, source, desc, callback) {
         callback(Error.ThrowError(error.ErrorCode.Error, result.BonusChangeResult.Header.ERRMSG));
         return;
       }
-      callback(err,'');
+      callback(err, '');
     });
   });
 };

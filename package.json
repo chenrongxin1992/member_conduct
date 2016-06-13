@@ -1,6 +1,6 @@
 {
   "name": "MemberConduct",
-  "version": "1.06.13.1000",
+  "version": "1.06.13.1910",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"

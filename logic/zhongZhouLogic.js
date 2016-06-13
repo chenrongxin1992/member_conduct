@@ -122,14 +122,18 @@ ZhongZhou.prototype.CardBinding = function (attribute, callback) {
         return;
       }
       if (!result.Phone == phone) {
-        callback(error.ThrowError(error.ErrCode.CardInfoError, '会员卡信息错误，手机号不正确'));
+        callback(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡信息错误，手机号不正确'));
         return;
       }
-      if(result.OpenId!=''){
-        callback(error.ThrowError(error.ErrCode.CardInfoError, '会员卡已经被其他微信号绑定'));
+      if (result.OpenId != '') {
+        callback(error.ThrowError(error.ErrorCode.CardInfoError, '该会员卡已经被其他微信号绑定'));
         return;
       }
-      kechuan.BindOpenID(result.CardNumber, phone, openId, function (err) {
+      if (result.CardGrade == kechuan.VipGrade) {
+        callback(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡类型错误，绑卡不能为虚拟卡'));
+        return;
+      }
+      kechuan.BindOpenID(cardNumber, phone, openId, function (err) {
         if (err)
           callback(err);
         else
@@ -339,4 +343,31 @@ ZhongZhou.prototype.IntegralChange = function (attribute, callback) {
   });
 };
 
+/**
+ * 移除会员卡绑定
+ * @param attribute
+ * @param callback
+ * @constructor
+ */
+ZhongZhou.prototype.CardUnbind=function (attribute,callback) {
+  var cardNumber=attribute.cardNumber;
+  kechuan.GetVipInfo(cardNumber,function (err,result) {
+    if(err){
+      callback(err);
+      return;
+    }
+    console.log('result:',result);
+    if(!result.CardNumber||result.CardNumber==''){
+      callback(error.ThrowError(error.ErrorCode.CardUndefined));
+      return;
+    }
+    kechuan.BindOpenID(cardNumber,result.Phone,'',function (err) {
+      if(err){
+        callback(err);
+      }else {
+        callback(error.Success());
+      }
+    });
+  });
+};
 module.exports = ZhongZhou;

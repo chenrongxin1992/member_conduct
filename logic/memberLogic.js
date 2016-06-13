@@ -94,4 +94,7 @@ Member.prototype.IntegralChange = function (attribute, callback) {
   callback(Error.ThrowError(Error.ErrorCode.Unrealized));
 };
 
+Member.prototype.CardUnbind=function (attribute,callback) {
+  callback(Error.ThrowError(Error.ErrorCode.Unrealized));
+};
 module.exports = Member;
