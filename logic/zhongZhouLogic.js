@@ -111,8 +111,7 @@ ZhongZhou.prototype.CardBinding = function (attribute, callback) {
   //查询OpenId是否已绑定
   //判断当前OpenId是否已有绑定会员卡
   kechuan.GetVipInfoByMobileOpenId(openId, function (err, result) {
-    //判断当前OpenId绑定的卡是否是虚拟卡
-    if (!err || result.Result.CardGrade != kechuan.VipGrade) {
+    if (!err && result.CardGrade != kechuan.VipGrade) {
       callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
       return;
     }
@@ -124,6 +123,10 @@ ZhongZhou.prototype.CardBinding = function (attribute, callback) {
       }
       if (!result.Phone == phone) {
         callback(error.ThrowError(error.ErrCode.CardInfoError, '会员卡信息错误，手机号不正确'));
+        return;
+      }
+      if(result.OpenId!=''){
+        callback(error.ThrowError(error.ErrCode.CardInfoError, '会员卡已经被其他微信号绑定'));
         return;
       }
       kechuan.BindOpenID(result.CardNumber, phone, openId, function (err) {

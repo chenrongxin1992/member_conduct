@@ -53,7 +53,7 @@ exports.VipCreate = function (name, phone, sex, callback) {
                   vip: [
                     {surname: name},
                     {mobile: phone},
-                    {sex: sex === 1 ? 'M' : 'F'},
+                    {sex: sex == 1 ? 'M' : 'F'},
                     {xf_vipcodeprefix: xf_vipcodeprefix},
                     {vipgrade:vipgrade}
                   ]
