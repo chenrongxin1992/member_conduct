@@ -121,7 +121,7 @@ ZhongZhou.prototype.CardBinding = function (attribute, callback) {
         callback(err);
         return;
       }
-      if (!result.Phone == phone) {
+      if (!(result.Phone == phone)) {
         callback(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡信息错误，手机号不正确'));
         return;
       }
@@ -349,22 +349,22 @@ ZhongZhou.prototype.IntegralChange = function (attribute, callback) {
  * @param callback
  * @constructor
  */
-ZhongZhou.prototype.CardUnbind=function (attribute,callback) {
-  var cardNumber=attribute.cardNumber;
-  kechuan.GetVipInfo(cardNumber,function (err,result) {
-    if(err){
+ZhongZhou.prototype.CardUnbind = function (attribute, callback) {
+  var cardNumber = attribute.cardNumber;
+  kechuan.GetVipInfo(cardNumber, function (err, result) {
+    if (err) {
       callback(err);
       return;
     }
-    console.log('result:',result);
-    if(!result.CardNumber||result.CardNumber==''){
+    console.log('result:', result);
+    if (!result.CardNumber || result.CardNumber == '') {
       callback(error.ThrowError(error.ErrorCode.CardUndefined));
       return;
     }
-    kechuan.BindOpenID(cardNumber,result.Phone,'',function (err) {
-      if(err){
+    kechuan.BindOpenID(cardNumber, result.Phone, '', function (err) {
+      if (err) {
         callback(err);
-      }else {
+      } else {
         callback(error.Success());
       }
     });
