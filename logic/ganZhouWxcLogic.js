@@ -325,7 +325,7 @@ GanZhouWXC.prototype.IntegralRecord = function (attribute, callback) {
  * @constructor
  */
 GanZhouWXC.prototype.GradeList = function (attribute, callback) {
-  var result = [{name: '白金卡', Code: '01', Desc: '白金卡'},
+  var result = [{Name: '白金卡', Code: '01', Desc: '白金卡'},
     {Name: '金卡', Code: '02', Desc: '金卡'},
     {Name: '普卡', Code: '03', Desc: '普卡'},
     {Name: '预会员', Code: 'E', Desc: '预会员'}];
