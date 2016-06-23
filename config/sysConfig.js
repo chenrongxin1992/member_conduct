@@ -1,4 +1,4 @@
 module.exports={
-  mongodb:'mongodb://127.0.0.1/member_conduct',
+  mongodb:'mongodb://120.25.122.48:20164/member_conduct',
   cardBinding:'cardBinding',
 };
