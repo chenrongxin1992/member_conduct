@@ -114,7 +114,7 @@ exports.GetMemberByCardNumber = function (cardNumber, callback) {
       if (typeof result == typeof '')
         result = JSON.parse(result);
       if (result.ErrorCode == 0)
-        callback(error.ThrowError(error.ErrorCode.Error, result.Message), result);
+        callback(error.ThrowError(error.ErrorCode.Error, '会员卡不存在'), result);
       else
         callback(null, ToCardResult(result));
     });

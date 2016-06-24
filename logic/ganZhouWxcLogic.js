@@ -52,7 +52,6 @@ GanZhouWXC.prototype.Register = function (attribute, callback) {
    * 4>用户与微信OpenId绑定
    */
   CardBinding.FindByOpenId(bid, openId, function (err, result) {
-    console.log('err:', err, ' Result:', result, result.length);
     if (err) {
       callback(error.ThrowError(error.ErrorCode.Error, err.message));
       return;
@@ -278,7 +277,6 @@ GanZhouWXC.prototype.GetCardByOpenId = function (attribute, callback) {
     }
     else {
       CardBinding.FindByOpenId(bid, openId, function (err, result) {
-        console.log('B  err:', err, ' Result:', result);
         if (err) {
           callback(error.ThrowError(error.ErrorCode.Error, err.message));
           return;
@@ -474,7 +472,6 @@ GanZhouWXC.prototype.CardUnbind = function (attribute, callback) {
         return;
       }
       CardBinding.remove({_id: result[0]._id}, function (err) {
-        console.log('err:', err);
         if (err)
           callback(error.ThrowError(error.ErrorCode.Error, '解绑失败'));
         else
