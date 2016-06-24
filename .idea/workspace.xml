@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="00a831d3-6f98-489a-b9df-c9ed98e0405b" name="Default" comment="">
+    <list default="true" id="00a831d3-6f98-489a-b9df-c9ed98e0405b" name="Default" comment="V1.06.24.1741&#10;     赣州万象城 &#10;       修改用户详情数据返回没有OpenId">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logic/ganZhouWxcLogic.js" afterPath="$PROJECT_DIR$/logic/ganZhouWxcLogic.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
     </list>
     <ignored path="MemberConduct.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,8 +37,8 @@
           <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="198">
-                  <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+                <state relative-caret-position="72">
+                  <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -75,16 +76,6 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="cardBinding.server.module.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/entity/cardBinding.server.module.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="82">
-                  <caret line="19" column="38" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="38" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="error.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Exception/error.js">
               <provider selected="true" editor-type-id="text-editor">
@@ -98,10 +89,9 @@
           <file leaf-file-name="Fuji.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/crm/Fuji.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="157">
-                  <caret line="95" column="20" selection-start-line="95" selection-start-column="20" selection-end-line="95" selection-end-column="20" />
+                <state relative-caret-position="504">
+                  <caret line="115" column="32" selection-start-line="115" selection-start-column="32" selection-end-line="115" selection-end-column="32" />
                   <folding>
-                    <element signature="e#544#1473#0" expanded="false" />
                     <element signature="e#1601#2448#0" expanded="false" />
                     <element signature="e#1690#1885#0" expanded="false" />
                     <element signature="e#3595#4449#0" expanded="false" />
@@ -114,11 +104,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+          <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/package.json">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="180">
-                  <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+                <state relative-caret-position="450">
+                  <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -152,15 +142,16 @@
           <file leaf-file-name="ganZhouWxcLogic.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/logic/ganZhouWxcLogic.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="90">
-                  <caret line="52" column="5" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
+                <state relative-caret-position="328">
+                  <caret line="474" column="7" selection-start-line="474" selection-start-column="7" selection-end-line="474" selection-end-column="7" />
                   <folding>
-                    <element signature="e#2614#4472#0" expanded="false" />
-                    <element signature="e#4621#4949#0" expanded="false" />
-                    <element signature="e#5090#5589#0" expanded="false" />
-                    <element signature="e#7294#7716#0" expanded="false" />
-                    <element signature="e#8836#9743#0" expanded="false" />
-                    <element signature="e#9885#11171#0" expanded="false" />
+                    <element signature="e#632#2603#0" expanded="false" />
+                    <element signature="e#2787#4800#0" expanded="false" />
+                    <element signature="e#4949#5634#0" expanded="false" />
+                    <element signature="e#5776#6535#0" expanded="false" />
+                    <element signature="e#6688#8205#0" expanded="false" />
+                    <element signature="e#9291#9756#0" expanded="false" />
+                    <element signature="e#9897#10119#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -186,6 +177,16 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="18">
                   <caret line="1" column="39" selection-start-line="1" selection-start-column="39" selection-end-line="1" selection-end-column="39" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="cardBinding.server.module.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/entity/cardBinding.server.module.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="90">
+                  <caret line="5" column="8" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="8" />
                   <folding />
                 </state>
               </provider>
@@ -224,13 +225,13 @@
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/routes/member.js" />
-        <option value="$PROJECT_DIR$/crm/Fuji.js" />
         <option value="$PROJECT_DIR$/config/sysConfig.js" />
         <option value="$PROJECT_DIR$/entity/cardBinding.server.module.js" />
         <option value="$PROJECT_DIR$/crm/crmKeChuan.js" />
         <option value="$PROJECT_DIR$/logic/zhongZhouLogic.js" />
-        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/crm/Fuji.js" />
         <option value="$PROJECT_DIR$/logic/ganZhouWxcLogic.js" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -243,10 +244,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1592" />
+    <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1456" />
-    <option name="height" value="916" />
+    <option name="width" value="1616" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -755,7 +756,7 @@
       <workItem from="1466388862617" duration="14427000" />
       <workItem from="1466411425714" duration="41392000" />
       <workItem from="1466562158507" duration="13856000" />
-      <workItem from="1466649482243" duration="10765000" />
+      <workItem from="1466649482243" duration="13860000" />
     </task>
     <task id="LOCAL-00001" summary="测试 push">
       <created>1464938639203</created>
@@ -883,11 +884,18 @@
       <option name="project" value="LOCAL" />
       <updated>1466756403123</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="V1.06.24.1619&#10;     赣州万象城 &#10;      修改会员注册 OpenId已绑定的错误提示">
+      <created>1466757206830</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1466757206830</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="281361000" />
+    <option name="totallyTimeSpent" value="284456000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -899,15 +907,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1592" y="-8" width="1456" height="916" extended-state="6" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15472779" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13881747" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32635984" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22036262" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.49074075" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.012569833" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32496512" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -977,7 +985,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="55" />
+      <option name="time" value="56" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1204,31 +1212,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/crm/Fuji.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="95" column="20" selection-start-line="95" selection-start-column="20" selection-end-line="95" selection-end-column="20" />
-          <folding>
-            <element signature="e#544#1473#0" expanded="false" />
-            <element signature="e#1601#2448#0" expanded="false" />
-            <element signature="e#1690#1885#0" expanded="false" />
-            <element signature="e#3595#4449#0" expanded="false" />
-            <element signature="e#4675#5642#0" expanded="false" />
-            <element signature="e#5756#6595#0" expanded="false" />
-            <element signature="e#6799#8370#0" expanded="false" />
-            <element signature="e#8531#9414#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/member.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="305">
@@ -1281,33 +1264,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
+    <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+        <state relative-caret-position="72">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/entity/cardBinding.server.module.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="19" column="38" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="38" />
+        <state relative-caret-position="90">
+          <caret line="5" column="8" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crm/Fuji.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="115" column="32" selection-start-line="115" selection-start-column="32" selection-end-line="115" selection-end-column="32" />
+          <folding>
+            <element signature="e#1601#2448#0" expanded="false" />
+            <element signature="e#1690#1885#0" expanded="false" />
+            <element signature="e#3595#4449#0" expanded="false" />
+            <element signature="e#4675#5642#0" expanded="false" />
+            <element signature="e#5756#6595#0" expanded="false" />
+            <element signature="e#6799#8370#0" expanded="false" />
+            <element signature="e#8531#9414#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/logic/ganZhouWxcLogic.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="52" column="5" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
+        <state relative-caret-position="328">
+          <caret line="474" column="7" selection-start-line="474" selection-start-column="7" selection-end-line="474" selection-end-column="7" />
           <folding>
-            <element signature="e#2614#4472#0" expanded="false" />
-            <element signature="e#4621#4949#0" expanded="false" />
-            <element signature="e#5090#5589#0" expanded="false" />
-            <element signature="e#7294#7716#0" expanded="false" />
-            <element signature="e#8836#9743#0" expanded="false" />
-            <element signature="e#9885#11171#0" expanded="false" />
+            <element signature="e#632#2603#0" expanded="false" />
+            <element signature="e#2787#4800#0" expanded="false" />
+            <element signature="e#4949#5634#0" expanded="false" />
+            <element signature="e#5776#6535#0" expanded="false" />
+            <element signature="e#6688#8205#0" expanded="false" />
+            <element signature="e#9291#9756#0" expanded="false" />
+            <element signature="e#9897#10119#0" expanded="false" />
           </folding>
         </state>
       </provider>

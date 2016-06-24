@@ -52,12 +52,12 @@ GanZhouWXC.prototype.Register = function (attribute, callback) {
    * 4>用户与微信OpenId绑定
    */
   CardBinding.FindByOpenId(bid, openId, function (err, result) {
-    console.log('err:',err,' Result:',result, result.length);
+    console.log('err:', err, ' Result:', result, result.length);
     if (err) {
       callback(error.ThrowError(error.ErrorCode.Error, err.message));
       return;
     }
-    if (result.length>0) {
+    if (result.length > 0) {
       callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
       return;
     }
@@ -73,20 +73,24 @@ GanZhouWXC.prototype.Register = function (attribute, callback) {
           callback(err);
           return;
         }
-        //转换Result
-        //4、绑定OpenId
-        var cardBinding = new CardBinding({
-          bid: bid,
-          cardNumber: result.CardNumber,
-          openId: openId,
-          cardGrade: result.CardGrade
-        });
-        cardBinding.save(function (err) {
-          if (err)
-            callback(error.ThrowError(error.ErrorCode.Error, err.message));
-          else
-            callback(error.Success(result));
-        });
+        if (result) {
+          result.OpenId = openId;
+          //转换Result
+          //4、绑定OpenId
+          var cardBinding = new CardBinding({
+            bid: bid,
+            cardNumber: result.CardNumber,
+            openId: openId,
+            cardGrade: result.CardGrade
+          });
+          cardBinding.save(function (err) {
+            if (err)
+              callback(error.ThrowError(error.ErrorCode.Error, err.message));
+            else
+              callback(error.Success(result));
+          });
+        } else
+          callback(error.ThrowError(error.ErrorCode.Error, '注册失败'));
       });
     });
   });
@@ -122,7 +126,7 @@ GanZhouWXC.prototype.CardBinding = function (attribute, callback) {
     callback(error.ThrowError(error.ErrorCode.DateFormatError, 'phone格式错误'));
     return;
   }
-  //判断是否绑定实体卡
+  //判断是否已绑定实体卡
   CardBinding.FindByOpenidInNotGrade(bid, openId, defaultCardGrade, function (err, result) {
     if (err) {
       callback(error.ThrowError(error.ErrorCode.Error, err.message));
@@ -140,7 +144,11 @@ GanZhouWXC.prototype.CardBinding = function (attribute, callback) {
           callback(err);
           return;
         }
-        if (!result.Phone == phone) {
+        if (!result) {
+          callback(error.ThrowError(error.ErrorCode.CardUndefined));
+          return;
+        }
+        if (!(result.Phone == phone)) {
           callback(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡信息错误，手机号不正确'));
           return;
         }
@@ -148,6 +156,7 @@ GanZhouWXC.prototype.CardBinding = function (attribute, callback) {
           callback(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡类型错误，绑卡不能为虚拟卡'));
           return;
         }
+        result.OpenId = openId;
         //4、绑定OpenId
         var cardBinding = new CardBinding({
           bid: bid,
@@ -173,7 +182,8 @@ GanZhouWXC.prototype.CardBinding = function (attribute, callback) {
  * @constructor
  */
 GanZhouWXC.prototype.GetCard = function (attribute, callback) {
-  var cardNumber = attribute.cardNumber;
+  var cardNumber = attribute.cardNumber,
+    bid = attribute.bid;
   if (!cardNumber) {
     callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'cardNumber不能为空'));
     return;
@@ -183,9 +193,22 @@ GanZhouWXC.prototype.GetCard = function (attribute, callback) {
       callback(err);
       return;
     }
-    callback(error.Success(result));
+    if (!result) {
+      callback(error.Success());
+      return;
+    }
+    CardBinding.FindByCardNumber(bid, cardNumber, function (err, res) {
+      if (err) {
+        callback(error.ThrowError(error.ErrorCode.Error, err.message));
+        return;
+      }
+      if (res.length > 0)
+        result.OpenId = res[0].openId;
+      callback(error.Success(result));
+    });
   });
 };
+
 /**
  * 修改会员卡资料
  * @param attribute
@@ -208,7 +231,15 @@ GanZhouWXC.prototype.CardModify = function (attribute, callback) {
       callback(err);
       return;
     }
-    callback(error.Success(result));
+    CardBinding.FindByCardNumber(bid, cardNumber, function (err, res) {
+      if (err) {
+        callback(error.ThrowError(error.ErrorCode.Error, err.message));
+        return;
+      }
+      if (res.length > 0)
+        result.OpenId = res[0].openId;
+      callback(error.Success(result));
+    });
   });
 };
 
@@ -228,41 +259,46 @@ GanZhouWXC.prototype.GetCardByOpenId = function (attribute, callback) {
   }
   //查询当前绑定的实体卡
   CardBinding.FindByOpenidInNotGrade(bid, openId, defaultCardGrade, function (err, result) {
-    console.log('A  err:',err,' Result:',result);
     if (err) {
       callback(error.ThrowError(error.ErrorCode.Error, err.message));
       return;
     }
-    cardNumber =result.length>0?result[0].cardNumber:'';
+    cardNumber = result.length > 0 ? result[0].cardNumber : '';
     if (cardNumber) {
       fuji.GetMemberByCardNumber(cardNumber, function (err, result) {
         if (err) {
           callback(err);
           return;
         }
+        if (result)
+          result.OpenId = openId;
         callback(error.Success(result));
         return;
       });
     }
     else {
       CardBinding.FindByOpenId(bid, openId, function (err, result) {
-        console.log('B  err:',err,' Result:',result);
+        console.log('B  err:', err, ' Result:', result);
         if (err) {
           callback(error.ThrowError(error.ErrorCode.Error, err.message));
           return;
         }
-        cardNumber =result.length>0?result[0].cardNumber:'';
+        cardNumber = result.length > 0 ? result[0].cardNumber : '';
         if (cardNumber) {
           fuji.GetMemberByCardNumber(cardNumber, function (err, result) {
             if (err) {
               callback(err);
               return;
             }
+            if (result)
+              result.OpenId = openId;
             callback(error.Success(result));
             return;
           });
-        } else
+        } else {
           callback(error.Success());
+          return;
+        }
       });
     }
   });
@@ -275,7 +311,8 @@ GanZhouWXC.prototype.GetCardByOpenId = function (attribute, callback) {
  * @constructor
  */
 GanZhouWXC.prototype.GetCardByPhone = function (attribute, callback) {
-  var phone = attribute.phone;
+  var phone = attribute.phone,
+    bid = attribute.bid;
   if (!phone) {
     callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'phone不能为空'));
     return;
@@ -289,7 +326,19 @@ GanZhouWXC.prototype.GetCardByPhone = function (attribute, callback) {
       callback(err);
       return;
     }
-    callback(error.Success(result));
+    if (!result) {
+      callback(error.Success(result));
+      return;
+    }
+    CardBinding.FindByCardNumber(bid, result.CardNumber, function (err, res) {
+      if (err) {
+        callback(error.ThrowError(error.ErrorCode.Error, err.message));
+        return;
+      }
+      if (res.length > 0)
+        result.OpenId = res[0].openId;
+      callback(error.Success(result));
+    });
   });
 };
 
@@ -340,7 +389,8 @@ GanZhouWXC.prototype.GradeList = function (attribute, callback) {
  */
 GanZhouWXC.prototype.IntegralChange = function (attribute, callback) {
   var cardNumber = attribute.cardNumber,
-    integral = attribute.integral;
+    integral = attribute.integral,
+    bid = attribute.bid;
   if (!cardNumber) {
     callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'cardNumber不能为空'));
     return;
@@ -368,7 +418,15 @@ GanZhouWXC.prototype.IntegralChange = function (attribute, callback) {
         callback(err);
         return;
       }
-      callback(error.Success(result));
+      CardBinding.FindByCardNumber(bid, result.CardNumber, function (err, res) {
+        if (err) {
+          callback(error.ThrowError(error.ErrorCode.Error, err.message));
+          return;
+        }
+        if (res.length > 0)
+          result.OpenId = res[0].openId;
+        callback(error.Success(result));
+      });
     });
   });
 };
@@ -407,11 +465,11 @@ GanZhouWXC.prototype.CardUnbind = function (attribute, callback) {
         callback(error.ThrowError(error.ErrorCode.Error, err.message));
         return;
       }
-      if (!result) {
+      if (!result || result.length <= 0) {
         callback(error.ThrowError(error.ErrorCode.Error, 'OpenId未绑定会员卡'));
         return;
       }
-      if (cardNumber != result.cardNumber) {
+      if (cardNumber != result[0].cardNumber) {
         callback(error.ThrowError(error.ErrorCode.Error, '会员卡信息错误或不属于该会员'));
         return;
       }
