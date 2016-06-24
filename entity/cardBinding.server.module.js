@@ -2,9 +2,18 @@ var mongoose = require('mongoose'),
   config = require('../config/sysConfig');
 var CardBindingSchema = new mongoose.Schema({
   bid: Number,
-  cardNumber: String,
-  openId: String,
-  cardGrade: String,
+  cardNumber: {
+    type: String,
+    trim: true
+  },
+  openId: {
+    type: String,
+    trim: true,
+  },
+  cardGrade: {
+    type: String,
+    trim: true,
+  },
   dtCreate: {
     type: Date,
     default: Date.now()

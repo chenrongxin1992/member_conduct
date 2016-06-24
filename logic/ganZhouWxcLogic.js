@@ -439,7 +439,7 @@ GanZhouWXC.prototype.IntegralChange = function (attribute, callback) {
  */
 GanZhouWXC.prototype.CardUnbind = function (attribute, callback) {
   var cardNumber = attribute.cardNumber,
-    openId = attribute.openId,
+    openId = attribute.openId.trim(),
     bid = attribute.bid;
   if (!cardNumber) {
     callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'cardNumber不能为空'));
@@ -460,7 +460,7 @@ GanZhouWXC.prototype.CardUnbind = function (attribute, callback) {
       callback(error.ThrowError(error.ErrorCode.Error, '卡类型错误，不能解绑'));
       return;
     }
-    CardBinding.FindByOpenId(bid, openId, function (err, result) {
+    CardBinding.FindByCardNumber(bid, cardNumber, function (err, result) {
       if (err) {
         callback(error.ThrowError(error.ErrorCode.Error, err.message));
         return;
@@ -469,11 +469,12 @@ GanZhouWXC.prototype.CardUnbind = function (attribute, callback) {
         callback(error.ThrowError(error.ErrorCode.Error, 'OpenId未绑定会员卡'));
         return;
       }
-      if (cardNumber != result[0].cardNumber) {
-        callback(error.ThrowError(error.ErrorCode.Error, '会员卡信息错误或不属于该会员'));
+      if (openId != result[0].openId.trim()) {
+        callback(error.ThrowError(error.ErrorCode.Error, '会员卡对应的微信号不正确'));
         return;
       }
-      CardBinding.remove({_id: result._id}, function (err) {
+      CardBinding.remove({_id: result[0]._id}, function (err) {
+        console.log('err:', err);
         if (err)
           callback(error.ThrowError(error.ErrorCode.Error, '解绑失败'));
         else
