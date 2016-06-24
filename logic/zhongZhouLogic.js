@@ -190,7 +190,6 @@ ZhongZhou.prototype.CardModify = function (attribute, callback) {
     callback(error.ThrowError(error.ErrorCode.DateFormatError, 'email格式错误'));
     return;
   }
-  console.log('IdNo:', idNo, ' result:', verify.IdNo(idNo));
   if (idNo && !verify.IdNo(idNo)) {
     callback(error.ThrowError(error.ErrorCode.DateFormatError, 'idNo格式错误'));
     return;
@@ -199,11 +198,13 @@ ZhongZhou.prototype.CardModify = function (attribute, callback) {
     callback(error.ThrowError(error.ErrorCode.DateFormatError, 'birthday格式错误'));
     return;
   }
+  console.log('AAA');
   kechuan.VipModify(cardNumber, name, phone, sex, birthday, idNo, address, email, function (err, result) {
     if (err) {
       callback(err);
       return;
     }
+    console.log('BBBB');
     kechuan.GetVipInfo(cardNumber, function (err, result) {
       if (err) {
         callback(err);
@@ -222,7 +223,6 @@ ZhongZhou.prototype.CardModify = function (attribute, callback) {
  */
 ZhongZhou.prototype.GetCardByOpenId = function (attribute, callback) {
   var openId = attribute.openId;
-  console.log('openId:', openId);
   if (!openId) {
     callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'openId不能为空'));
     return;
@@ -356,7 +356,6 @@ ZhongZhou.prototype.CardUnbind = function (attribute, callback) {
       callback(err);
       return;
     }
-    console.log('result:', result);
     if (!result.CardNumber || result.CardNumber == '') {
       callback(error.ThrowError(error.ErrorCode.CardUndefined));
       return;

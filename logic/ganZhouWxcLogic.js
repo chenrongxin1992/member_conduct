@@ -33,7 +33,6 @@ GanZhouWXC.prototype.Register = function (attribute, callback) {
     address = attribute.address,
     email = attribute.email,
     bid = attribute.bid;
-  console.log('openId:', openId, 'phone:', phone, 'name:', name, 'idNo:', idNo, 'address:', address, 'Email:', email);
   if (!openId) {
     callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'OpenId不能为空'));
     return;
@@ -57,7 +56,7 @@ GanZhouWXC.prototype.Register = function (attribute, callback) {
       callback(error.ThrowError(error.ErrorCode.Error, err.message));
       return;
     }
-    if (result) {
+    if (result.length>0) {
       callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
       return;
     }
@@ -69,7 +68,6 @@ GanZhouWXC.prototype.Register = function (attribute, callback) {
       }
       //注册
       fuji.Register(phone, name, idNo, address, email, function (err, result) {
-        console.log('Register:', err, ' Result:', result);
         if (err) {
           callback(err);
           return;
@@ -180,7 +178,6 @@ GanZhouWXC.prototype.GetCard = function (attribute, callback) {
     return;
   }
   fuji.GetMemberByCardNumber(cardNumber, function (err, result) {
-    console.log('Err:', err, 'Result:', result);
     if (err) {
       callback(err);
       return;
