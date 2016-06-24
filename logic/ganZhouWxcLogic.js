@@ -52,6 +52,7 @@ GanZhouWXC.prototype.Register = function (attribute, callback) {
    * 4>用户与微信OpenId绑定
    */
   CardBinding.FindByOpenId(bid, openId, function (err, result) {
+    console.log('err:',err,' Result:',result, result.length);
     if (err) {
       callback(error.ThrowError(error.ErrorCode.Error, err.message));
       return;
@@ -227,11 +228,12 @@ GanZhouWXC.prototype.GetCardByOpenId = function (attribute, callback) {
   }
   //查询当前绑定的实体卡
   CardBinding.FindByOpenidInNotGrade(bid, openId, defaultCardGrade, function (err, result) {
+    console.log('A  err:',err,' Result:',result);
     if (err) {
       callback(error.ThrowError(error.ErrorCode.Error, err.message));
       return;
     }
-    cardNumber = result.cardNumber;
+    cardNumber =result.length>0?result[0].cardNumber:'';
     if (cardNumber) {
       fuji.GetMemberByCardNumber(cardNumber, function (err, result) {
         if (err) {
@@ -244,11 +246,12 @@ GanZhouWXC.prototype.GetCardByOpenId = function (attribute, callback) {
     }
     else {
       CardBinding.FindByOpenId(bid, openId, function (err, result) {
+        console.log('B  err:',err,' Result:',result);
         if (err) {
           callback(error.ThrowError(error.ErrorCode.Error, err.message));
           return;
         }
-        cardNumber = result.cardNumber;
+        cardNumber =result.length>0?result[0].cardNumber:'';
         if (cardNumber) {
           fuji.GetMemberByCardNumber(cardNumber, function (err, result) {
             if (err) {
