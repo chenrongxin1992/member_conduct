@@ -108,7 +108,8 @@ GanZhouWXC.prototype.CardBinding = function (attribute, callback) {
   var openId = attribute.openId,
     bid = attribute.bid,
     cardNumber = attribute.cardNumber,
-    phone = attribute.phone;
+    phone = attribute.phone,
+    name = attribute.Name;
   if (!cardNumber) {
     callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'cardNumber不能为空'));
     return;
@@ -149,6 +150,10 @@ GanZhouWXC.prototype.CardBinding = function (attribute, callback) {
         }
         if (!(result.Phone == phone)) {
           callback(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡信息错误，手机号不正确'));
+          return;
+        }
+        if ((name == result.Name)) {
+          callback(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡姓名不正确'));
           return;
         }
         if (result.CardGrade == defaultCardGrade) {
