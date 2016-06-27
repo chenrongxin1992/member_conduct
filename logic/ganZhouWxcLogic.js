@@ -225,7 +225,8 @@ GanZhouWXC.prototype.CardModify = function (attribute, callback) {
     sex = attribute.sex,
     birthday = attribute.birthday,
     address = attribute.address,
-    email = attribute.email;
+    email = attribute.email,
+    bid=attribute.bid;
   if (!cardNumber) {
     callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'cardNumber不能为空'));
     return;
