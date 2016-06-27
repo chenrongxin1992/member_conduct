@@ -109,7 +109,7 @@ GanZhouWXC.prototype.CardBinding = function (attribute, callback) {
     bid = attribute.bid,
     cardNumber = attribute.cardNumber,
     phone = attribute.phone,
-    name = attribute.Name;
+    name = attribute.name;
   if (!cardNumber) {
     callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'cardNumber不能为空'));
     return;
