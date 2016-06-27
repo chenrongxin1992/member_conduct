@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="00a831d3-6f98-489a-b9df-c9ed98e0405b" name="Default" comment="">
+    <list default="true" id="00a831d3-6f98-489a-b9df-c9ed98e0405b" name="Default" comment="V1.06.27.1100&#10;    修改Pm2程序管理命名&#10;        &#10;       &#10;">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MemberConduct.iws" />
@@ -73,8 +73,8 @@
           <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/package.json">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="288">
-                  <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+                <state relative-caret-position="360">
+                  <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
                   <folding />
                 </state>
               </provider>
@@ -773,7 +773,7 @@
       <workItem from="1466411425714" duration="41392000" />
       <workItem from="1466562158507" duration="13856000" />
       <workItem from="1466649482243" duration="18006000" />
-      <workItem from="1466992047882" duration="3592000" />
+      <workItem from="1466992047882" duration="3671000" />
     </task>
     <task id="LOCAL-00001" summary="测试 push">
       <created>1464938639203</created>
@@ -943,11 +943,18 @@
       <option name="project" value="LOCAL" />
       <updated>1466996524160</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="V1.06.27.1100&#10;    修改Pm2程序管理命名&#10;        &#10;       &#10;">
+      <created>1466996598007</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1466996598007</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="292194000" />
+    <option name="totallyTimeSpent" value="292273000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1383,8 +1390,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+        <state relative-caret-position="360">
+          <caret line="20" column="30" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
           <folding />
         </state>
       </provider>
