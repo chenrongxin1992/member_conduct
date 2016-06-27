@@ -1,3 +1,3 @@
 #!/bin/bash
 export NODE_ENV=production
-pm2 reload conductService   
+pm2 reload member_conduct_Service

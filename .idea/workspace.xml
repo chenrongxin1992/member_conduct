@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="00a831d3-6f98-489a-b9df-c9ed98e0405b" name="Default" comment="V1.06.24.1830&#10;     赣州万象城 &#10;       修改 会员卡不存在时候CRM返回的错误消息提示&#10;       &#10;">
+    <list default="true" id="00a831d3-6f98-489a-b9df-c9ed98e0405b" name="Default" comment="V1.06.27.1050&#10;    中州&#10;       修改用户信息差异化提交&#10;        &#10;       &#10;">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crm/crmKeChuan.js" afterPath="$PROJECT_DIR$/crm/crmKeChuan.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logic/zhongZhouLogic.js" afterPath="$PROJECT_DIR$/logic/zhongZhouLogic.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/restart.sh" afterPath="$PROJECT_DIR$/bin/restart.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/start.sh" afterPath="$PROJECT_DIR$/bin/start.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/stop.sh" afterPath="$PROJECT_DIR$/bin/stop.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
     </list>
     <ignored path="MemberConduct.iws" />
@@ -35,21 +36,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.47427294">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="342">
-                  <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="member.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/routes/member.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="270">
-                  <caret line="21" column="19" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="19" />
+                <state relative-caret-position="302">
+                  <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
                   <folding>
                     <element signature="e#284#445#0" expanded="false" />
                     <element signature="e#807#967#0" expanded="false" />
@@ -66,45 +57,14 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="memberLogic.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/logic/memberLogic.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1620">
-                  <caret line="90" column="15" selection-start-line="90" selection-start-column="15" selection-end-line="90" selection-end-column="15" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="error.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Exception/error.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="450">
-                  <caret line="25" column="2" selection-start-line="25" selection-start-column="2" selection-end-line="25" selection-end-column="2" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="cardBinding.server.module.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/entity/cardBinding.server.module.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="180">
-                  <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="Fuji.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/crm/Fuji.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="224">
-                  <caret line="162" column="3" selection-start-line="162" selection-start-column="3" selection-end-line="162" selection-end-column="3" />
+                <state relative-caret-position="651">
+                  <caret line="117" column="10" selection-start-line="117" selection-start-column="10" selection-end-line="117" selection-end-column="10" />
                   <folding>
                     <element signature="e#1601#2448#0" expanded="false" />
                     <element signature="e#1690#1885#0" expanded="false" />
-                    <element signature="e#3589#4443#0" expanded="false" />
                     <element signature="e#4669#5636#0" expanded="false" />
                     <element signature="e#5750#6589#0" expanded="false" />
                     <element signature="e#6793#8364#0" expanded="false" />
@@ -117,8 +77,48 @@
           <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/package.json">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="108">
-                  <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+                <state relative-caret-position="36">
+                  <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="26" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="restart.sh" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/bin/restart.sh">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="36">
+                  <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="spid.sh" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/bin/spid.sh">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="18">
+                  <caret line="1" column="8" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="start.sh" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/bin/start.sh">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="36">
+                  <caret line="2" column="49" selection-start-line="2" selection-start-column="49" selection-end-line="2" selection-end-column="49" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="stop.sh" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/bin/stop.sh">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="36">
+                  <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -151,11 +151,11 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="ganZhouWxcLogic.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="ganZhouWxcLogic.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/logic/ganZhouWxcLogic.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="440">
-                  <caret line="70" column="13" selection-start-line="70" selection-start-column="13" selection-end-line="70" selection-end-column="13" />
+                <state relative-caret-position="291">
+                  <caret line="34" column="24" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
                   <folding>
                     <element signature="e#4884#5569#0" expanded="false" />
                     <element signature="e#5711#6470#0" expanded="false" />
@@ -170,11 +170,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="zhongZhouLogic.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="zhongZhouLogic.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/logic/zhongZhouLogic.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="350">
-                  <caret line="215" column="43" selection-start-line="215" selection-start-column="43" selection-end-line="215" selection-end-column="43" />
+                <state relative-caret-position="296">
+                  <caret line="212" column="16" selection-start-line="212" selection-start-column="16" selection-end-line="212" selection-end-column="16" />
                   <folding>
                     <element signature="e#562#2137#0" expanded="false" />
                     <element signature="e#4085#4394#0" expanded="false" />
@@ -234,6 +234,9 @@
         <option value="$PROJECT_DIR$/logic/ganZhouWxcLogic.js" />
         <option value="$PROJECT_DIR$/crm/crmKeChuan.js" />
         <option value="$PROJECT_DIR$/logic/zhongZhouLogic.js" />
+        <option value="$PROJECT_DIR$/bin/stop.sh" />
+        <option value="$PROJECT_DIR$/bin/start.sh" />
+        <option value="$PROJECT_DIR$/bin/restart.sh" />
         <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
@@ -396,6 +399,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="member_conduct" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="member_conduct" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -760,7 +777,7 @@
       <workItem from="1466411425714" duration="41392000" />
       <workItem from="1466562158507" duration="13856000" />
       <workItem from="1466649482243" duration="18006000" />
-      <workItem from="1466992047882" duration="2849000" />
+      <workItem from="1466992047882" duration="3496000" />
     </task>
     <task id="LOCAL-00001" summary="测试 push">
       <created>1464938639203</created>
@@ -916,11 +933,18 @@
       <option name="project" value="LOCAL" />
       <updated>1466765467843</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="V1.06.27.1050&#10;    中州&#10;       修改用户信息差异化提交&#10;        &#10;       &#10;">
+      <created>1466995881134</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1466995881134</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="291451000" />
+    <option name="totallyTimeSpent" value="292098000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1009,30 +1033,16 @@
     <MESSAGE value="V1.06.24.1741&#10;     赣州万象城 &#10;       修改用户详情数据返回没有OpenId" />
     <MESSAGE value="V1.06.24.1830&#10;     赣州万象城 &#10;       修改 数据存储时候空格问题" />
     <MESSAGE value="V1.06.24.1830&#10;     赣州万象城 &#10;       修改 会员卡不存在时候CRM返回的错误消息提示&#10;       &#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="V1.06.24.1830&#10;     赣州万象城 &#10;       修改 会员卡不存在时候CRM返回的错误消息提示&#10;       &#10;" />
+    <MESSAGE value="V1.06.27.1050&#10;    中州&#10;       修改用户信息差异化提交&#10;        &#10;       &#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="V1.06.27.1050&#10;    中州&#10;       修改用户信息差异化提交&#10;        &#10;       &#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="56" />
+      <option name="time" value="57" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/member.js" />
-    <entry file="file://$PROJECT_DIR$/node_modules/express/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/express/lib/express.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="37" column="25" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/express/lib/request.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
@@ -1144,20 +1154,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bin/www" />
-    <entry file="file://$PROJECT_DIR$/bin/stop.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/restart.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/xml/lib/xml.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -1248,79 +1244,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/entity/cardBinding.server.module.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/member.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="21" column="19" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="19" />
-          <folding>
-            <element signature="e#284#445#0" expanded="false" />
-            <element signature="e#807#967#0" expanded="false" />
-            <element signature="e#1088#1256#0" expanded="false" />
-            <element signature="e#1372#1539#0" expanded="false" />
-            <element signature="e#1770#1797#0" expanded="false" />
-            <element signature="e#1910#2077#0" expanded="false" />
-            <element signature="e#2174#2336#0" expanded="false" />
-            <element signature="e#2443#2645#0" expanded="false" />
-            <element signature="e#2731#2893#0" expanded="false" />
-            <element signature="n#!!block;n#CheckBid#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/crm/Fuji.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="162" column="3" selection-start-line="162" selection-start-column="3" selection-end-line="162" selection-end-column="3" />
-          <folding>
-            <element signature="e#1601#2448#0" expanded="false" />
-            <element signature="e#1690#1885#0" expanded="false" />
-            <element signature="e#3589#4443#0" expanded="false" />
-            <element signature="e#4669#5636#0" expanded="false" />
-            <element signature="e#5750#6589#0" expanded="false" />
-            <element signature="e#6793#8364#0" expanded="false" />
-            <element signature="e#8525#9408#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logic/ganZhouWxcLogic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="70" column="13" selection-start-line="70" selection-start-column="13" selection-end-line="70" selection-end-column="13" />
-          <folding>
-            <element signature="e#4884#5569#0" expanded="false" />
-            <element signature="e#5711#6470#0" expanded="false" />
-            <element signature="e#6623#8083#0" expanded="false" />
-            <element signature="e#8231#9023#0" expanded="false" />
-            <element signature="e#9169#9634#0" expanded="false" />
-            <element signature="e#9775#9997#0" expanded="false" />
-            <element signature="e#10143#11358#0" expanded="false" />
-            <element signature="e#11500#12826#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logic/zhongZhouLogic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="215" column="43" selection-start-line="215" selection-start-column="43" selection-end-line="215" selection-end-column="43" />
-          <folding>
-            <element signature="e#562#2137#0" expanded="false" />
-            <element signature="e#4085#4394#0" expanded="false" />
-            <element signature="e#6505#6819#0" expanded="false" />
-            <element signature="e#6967#7606#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/crm/crmKeChuan.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="31">
@@ -1342,10 +1265,122 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/bin/stop.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/start.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="49" selection-start-line="2" selection-start-column="49" selection-end-line="2" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/spid.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="8" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/restart.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/nodejs/4.4.4/core-modules/querystring.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="35" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logic/zhongZhouLogic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="212" column="16" selection-start-line="212" selection-start-column="16" selection-end-line="212" selection-end-column="16" />
+          <folding>
+            <element signature="e#562#2137#0" expanded="false" />
+            <element signature="e#4085#4394#0" expanded="false" />
+            <element signature="e#6505#6819#0" expanded="false" />
+            <element signature="e#6967#7606#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logic/ganZhouWxcLogic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="34" column="24" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
+          <folding>
+            <element signature="e#4884#5569#0" expanded="false" />
+            <element signature="e#5711#6470#0" expanded="false" />
+            <element signature="e#6623#8083#0" expanded="false" />
+            <element signature="e#8231#9023#0" expanded="false" />
+            <element signature="e#9169#9634#0" expanded="false" />
+            <element signature="e#9775#9997#0" expanded="false" />
+            <element signature="e#10143#11358#0" expanded="false" />
+            <element signature="e#11500#12826#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crm/Fuji.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="117" column="10" selection-start-line="117" selection-start-column="10" selection-end-line="117" selection-end-column="10" />
+          <folding>
+            <element signature="e#1601#2448#0" expanded="false" />
+            <element signature="e#1690#1885#0" expanded="false" />
+            <element signature="e#4669#5636#0" expanded="false" />
+            <element signature="e#5750#6589#0" expanded="false" />
+            <element signature="e#6793#8364#0" expanded="false" />
+            <element signature="e#8525#9408#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/entity/cardBinding.server.module.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/member.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding>
+            <element signature="e#284#445#0" expanded="false" />
+            <element signature="e#807#967#0" expanded="false" />
+            <element signature="e#1088#1256#0" expanded="false" />
+            <element signature="e#1372#1539#0" expanded="false" />
+            <element signature="e#1770#1797#0" expanded="false" />
+            <element signature="e#1910#2077#0" expanded="false" />
+            <element signature="e#2174#2336#0" expanded="false" />
+            <element signature="e#2443#2645#0" expanded="false" />
+            <element signature="e#2731#2893#0" expanded="false" />
+            <element signature="n#!!block;n#CheckBid#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+        <state relative-caret-position="36">
+          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="26" />
           <folding />
         </state>
       </provider>
