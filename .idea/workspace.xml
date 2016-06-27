@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="00a831d3-6f98-489a-b9df-c9ed98e0405b" name="Default" comment="V1.06.27.1050&#10;    中州&#10;       修改用户信息差异化提交&#10;        &#10;       &#10;">
+    <list default="true" id="00a831d3-6f98-489a-b9df-c9ed98e0405b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/restart.sh" afterPath="$PROJECT_DIR$/bin/restart.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/start.sh" afterPath="$PROJECT_DIR$/bin/start.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/stop.sh" afterPath="$PROJECT_DIR$/bin/stop.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
     </list>
     <ignored path="MemberConduct.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -19,7 +15,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CreatePatchCommitExecutor">
-    <option name="PATCH_PATH" value="" />
+    <option name="PATCH_PATH" value="D:\Node Work\member_conduct" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -77,8 +73,8 @@
           <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/package.json">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="36">
-                  <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="26" />
+                <state relative-caret-position="288">
+                  <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
                   <folding />
                 </state>
               </provider>
@@ -777,7 +773,7 @@
       <workItem from="1466411425714" duration="41392000" />
       <workItem from="1466562158507" duration="13856000" />
       <workItem from="1466649482243" duration="18006000" />
-      <workItem from="1466992047882" duration="3496000" />
+      <workItem from="1466992047882" duration="3592000" />
     </task>
     <task id="LOCAL-00001" summary="测试 push">
       <created>1464938639203</created>
@@ -940,11 +936,18 @@
       <option name="project" value="LOCAL" />
       <updated>1466995881134</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="V1.06.27.1100&#10;    修改Pm2程序管理命名&#10;        &#10;       &#10;">
+      <created>1466996524160</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1466996524160</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="292098000" />
+    <option name="totallyTimeSpent" value="292194000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1034,7 +1037,8 @@
     <MESSAGE value="V1.06.24.1830&#10;     赣州万象城 &#10;       修改 数据存储时候空格问题" />
     <MESSAGE value="V1.06.24.1830&#10;     赣州万象城 &#10;       修改 会员卡不存在时候CRM返回的错误消息提示&#10;       &#10;" />
     <MESSAGE value="V1.06.27.1050&#10;    中州&#10;       修改用户信息差异化提交&#10;        &#10;       &#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="V1.06.27.1050&#10;    中州&#10;       修改用户信息差异化提交&#10;        &#10;       &#10;" />
+    <MESSAGE value="V1.06.27.1100&#10;    修改Pm2程序管理命名&#10;        &#10;       &#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="V1.06.27.1100&#10;    修改Pm2程序管理命名&#10;        &#10;       &#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1379,8 +1383,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="26" />
+        <state relative-caret-position="288">
+          <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
           <folding />
         </state>
       </provider>
