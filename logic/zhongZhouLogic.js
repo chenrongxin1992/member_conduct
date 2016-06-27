@@ -198,19 +198,34 @@ ZhongZhou.prototype.CardModify = function (attribute, callback) {
     callback(error.ThrowError(error.ErrorCode.DateFormatError, 'birthday格式错误'));
     return;
   }
-  console.log('AAA');
-  kechuan.VipModify(cardNumber, name, phone, sex, birthday, idNo, address, email, function (err, result) {
+  kechuan.GetVipInfo(cardNumber, function (err, result) {
     if (err) {
       callback(err);
       return;
     }
-    console.log('BBBB');
-    kechuan.GetVipInfo(cardNumber, function (err, result) {
+    if (!result) {
+      callback(error.ThrowError(error.ErrorCode.CardUndefined));
+      return;
+    }
+    //差异化信息提交  若信息没有修改，则传空值
+    phone = phone == result.Phone ? '' : phone;
+    email = email == result.Email ? '' : email;
+    idNo = idNo == result.IdNo ? '' : idNo;
+    birthday = birthday == result.birthday ? '' : birthday;
+    sex = sex == result.Sex ? '' : sex;
+    name = name == result.Name ? '' : name;
+    kechuan.VipModify(cardNumber, name, phone, sex, birthday, idNo, address, email, function (err, result) {
       if (err) {
         callback(err);
         return;
       }
-      callback(error.Success(result));
+      kechuan.GetVipInfo(cardNumber, function (err, result) {
+        if (err) {
+          callback(err);
+          return;
+        }
+        callback(error.Success(result));
+      });
     });
   });
 };

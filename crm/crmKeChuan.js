@@ -194,7 +194,7 @@ exports.VipModify = function (cardNumber, name, phone, sex, birthday, idNo, addr
       ]
     },
     strXml = Xml(xmlOptions);
-  console.log('StrXML:',strXml);
+  console.log('StrXML:', strXml);
   Soap.createClient(url, function (err, client) {
     if (err) {
       console.log('crmKeChuan>VipModify>soap.createclient Error:', error);
@@ -208,7 +208,7 @@ exports.VipModify = function (cardNumber, name, phone, sex, birthday, idNo, addr
         return;
       }
       var code = result.VipModifyResult.Header.ERRCODE;
-      console.log('Result:',result);
+      console.log('Result:', result);
       if (code != 0) {
         callback(Error.ThrowError(Error.ErrorCode.Error, result.VipModifyResult.Header.ERRMSG));
         return;

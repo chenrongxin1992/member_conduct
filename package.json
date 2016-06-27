@@ -1,6 +1,6 @@
 {
   "name": "MemberConduct",
-  "version": "1.06.24.1830",
+  "version": "1.06.27.1050",
   "private": true,
   "scripts": {
     "start": "node app.js"
