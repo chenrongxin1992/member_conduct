@@ -61,7 +61,6 @@ ZhongZhou.prototype.Register = function (attribute, callback) {
         callback(err);
         return;
       }
-      console.log('VipCreate:', result);
       //注册成功，绑定OpenId
       kechuan.BindOpenID(result.CardNumber, phone, openId, function (err) {
         if (err) {

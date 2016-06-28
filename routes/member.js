@@ -90,7 +90,6 @@ router.post('/IntegralChange', function (req, res) {
   var bid = req.body.bid ? parseInt(req.body.bid) : 0;
   var logic = factory(bid);
   logic.IntegralChange(req.body, function (result) {
-    console.log('Result:',result);
     res.json(result);
   });
 });

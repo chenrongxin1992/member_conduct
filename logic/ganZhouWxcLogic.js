@@ -152,7 +152,7 @@ GanZhouWXC.prototype.CardBinding = function (attribute, callback) {
           callback(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡信息错误，手机号不正确'));
           return;
         }
-        if ((name == result.Name)) {
+        if (!(name == result.Name)) {
           callback(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡姓名不正确'));
           return;
         }
