@@ -226,7 +226,7 @@ GanZhouWXC.prototype.CardModify = function (attribute, callback) {
     birthday = attribute.birthday,
     address = attribute.address,
     email = attribute.email,
-    bid=attribute.bid;
+    bid = attribute.bid;
   if (!cardNumber) {
     callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'cardNumber不能为空'));
     return;
@@ -363,10 +363,12 @@ GanZhouWXC.prototype.IntegralRecord = function (attribute, callback) {
     return;
   }
   fuji.Integralrecord(cardNumber, startTime, endTime, pn, ps, function (err, result) {
+    console.log('err:', err, 'result:', result);
     if (err) {
       callback(err);
       return;
     }
+
     callback(error.Success(result));
   });
 };

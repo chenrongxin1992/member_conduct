@@ -270,32 +270,27 @@ exports.Integralrecord = function (cardNumber, startTime, endTime, pn, ps, callb
       var result = JSON.parse(chunk);
       if (typeof result == typeof '')
         result = JSON.parse(result);
-      if (result.ErrorCode == 0) {
-        callback(error.ThrowError(error.ErrorCode.Error, result.Message), result);
+      var items = result.List;
+      if (!items) {
+        callback();
         return;
       }
-      else {
-        var items = result.List;
-        if (!items) {
-          callback();
-          return;
-        }
-        var values = new Array();
-        for (var x in items) {
-          var item = items[x];
-          values.push({
-            CardNumber: cardNumber,
-            DateTime: verify.CheckDate(item.DtCreate) ? moment(item.DtCreate, 'YYYY/MM/DD HH:mm:ss').format('YYYY/MM/DD HH:mm:ss') : '',
-            ShopId: '',
-            ShopName: '',
-            Action: '',
-            Integral: item.Integral,
-            Amount: item.Amount,
-            Remark: item.Remark
-          });
-        }
-        callback(null, values);
+      var values = new Array();
+      for (var x in items) {
+        var item = items[x];
+        values.push({
+          CardNumber: cardNumber,
+          DateTime: verify.CheckDate(item.DtCreate) ? moment(item.DtCreate, 'YYYY/MM/DD HH:mm:ss').format('YYYY/MM/DD HH:mm:ss') : '',
+          ShopId: '',
+          ShopName: '',
+          Action: '',
+          Integral: item.Integral,
+          Amount: item.Amount,
+          Remark: item.Remark
+        });
       }
+      callback(null, values);
+
     });
   });
   req.on('error', function (e) {
