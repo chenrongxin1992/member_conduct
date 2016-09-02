@@ -1,23 +1,23 @@
 var mongoose = require('mongoose'),
-  config = require('../config/sysConfig');
+    config = require('../config/sysConfig');
 var CardBindingSchema = new mongoose.Schema({
-  bid: Number,
-  cardNumber: {
-    type: String,
-    trim: true
-  },
-  openId: {
-    type: String,
-    trim: true,
-  },
-  cardGrade: {
-    type: String,
-    trim: true,
-  },
-  dtCreate: {
-    type: Date,
-    default: Date.now()
-  }
+    bid: Number,
+    cardNumber: {
+        type: String,
+        trim: true
+    },
+    openId: {
+        type: String,
+        trim: true,
+    },
+    cardGrade: {
+        type: String,
+        trim: true,
+    },
+    dtCreate: {
+        type: Date,
+        default: Date.now()
+    }
 });
 
 /**
@@ -27,9 +27,9 @@ var CardBindingSchema = new mongoose.Schema({
  * @constructor
  */
 CardBindingSchema.statics.FindByOpenId = function (bid, openId, callback) {
-  this.find({bid: bid, openId: openId}, function (err, doc) {
-    callback(err, doc);
-  });
+    this.find({bid: bid, openId: openId}, function (err, doc) {
+        return callback(err, doc);
+    });
 };
 /**
  * 根据会员卡查询绑定的OpenId
@@ -38,9 +38,9 @@ CardBindingSchema.statics.FindByOpenId = function (bid, openId, callback) {
  * @constructor
  */
 CardBindingSchema.statics.FindByCardNumber = function (bid, cardNumber, callback) {
-  this.find({bid: bid, cardNumber: cardNumber}, function (err, docs) {
-    callback(err, docs);
-  });
+    this.find({bid: bid, cardNumber: cardNumber}, function (err, docs) {
+        return callback(err, docs);
+    });
 };
 
 /**
@@ -50,9 +50,9 @@ CardBindingSchema.statics.FindByCardNumber = function (bid, cardNumber, callback
  * @constructor
  */
 CardBindingSchema.statics.FindByOpenidInNotGrade = function (bid, openId, cardGrade, callback) {
-  this.find({bid: bid, openId: openId, cardGrade: {$ne: cardGrade}}, function (err, docs) {
-    callback(err, docs);
-  });
+    this.find({bid: bid, openId: openId, cardGrade: {$ne: cardGrade}}, function (err, docs) {
+        return callback(err, docs);
+    });
 };
 
 mongoose.model(config.cardBinding, CardBindingSchema);

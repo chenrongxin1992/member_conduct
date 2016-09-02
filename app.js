@@ -17,6 +17,7 @@ var test = require('./mamager/test');
 
 var index = require('./routes/index');
 var member = require('./routes/member');
+var parking = require('./routes/parkingLot');
 
 var app = express();
 
@@ -34,33 +35,34 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/member', member);
+app.use('/parking', parking);
 
 app.post('/aaa', test.AAA);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 if (app.get('env') === 'development') {
-  app.use(function (err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
+    app.use(function (err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: err
+        });
     });
-  });
 }
 app.use(function (err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+    res.status(err.status || 500);
+    res.render('error', {
+        message: err.message,
+        error: {}
+    });
 });
 var port = 5001;
 app.listen(port, function () {
-  console.log('app is runing.... port:', port);
+    console.log('app is runing.... port:', port);
 });

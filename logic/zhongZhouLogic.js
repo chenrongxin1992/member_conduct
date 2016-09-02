@@ -21,61 +21,61 @@ utils.inherits(ZhongZhou, member);
  * @constructor
  */
 ZhongZhou.prototype.Register = function (attribute, callback) {
-  var name = attribute.name,
-    phone = attribute.phone,
-    sex = attribute.sex,
-    openId = attribute.openId;
-  if (!openId) {
-    callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'openId不能为空'));
-    return;
-  }
-  if (!name) {
-    callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'name不能为空'));
-    return;
-  }
-  if (!verify.Name(name)) {
-    callback(error.ThrowError(error.ErrorCode.DateFormatError, 'name格式错误'));
-    return;
-  }
-  if (!phone) {
-    callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'phone不能为空'));
-    return;
-  }
-  if (!verify.Phone(phone)) {
-    callback(error.ThrowError(error.ErrorCode.DateFormatError, 'Phone格式错误'));
-    return;
-  }
-  if (!sex) {
-    callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'Sex不能为空'));
-    return;
-  }
-  //判断当前OpenId是否已有绑定会员卡
-  kechuan.GetVipInfoByMobileOpenId(openId, function (err, result) {
-    if (!err) {
-      callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
-      return;
-    }
-    //注册 (判断当前手机号是否已经注册）
-    kechuan.VipCreate(name, phone, sex, function (err, result) {
-      if (err) {  //注册失败
-        callback(err);
+    var name = attribute.name,
+        phone = attribute.phone,
+        sex = attribute.sex,
+        openId = attribute.openId;
+    if (!openId) {
+        callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'openId不能为空'));
         return;
-      }
-      //注册成功，绑定OpenId
-      kechuan.BindOpenID(result.CardNumber, phone, openId, function (err) {
-        if (err) {
-          callback(err);
-          return;
+    }
+    if (!name) {
+        callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'name不能为空'));
+        return;
+    }
+    if (!verify.Name(name)) {
+        callback(error.ThrowError(error.ErrorCode.DateFormatError, 'name格式错误'));
+        return;
+    }
+    if (!phone) {
+        callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'phone不能为空'));
+        return;
+    }
+    if (!verify.Phone(phone)) {
+        callback(error.ThrowError(error.ErrorCode.DateFormatError, 'Phone格式错误'));
+        return;
+    }
+    if (!sex) {
+        callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'Sex不能为空'));
+        return;
+    }
+    //判断当前OpenId是否已有绑定会员卡
+    kechuan.GetVipInfoByMobileOpenId(openId, function (err, result) {
+        if (!err) {
+            callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
+            return;
         }
-        kechuan.GetVipInfo(result.CardNumber, function (err, result) {
-          if (err)
-            callback(err);
-          else
-            callback(error.Success(result));
+        //注册 (判断当前手机号是否已经注册）
+        kechuan.VipCreate(name, phone, sex, function (err, result) {
+            if (err) {  //注册失败
+                callback(err);
+                return;
+            }
+            //注册成功，绑定OpenId
+            kechuan.BindOpenID(result.CardNumber, phone, openId, function (err) {
+                if (err) {
+                    callback(err);
+                    return;
+                }
+                kechuan.GetVipInfo(result.CardNumber, function (err, result) {
+                    if (err)
+                        callback(err);
+                    else
+                        callback(error.Success(result));
+                });
+            });
         });
-      });
     });
-  });
 };
 
 /**
@@ -88,58 +88,50 @@ ZhongZhou.prototype.Register = function (attribute, callback) {
  * @constructor
  */
 ZhongZhou.prototype.CardBinding = function (attribute, callback) {
-  var cardNumber = attribute.cardNumber,
-    openId = attribute.openId,
-    phone = attribute.phone;
-  if (!cardNumber) {
-    callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'cardNumber不能为空'));
-    return;
-  }
-  if (!openId) {
-    callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'openid不能为空'));
-    return;
-  }
-  if (!phone) {
-    callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'phone不能为空'));
-    return;
-  }
-  if (!verify.Phone(phone)) {
-    callback(error.ThrowError(error.ErrorCode.DateFormatError, 'phone格式错误'));
-    return;
-  }
-  //查询OpenId是否已绑定
-  //判断当前OpenId是否已有绑定会员卡
-  kechuan.GetVipInfoByMobileOpenId(openId, function (err, result) {
-    if (!err && result.CardGrade != kechuan.VipGrade) {
-      callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
-      return;
+    var cardNumber = attribute.cardNumber,
+        openId = attribute.openId,
+        phone = attribute.phone;
+    if (!cardNumber) {
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'cardNumber不能为空'));
     }
-    //查询会员卡是否存在
-    kechuan.GetVipInfo(cardNumber, function (err, result) {
-      if (err) {
-        callback(err);
-        return;
-      }
-      if (!(result.Phone == phone)) {
-        callback(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡信息错误，手机号不正确'));
-        return;
-      }
-      if (result.OpenId != '') {
-        callback(error.ThrowError(error.ErrorCode.CardInfoError, '该会员卡已经被其他微信号绑定'));
-        return;
-      }
-      if (result.CardGrade == kechuan.VipGrade) {
-        callback(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡类型错误，绑卡不能为虚拟卡'));
-        return;
-      }
-      kechuan.BindOpenID(cardNumber, phone, openId, function (err) {
-        if (err)
-          callback(err);
-        else
-          callback(error.Success(result)); //返回会员卡信息
-      });
+    if (!openId) {
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'openid不能为空'));
+    }
+    if (!phone) {
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'phone不能为空'));
+    }
+    if (!verify.Phone(phone)) {
+        return callback(error.ThrowError(error.ErrorCode.DateFormatError, 'phone格式错误'));
+    }
+    //查询OpenId是否已绑定
+    //判断当前OpenId是否已有绑定会员卡
+    kechuan.GetVipInfoByMobileOpenId(openId, function (err, result) {
+        if (!err && result.CardGrade != kechuan.VipGrade) {
+            return callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
+        }
+        //查询会员卡是否存在
+        kechuan.GetVipInfo(cardNumber, function (err, result) {
+            if (err) {
+                return callback(err);
+            }
+            if (!(result.Phone == phone)) {
+                return callback(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡信息错误，手机号不正确'));
+
+            }
+            if (result.OpenId != '') {
+                return callback(error.ThrowError(error.ErrorCode.CardInfoError, '该会员卡已经被其他微信号绑定'));
+            }
+            if (result.CardGrade == kechuan.VipGrade) {
+                return callback(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡类型错误，绑卡不能为虚拟卡'));
+            }
+            kechuan.BindOpenID(cardNumber, phone, openId, function (err) {
+                if (err)
+                    callback(err);
+                else
+                    callback(error.Success(result)); //返回会员卡信息
+            });
+        });
     });
-  });
 };
 
 /**
@@ -149,17 +141,17 @@ ZhongZhou.prototype.CardBinding = function (attribute, callback) {
  * @constructor
  */
 ZhongZhou.prototype.GetCard = function (attrrbute, callback) {
-  var cardNumber = attrrbute.cardNumber;
-  if (!cardNumber) {
-    callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'cardNumber不能为空'));
-    return;
-  }
-  kechuan.GetVipInfo(cardNumber, function (err, result) {
-    if (err)
-      callback(err);
-    else
-      callback(error.Success(result));
-  });
+    var cardNumber = attrrbute.cardNumber;
+    if (!cardNumber) {
+        callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'cardNumber不能为空'));
+        return;
+    }
+    kechuan.GetVipInfo(cardNumber, function (err, result) {
+        if (err)
+            callback(err);
+        else
+            callback(error.Success(result));
+    });
 };
 
 /**
@@ -169,64 +161,64 @@ ZhongZhou.prototype.GetCard = function (attrrbute, callback) {
  * @constructor
  */
 ZhongZhou.prototype.CardModify = function (attribute, callback) {
-  var cardNumber = attribute.cardNumber,
-    address = attribute.address,
-    email = attribute.email,
-    idNo = attribute.idNo,
-    name = attribute.name,
-    sex = attribute.sex,
-    birthday = attribute.birthday,
-    phone = attribute.phone;
-  if (!cardNumber) {
-    callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'cardNumber不能为空'));
-    return;
-  }
-  if (phone && !verify.Phone(phone)) {
-    callback(error.ThrowError(error.ErrorCode.DateFormatError, 'Phone格式错误'));
-    return;
-  }
-  if (email && !verify.CheckEmail(email)) {
-    callback(error.ThrowError(error.ErrorCode.DateFormatError, 'email格式错误'));
-    return;
-  }
-  if (idNo && !verify.IdNo(idNo)) {
-    callback(error.ThrowError(error.ErrorCode.DateFormatError, 'idNo格式错误'));
-    return;
-  }
-  if (birthday && !verify.CheckDate(birthday)) {
-    callback(error.ThrowError(error.ErrorCode.DateFormatError, 'birthday格式错误'));
-    return;
-  }
-  kechuan.GetVipInfo(cardNumber, function (err, result) {
-    if (err) {
-      callback(err);
-      return;
-    }
-    if (!result) {
-      callback(error.ThrowError(error.ErrorCode.CardUndefined));
-      return;
-    }
-    //差异化信息提交  若信息没有修改，则传空值
-    phone = phone == result.Phone ? '' : phone;
-    email = email == result.Email ? '' : email;
-    idNo = idNo == result.IdNo ? '' : idNo;
-    birthday = birthday == result.birthday ? '' : birthday;
-    sex = sex == result.Sex ? '' : sex;
-    name = name == result.Name ? '' : name;
-    kechuan.VipModify(cardNumber, name, phone, sex, birthday, idNo, address, email, function (err, result) {
-      if (err) {
-        callback(err);
+    var cardNumber = attribute.cardNumber,
+        address = attribute.address,
+        email = attribute.email,
+        idNo = attribute.idNo,
+        name = attribute.name,
+        sex = attribute.sex,
+        birthday = attribute.birthday,
+        phone = attribute.phone;
+    if (!cardNumber) {
+        callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'cardNumber不能为空'));
         return;
-      }
-      kechuan.GetVipInfo(cardNumber, function (err, result) {
+    }
+    if (phone && !verify.Phone(phone)) {
+        callback(error.ThrowError(error.ErrorCode.DateFormatError, 'Phone格式错误'));
+        return;
+    }
+    if (email && !verify.CheckEmail(email)) {
+        callback(error.ThrowError(error.ErrorCode.DateFormatError, 'email格式错误'));
+        return;
+    }
+    if (idNo && !verify.IdNo(idNo)) {
+        callback(error.ThrowError(error.ErrorCode.DateFormatError, 'idNo格式错误'));
+        return;
+    }
+    if (birthday && !verify.CheckDate(birthday)) {
+        callback(error.ThrowError(error.ErrorCode.DateFormatError, 'birthday格式错误'));
+        return;
+    }
+    kechuan.GetVipInfo(cardNumber, function (err, result) {
         if (err) {
-          callback(err);
-          return;
+            callback(err);
+            return;
         }
-        callback(error.Success(result));
-      });
+        if (!result) {
+            callback(error.ThrowError(error.ErrorCode.CardUndefined));
+            return;
+        }
+        //差异化信息提交  若信息没有修改，则传空值
+        phone = phone == result.Phone ? '' : phone;
+        email = email == result.Email ? '' : email;
+        idNo = idNo == result.IdNo ? '' : idNo;
+        birthday = birthday == result.birthday ? '' : birthday;
+        sex = sex == result.Sex ? '' : sex;
+        name = name == result.Name ? '' : name;
+        kechuan.VipModify(cardNumber, name, phone, sex, birthday, idNo, address, email, function (err, result) {
+            if (err) {
+                callback(err);
+                return;
+            }
+            kechuan.GetVipInfo(cardNumber, function (err, result) {
+                if (err) {
+                    callback(err);
+                    return;
+                }
+                callback(error.Success(result));
+            });
+        });
     });
-  });
 };
 
 /**
@@ -236,18 +228,18 @@ ZhongZhou.prototype.CardModify = function (attribute, callback) {
  * @constructor
  */
 ZhongZhou.prototype.GetCardByOpenId = function (attribute, callback) {
-  var openId = attribute.openId;
-  if (!openId) {
-    callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'openId不能为空'));
-    return;
-  }
-  kechuan.GetVipInfoByMobileOpenId(openId, function (err, result) {
-    if (err) {
-      callback(err);
-      return;
+    var openId = attribute.openId;
+    if (!openId) {
+        callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'openId不能为空'));
+        return;
     }
-    callback(error.Success(result));
-  });
+    kechuan.GetVipInfoByMobileOpenId(openId, function (err, result) {
+        if (err) {
+            callback(err);
+            return;
+        }
+        callback(error.Success(result));
+    });
 };
 
 /**
@@ -257,31 +249,22 @@ ZhongZhou.prototype.GetCardByOpenId = function (attribute, callback) {
  * @constructor
  */
 ZhongZhou.prototype.GetCardByPhone = function (attribute, callback) {
-  var phone = attribute.phone;
-  if (!phone) {
-    callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'phone不能为空'));
-    return;
-  }
-  if (!verify.Phone(phone)) {
-    callback(error.ThrowError(error.ErrorCode.DateFormatError, 'Phone格式错误'));
-    return;
-  }
-  kechuan.GetVipBaseInfoByMobile(phone, function (err, result) {
-    if (err) {
-      callback(err);
-      return;
+    var phone = attribute.phone;
+    if (!phone) {
+        callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'phone不能为空'));
+        return;
     }
-    if (!result) { //没有会员卡
-      callback(error.Success());
-      return;
+    if (!verify.Phone(phone)) {
+        callback(error.ThrowError(error.ErrorCode.DateFormatError, 'Phone格式错误'));
+        return;
     }
-    kechuan.GetVipInfo(result.CardNumber, function (err, result) {
-      if (err)
-        callback(err);
-      else
+    kechuan.GetVipInfoByMobile(phone, function (err, result) {
+        if (err) {
+            callback(err);
+            return;
+        }
         callback(error.Success(result));
     });
-  });
 };
 
 /**
@@ -291,17 +274,17 @@ ZhongZhou.prototype.GetCardByPhone = function (attribute, callback) {
  * @constructor
  */
 ZhongZhou.prototype.IntegralRecord = function (attribute, callback) {
-  var cardNumber = attribute.cardNumber;
-  if (!cardNumber) {
-    callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'cardNumber不能为空'));
-    return;
-  }
-  kechuan.GetBonusledgerRecord(cardNumber, function (err, result) {
-    if (err)
-      callback(err);
-    else
-      callback(error.Success(result));
-  });
+    var cardNumber = attribute.cardNumber;
+    if (!cardNumber) {
+        callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'cardNumber不能为空'));
+        return;
+    }
+    kechuan.GetBonusledgerRecord(cardNumber, function (err, result) {
+        if (err)
+            callback(err);
+        else
+            callback(error.Success(result));
+    });
 };
 
 /**
@@ -311,10 +294,10 @@ ZhongZhou.prototype.IntegralRecord = function (attribute, callback) {
  * @constructor
  */
 ZhongZhou.prototype.GradeList = function (attribute, callback) {
-  kechuan.GetGradeList(function (err, result) {
-    var str = err ? err : error.Success(result);
-    callback(str);
-  });
+    kechuan.GetGradeList(function (err, result) {
+        var str = err ? err : error.Success(result);
+        callback(str);
+    });
 };
 
 /**
@@ -324,37 +307,37 @@ ZhongZhou.prototype.GradeList = function (attribute, callback) {
  * @constructor
  */
 ZhongZhou.prototype.IntegralChange = function (attribute, callback) {
-  var cardNumber = attribute.cardNumber,
-    integral = attribute.integral,
-    source = attribute.source,
-    desc = attribute.desc;
-  if (!cardNumber) {
-    callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'cardNumber不能为空'));
-    return;
-  }
-  if (!integral) {
-    callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'integral不能为空'));
-    return;
-  }
-  if (!verify.CheckNumber(integral)) {
-    callback(error.ThrowError(error.ErrorCode.DateFormatError, 'integral格式错误'));
-    return;
-  }
-  integral = parseFloat(integral);
-  if (integral == 0) {
-    callback(error.ThrowError(error.ErrorCode.DateFormatError, '无效的积分'));
-    return;
-  }
-  if (!source) {
-    callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'source不能为空'));
-    return;
-  }
-  kechuan.BonusChange(cardNumber, integral, source, desc, function (err, result) {
-    if (err)
-      callback(err);
-    else
-      callback(error.Success(result));
-  });
+    var cardNumber = attribute.cardNumber,
+        integral = attribute.integral,
+        source = attribute.source,
+        desc = attribute.desc;
+    if (!cardNumber) {
+        callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'cardNumber不能为空'));
+        return;
+    }
+    if (!integral) {
+        callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'integral不能为空'));
+        return;
+    }
+    if (!verify.CheckNumber(integral)) {
+        callback(error.ThrowError(error.ErrorCode.DateFormatError, 'integral格式错误'));
+        return;
+    }
+    integral = parseFloat(integral);
+    if (integral == 0) {
+        callback(error.ThrowError(error.ErrorCode.DateFormatError, '无效的积分'));
+        return;
+    }
+    if (!source) {
+        callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'source不能为空'));
+        return;
+    }
+    kechuan.BonusChange(cardNumber, integral, source, desc, function (err, result) {
+        if (err)
+            callback(err);
+        else
+            callback(error.Success(result));
+    });
 };
 
 /**
@@ -364,23 +347,24 @@ ZhongZhou.prototype.IntegralChange = function (attribute, callback) {
  * @constructor
  */
 ZhongZhou.prototype.CardUnbind = function (attribute, callback) {
-  var cardNumber = attribute.cardNumber;
-  kechuan.GetVipInfo(cardNumber, function (err, result) {
-    if (err) {
-      callback(err);
-      return;
-    }
-    if (!result.CardNumber || result.CardNumber == '') {
-      callback(error.ThrowError(error.ErrorCode.CardUndefined));
-      return;
-    }
-    kechuan.BindOpenID(cardNumber, result.Phone, '', function (err) {
-      if (err) {
-        callback(err);
-      } else {
-        callback(error.Success());
-      }
+    var cardNumber = attribute.cardNumber;
+    kechuan.GetVipInfo(cardNumber, function (err, result) {
+        if (err) {
+            callback(err);
+            return;
+        }
+        if (!result.CardNumber || result.CardNumber == '') {
+            callback(error.ThrowError(error.ErrorCode.CardUndefined));
+            return;
+        }
+        kechuan.BindOpenID(cardNumber, result.Phone, '', function (err) {
+            if (err) {
+                callback(err);
+            } else {
+                callback(error.Success());
+            }
+        });
     });
-  });
 };
+
 module.exports = ZhongZhou;

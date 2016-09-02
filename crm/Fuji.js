@@ -5,13 +5,14 @@
  */
 
 var http = require('http'),
-  qs = require('querystring'),
-  verify = require('../Tools/verify'),
-  error = require('../Exception/error'),
-  moment = require('moment');
+    qs = require('querystring'),
+    verify = require('../Tools/verify'),
+    error = require('../Exception/error'),
+    moment = require('moment');
 
-var fujiHost = '103.44.60.13',  //富基CRM HostPath
-  fujiPort = 7012; //端口号
+var fujiHost = '111.75.158.77',  //富基CRM HostPath
+    fujiPort = 8098; //端口号
+
 /**
  * 会员注册
  * @param phone Not Null
@@ -23,39 +24,48 @@ var fujiHost = '103.44.60.13',  //富基CRM HostPath
  * @constructor
  */
 exports.Register = function (phone, name, idNo, address, email, callback) {
-  var post_data = {
-      phone: phone,
-      name: name,
-      idNo: idNo,
-      address: address,
-      email: email
-    },
-    content = qs.stringify(post_data),
-    options = {
-      host: fujiHost,
-      port: fujiPort,
-      path: '/Fuji/Register',
-      method: 'post',
-      headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
-    };
-  var req = http.request(options, function (res) {
-    res.setEncoding('utf8');
-    res.on('data', function (chunk) {
-      var result = JSON.parse(chunk);
-      if (typeof result == typeof '')
-        result = JSON.parse(result);
-      if (result.ErrorCode == 0)
-        callback(error.ThrowError(error.ErrorCode.Error, result.Message), result);
-      else
-        callback(null, ToCardResult(result));
+    var post_data = {
+            phone: phone,
+            name: name,
+            idNo: idNo,
+            address: address,
+            email: email
+        },
+        content = qs.stringify(post_data),
+        options = {
+            host: fujiHost,
+            port: fujiPort,
+            path: '/Fuji/Register',
+            method: 'post',
+            headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+        };
+    var req = http.request(options, function (res) {
+        res.setEncoding('utf8');
+        var result = '';
+        res.on('data', function (chunk) {
+            result += chunk;
+        });
+        res.on('end', function () {
+            try {
+                result = JSON.parse(result);
+                if (typeof result == typeof '')
+                    result = JSON.parse(result);
+                if (result.ErrorCode == 0)
+                    return callback(error.ThrowError(error.ErrorCode.Error, result.Message), result);
+                else
+                    return callback(null, ToCardResult(result));
+            } catch (e) {
+                return callback(error.ThrowError(error.ErrorCode.Error, e.message));
+            }
+        });
     });
-  });
-  req.on('error', function (e) {
-    callback(error.ThrowError(error.ErrorCode.Error, e.message));
-  });
-  req.write(content);
-  req.end();
+    req.on('error', function (e) {
+        return callback(error.ThrowError(error.ErrorCode.Error, e.message));
+    });
+    req.write(content);
+    req.end();
 };
+
 /**
  * 根据手机号查询用户
  * @param phone
@@ -63,32 +73,40 @@ exports.Register = function (phone, name, idNo, address, email, callback) {
  * @constructor
  */
 exports.GetMemberByPhone = function (phone, callback) {
-  var post_data = {phone: phone},
-    content = qs.stringify(post_data),
-    options = {
-      host: fujiHost,
-      port: fujiPort,
-      path: '/Fuji/GetMemberByPhone',
-      method: 'post',
-      headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
-    };
-  var req = http.request(options, function (res) {
-    res.setEncoding('utf8');
-    res.on('data', function (chunk) {
-      var result = JSON.parse(chunk);
-      if (typeof result == typeof '')
-        result = JSON.parse(result);
-      if (result.ErrorCode == '0')
-        callback(error.ThrowError(error.ErrorCode.Error, result.Message), result);
-      else
-        callback(null, ToCardResult(result));
+    var post_data = {phone: phone},
+        content = qs.stringify(post_data),
+        options = {
+            host: fujiHost,
+            port: fujiPort,
+            path: '/Fuji/GetMemberByPhone',
+            method: 'post',
+            headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+        };
+    var req = http.request(options, function (res) {
+        res.setEncoding('utf8');
+        var result = '';
+        res.on('data', function (chunk) {
+            result += chunk;
+        });
+        res.on('end', function () {
+            try {
+                result = JSON.parse(result);
+                if (typeof result == typeof '')
+                    result = JSON.parse(result);
+                if (result.ErrorCode == '0')
+                    callback(error.ThrowError(error.ErrorCode.Error, result.Message), result);
+                else
+                    callback(null, ToCardResult(result));
+            } catch (e) {
+                callback(error.ThrowError(error.ErrorCode.Error, e.message));
+            }
+        });
     });
-  });
-  req.on('error', function (e) {
-    callback(error.ThrowError(error.ErrorCode.Error, e.message));
-  });
-  req.write(content);
-  req.end();
+    req.on('error', function (e) {
+        callback(error.ThrowError(error.ErrorCode.Error, e.message));
+    });
+    req.write(content);
+    req.end();
 };
 
 /**
@@ -98,33 +116,44 @@ exports.GetMemberByPhone = function (phone, callback) {
  * @constructor
  */
 exports.GetMemberByCardNumber = function (cardNumber, callback) {
-  var post_data = {cardNumber: cardNumber},
-    content = qs.stringify(post_data),
-    options = {
-      host: fujiHost,
-      port: fujiPort,
-      path: '/Fuji/GetMemberByCardNumber',
-      method: 'post',
-      headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
-    };
-  var req = http.request(options, function (res) {
-    res.setEncoding('utf8');
-    res.on('data', function (chunk) {
-      var result = JSON.parse(chunk);
-      if (typeof result == typeof '')
-        result = JSON.parse(result);
-      if (result.ErrorCode == 0)
-        callback(error.ThrowError(error.ErrorCode.Error, '会员卡不存在'), result);
-      else
-        callback(null, ToCardResult(result));
+    var post_data = {cardNumber: cardNumber},
+        content = qs.stringify(post_data),
+        options = {
+            host: fujiHost,
+            port: fujiPort,
+            path: '/Fuji/GetMemberByCardNumber',
+            method: 'post',
+            headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+        };
+    var req = http.request(options, function (res) {
+        res.setEncoding('utf8');
+        var result = '';
+        res.on('data', function (chunk) {
+            result += chunk;
+        });
+        res.on('end', function () {
+            try {
+                result = JSON.parse(result);
+                if (typeof result == typeof '')
+                    result = JSON.parse(result);
+                if (result.ErrorCode == 0)
+                    callback(error.ThrowError(error.ErrorCode.CardUndefined, '会员卡不存在'), result);
+                else
+                    callback(null, ToCardResult(result));
+            } catch (e) {
+                //console.log('e:', e.message, ' result:', result);
+                callback(error.ThrowError(error.ErrorCode.Error, e.message));
+            }
+        });
     });
-  });
-  req.on('error', function (e) {
-    callback(error.ThrowError(error.ErrorCode.Error, e.message));
-  });
-  req.write(content);
-  req.end();
+    req.on('error', function (e) {
+        console.log('error:', e.message);
+        callback(error.ThrowError(error.ErrorCode.Error, e.message));
+    });
+    req.write(content);
+    req.end();
 };
+
 /**
  * 根据会员编号查询会员信息
  * @param memberId
@@ -132,32 +161,40 @@ exports.GetMemberByCardNumber = function (cardNumber, callback) {
  * @constructor
  */
 exports.GetMemberByMemberId = function (memberId, callback) {
-  var post_data = {memberId: memberId},
-    content = qs.stringify(post_data),
-    options = {
-      host: fujiHost,
-      port: fujiPort,
-      path: '/Fuji/GetMemberByMemberId',
-      method: 'post',
-      headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
-    };
-  var req = http.request(options, function (res) {
-    res.setEncoding('utf8');
-    res.on('data', function (chunk) {
-      var result = JSON.parse(chunk);
-      if (typeof result == typeof '')
-        result = JSON.parse(result);
-      if (result.ErrorCode == 0)
-        callback(error.ThrowError(error.ErrorCode.Error, result.Message), result);
-      else
-        callback(null, ToCardResult(result));
+    var post_data = {memberId: memberId},
+        content = qs.stringify(post_data),
+        options = {
+            host: fujiHost,
+            port: fujiPort,
+            path: '/Fuji/GetMemberByMemberId',
+            method: 'post',
+            headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+        };
+    var req = http.request(options, function (res) {
+        res.setEncoding('utf8');
+        var result = '';
+        res.on('data', function (chunk) {
+            result += chunk;
+        });
+        res.on('end', function () {
+            try {
+                result = JSON.parse(chunk);
+                if (typeof result == typeof '')
+                    result = JSON.parse(result);
+                if (result.ErrorCode == 0)
+                    callback(error.ThrowError(error.ErrorCode.Error, result.Message), result);
+                else
+                    callback(null, ToCardResult(result));
+            } catch (e) {
+                callback(error.ThrowError(error.ErrorCode.Error, e.message));
+            }
+        });
     });
-  });
-  req.on('error', function (e) {
-    callback(error.ThrowError(error.ErrorCode.Error, e.message));
-  });
-  req.write(content);
-  req.end();
+    req.on('error', function (e) {
+        callback(error.ThrowError(error.ErrorCode.Error, e.message));
+    });
+    req.write(content);
+    req.end();
 };
 
 /**
@@ -171,39 +208,47 @@ exports.GetMemberByMemberId = function (memberId, callback) {
  * @constructor
  */
 exports.Modify = function (cardNumber, idNo, sex, birthday, address, email, callback) {
-  var post_data = {
-      cardNumber: cardNumber,
-      idNo: idNo,
-      sex: sex,
-      birthday: birthday,
-      address: address,
-      email: email
-    },
-    content = qs.stringify(post_data),
-    options = {
-      host: fujiHost,
-      port: fujiPort,
-      path: '/Fuji/MemberModify',
-      method: 'post',
-      headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
-    };
-  var req = http.request(options, function (res) {
-    res.setEncoding('utf8');
-    res.on('data', function (chunk) {
-      var result = JSON.parse(chunk);
-      if (typeof result == typeof '')
-        result = JSON.parse(result);
-      if (result.ErrorCode == 0)
-        callback(error.ThrowError(error.ErrorCode.Error, result.Message), result);
-      else
-        callback(null, ToCardResult(result));
+    var post_data = {
+            cardNumber: cardNumber,
+            idNo: idNo,
+            sex: sex,
+            birthday: birthday,
+            address: address,
+            email: email
+        },
+        content = qs.stringify(post_data),
+        options = {
+            host: fujiHost,
+            port: fujiPort,
+            path: '/Fuji/MemberModify',
+            method: 'post',
+            headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+        };
+    var req = http.request(options, function (res) {
+        res.setEncoding('utf8');
+        var result = '';
+        res.on('data', function (chunk) {
+            result += chunk;
+        });
+        res.on('end', function () {
+            try {
+                result = JSON.parse(result);
+                if (typeof result == typeof '')
+                    result = JSON.parse(result);
+                if (result.ErrorCode == 0)
+                    callback(error.ThrowError(error.ErrorCode.Error, result.Message), result);
+                else
+                    callback(null, ToCardResult(result));
+            } catch (e) {
+                callback(error.ThrowError(error.ErrorCode.Error, e.message));
+            }
+        });
     });
-  });
-  req.on('error', function (e) {
-    callback(error.ThrowError(error.ErrorCode.Error, e.message));
-  });
-  req.write(content);
-  req.end();
+    req.on('error', function (e) {
+        callback(error.ThrowError(error.ErrorCode.Error, e.message));
+    });
+    req.write(content);
+    req.end();
 };
 
 /**
@@ -212,33 +257,42 @@ exports.Modify = function (cardNumber, idNo, sex, birthday, address, email, call
  * @constructor
  */
 exports.CurrentIntegral = function (cardNumber, callback) {
-  var post_data = {cardNumber: cardNumber},
-    content = qs.stringify(post_data),
-    options = {
-      host: fujiHost,
-      port: fujiPort,
-      path: '/Fuji/MemberIntegral',
-      method: 'post',
-      headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
-    };
-  var req = http.request(options, function (res) {
-    res.setEncoding('utf8');
-    res.on('data', function (chunk) {
-      var result = JSON.parse(chunk);
-      if (typeof result == typeof '')
-        result = JSON.parse(result);
-      if (result.ErrorCode == 0)
-        callback(error.ThrowError(error.ErrorCode.Error, result.Message), result);
-      else
-        callback(null, result);
+    var post_data = {cardNumber: cardNumber},
+        content = qs.stringify(post_data),
+        options = {
+            host: fujiHost,
+            port: fujiPort,
+            path: '/Fuji/MemberIntegral',
+            method: 'post',
+            headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+        };
+    var req = http.request(options, function (res) {
+        res.setEncoding('utf8');
+        var result = '';
+        res.on('data', function (chunk) {
+            result += chunk;
+        });
+        res.on('end', function () {
+            try {
+                result = JSON.parse(result);
+                if (typeof result == typeof '')
+                    result = JSON.parse(result);
+                if (result.ErrorCode == 0)
+                    callback(error.ThrowError(error.ErrorCode.Error, result.Message), result);
+                else
+                    callback(null, result);
+            } catch (e) {
+                callback(error.ThrowError(error.ErrorCode.Error, e.message));
+            }
+        });
     });
-  });
-  req.on('error', function (e) {
-    callback(error.ThrowError(error.ErrorCode.Error, e.message));
-  });
-  req.write(content);
-  req.end();
+    req.on('error', function (e) {
+        callback(error.ThrowError(error.ErrorCode.Error, e.message));
+    });
+    req.write(content);
+    req.end();
 };
+
 /**
  * 积分记录
  * @param cardNumber
@@ -249,55 +303,60 @@ exports.CurrentIntegral = function (cardNumber, callback) {
  * @constructor
  */
 exports.Integralrecord = function (cardNumber, startTime, endTime, pn, ps, callback) {
-  var post_data = {
-      cardNumber: cardNumber,
-      startTime: startTime,
-      endTime: endTime,
-      pn: pn,
-      ps: ps
-    },
-    content = qs.stringify(post_data),
-    options = {
-      host: fujiHost,
-      port: fujiPort,
-      path: '/Fuji/MemberIntegralRecord',
-      method: 'post',
-      headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
-    };
-  var req = http.request(options, function (res) {
-    res.setEncoding('utf8');
-    res.on('data', function (chunk) {
-      var result = JSON.parse(chunk);
-      if (typeof result == typeof '')
-        result = JSON.parse(result);
-      var items = result.List;
-      if (!items) {
-        callback();
-        return;
-      }
-      var values = new Array();
-      for (var x in items) {
-        var item = items[x];
-        values.push({
-          CardNumber: cardNumber,
-          DateTime: verify.CheckDate(item.DtCreate) ? moment(item.DtCreate, 'YYYY/MM/DD HH:mm:ss').format('YYYY/MM/DD HH:mm:ss') : '',
-          ShopId: '',
-          ShopName: '',
-          Action: '',
-          Integral: item.Integral,
-          Amount: item.Amount,
-          Remark: item.Remark
+    var post_data = {
+            cardNumber: cardNumber,
+            startTime: startTime,
+            endTime: endTime,
+            pn: pn,
+            ps: ps
+        },
+        content = qs.stringify(post_data),
+        options = {
+            host: fujiHost,
+            port: fujiPort,
+            path: '/Fuji/MemberIntegralRecord',
+            method: 'post',
+            headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+        };
+    var req = http.request(options, function (res) {
+        res.setEncoding('utf8');
+        var result = '';
+        res.on('data', function (chunk) {
+            result += chunk;
         });
-      }
-      callback(null, values);
-
+        res.on('end', function () {
+            try {
+                result = JSON.parse(result);
+                if (typeof result == typeof '')
+                    result = JSON.parse(result);
+                var items = result.List;
+                if (!items)
+                    return callback();
+                var values = new Array();
+                for (var x in items) {
+                    var item = items[x];
+                    values.push({
+                        CardNumber: cardNumber,
+                        DateTime: verify.CheckDate(item.DtCreate) ? moment(item.DtCreate, 'YYYY/MM/DD HH:mm:ss').format('YYYY/MM/DD HH:mm:ss') : '',
+                        ShopId: '',
+                        ShopName: '',
+                        Action: '',
+                        Integral: item.Integral,
+                        Amount: item.Amount,
+                        Remark: item.Remark
+                    });
+                }
+                return callback(null, values);
+            } catch (e) {
+                callback(error.ThrowError(error.ErrorCode.Error, e.message));
+            }
+        });
     });
-  });
-  req.on('error', function (e) {
-    callback(error.ThrowError(error.ErrorCode.Error, e.message));
-  });
-  req.write(content);
-  req.end();
+    req.on('error', function (e) {
+        return callback(error.ThrowError(error.ErrorCode.Error, e.message));
+    });
+    req.write(content);
+    req.end();
 };
 
 /**
@@ -308,35 +367,43 @@ exports.Integralrecord = function (cardNumber, startTime, endTime, pn, ps, callb
  * @constructor
  */
 exports.IntegralAdjust = function (cardNumber, integral, callback) {
-  var post_data = {
-      cardNumber: cardNumber,
-      integral: integral
-    },
-    content = qs.stringify(post_data),
-    options = {
-      host: fujiHost,
-      port: fujiPort,
-      path: '/Fuji/MemberIntegralAdjust',
-      method: 'post',
-      headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
-    };
-  var req = http.request(options, function (res) {
-    res.setEncoding('utf8');
-    res.on('data', function (chunk) {
-      var result = JSON.parse(chunk);
-      if (typeof result == typeof '')
-        result = JSON.parse(result);
-      if (result.ErrorCode == 0)
-        callback(error.ThrowError(error.ErrorCode.Error, result.Message), result);
-      else
-        callback(null, result);
+    var post_data = {
+            cardNumber: cardNumber,
+            integral: integral
+        },
+        content = qs.stringify(post_data),
+        options = {
+            host: fujiHost,
+            port: fujiPort,
+            path: '/Fuji/MemberIntegralAdjust',
+            method: 'post',
+            headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+        };
+    var req = http.request(options, function (res) {
+        res.setEncoding('utf8');
+        var result = '';
+        res.on('data', function (chunk) {
+            result += chunk;
+        });
+        res.on('end', function () {
+            try {
+                result = JSON.parse(result);
+                if (typeof result == typeof '')
+                    result = JSON.parse(result);
+                if (result.ErrorCode == 0)
+                    callback(error.ThrowError(error.ErrorCode.Error, result.Message), result);
+                else
+                    callback(null, result);
+            } catch (e) {
+                callback(error.ThrowError(error.ErrorCode.Error, e.message));
+            }
+        });
     });
-  });
-  req.on('error', function (e) {
-    callback(error.ThrowError(error.ErrorCode.Error, e.message));
-  });
-  req.write(content);
-  req.end();
+    req.on('error', function (e) {
+        callback(error.ThrowError(error.ErrorCode.Error, e.message));
+    });
+    req.write(content);
+    req.end();
 };
 
 /**
@@ -346,18 +413,19 @@ exports.IntegralAdjust = function (cardNumber, integral, callback) {
  * @constructor
  */
 function ToCardResult(result) {
-  var str = {
-    CardNumber: result.MemberCard,
-    Name: result.Name,
-    Phone: result.Phone,
-    Birthday: verify.CheckDate(result.Birthday) ? moment(result.Birthday, 'YYYY/MM/DD HH:mm:ss').format('YYYY/MM/DD') : '',
-    Sex: result.Sex,
-    Integral: result.Integral,
-    OpenId: '',
-    CardGrade: result.CardGrade,
-    Email: result.Email,
-    CardSource: '',
-    IdNo: result.IdNo
-  };
-  return str;
+    var str = {
+        CardNumber: result.MemberCard,
+        Name: result.Name,
+        Phone: result.Phone,
+        Birthday: verify.CheckDate(result.Birthday) ? moment(result.Birthday, 'YYYY/MM/DD HH:mm:ss').format('YYYY/MM/DD') : '',
+        Sex: result.Sex,
+        Integral: result.Integral,
+        OpenId: '',
+        CardGrade: result.CardGrade,
+        Email: result.Email,
+        CardSource: '',
+        IdNo: result.IdNo,
+        IntegralDetial: result.IntegralDetial
+    };
+    return str;
 };
