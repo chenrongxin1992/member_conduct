@@ -20,6 +20,7 @@ module.exports = function (bid) {
         case 26://KKMAll
         case 28://沙井
         case 25://KKONE
+        case 44://总部
             _m = new jingJiBaiNa();
             break;
         default:
