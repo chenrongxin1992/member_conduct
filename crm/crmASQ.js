@@ -582,11 +582,14 @@ function SendCommod(strXml, callback) {
                 }
                 result = result.return;
                 var isError = result.$ ? result.$.hasError : result.hasError[0];
+                console.log('isError:', isError);
                 if (isError != 'false') {
                     var errCode = result.error[0].$.code,
                         errMsg = result.error[0].$.message;
+                    console.log('isError:', isError, ' errCode:', errCode, ' errMsg:', errMsg);
                     return callback(error.ThrowError(error.ErrorCode.Error, errCode + ':' + errMsg));
                 }
+                console.log('')
                 return callback(null, result);
             });
         });

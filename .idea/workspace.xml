@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00a831d3-6f98-489a-b9df-c9ed98e0405b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logic/factoryLogic.js" afterPath="$PROJECT_DIR$/logic/factoryLogic.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crm/crmASQ.js" afterPath="$PROJECT_DIR$/crm/crmASQ.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logic/jingjiBaiNaLogic.js" afterPath="$PROJECT_DIR$/logic/jingjiBaiNaLogic.js" />
     </list>
     <ignored path="MemberConduct.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,26 +44,24 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="jingjiBaiNaLogic.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="jingjiBaiNaLogic.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/logic/jingjiBaiNaLogic.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="320">
-                  <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+                <state relative-caret-position="252">
+                  <caret line="60" column="40" selection-start-line="60" selection-start-column="40" selection-end-line="60" selection-end-column="40" />
                   <folding>
-                    <element signature="e#395#2022#0" expanded="false" />
                     <element signature="e#881#1539#0" expanded="false" />
                     <element signature="e#1113#1527#0" expanded="false" />
                     <element signature="e#1333#1511#0" expanded="false" />
-                    <element signature="e#1557#2020#0" expanded="false" />
-                    <element signature="e#2085#3832#0" expanded="false" />
-                    <element signature="e#2881#3828#0" expanded="false" />
-                    <element signature="e#3891#4219#0" expanded="false" />
-                    <element signature="e#4285#4743#0" expanded="false" />
-                    <element signature="e#4810#5138#0" expanded="false" />
-                    <element signature="e#5200#5903#0" expanded="false" />
-                    <element signature="e#5969#6450#0" expanded="false" />
-                    <element signature="e#6511#6681#0" expanded="false" />
-                    <element signature="e#6743#7701#0" expanded="false" />
+                    <element signature="e#2297#4044#0" expanded="false" />
+                    <element signature="e#3093#4040#0" expanded="false" />
+                    <element signature="e#4103#4431#0" expanded="false" />
+                    <element signature="e#4497#4955#0" expanded="false" />
+                    <element signature="e#5022#5350#0" expanded="false" />
+                    <element signature="e#5412#6115#0" expanded="false" />
+                    <element signature="e#6181#6662#0" expanded="false" />
+                    <element signature="e#6723#6893#0" expanded="false" />
+                    <element signature="e#6955#7913#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -80,7 +80,7 @@
           <file leaf-file-name="zhongZhouLogic.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/logic/zhongZhouLogic.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="500">
+                <state relative-caret-position="800">
                   <caret line="40" column="44" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
                   <folding />
                 </state>
@@ -118,11 +118,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="factoryLogic.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="factoryLogic.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/logic/factoryLogic.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="400">
-                  <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+                <state relative-caret-position="360">
+                  <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
                   <folding />
                 </state>
               </provider>
@@ -145,8 +145,8 @@
           <file leaf-file-name="member.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/routes/member.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="340">
-                  <caret line="17" column="25" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="25" />
+                <state relative-caret-position="140">
+                  <caret line="7" column="35" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
                   <folding />
                 </state>
               </provider>
@@ -155,22 +155,19 @@
           <file leaf-file-name="crmASQ.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/crm/crmASQ.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="480">
-                  <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+                <state relative-caret-position="173">
+                  <caret line="584" column="49" selection-start-line="584" selection-start-column="49" selection-end-line="584" selection-end-column="49" />
                   <folding>
                     <element signature="e#1014#1194#0" expanded="false" />
-                    <element signature="e#1297#2654#0" expanded="false" />
                     <element signature="e#1428#2260#0" expanded="false" />
                     <element signature="e#2842#4032#0" expanded="false" />
                     <element signature="e#4180#5087#0" expanded="false" />
                     <element signature="e#5194#6334#0" expanded="false" />
                     <element signature="e#5217#5995#0" expanded="false" />
                     <element signature="e#6077#6330#0" expanded="false" />
-                    <element signature="e#6467#7628#0" expanded="false" />
                     <element signature="e#6490#7289#0" expanded="false" />
                     <element signature="e#7725#8524#0" expanded="false" />
                     <element signature="n#!!block;n#GetIntegral#0" expanded="false" />
-                    <element signature="e#9041#9582#0" expanded="false" />
                     <element signature="e#9880#10413#0" expanded="false" />
                     <element signature="e#9903#10213#0" expanded="false" />
                     <element signature="e#10556#12032#0" expanded="false" />
@@ -179,7 +176,6 @@
                     <element signature="e#12157#12562#0" expanded="false" />
                     <element signature="e#13344#14597#0" expanded="false" />
                     <element signature="e#13367#14203#0" expanded="false" />
-                    <element signature="n#!!block;n#SendCommod#0" expanded="false" />
                     <element signature="e#14732#14872#0" expanded="false" />
                     <element signature="e#14895#15093#0" expanded="false" />
                   </folding>
@@ -272,7 +268,6 @@
         <option value="$PROJECT_DIR$/bin/start.sh" />
         <option value="$PROJECT_DIR$/bin/restart.sh" />
         <option value="$PROJECT_DIR$/logic/zhongZhouLogic.js" />
-        <option value="$PROJECT_DIR$/routes/member.js" />
         <option value="$PROJECT_DIR$/crm/Fuji.js" />
         <option value="$PROJECT_DIR$/logic/ganZhouWxcLogic.js" />
         <option value="$PROJECT_DIR$/parking/zhongzhou.js" />
@@ -291,10 +286,11 @@
         <option value="$PROJECT_DIR$/node_modules/soap/lib/client.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/crm/laoXiMenKechuan.js" />
-        <option value="$PROJECT_DIR$/logic/jingjiBaiNaLogic.js" />
         <option value="$PROJECT_DIR$/crm/crmKeChuan.js" />
-        <option value="$PROJECT_DIR$/crm/crmASQ.js" />
         <option value="$PROJECT_DIR$/logic/factoryLogic.js" />
+        <option value="$PROJECT_DIR$/routes/member.js" />
+        <option value="$PROJECT_DIR$/logic/jingjiBaiNaLogic.js" />
+        <option value="$PROJECT_DIR$/crm/crmASQ.js" />
       </list>
     </option>
   </component>
@@ -343,8 +339,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -360,6 +356,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="member_conduct" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="member_conduct" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="member_conduct" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="routes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -814,7 +824,12 @@
       <workItem from="1472820779436" duration="200000" />
       <workItem from="1473677321741" duration="129000" />
       <workItem from="1473769615874" duration="13000" />
-      <workItem from="1473840062380" duration="41000" />
+      <workItem from="1473840062380" duration="1538000" />
+      <workItem from="1474165894758" duration="614000" />
+      <workItem from="1474249014966" duration="1807000" />
+      <workItem from="1474335471113" duration="600000" />
+      <workItem from="1474421912424" duration="2790000" />
+      <workItem from="1474467244850" duration="1212000" />
     </task>
     <task id="LOCAL-00001" summary="测试 push">
       <created>1464938639203</created>
@@ -1044,7 +1059,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="557943000" />
+    <option name="totallyTimeSpent" value="566463000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1064,21 +1079,21 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20564516" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5141319" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3230148" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39703903" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3603352" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3904762" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33240223" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39703903" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32681563" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1148,13 +1163,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/express/lib/router/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="44" column="21" selection-start-line="44" selection-start-column="21" selection-end-line="44" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Exception/keChuanError.js" />
     <entry file="file://$PROJECT_DIR$/routes/users.js" />
     <entry file="file://$PROJECT_DIR$/router.js" />
@@ -1380,29 +1388,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/logic/jingjiBaiNaLogic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding>
-            <element signature="e#395#2022#0" expanded="false" />
-            <element signature="e#881#1539#0" expanded="false" />
-            <element signature="e#1113#1527#0" expanded="false" />
-            <element signature="e#1333#1511#0" expanded="false" />
-            <element signature="e#1557#2020#0" expanded="false" />
-            <element signature="e#2085#3832#0" expanded="false" />
-            <element signature="e#2881#3828#0" expanded="false" />
-            <element signature="e#3891#4219#0" expanded="false" />
-            <element signature="e#4285#4743#0" expanded="false" />
-            <element signature="e#4810#5138#0" expanded="false" />
-            <element signature="e#5200#5903#0" expanded="false" />
-            <element signature="e#5969#6450#0" expanded="false" />
-            <element signature="e#6511#6681#0" expanded="false" />
-            <element signature="e#6743#7701#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/mongoose.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
@@ -1442,14 +1427,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="21" column="15" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/member.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="17" column="25" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="25" />
           <folding />
         </state>
       </provider>
@@ -1499,24 +1476,74 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/logic/zhongZhouLogic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="800">
+          <caret line="40" column="44" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logic/factoryLogic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/member.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="35" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/xml2js/lib/xml2js.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2850">
+          <caret line="524" column="28" selection-start-line="524" selection-start-column="28" selection-end-line="524" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logic/jingjiBaiNaLogic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="60" column="40" selection-start-line="60" selection-start-column="40" selection-end-line="60" selection-end-column="40" />
+          <folding>
+            <element signature="e#881#1539#0" expanded="false" />
+            <element signature="e#1113#1527#0" expanded="false" />
+            <element signature="e#1333#1511#0" expanded="false" />
+            <element signature="e#2297#4044#0" expanded="false" />
+            <element signature="e#3093#4040#0" expanded="false" />
+            <element signature="e#4103#4431#0" expanded="false" />
+            <element signature="e#4497#4955#0" expanded="false" />
+            <element signature="e#5022#5350#0" expanded="false" />
+            <element signature="e#5412#6115#0" expanded="false" />
+            <element signature="e#6181#6662#0" expanded="false" />
+            <element signature="e#6723#6893#0" expanded="false" />
+            <element signature="e#6955#7913#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/crm/crmASQ.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        <state relative-caret-position="173">
+          <caret line="584" column="49" selection-start-line="584" selection-start-column="49" selection-end-line="584" selection-end-column="49" />
           <folding>
             <element signature="e#1014#1194#0" expanded="false" />
-            <element signature="e#1297#2654#0" expanded="false" />
             <element signature="e#1428#2260#0" expanded="false" />
             <element signature="e#2842#4032#0" expanded="false" />
             <element signature="e#4180#5087#0" expanded="false" />
             <element signature="e#5194#6334#0" expanded="false" />
             <element signature="e#5217#5995#0" expanded="false" />
             <element signature="e#6077#6330#0" expanded="false" />
-            <element signature="e#6467#7628#0" expanded="false" />
             <element signature="e#6490#7289#0" expanded="false" />
             <element signature="e#7725#8524#0" expanded="false" />
             <element signature="n#!!block;n#GetIntegral#0" expanded="false" />
-            <element signature="e#9041#9582#0" expanded="false" />
             <element signature="e#9880#10413#0" expanded="false" />
             <element signature="e#9903#10213#0" expanded="false" />
             <element signature="e#10556#12032#0" expanded="false" />
@@ -1525,26 +1552,9 @@
             <element signature="e#12157#12562#0" expanded="false" />
             <element signature="e#13344#14597#0" expanded="false" />
             <element signature="e#13367#14203#0" expanded="false" />
-            <element signature="n#!!block;n#SendCommod#0" expanded="false" />
             <element signature="e#14732#14872#0" expanded="false" />
             <element signature="e#14895#15093#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logic/zhongZhouLogic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="40" column="44" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logic/factoryLogic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>

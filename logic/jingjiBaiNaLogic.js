@@ -54,7 +54,12 @@ JJBN.prototype.Register = function (attribute, callback) {
                 if (err) {
                     return callback(err);
                 }
-                return callback(error.Success(result));
+                asq.GetCardByOpenId(openId, function (err, result) {
+                    if (err) {  //OpenId已经绑定其他会员卡了
+                        return callback(err);
+                    }
+                    return callback(error.Success(result));
+                });
             });
         });
     }
