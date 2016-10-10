@@ -148,6 +148,7 @@ JJBN.prototype.GetCardByOpenId = function (attribute, callback) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'openId不能为空'));
     }
     asq.GetCardByOpenId(openId, function (err, result) {
+        console.log('err:', err, 'result:', result);
         if (err) {
             return callback(err);
         }
