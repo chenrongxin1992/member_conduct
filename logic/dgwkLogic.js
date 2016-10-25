@@ -195,7 +195,9 @@ Dgwk.prototype.CardModify = function (attribute, callback) {
         sex = attribute.sex,
         birthday = attribute.birthday,
         email = attribute.email,
-        address = attribute.address;
+        address = attribute.address,
+        bid = attribute.bid;
+
     if (!cardNumber) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'cardNumber不能为空'));
     }
@@ -293,6 +295,7 @@ Dgwk.prototype.IntegralRecord = function (attribute, callback) {
     if (!cardNumber) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'cardNumber不能为空'));
     }
+    pn = pn + 1;
     hd.IntegralRecord(cardNumber, startTime, endTime, pn, ps, function (err, result) {
         if (err) {
             return callback(err);

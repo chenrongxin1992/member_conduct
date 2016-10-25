@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00a831d3-6f98-489a-b9df-c9ed98e0405b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logic/dgwkLogic.js" afterPath="$PROJECT_DIR$/logic/dgwkLogic.js" />
     </list>
     <ignored path="MemberConduct.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,7 +29,7 @@
     </favorites_list>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5100372">
+    <splitter split-orientation="horizontal" split-proportion="0.5702602">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="laoXiMenKechuan.js" pinned="false" current-in-tab="false">
@@ -56,17 +56,16 @@
           <file leaf-file-name="dgwkLogic.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/logic/dgwkLogic.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="384">
-                  <caret line="184" column="10" selection-start-line="184" selection-start-column="10" selection-end-line="184" selection-end-column="10" />
+                <state relative-caret-position="263">
+                  <caret line="294" column="22" selection-start-line="294" selection-start-column="22" selection-end-line="294" selection-end-column="22" />
                   <folding>
                     <element signature="e#604#2772#0" expanded="false" />
                     <element signature="e#2907#5426#0" expanded="false" />
                     <element signature="e#5566#6322#0" expanded="false" />
-                    <element signature="e#6474#7630#0" expanded="false" />
-                    <element signature="e#7697#8999#0" expanded="false" />
-                    <element signature="e#9065#9931#0" expanded="false" />
-                    <element signature="e#9997#10503#0" expanded="false" />
-                    <element signature="e#10569#11894#0" expanded="false" />
+                    <element signature="e#6474#7660#0" expanded="false" />
+                    <element signature="e#7727#9029#0" expanded="false" />
+                    <element signature="e#9095#9961#0" expanded="false" />
+                    <element signature="e#10616#11941#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -117,8 +116,8 @@
           <file leaf-file-name="member.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/routes/member.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="340">
-                  <caret line="47" column="31" selection-start-line="47" selection-start-column="14" selection-end-line="47" selection-end-column="31" />
+                <state relative-caret-position="300">
+                  <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -853,7 +852,7 @@
       <workItem from="1476841272408" duration="2924000" />
       <workItem from="1476927803061" duration="599000" />
       <workItem from="1477273479863" duration="14439000" />
-      <workItem from="1477359811172" duration="1159000" />
+      <workItem from="1477359811172" duration="1909000" />
     </task>
     <task id="LOCAL-00001" summary="测试 push">
       <created>1464938639203</created>
@@ -1083,7 +1082,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="632672000" />
+    <option name="totallyTimeSpent" value="633422000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1429,6 +1428,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="4" column="40" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1491,6 +1491,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="10" column="17" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1573,28 +1574,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/routes/member.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/logic/dgwkLogic.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="184" column="10" selection-start-line="184" selection-start-column="10" selection-end-line="184" selection-end-column="10" />
+        <state relative-caret-position="263">
+          <caret line="294" column="22" selection-start-line="294" selection-start-column="22" selection-end-line="294" selection-end-column="22" />
           <folding>
             <element signature="e#604#2772#0" expanded="false" />
             <element signature="e#2907#5426#0" expanded="false" />
             <element signature="e#5566#6322#0" expanded="false" />
-            <element signature="e#6474#7630#0" expanded="false" />
-            <element signature="e#7697#8999#0" expanded="false" />
-            <element signature="e#9065#9931#0" expanded="false" />
-            <element signature="e#9997#10503#0" expanded="false" />
-            <element signature="e#10569#11894#0" expanded="false" />
+            <element signature="e#6474#7660#0" expanded="false" />
+            <element signature="e#7727#9029#0" expanded="false" />
+            <element signature="e#9095#9961#0" expanded="false" />
+            <element signature="e#10616#11941#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/member.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="47" column="31" selection-start-line="47" selection-start-column="14" selection-end-line="47" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
