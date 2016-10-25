@@ -294,6 +294,7 @@ exports.IntegralRecord = function (cardNo, begin, end, pn, ps, callback) {
             method: 'post',
             headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
         };
+    console.log('content:', content);
     var req = http.request(options, function (res) {
         res.setEncoding('utf8');
         var result = '';
@@ -322,6 +323,7 @@ exports.IntegralRecord = function (cardNo, begin, end, pn, ps, callback) {
                         Remark: item.Detail
                     });
                 }
+                return callback(null, values);
             } catch (e) {
                 callback(error.ThrowError(error.ErrorCode.Error, e.message));
             }

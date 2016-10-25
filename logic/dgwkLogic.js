@@ -295,7 +295,7 @@ Dgwk.prototype.IntegralRecord = function (attribute, callback) {
     if (!cardNumber) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'cardNumber不能为空'));
     }
-    pn = pn + 1;
+    pn = parseInt(pn) + 1;
     hd.IntegralRecord(cardNumber, startTime, endTime, pn, ps, function (err, result) {
         if (err) {
             return callback(err);
