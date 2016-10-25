@@ -116,7 +116,7 @@ GanZhouWXC.prototype.CardBinding = function (attribute, callback) {
         return callback(error.ThrowError(error.ErrorCode.DateFormatError, 'phone格式错误'));
     }
     //判断是否已绑定实体卡
-    return CardBinding.FindByOpenidInNotGrade(bid, openId, defaultCardGrade, function (err, result) {
+    CardBinding.FindByOpenidInNotGrade(bid, openId, defaultCardGrade, function (err, result) {
         if (err) {
             callback(error.ThrowError(error.ErrorCode.Error, err.message));
             return;

@@ -103,7 +103,14 @@ router.post('/CardUnbind', function (req, res) {
     });
 });
 
-
+router.post('/test', CheckBid);
+router.post('/test', function (req, res) {
+    var bid = req.body.bid ? parseInt(req.body.bid) : 0;
+    var logic = factory(bid);
+    logic.Test(req.body, function (result) {
+        res.json(result);
+    });
+});
 // router.post('/Distinct', CheckBid);
 //     router.post('/Distinct', function (req, res) {
 //     var bid = req.body.bid ? parseInt(req.body.bid) : 0;

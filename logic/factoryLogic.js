@@ -2,7 +2,8 @@ var _default = require('./memberLogic');
 var zhongzhou = require('./zhongZhouLogic'),
     ganZhouWxc = require('./ganZhouWxcLogic'),
     laoXiMen = require('./laoXiMenLogic'),
-    jingJiBaiNa = require('./jingjiBaiNaLogic');
+    jingJiBaiNa = require('./jingjiBaiNaLogic'),
+    dgwk = require('./dgwkLogic');
 
 module.exports = function (bid) {
     var _m;
@@ -22,6 +23,9 @@ module.exports = function (bid) {
         case 25://KKONE
         case 44://总部
             _m = new jingJiBaiNa();
+            break;
+        case 38://东莞万科
+            _m = new dgwk();
             break;
         default:
             _m = new _default();

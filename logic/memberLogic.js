@@ -13,7 +13,7 @@ function Member() {
  * @constructor
  */
 Member.prototype.Register = function (attribute, callback) {
-  callback(Error.ThrowError(Error.ErrorCode.Unrealized));
+    callback(Error.ThrowError(Error.ErrorCode.Unrealized));
 };
 
 /**
@@ -23,7 +23,7 @@ Member.prototype.Register = function (attribute, callback) {
  * @constructor
  */
 Member.prototype.CardBinding = function (attribute, callback) {
-  callback(Error.ThrowError(Error.ErrorCode.Unrealized));
+    callback(Error.ThrowError(Error.ErrorCode.Unrealized));
 };
 
 /**
@@ -32,7 +32,7 @@ Member.prototype.CardBinding = function (attribute, callback) {
  * @constructor
  */
 Member.prototype.GetCard = function (attribute, callback) {
-  callback(Error.ThrowError(Error.ErrorCode.Unrealized));
+    callback(Error.ThrowError(Error.ErrorCode.Unrealized));
 };
 
 /**
@@ -42,7 +42,7 @@ Member.prototype.GetCard = function (attribute, callback) {
  * @constructor
  */
 Member.prototype.GetCardByOpenId = function (attribute, callback) {
-  callback(Error.ThrowError(Error.ErrorCode.Unrealized));
+    callback(Error.ThrowError(Error.ErrorCode.Unrealized));
 };
 
 /**
@@ -52,7 +52,7 @@ Member.prototype.GetCardByOpenId = function (attribute, callback) {
  * @constructor
  */
 Member.prototype.GetCardByPhone = function (attribute, callback) {
-  callback(Error.ThrowError(Error.ErrorCode.Unrealized));
+    callback(Error.ThrowError(Error.ErrorCode.Unrealized));
 };
 /**
  * 修改会员卡资料
@@ -61,7 +61,7 @@ Member.prototype.GetCardByPhone = function (attribute, callback) {
  * @constructor
  */
 Member.prototype.CardModify = function (attribute, callback) {
-  callback(Error.ThrowError(Error.ErrorCode.Unrealized));
+    callback(Error.ThrowError(Error.ErrorCode.Unrealized));
 };
 
 /**
@@ -71,7 +71,7 @@ Member.prototype.CardModify = function (attribute, callback) {
  * @constructor
  */
 Member.prototype.IntegralRecord = function (attribute, callback) {
-  callback(Error.ThrowError(Error.ErrorCode.Unrealized));
+    callback(Error.ThrowError(Error.ErrorCode.Unrealized));
 };
 
 
@@ -81,7 +81,7 @@ Member.prototype.IntegralRecord = function (attribute, callback) {
  * @constructor
  */
 Member.prototype.GradeList = function (attribute, callback) {
-  callback(Error.ThrowError(Error.ErrorCode.Unrealized));
+    callback(Error.ThrowError(Error.ErrorCode.Unrealized));
 };
 
 /**
@@ -91,10 +91,14 @@ Member.prototype.GradeList = function (attribute, callback) {
  * @constructor
  */
 Member.prototype.IntegralChange = function (attribute, callback) {
-  callback(Error.ThrowError(Error.ErrorCode.Unrealized));
+    callback(Error.ThrowError(Error.ErrorCode.Unrealized));
 };
 
-Member.prototype.CardUnbind=function (attribute,callback) {
-  callback(Error.ThrowError(Error.ErrorCode.Unrealized));
+Member.prototype.CardUnbind = function (attribute, callback) {
+    callback(Error.ThrowError(Error.ErrorCode.Unrealized));
+};
+
+Member.prototype.Test = function (attribute, callback) {
+    callback(Error.ThrowError(Error.ErrorCode.Unrealized));
 };
 module.exports = Member;
