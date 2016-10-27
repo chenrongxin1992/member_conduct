@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00a831d3-6f98-489a-b9df-c9ed98e0405b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/prepay/yinshi.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/prepayLogic/factoryLogic.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/prepayLogic/prepayLogic.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Exception/error.js" afterPath="$PROJECT_DIR$/Exception/error.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crm/dgwkHD.js" afterPath="$PROJECT_DIR$/crm/dgwkHD.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
     </list>
     <ignored path="MemberConduct.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -113,8 +107,8 @@
           <file leaf-file-name="dgwkHD.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/crm/dgwkHD.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="255">
-                  <caret line="354" column="48" selection-start-line="354" selection-start-column="48" selection-end-line="354" selection-end-column="48" />
+                <state relative-caret-position="215">
+                  <caret line="354" column="6" selection-start-line="354" selection-start-column="6" selection-end-line="354" selection-end-column="6" />
                   <folding>
                     <element signature="e#694#2161#0" expanded="false" />
                     <element signature="e#2291#3550#0" expanded="false" />
@@ -923,7 +917,7 @@
       <workItem from="1477273479863" duration="14439000" />
       <workItem from="1477359811172" duration="6624000" />
       <workItem from="1477446137134" duration="17733000" />
-      <workItem from="1477538320225" duration="3621000" />
+      <workItem from="1477538320225" duration="4724000" />
     </task>
     <task id="LOCAL-00001" summary="测试 push">
       <created>1464938639203</created>
@@ -1153,7 +1147,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="659491000" />
+    <option name="totallyTimeSpent" value="660594000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1670,8 +1664,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/crm/dgwkHD.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="354" column="48" selection-start-line="354" selection-start-column="48" selection-end-line="354" selection-end-column="48" />
+        <state relative-caret-position="215">
+          <caret line="354" column="6" selection-start-line="354" selection-start-column="6" selection-end-line="354" selection-end-column="6" />
           <folding>
             <element signature="e#694#2161#0" expanded="false" />
             <element signature="e#2291#3550#0" expanded="false" />

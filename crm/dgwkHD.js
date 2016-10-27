@@ -352,7 +352,9 @@ function ToCardResult(result) {
             CardSource: '',
             IdNo: result.FMEMIDCARD
         }
+    //console.log('str:', str);
     if (str.CardGrade == '' || (!str.CardGrade))
-        str.CardGrade = cardGrade;
+        str.CardGrade = defaultGrade;
+    //console.log('str2:', str);
     return str;
 };
