@@ -4,6 +4,7 @@ const errorCode = {
     Unrealized: {ErrCode: 1000, ErrMsg: '该方法操作未实现'},
     InfoIncomplete: {ErrCode: 1001, ErrMsg: '数据不完整'},
     DateFormatError: {ErrCode: 1002, ErrMsg: '数据格式错误'},
+    SignError:{ErrCode:1003,ErrMsg:'Sign签名错误'},
     OpenIdHasEmploy: {ErrCode: 2001, ErrMsg: 'OpenId已被绑定'},
     PhoneHasEmploy: {ErrCode: 2002, ErrMsg: 'Phone已注册'},
     CardInfoError: {ErrCode: 2003, ErrMsg: '会员卡信息错误'},

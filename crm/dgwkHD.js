@@ -12,7 +12,8 @@ var http = require('http'),
 
 var hdHost = '103.44.60.13',//中转程序地址
     hdPort = 7081; //中转程序端口号
-
+var defaultGrade = '0001';
+exports.DefaultGrader = defaultGrade; //默认卡等级
 /**
  * 会员注册
  * @param wxNo
@@ -351,5 +352,7 @@ function ToCardResult(result) {
             CardSource: '',
             IdNo: result.FMEMIDCARD
         }
+    if (str.CardGrade == '' || (!str.CardGrade))
+        str.CardGrade = cardGrade;
     return str;
 };
