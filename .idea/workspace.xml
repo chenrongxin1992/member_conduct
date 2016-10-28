@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00a831d3-6f98-489a-b9df-c9ed98e0405b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logic/dgwkLogic.js" afterPath="$PROJECT_DIR$/logic/dgwkLogic.js" />
     </list>
     <ignored path="MemberConduct.iws" />
@@ -57,10 +56,10 @@
           <file leaf-file-name="dgwkLogic.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/logic/dgwkLogic.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="200">
-                  <caret line="42" column="8" selection-start-line="42" selection-start-column="8" selection-end-line="42" selection-end-column="8" />
+                <state relative-caret-position="340">
+                  <caret line="104" column="8" selection-start-line="104" selection-start-column="8" selection-end-line="104" selection-end-column="8" />
                   <folding>
-                    <element signature="e#2916#5435#0" expanded="false" />
+                    <element signature="e#604#2772#0" expanded="false" />
                     <element signature="e#5575#6331#0" expanded="false" />
                     <element signature="e#6483#7669#0" expanded="false" />
                     <element signature="e#7736#9038#0" expanded="false" />
@@ -919,7 +918,7 @@
       <workItem from="1477359811172" duration="6624000" />
       <workItem from="1477446137134" duration="17733000" />
       <workItem from="1477538320225" duration="5320000" />
-      <workItem from="1477619647801" duration="18000" />
+      <workItem from="1477619647801" duration="276000" />
     </task>
     <task id="LOCAL-00001" summary="测试 push">
       <created>1464938639203</created>
@@ -1149,7 +1148,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="661208000" />
+    <option name="totallyTimeSpent" value="661466000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1666,10 +1665,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/logic/dgwkLogic.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="42" column="8" selection-start-line="42" selection-start-column="8" selection-end-line="42" selection-end-column="8" />
+        <state relative-caret-position="340">
+          <caret line="104" column="8" selection-start-line="104" selection-start-column="8" selection-end-line="104" selection-end-column="8" />
           <folding>
-            <element signature="e#2916#5435#0" expanded="false" />
+            <element signature="e#604#2772#0" expanded="false" />
             <element signature="e#5575#6331#0" expanded="false" />
             <element signature="e#6483#7669#0" expanded="false" />
             <element signature="e#7736#9038#0" expanded="false" />

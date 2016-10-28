@@ -38,9 +38,9 @@ Dgwk.prototype.Register = function (attribute, callback) {
     if (!phone) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'phone不能为空'));
     }
-    // if (!verify.Phone(phone)) {
-    //     return callback(error.ThrowError(error.ErrorCode.DateFormatError, 'Phone格式错误'));
-    // }
+    if (!verify.Phone(phone)) {
+        return callback(error.ThrowError(error.ErrorCode.DateFormatError, 'Phone格式错误'));
+    }
     CardBinding.FindByOpenId(bid, openId, function (err, result) {
         if (err) {
             return callback(error.ThrowError(error.ErrorCode.Error, err.message));
@@ -100,9 +100,9 @@ Dgwk.prototype.CardBinding = function (attribute, callback) {
     if (!phone) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'phone不能为空'));
     }
-    if (!verify.Phone(phone)) {
-        return callback(error.ThrowError(error.ErrorCode.DateFormatError, 'phone格式错误'));
-    }
+    // if (!verify.Phone(phone)) {
+    //     return callback(error.ThrowError(error.ErrorCode.DateFormatError, 'phone格式错误'));
+    // }
     CardBinding.FindByOpenidInNotGrade(bid, openId, defaultCardGrade, function (err, result) {
         if (err) {
             callback(error.ThrowError(error.ErrorCode.Error, err.message));
