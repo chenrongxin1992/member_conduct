@@ -404,7 +404,7 @@ GanZhouWXC.prototype.IntegralChange = function (attribute, callback) {
  */
 GanZhouWXC.prototype.CardUnbind = function (attribute, callback) {
     var cardNumber = attribute.cardNumber,
-        openId = attribute.openId.trim(),
+        openId = attribute.openId,
         bid = attribute.bid;
     if (!cardNumber) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'cardNumber不能为空'));
