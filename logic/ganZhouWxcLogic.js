@@ -419,7 +419,7 @@ GanZhouWXC.prototype.CardUnbind = function (attribute, callback) {
         }
         //判断卡是否是实体卡
         if (result.CardGrade == defaultCardGrade) {
-            return callback(error.ThrowError(error.ErrorCode.Error, '卡类型错误，不能解绑'));
+            return callback(error.ThrowError(error.ErrorCode.Error, '卡类型错误，该卡类型不能解绑'));
         }
         CardBinding.FindByCardNumber(bid, cardNumber, function (err, result) {
             if (err) {

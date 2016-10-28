@@ -151,6 +151,47 @@ Dgwk.prototype.CardBinding = function (attribute, callback) {
     });
 };
 
+Dgwk.prototype.CardUnbind = function (attribute, callback) {
+    var cardNumber = attribute.cardNumber,
+        openId = attribute.openId.trim(),
+        bid = attribute.bid;
+    if (!cardNumber) {
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'cardNumber不能为空'));
+    }
+    if (!openId) {
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'openid不能为空'));
+    }
+    //判断卡是否存在
+    hd.GetMemberByCardNumber(cardNumber, function (err, result) {
+        if (err) {
+            return callback(err);
+        }
+        //判断卡是否是实体卡
+        if (result.CardGrade == defaultCardGrade) {
+            return callback(error.ThrowError(error.ErrorCode.Error, '卡类型错误，该卡类型不能解绑'));
+        }
+        CardBinding.FindByCardNumber(bid, cardNumber, function (err, result) {
+            if (err) {
+                return callback(error.ThrowError(error.ErrorCode.Error, err.message));
+            }
+            if (!result || result.length <= 0) {
+                return callback(error.ThrowError(error.ErrorCode.Error, 'OpenId未绑定会员卡'));
+            }
+            if (openId != result[0].openId.trim()) {
+                return callback(error.ThrowError(error.ErrorCode.Error, '会员卡对应的微信号不正确'));
+            }
+            CardBinding.remove({_id: result[0]._id}, function (err) {
+                if (err) {
+                    return callback(error.ThrowError(error.ErrorCode.Error, '解绑失败'));
+                } else {
+                    return callback(error.Success());
+                }
+            });
+        });
+    });
+};
+
+
 /**
  * 查询会员卡，根据会员卡号查询
  * @param attribute
