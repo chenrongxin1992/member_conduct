@@ -428,7 +428,7 @@ GanZhouWXC.prototype.CardUnbind = function (attribute, callback) {
             if (!result || result.length <= 0) {
                 return callback(error.ThrowError(error.ErrorCode.Error, 'OpenId未绑定会员卡'));
             }
-            if (openId != result[0].openId.trim()) {
+            if (openId != result[0].openId) {
                 return callback(error.ThrowError(error.ErrorCode.Error, '会员卡对应的微信号不正确'));
             }
             CardBinding.remove({_id: result[0]._id}, function (err) {
