@@ -13,7 +13,7 @@ var verify = require('../Tools/verify');
 var AES = require('../Tools/AES_KeChuan');
 var fuji = require('../crm/Fuji');
 var crypto = require('crypto');
-
+var test1 = require('./test1');
 
 var url = 'http://113.105.66.51:1880/CRM_VIP_Proxy.asmx';
 var key = '20150226152452',
@@ -23,13 +23,16 @@ var key = '20150226152452',
     xmlFooter = '</soap:Body> </soap:Envelope>';
 
 router.get('/Test', function (req, res, next) {
-    var data = 'authNo=123456&key=3df6a20f6278811f&linkMan=0000001&mobile=15380898811&tellerNo=dman&txnId=104';
-    var _base64 = crypto.createHash('sha256').update(data).digest('base64');
-    var _hex = crypto.createHash('sha256').update(data).digest('hex');
-    var _binary = crypto.createHash('sha256').update(data).digest('_binary');
-
-    console.log('Data:', data,'\n base64: ', _base64, '\n hex:', _hex, '\n binary:', _binary);
-    res.end();
+    console.log('Test');
+    test1.isMember(function (err, result) {
+        var message = '';
+        if (err) {
+            message = err.message;
+        } else {
+            message = result;
+        }
+        res.end(message);
+    });
 });
 var CardBinding = mongoose.model('cardBinding');
 router.get('/', function (req, res, next) {

@@ -338,6 +338,7 @@ exports.IntegralRecord = function (cardNo, begin, end, pn, ps, callback) {
 
 function ToCardResult(result) {
     var str;
+    console.log('result:', result);
     if (result && result != 'null')
         str = {
             CardNumber: result.FCARDNUM,
@@ -347,12 +348,12 @@ function ToCardResult(result) {
             Sex: result.FMEMSEX,
             Integral: result.FCARDTOTALSCORE,
             OpenId: '',
-            CardGrade: result.FCARDTYPECODE,
+            CardGrade: result.FCARDTYPE,
             Email: result.FMEMEMAILADR,
             CardSource: '',
             IdNo: result.FMEMIDCARD
         }
-    //console.log('str:', str);
+    console.log('str:', str);
     if (str.CardGrade == '' || (!str.CardGrade))
         str.CardGrade = defaultGrade;
     //console.log('str2:', str);
