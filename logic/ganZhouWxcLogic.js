@@ -227,7 +227,7 @@ GanZhouWXC.prototype.CardModify = function (attribute, callback) {
         if (res.length <= 0) {
             return callback(error.ThrowError(error.ErrorCode.CardUndefined, '会员卡尚未与微信绑定'));
         }
-        fuji.Modify(res.memberId_CRM, res.memberId_ERP, idNo, sex, birthday, address, email, function (err, result) {
+        fuji.Modify(res[0].memberId_CRM, res[0].memberId_ERP, idNo, sex, birthday, address, email, function (err, result) {
             if (err) {
                 return callback(err);
             }

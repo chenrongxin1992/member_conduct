@@ -2,21 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00a831d3-6f98-489a-b9df-c9ed98e0405b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/entity/prepayCard.server.module.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/entity/prepayCardPushRecord.server.module.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/prepayLogic/ganzhouWxcLogic.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Exception/error.js" afterPath="$PROJECT_DIR$/Exception/error.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tools/verify.js" afterPath="$PROJECT_DIR$/Tools/verify.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/sysConfig.js" afterPath="$PROJECT_DIR$/config/sysConfig.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crm/Fuji.js" afterPath="$PROJECT_DIR$/crm/Fuji.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/entity/cardBinding.server.module.js" afterPath="$PROJECT_DIR$/entity/cardBinding.server.module.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logic/ganZhouWxcLogic.js" afterPath="$PROJECT_DIR$/logic/ganZhouWxcLogic.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prepay/yinshi.js" afterPath="$PROJECT_DIR$/prepay/yinshi.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prepayLogic/factoryLogic.js" afterPath="$PROJECT_DIR$/prepayLogic/factoryLogic.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prepayLogic/prepayLogic.js" afterPath="$PROJECT_DIR$/prepayLogic/prepayLogic.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/member.js" afterPath="$PROJECT_DIR$/routes/member.js" />
     </list>
     <ignored path="MemberConduct.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -65,21 +51,21 @@
           <file leaf-file-name="ganZhouWxcLogic.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/logic/ganZhouWxcLogic.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="435">
-                  <caret line="350" column="11" selection-start-line="350" selection-start-column="11" selection-end-line="350" selection-end-column="11" />
+                <state relative-caret-position="301">
+                  <caret line="229" column="17" selection-start-line="229" selection-start-column="17" selection-end-line="229" selection-end-column="17" />
                   <folding>
                     <element signature="e#646#3068#0" expanded="false" />
                     <element signature="e#3252#5967#0" expanded="false" />
                     <element signature="e#4402#5945#0" expanded="false" />
                     <element signature="e#6116#6874#0" expanded="false" />
-                    <element signature="e#7016#8007#0" expanded="false" />
-                    <element signature="e#8160#9796#0" expanded="false" />
-                    <element signature="e#9944#10812#0" expanded="false" />
-                    <element signature="e#12429#14227#0" expanded="false" />
-                    <element signature="e#14369#15852#0" expanded="false" />
-                    <element signature="e#15994#16725#0" expanded="false" />
+                    <element signature="e#8166#9802#0" expanded="false" />
+                    <element signature="e#9950#10818#0" expanded="false" />
+                    <element signature="e#10964#11903#0" expanded="false" />
+                    <element signature="e#12435#14233#0" expanded="false" />
+                    <element signature="e#14375#15858#0" expanded="false" />
+                    <element signature="e#16000#16731#0" expanded="false" />
                     <element signature="n#!!block;n#distincCardNo#0" expanded="false" />
-                    <element signature="e#17640#18680#0" expanded="false" />
+                    <element signature="e#17646#18686#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -112,7 +98,7 @@
           <file leaf-file-name="cardBinding.server.module.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/entity/cardBinding.server.module.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="173">
+                <state relative-caret-position="171">
                   <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
                   <folding />
                 </state>
@@ -152,8 +138,8 @@
           <file leaf-file-name="Fuji.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/crm/Fuji.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="372">
-                  <caret line="307" column="17" selection-start-line="307" selection-start-column="17" selection-end-line="307" selection-end-column="17" />
+                <state relative-caret-position="190">
+                  <caret line="211" column="0" selection-start-line="211" selection-start-column="0" selection-end-line="211" selection-end-column="0" />
                   <folding>
                     <element signature="e#2087#3333#0" expanded="false" />
                     <element signature="e#2186#2417#0" expanded="false" />
@@ -236,8 +222,8 @@
         <option value="$PROJECT_DIR$/config/sysConfig.js" />
         <option value="$PROJECT_DIR$/routes/member.js" />
         <option value="$PROJECT_DIR$/entity/cardBinding.server.module.js" />
-        <option value="$PROJECT_DIR$/logic/ganZhouWxcLogic.js" />
         <option value="$PROJECT_DIR$/crm/Fuji.js" />
+        <option value="$PROJECT_DIR$/logic/ganZhouWxcLogic.js" />
       </list>
     </option>
   </component>
@@ -863,7 +849,7 @@
       <workItem from="1478474474523" duration="599000" />
       <workItem from="1478483265154" duration="3172000" />
       <workItem from="1478572789796" duration="21706000" />
-      <workItem from="1478655962235" duration="4892000" />
+      <workItem from="1478655962235" duration="5541000" />
     </task>
     <task id="LOCAL-00001" summary="测试 push">
       <created>1464938639203</created>
@@ -1093,7 +1079,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="713150000" />
+    <option name="totallyTimeSpent" value="713799000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1527,14 +1513,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/entity/cardBinding.server.module.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/member.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
@@ -1543,31 +1521,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/entity/cardBinding.server.module.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/logic/ganZhouWxcLogic.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="350" column="11" selection-start-line="350" selection-start-column="11" selection-end-line="350" selection-end-column="11" />
+        <state relative-caret-position="301">
+          <caret line="229" column="17" selection-start-line="229" selection-start-column="17" selection-end-line="229" selection-end-column="17" />
           <folding>
             <element signature="e#646#3068#0" expanded="false" />
             <element signature="e#3252#5967#0" expanded="false" />
             <element signature="e#4402#5945#0" expanded="false" />
             <element signature="e#6116#6874#0" expanded="false" />
-            <element signature="e#7016#8007#0" expanded="false" />
-            <element signature="e#8160#9796#0" expanded="false" />
-            <element signature="e#9944#10812#0" expanded="false" />
-            <element signature="e#12429#14227#0" expanded="false" />
-            <element signature="e#14369#15852#0" expanded="false" />
-            <element signature="e#15994#16725#0" expanded="false" />
+            <element signature="e#8166#9802#0" expanded="false" />
+            <element signature="e#9950#10818#0" expanded="false" />
+            <element signature="e#10964#11903#0" expanded="false" />
+            <element signature="e#12435#14233#0" expanded="false" />
+            <element signature="e#14375#15858#0" expanded="false" />
+            <element signature="e#16000#16731#0" expanded="false" />
             <element signature="n#!!block;n#distincCardNo#0" expanded="false" />
-            <element signature="e#17640#18680#0" expanded="false" />
+            <element signature="e#17646#18686#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/crm/Fuji.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="307" column="17" selection-start-line="307" selection-start-column="17" selection-end-line="307" selection-end-column="17" />
+        <state relative-caret-position="190">
+          <caret line="211" column="0" selection-start-line="211" selection-start-column="0" selection-end-line="211" selection-end-column="0" />
           <folding>
             <element signature="e#2087#3333#0" expanded="false" />
             <element signature="e#2186#2417#0" expanded="false" />
