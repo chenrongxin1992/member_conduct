@@ -24,15 +24,10 @@ var key = '20150226152452',
 
 router.get('/Test', function (req, res, next) {
     console.log('Test');
-    test1.isMember(function (err, result) {
-        var message = '';
-        if (err) {
-            message = err.message;
-        } else {
-            message = result;
-        }
-        res.end(message);
-    });
+    var phone = req.query.phone;
+    console.log('Phone:', phone);
+    console.log('verify:', verify.Phone(phone));
+    res.end('');
 });
 var CardBinding = mongoose.model('cardBinding');
 router.get('/', function (req, res, next) {

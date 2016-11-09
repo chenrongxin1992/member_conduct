@@ -73,9 +73,12 @@ GanZhouWXC.prototype.Register = function (attribute, callback) {
                         bid: bid,
                         cardNumber: result.CardNumber,
                         openId: openId,
-                        cardGrade: result.CardGrade
+                        cardGrade: result.CardGrade,
+                        memberId_CRM: result.MemberId_CRM,
+                        memberId_ERP: result.MemberId_ERP
                     });
                     cardBinding.save(function (err) {
+                        console.log('cardBind Save:', err);
                         if (err)
                             return callback(error.ThrowError(error.ErrorCode.Error, err.message));
                         else
@@ -155,7 +158,9 @@ GanZhouWXC.prototype.CardBinding = function (attribute, callback) {
                     bid: bid,
                     cardNumber: result.CardNumber,
                     openId: openId,
-                    cardGrade: result.CardGrade
+                    cardGrade: result.CardGrade,
+                    memberId_CRM: result.MemberId_CRM,
+                    memberId_ERP: result.MemberId_ERP
                 });
                 cardBinding.save(function (err) {
                     if (err)
@@ -215,16 +220,18 @@ GanZhouWXC.prototype.CardModify = function (attribute, callback) {
     if (!cardNumber) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'cardNumber不能为空'));
     }
-    fuji.Modify(cardNumber, idNo, sex, birthday, address, email, function (err, result) {
+    CardBinding.FindByCardNumber(bid, cardNumber, function (err, res) {
         if (err) {
-            return callback(err);
+            return callback(error.ThrowError(error.ErrorCode.Error, err.message));
         }
-        CardBinding.FindByCardNumber(bid, cardNumber, function (err, res) {
+        if (res.length <= 0) {
+            return callback(error.ThrowError(error.ErrorCode.CardUndefined, '会员卡尚未与微信绑定'));
+        }
+        fuji.Modify(res.memberId_CRM, res.memberId_ERP, idNo, sex, birthday, address, email, function (err, result) {
             if (err) {
-                return callback(error.ThrowError(error.ErrorCode.Error, err.message));
+                return callback(err);
             }
-            if (res.length > 0)
-                result.OpenId = res[0].openId;
+            result.OpenId = res[0].openId;
             return callback(error.Success(result));
         });
     });
@@ -239,7 +246,7 @@ GanZhouWXC.prototype.CardModify = function (attribute, callback) {
 GanZhouWXC.prototype.GetCardByOpenId = function (attribute, callback) {
     var openId = attribute.openId,
         bid = attribute.bid;
-    var cardNumber;
+    console.log('bid:', bid, ' openId:', openId);
     if (!openId) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'openid不能为空'));
     }
@@ -248,9 +255,8 @@ GanZhouWXC.prototype.GetCardByOpenId = function (attribute, callback) {
         if (err) {
             return callback(error.ThrowError(error.ErrorCode.Error, err.message));
         }
-        cardNumber = result.length > 0 ? result[0].cardNumber : '';
-        if (cardNumber) {
-            fuji.GetMemberByCardNumber(cardNumber, function (err, result) {
+        if (result.length > 0) {
+            fuji.GetMemberByMemberId(result.memberId_CRM, result.memberId_ERP, function (err, result) {
                 if (err) {
                     return callback(err);
                 }
@@ -264,9 +270,8 @@ GanZhouWXC.prototype.GetCardByOpenId = function (attribute, callback) {
                 if (err) {
                     return callback(error.ThrowError(error.ErrorCode.Error, err.message));
                 }
-                cardNumber = result.length > 0 ? result[0].cardNumber : '';
-                if (cardNumber) {
-                    fuji.GetMemberByCardNumber(cardNumber, function (err, result) {
+                if (result.length > 0) {
+                    fuji.GetMemberByMemberId(result[0].memberId_CRM, result[0].memberId_ERP, function (err, result) {
                         if (err) {
                             return callback(err);
                         }
@@ -326,15 +331,24 @@ GanZhouWXC.prototype.IntegralRecord = function (attribute, callback) {
         startTime = attribute.startTime,
         endTime = attribute.endTime,
         pn = attribute.pn,
-        ps = attribute.ps;
+        ps = attribute.ps,
+        bid = attribute.bid;
     if (!cardNumber) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'cardNumber不能为空'));
     }
-    fuji.Integralrecord(cardNumber, startTime, endTime, pn, ps, function (err, result) {
+    CardBinding.FindByCardNumber(bid, cardNumber, function (err, result) {
         if (err) {
-            return callback(err);
+            return callback(error.ThrowError(error.ErrorCode.Error, err.message));
         }
-        return callback(error.Success(result));
+        if (result.length <= 0) {
+            return callback(error.ThrowError(error.ErrorCode.CardUndefined), '该卡尚未与微信绑定');
+        }
+        fuji.Integralrecord(cardNumber, result[0].memberId_CRM, result[0].memberId_ERP, startTime, endTime, pn, ps, function (err, result) {
+            if (err) {
+                return callback(err);
+            }
+            return callback(error.Success(result));
+        });
     });
 };
 
@@ -375,22 +389,30 @@ GanZhouWXC.prototype.IntegralChange = function (attribute, callback) {
     if (integral == 0) {
         return callback(error.ThrowError(error.ErrorCode.DateFormatError, '无效的积分'));
     }
-    fuji.IntegralAdjust(cardNumber, integral, function (err, result) {
+    CardBinding.FindByCardNumber(bid, cardNumber, function (err, result) {
         if (err) {
-            return callback(err);
+            return callback(error.ThrowError(error.ErrorCode.Error, err.message));
         }
-        console.log('result:', result);
-        fuji.GetMemberByCardNumber(cardNumber, function (err, result) {
+        if (result.length <= 0) {
+            return callback(error.ThrowError(error.ErrorCode.CardUndefined));
+        }
+        fuji.IntegralAdjust(result[0].memberId_CRM, result[0].memberId_ERP, integral, function (err, result) {
             if (err) {
                 return callback(err);
             }
-            CardBinding.FindByCardNumber(bid, result.CardNumber, function (err, res) {
+            console.log('result:', result);
+            fuji.GetMemberByCardNumber(cardNumber, function (err, result) {
                 if (err) {
-                    return callback(error.ThrowError(error.ErrorCode.Error, err.message));
+                    return callback(err);
                 }
-                if (res.length > 0)
-                    result.OpenId = res[0].openId;
-                return callback(error.Success(result));
+                CardBinding.FindByCardNumber(bid, result.CardNumber, function (err, res) {
+                    if (err) {
+                        return callback(error.ThrowError(error.ErrorCode.Error, err.message));
+                    }
+                    if (res.length > 0)
+                        result.OpenId = res[0].openId;
+                    return callback(error.Success(result));
+                });
             });
         });
     });
@@ -496,5 +518,42 @@ function distincCardNo(cardNo, i) {
     });
 };
 
+/**
+ * 补充会员的MemberId_CRM,MemberId_ERP 数据
+ * @param attribute
+ * @param callback
+ * @constructor
+ */
+GanZhouWXC.prototype.AddMemberDetial = function (attribute, callback) {
+    var bid = attribute.bid;
+    CardBinding.find({bid: bid}, function (err, docs) {
+        if (err) {
+            return callback(error.ThrowError(error.ErrorCode.Error, err.message));
+        }
+        var length = docs.length;
+        var start = 0;
+        console.log('length:', length);
+        for (var i in docs) {
+            fuji.GetMemberByCardNumber(docs[i].cardNumber, function (err, result) {
+                if (err) {
+                    console.log('err', err.message);
+                    return;
+                }
+                if (result.length <= 0) {
+                    console.log('result.length<=0');
+                    return;
+                }
+                //更新数据
+                CardBinding.update({cardNumber: result.CardNumber}, {
+                    $set: {
+                        memberId_CRM: result.MemberId_CRM,
+                        memberId_ERP: result.MemberId_ERP
+                    }
+                });
+            });
+        }
+        return callback(error.Success(length));
+    });
+};
 
 module.exports = GanZhouWXC;

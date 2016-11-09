@@ -20,12 +20,12 @@ var serverPath = '地址：http://58.213.110.146/mixc-umsgz-http-server/servlet/
  * @param callback
  * @constructor
  */
-exports.BindCard = function (userId, cardNo, pwd, phone, name, callback) {
+exports.BindCard = function (cardBindNo, cardNo, pwd, phone, name, callback) {
     var post_data = {
             txnId: '105',
             sign: '',
             tellerNo: tellerNo,
-            linkMan: userId,
+            linkMan: cardBindNo,
             pan: cardNo,
             mobile: phone,
             custName: name,
@@ -53,7 +53,7 @@ exports.BindCard = function (userId, cardNo, pwd, phone, name, callback) {
                     return callback(null, {
                         txnData: result.txnData,
                         txnTime: result.txnTime,
-                        rrn: result.rrn,
+                        rrn: result.rrn,  //流水号
                         accuScore: result.accuScore,
                         score: result.score,
                         pan: result.pan,
@@ -78,12 +78,12 @@ exports.BindCard = function (userId, cardNo, pwd, phone, name, callback) {
  * 解除充值卡绑定
  * @constructor
  */
-exports.UnBindCard = function (userId, cardNo, txnData, txnTime, callback) {
+exports.UnBindCard = function (cardBindNo, cardNo, txnData, txnTime, callback) {
     var post_data = {
             txnId: '107',
             sign: '',
             tellerNo: tellerNo,
-            linkMan: userId,
+            linkMan: cardBindNo,
             txnDate: txnData,
             txnTime: txnTime
         },
@@ -119,7 +119,6 @@ exports.UnBindCard = function (userId, cardNo, txnData, txnTime, callback) {
 };
 
 
-
 /**
  * 卡密 明码转密码
  * @param userId
@@ -128,12 +127,12 @@ exports.UnBindCard = function (userId, cardNo, txnData, txnTime, callback) {
  * @param callback
  * @constructor
  */
-exports.PwdCrypto = function (userId, cardNo, pwd, callback) {
+exports.PwdCrypto = function (cardBindNo, cardNo, pwd, callback) {
     var post_data = {
             txnId: 'W505',
             sign: '',
             tellerNo: tellerNo,
-            linkMan: userId,
+            linkMan: cardBindNo,
             pan: cardNo,
             pinData: pwd
         },
@@ -170,6 +169,142 @@ exports.PwdCrypto = function (userId, cardNo, pwd, callback) {
     });
     req.write(content);
     req.end;
+};
+
+/**
+ * 查询卡详情
+ * @param cardbindNo
+ * @param cardNo
+ * @param callback
+ * @constructor
+ */
+exports.CardDetial = function (cardBindNo, cardNo, callback) {
+    var post_data = {
+            txnId: '50',
+            tellerNo: tellerNo,
+            linkMan: cardBindNo,
+            pan: cardNo,
+            reason: '1',
+            sign: ''
+        },
+        sign = Sign(post_data);
+    post_data.sign = sign;
+    var content = post_data;
+    var req = https.request(serverPath, function (res) {
+        res.setEncoding('utf8');
+        var result = '';
+        res.on('data', function (chunk) {
+            result += chunk;
+        });
+        res.on('end', function () {
+            try {
+                result = JSON.parse(result);
+                if (typeof result == typeof '') {
+                    result = JSON.parse(result);
+                }
+                var sign = Sign(result, key); //签名验证
+                if (sign != result.sign) {
+                    return callback(error.ThrowError(error.ErrorCode.Error));
+                }
+                if (result.rc == '00') {
+                    return callback(null, {
+                        cardBindNo: result.linkMan,
+                        cardNo: result.pan,
+                        code: result.panMac,
+                        bindFlag: result.bindFlag,
+                        phone: result.mobile,
+                        name: result.custName,
+                        address: result.address,
+                        sex: result.sex == 'M' ? '男' : '女',
+                        idNo: result.certNo,
+                        birthday: result.birthday,
+                        email: result.email,
+                        integral: result.currScore,
+                        cardGrader: result.VipCls,
+                        balance: result.balAmt,
+                        balanceFreeze: result.balAmt3,
+                        cardBeqindate: result.cardBeqindate,
+                        cardExpdate: result.cardExpdate,
+
+                    });
+                }
+                return callback(error.ThrowError(error.ErrorCode.Error, result.rcDetail));
+            } catch (e) {
+                return callback(error.ThrowError(error.ErrorCode.Error, e.message));
+            }
+        });
+    });
+    req.on('error', function (e) {
+        return callback(error.ThrowError(error.ErrorCode.Error, e.message));
+    });
+    req.write(content);
+    req.end();
+};
+
+/**
+ * 消费记录
+ * @constructor
+ */
+exports.ConsumptionRecord = function (cardBindNo, cardNo, start, end, pn, ps, callback) {
+    var post_data = {
+            txnId: 'W900',
+            sign: '',
+            tellerNo: tellerNo,
+            linkMan: cardBindNo,
+            queryType: 1,
+            pan: cardNo,
+            txnDateForm: start,
+            txnDateTo: end,
+            currentPage: pn,
+            pageRow: ps
+        },
+        sign = Sign(post_data, key);
+    post_data.sign = sign;
+    var content = post_data;
+    var req = https.request(serverPath, function (res) {
+        res.setEncoding('utf8');
+        var result = '';
+        res.on('data', function (chunk) {
+            result += chunk;
+        });
+        res.on('end', function () {
+            try {
+                result = JSON.parse(result);
+                if (typeof result == typeof '') {
+                    result = JSON.parse(result);
+                }
+                if (result.rc == '00') {
+                    var items = result.trans;
+                    if (items.length <= 0) {
+                        return callback();
+                    }
+                    var array = new Array();
+                    for (var i in items) {
+                        var item = items[i];
+                        array.push({
+                            cardNo: item.pan,
+                            tradeCode: item.txnId,
+                            tradeName: item.txnName,
+                            tradeDate: item.txnDate,
+                            tradeMoney: item.txnAmt,
+                            surplusMoney: item.bal,
+                            mid: item.mid,
+                            mchName: item.mchaName
+                        });
+                    }
+                    return callback(null, array);
+                }
+                return callback(error.ThrowError(error.ErrorCode.Error, result.rcDetail));
+            } catch (e) {
+                return callback(error.ThrowError(error.ErrorCode.Error, e.message));
+            }
+        });
+    });
+    req.on('error', function (e) {
+        return callback(error.ThrowError(error.ErrorCode.Error, e.message));
+    });
+    req.write(content);
+    req.end();
 };
 
 function Sign(attr, key) {

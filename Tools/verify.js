@@ -10,7 +10,7 @@ exports.Name=function (name) {
 };
 exports.Phone=function (phone) {
   var reg=/^1[3-8]\d{9}$/;
-  return reg.test(phone);
+  return reg.test(phone); 
 };
 exports.IdNo=function (idno) {
   var reg=/^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/;

@@ -10,8 +10,8 @@ var http = require('http'),
     error = require('../Exception/error'),
     moment = require('moment');
 
-var fujiHost = '111.75.158.77',  //富基CRM HostPath
-    fujiPort = 8098; //端口号
+var fujiHost = '111.75.158.178'  //'111.75.158.77',  //富基CRM HostPath
+fujiPort = '8090';  //8098; //端口号
 
 /**
  * 会员注册
@@ -35,7 +35,7 @@ exports.Register = function (phone, name, idNo, address, email, callback) {
         options = {
             host: fujiHost,
             port: fujiPort,
-            path: '/Fuji/Register',
+            path: '/index/Register',
             method: 'post',
             headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
         };
@@ -78,7 +78,7 @@ exports.GetMemberByPhone = function (phone, callback) {
         options = {
             host: fujiHost,
             port: fujiPort,
-            path: '/Fuji/GetMemberByPhone',
+            path: '/index/CardDetialByPhone',
             method: 'post',
             headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
         };
@@ -121,7 +121,7 @@ exports.GetMemberByCardNumber = function (cardNumber, callback) {
         options = {
             host: fujiHost,
             port: fujiPort,
-            path: '/Fuji/GetMemberByCardNumber',
+            path: '/index/CardDetial',
             method: 'post',
             headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
         };
@@ -137,12 +137,11 @@ exports.GetMemberByCardNumber = function (cardNumber, callback) {
                 if (typeof result == typeof '')
                     result = JSON.parse(result);
                 if (result.ErrorCode == 0)
-                    callback(error.ThrowError(error.ErrorCode.CardUndefined, '会员卡不存在'), result);
+                    return callback(error.ThrowError(error.ErrorCode.CardUndefined, '会员卡不存在'), result);
                 else
-                    callback(null, ToCardResult(result));
+                    return callback(null, ToCardResult(result));
             } catch (e) {
-                //console.log('e:', e.message, ' result:', result);
-                callback(error.ThrowError(error.ErrorCode.Error, e.message));
+                return callback(error.ThrowError(error.ErrorCode.Error, e.message));
             }
         });
     });
@@ -160,13 +159,16 @@ exports.GetMemberByCardNumber = function (cardNumber, callback) {
  * @param callback
  * @constructor
  */
-exports.GetMemberByMemberId = function (memberId, callback) {
-    var post_data = {memberId: memberId},
+exports.GetMemberByMemberId = function (memberId_CRM, memberId_ERP, callback) {
+    var post_data = {
+            crmMemberId: memberId_CRM,
+            erpMemberId: memberId_ERP
+        },
         content = qs.stringify(post_data),
         options = {
             host: fujiHost,
             port: fujiPort,
-            path: '/Fuji/GetMemberByMemberId',
+            path: '/index/CardDetialByMemberId',
             method: 'post',
             headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
         };
@@ -178,13 +180,13 @@ exports.GetMemberByMemberId = function (memberId, callback) {
         });
         res.on('end', function () {
             try {
-                result = JSON.parse(chunk);
+                result = JSON.parse(result);
                 if (typeof result == typeof '')
                     result = JSON.parse(result);
                 if (result.ErrorCode == 0)
-                    callback(error.ThrowError(error.ErrorCode.Error, result.Message), result);
+                    return callback(error.ThrowError(error.ErrorCode.Error, result.Message), result);
                 else
-                    callback(null, ToCardResult(result));
+                    return callback(null, ToCardResult(result));
             } catch (e) {
                 callback(error.ThrowError(error.ErrorCode.Error, e.message));
             }
@@ -207,9 +209,10 @@ exports.GetMemberByMemberId = function (memberId, callback) {
  * @param email
  * @constructor
  */
-exports.Modify = function (cardNumber, idNo, sex, birthday, address, email, callback) {
+exports.Modify = function (crmMemberId, erpMemberId, idNo, sex, birthday, address, email, callback) {
     var post_data = {
-            cardNumber: cardNumber,
+            crmMemberId: crmMemberId,
+            erpMemberId: erpMemberId,
             idNo: idNo,
             sex: sex,
             birthday: birthday,
@@ -220,7 +223,7 @@ exports.Modify = function (cardNumber, idNo, sex, birthday, address, email, call
         options = {
             host: fujiHost,
             port: fujiPort,
-            path: '/Fuji/MemberModify',
+            path: '/index/MemberModify',
             method: 'post',
             headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
         };
@@ -302,9 +305,10 @@ exports.CurrentIntegral = function (cardNumber, callback) {
  * @param ps
  * @constructor
  */
-exports.Integralrecord = function (cardNumber, startTime, endTime, pn, ps, callback) {
+exports.Integralrecord = function (cardNumber,crmMemberId, erpMemberId, startTime, endTime, pn, ps, callback) {
     var post_data = {
-            cardNumber: cardNumber,
+            crmMemberId: crmMemberId,
+            erpMemberId: erpMemberId,
             startTime: startTime,
             endTime: endTime,
             pn: pn,
@@ -314,7 +318,7 @@ exports.Integralrecord = function (cardNumber, startTime, endTime, pn, ps, callb
         options = {
             host: fujiHost,
             port: fujiPort,
-            path: '/Fuji/MemberIntegralRecord',
+            path: '/index/IntegralRecord',
             method: 'post',
             headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
         };
@@ -366,19 +370,21 @@ exports.Integralrecord = function (cardNumber, startTime, endTime, pn, ps, callb
  * @param callback
  * @constructor
  */
-exports.IntegralAdjust = function (cardNumber, integral, callback) {
+exports.IntegralAdjust = function (crmMemberId, erpMemberId, integral, callback) {
     var post_data = {
-            cardNumber: cardNumber,
+            crmMemberId: crmMemberId,
+            erpMemberId: erpMemberId,
             integral: integral
         },
         content = qs.stringify(post_data),
         options = {
             host: fujiHost,
             port: fujiPort,
-            path: '/Fuji/MemberIntegralAdjust',
+            path: '/index/IntegralChange',
             method: 'post',
             headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
         };
+    console.log('content:', content);
     var req = http.request(options, function (res) {
         res.setEncoding('utf8');
         var result = '';
@@ -386,16 +392,17 @@ exports.IntegralAdjust = function (cardNumber, integral, callback) {
             result += chunk;
         });
         res.on('end', function () {
+            console.log('result', result);
             try {
                 result = JSON.parse(result);
                 if (typeof result == typeof '')
                     result = JSON.parse(result);
                 if (result.ErrorCode == 0)
-                    callback(error.ThrowError(error.ErrorCode.Error, result.Message), result);
+                    return callback(error.ThrowError(error.ErrorCode.Error, result.Message), result);
                 else
-                    callback(null, result);
+                    return callback(null, result);
             } catch (e) {
-                callback(error.ThrowError(error.ErrorCode.Error, e.message));
+                return callback(error.ThrowError(error.ErrorCode.Error, e.message));
             }
         });
     });
@@ -425,7 +432,9 @@ function ToCardResult(result) {
         Email: result.Email,
         CardSource: '',
         IdNo: result.IdNo,
-        IntegralDetial: result.IntegralDetial
+        IntegralDetial: result.IntegralDetial,
+        MemberId_CRM: result.MemberId_CRM,
+        MemberId_ERP: result.MemberId_ERP
     };
     return str;
 };

@@ -17,6 +17,14 @@ var CardBindingSchema = new mongoose.Schema({
     dtCreate: {
         type: Date,
         default: Date.now()
+    },
+    memberId_CRM: {
+        type: String,
+        trim: true
+    },
+    memberId_ERP: {
+        type: String,
+        trim: true
     }
 });
 
@@ -54,5 +62,7 @@ CardBindingSchema.statics.FindByOpenidInNotGrade = function (bid, openId, cardGr
         return callback(err, docs);
     });
 };
+
+
 
 mongoose.model(config.cardBinding, CardBindingSchema);

@@ -120,7 +120,16 @@ router.post('/test', function (req, res) {
 //         res.json(result);
 //     });
 // });
-
+router.post('/AddMemberDetial', CheckBid);
+router.post('/AddMemberDetial', function (req, res) {
+    ar
+    bid = req.body.bid ? parseInt(req.body.bid) : 0;
+    var logic = factory(bid);
+    logic.AddMemberDetial(req.body, function (result) {
+        //console.log('result:', result);
+        res.json(result);
+    });
+});
 module.exports = router;
 function CheckBid(req, res, next) {
     if (!req.body.bid) {
