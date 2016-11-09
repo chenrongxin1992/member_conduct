@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00a831d3-6f98-489a-b9df-c9ed98e0405b" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crm/Fuji.js" afterPath="$PROJECT_DIR$/crm/Fuji.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logic/ganZhouWxcLogic.js" afterPath="$PROJECT_DIR$/logic/ganZhouWxcLogic.js" />
     </list>
     <ignored path="MemberConduct.iws" />
@@ -51,21 +53,20 @@
           <file leaf-file-name="ganZhouWxcLogic.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/logic/ganZhouWxcLogic.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="301">
+                <state relative-caret-position="274">
                   <caret line="229" column="17" selection-start-line="229" selection-start-column="17" selection-end-line="229" selection-end-column="17" />
                   <folding>
                     <element signature="e#646#3068#0" expanded="false" />
                     <element signature="e#3252#5967#0" expanded="false" />
                     <element signature="e#4402#5945#0" expanded="false" />
                     <element signature="e#6116#6874#0" expanded="false" />
-                    <element signature="e#8166#9802#0" expanded="false" />
-                    <element signature="e#9950#10818#0" expanded="false" />
-                    <element signature="e#10964#11903#0" expanded="false" />
-                    <element signature="e#12435#14233#0" expanded="false" />
-                    <element signature="e#14375#15858#0" expanded="false" />
-                    <element signature="e#16000#16731#0" expanded="false" />
+                    <element signature="e#10234#11102#0" expanded="false" />
+                    <element signature="e#11248#12187#0" expanded="false" />
+                    <element signature="e#12719#14517#0" expanded="false" />
+                    <element signature="e#14659#16142#0" expanded="false" />
+                    <element signature="e#16284#17015#0" expanded="false" />
                     <element signature="n#!!block;n#distincCardNo#0" expanded="false" />
-                    <element signature="e#17646#18686#0" expanded="false" />
+                    <element signature="e#17930#18970#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -74,8 +75,8 @@
           <file leaf-file-name="member.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/routes/member.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="110">
-                  <caret line="67" column="28" selection-start-line="67" selection-start-column="14" selection-end-line="67" selection-end-column="28" />
+                <state relative-caret-position="220">
+                  <caret line="53" column="7" selection-start-line="53" selection-start-column="7" selection-end-line="53" selection-end-column="7" />
                   <folding />
                 </state>
               </provider>
@@ -138,8 +139,8 @@
           <file leaf-file-name="Fuji.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/crm/Fuji.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="190">
-                  <caret line="211" column="0" selection-start-line="211" selection-start-column="0" selection-end-line="211" selection-end-column="0" />
+                <state relative-caret-position="50">
+                  <caret line="228" column="10" selection-start-line="228" selection-start-column="10" selection-end-line="228" selection-end-column="10" />
                   <folding>
                     <element signature="e#2087#3333#0" expanded="false" />
                     <element signature="e#2186#2417#0" expanded="false" />
@@ -222,8 +223,8 @@
         <option value="$PROJECT_DIR$/config/sysConfig.js" />
         <option value="$PROJECT_DIR$/routes/member.js" />
         <option value="$PROJECT_DIR$/entity/cardBinding.server.module.js" />
-        <option value="$PROJECT_DIR$/crm/Fuji.js" />
         <option value="$PROJECT_DIR$/logic/ganZhouWxcLogic.js" />
+        <option value="$PROJECT_DIR$/crm/Fuji.js" />
       </list>
     </option>
   </component>
@@ -849,7 +850,7 @@
       <workItem from="1478474474523" duration="599000" />
       <workItem from="1478483265154" duration="3172000" />
       <workItem from="1478572789796" duration="21706000" />
-      <workItem from="1478655962235" duration="5541000" />
+      <workItem from="1478655962235" duration="7063000" />
     </task>
     <task id="LOCAL-00001" summary="测试 push">
       <created>1464938639203</created>
@@ -1079,7 +1080,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="713799000" />
+    <option name="totallyTimeSpent" value="715321000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1513,14 +1514,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/member.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="67" column="28" selection-start-line="67" selection-start-column="14" selection-end-line="67" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/entity/cardBinding.server.module.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -1529,31 +1522,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/routes/member.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="53" column="7" selection-start-line="53" selection-start-column="7" selection-end-line="53" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/logic/ganZhouWxcLogic.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
+        <state relative-caret-position="274">
           <caret line="229" column="17" selection-start-line="229" selection-start-column="17" selection-end-line="229" selection-end-column="17" />
           <folding>
             <element signature="e#646#3068#0" expanded="false" />
             <element signature="e#3252#5967#0" expanded="false" />
             <element signature="e#4402#5945#0" expanded="false" />
             <element signature="e#6116#6874#0" expanded="false" />
-            <element signature="e#8166#9802#0" expanded="false" />
-            <element signature="e#9950#10818#0" expanded="false" />
-            <element signature="e#10964#11903#0" expanded="false" />
-            <element signature="e#12435#14233#0" expanded="false" />
-            <element signature="e#14375#15858#0" expanded="false" />
-            <element signature="e#16000#16731#0" expanded="false" />
+            <element signature="e#10234#11102#0" expanded="false" />
+            <element signature="e#11248#12187#0" expanded="false" />
+            <element signature="e#12719#14517#0" expanded="false" />
+            <element signature="e#14659#16142#0" expanded="false" />
+            <element signature="e#16284#17015#0" expanded="false" />
             <element signature="n#!!block;n#distincCardNo#0" expanded="false" />
-            <element signature="e#17646#18686#0" expanded="false" />
+            <element signature="e#17930#18970#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/crm/Fuji.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="211" column="0" selection-start-line="211" selection-start-column="0" selection-end-line="211" selection-end-column="0" />
+        <state relative-caret-position="50">
+          <caret line="228" column="10" selection-start-line="228" selection-start-column="10" selection-end-line="228" selection-end-column="10" />
           <folding>
             <element signature="e#2087#3333#0" expanded="false" />
             <element signature="e#2186#2417#0" expanded="false" />

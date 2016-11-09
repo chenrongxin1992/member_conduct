@@ -305,7 +305,7 @@ exports.CurrentIntegral = function (cardNumber, callback) {
  * @param ps
  * @constructor
  */
-exports.Integralrecord = function (cardNumber,crmMemberId, erpMemberId, startTime, endTime, pn, ps, callback) {
+exports.Integralrecord = function (cardNumber, crmMemberId, erpMemberId, startTime, endTime, pn, ps, callback) {
     var post_data = {
             crmMemberId: crmMemberId,
             erpMemberId: erpMemberId,

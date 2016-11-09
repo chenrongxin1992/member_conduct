@@ -231,8 +231,15 @@ GanZhouWXC.prototype.CardModify = function (attribute, callback) {
             if (err) {
                 return callback(err);
             }
-            result.OpenId = res[0].openId;
-            return callback(error.Success(result));
+            var openId=res[0].OpenId;
+            fuji.GetMemberByMemberId(res[0].memberId_CRM, res[0].memberId_ERP, function (err, result) {
+                if (err) {
+                    return callback(err);
+                }
+                if (result)
+                    result.OpenId = openId;
+                return callback(error.Success(result));
+            });
         });
     });
 };
@@ -256,7 +263,7 @@ GanZhouWXC.prototype.GetCardByOpenId = function (attribute, callback) {
             return callback(error.ThrowError(error.ErrorCode.Error, err.message));
         }
         if (result.length > 0) {
-            fuji.GetMemberByMemberId(result.memberId_CRM, result.memberId_ERP, function (err, result) {
+            fuji.GetMemberByMemberId(result[0].memberId_CRM, result[0].memberId_ERP, function (err, result) {
                 if (err) {
                     return callback(err);
                 }
