@@ -148,3 +148,44 @@ GanZhouWXC.prototype.UnbindCard = function (attribute, callback) {
         });
     });
 };
+
+
+/**
+ * 卡详情
+ */
+GanZhouWXC.prototype.CardDetial = function (attribute, isPay, callback) {
+    var bid = attribute.bid,
+        userId = attribute.userId,
+        cardBindNo = attribute.cardBindNo,
+        cardNo = attribute.cardNo;
+    if (!userId) {
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'userId不能为空'));
+    }
+    if (cardBindNo)
+        cardBindNo = userId;
+    if (!cardNo)
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '卡号不能为空'));
+    PrepayCard.FindOneByCarBindNo(cardBindNo, function (err, result) {
+        if (err) {
+            return callback(error.ThrowError(error.ErrorCode.Error, err.message));
+        }
+        if (res.length > 0) {
+            return callback(error.ThrowError(error.ErrorCode.PrepayError.CardBindIsNotBind));
+        }
+        if (res.userId == userId) {
+            return callback(error.ThrowError(error.ErrorCode.PrepayError.BindInfoError));
+        }
+        if (res.cardNo != cardNo) {
+            return callback(error.ThrowError(error.ErrorCode.PrepayError.BindInfoError));
+        }
+        ys.CardDetial(cardBindNo, cardNo, function (err, result) {
+            if (err) {
+                return callback(err);
+            }
+            if (!result || result.length <= 0)
+                return callback(error.Success());
+            result.userId = userId;
+            return callback(null, error.Success(result));
+        });
+    });
+};

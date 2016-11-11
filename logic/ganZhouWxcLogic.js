@@ -231,7 +231,7 @@ GanZhouWXC.prototype.CardModify = function (attribute, callback) {
             if (err) {
                 return callback(err);
             }
-            var openId=res[0].OpenId;
+            var openId = res[0].OpenId;
             fuji.GetMemberByMemberId(res[0].memberId_CRM, res[0].memberId_ERP, function (err, result) {
                 if (err) {
                     return callback(err);
@@ -533,34 +533,64 @@ function distincCardNo(cardNo, i) {
  */
 GanZhouWXC.prototype.AddMemberDetial = function (attribute, callback) {
     var bid = attribute.bid;
-    CardBinding.find({bid: bid}, function (err, docs) {
+    CardBinding.find({bid: bid, memberId_CRM: null, memberId_ERP: null}, function (err, docs) {
         if (err) {
             return callback(error.ThrowError(error.ErrorCode.Error, err.message));
         }
-        var length = docs.length;
-        var start = 0;
-        console.log('length:', length);
-        for (var i in docs) {
-            fuji.GetMemberByCardNumber(docs[i].cardNumber, function (err, result) {
-                if (err) {
-                    console.log('err', err.message);
-                    return;
-                }
-                if (result.length <= 0) {
-                    console.log('result.length<=0');
-                    return;
-                }
-                //更新数据
-                CardBinding.update({cardNumber: result.CardNumber}, {
-                    $set: {
-                        memberId_CRM: result.MemberId_CRM,
-                        memberId_ERP: result.MemberId_ERP
+        console.log('length:', docs.length);
+        var async = function (n) {
+            var i = 0;
+            var _async = function () {
+                var doc = n[i];
+                console.log('No:', i, '  cardNumber: ', doc.cardNumber);
+                fuji.GetMemberByCardNumber(doc.cardNumber, function (err, result) {
+                    if (err) {
+                        console.log('err', err.message);
+                        i++;
+                        if (i < n.length) {
+                            _async();
+                        }
+                    } else {
+                        if (!result || result.length <= 0) {
+                            console.log('False   No:', i, ' Result:', result);
+                            i++;
+                            if (i < n.length) {
+                                _async();
+                            }
+                        } else {
+                            console.log('更新数据' + result.MemberId_CRM, '   ', result.MemberId_ERP);
+                            //更新数据
+                            CardBinding.update({cardNumber: result.CardNumber}, {
+                                $set: {
+                                    memberId_CRM: result.MemberId_CRM,
+                                    memberId_ERP: result.MemberId_ERP
+                                }
+                            }, {upsert: false}, function (err) {
+                                if (err) {
+                                    console.log('update Error:', err);
+                                    i++;
+                                    if (i < n.length) {
+                                        _async();
+                                    }
+                                }
+                                else {
+                                    console.log('保存成功:', result.CardNumber);
+                                    i++;
+                                    if (i < n.length) {
+                                        _async();
+                                    }
+                                }
+                            });
+                        }
                     }
                 });
-            });
+            }
+            _async();
         }
-        return callback(error.Success(length));
+        async(docs);
     });
+    return callback(error.Success());
 };
+
 
 module.exports = GanZhouWXC;

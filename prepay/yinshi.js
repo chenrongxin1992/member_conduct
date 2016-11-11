@@ -118,7 +118,6 @@ exports.UnBindCard = function (cardBindNo, cardNo, txnData, txnTime, callback) {
     req.end();
 };
 
-
 /**
  * 卡密 明码转密码
  * @param userId
@@ -178,13 +177,13 @@ exports.PwdCrypto = function (cardBindNo, cardNo, pwd, callback) {
  * @param callback
  * @constructor
  */
-exports.CardDetial = function (cardBindNo, cardNo, callback) {
+exports.CardDetial = function (cardBindNo, cardNo,isPay, callback) {
     var post_data = {
             txnId: '50',
             tellerNo: tellerNo,
             linkMan: cardBindNo,
             pan: cardNo,
-            reason: '1',
+            reason: isPay?'1':'',
             sign: ''
         },
         sign = Sign(post_data);
@@ -207,26 +206,7 @@ exports.CardDetial = function (cardBindNo, cardNo, callback) {
                     return callback(error.ThrowError(error.ErrorCode.Error));
                 }
                 if (result.rc == '00') {
-                    return callback(null, {
-                        cardBindNo: result.linkMan,
-                        cardNo: result.pan,
-                        code: result.panMac,
-                        bindFlag: result.bindFlag,
-                        phone: result.mobile,
-                        name: result.custName,
-                        address: result.address,
-                        sex: result.sex == 'M' ? '男' : '女',
-                        idNo: result.certNo,
-                        birthday: result.birthday,
-                        email: result.email,
-                        integral: result.currScore,
-                        cardGrader: result.VipCls,
-                        balance: result.balAmt,
-                        balanceFreeze: result.balAmt3,
-                        cardBeqindate: result.cardBeqindate,
-                        cardExpdate: result.cardExpdate,
-
-                    });
+                    return callback(null, ToCardDetial(result));
                 }
                 return callback(error.ThrowError(error.ErrorCode.Error, result.rcDetail));
             } catch (e) {
@@ -324,6 +304,32 @@ function Sign(attr, key) {
     return _sign;
 };
 
+function ToCardDetial(result) {
+    var str;
+    if (result) {
+        str = {
+            cardBindNo: result.linkMan,
+            cardNo: result.pan,
+            payCode: result.panMac,
+            bindFlag: result.bindFlag,
+            phone: result.mobile,
+            name: result.custName,
+            address: result.address,
+            sex: result.sex == 'M' ? '男' : '女',
+            idNo: result.certNo,
+            birthday: result.birthday,
+            email: result.email,
+            integral: result.currScore,
+            cardGrader: result.VipCls,
+            balance: result.balAmt,
+            balanceFreeze: result.balAmt3,
+            cardBeqindate: result.cardBeqindate,
+            cardExpdate: result.cardExpdate,
+            status: result.cardStatus
+        };
+    }
+    return str;
+}
 /***
  * 银石错误异常说明
  * @type {{}}
