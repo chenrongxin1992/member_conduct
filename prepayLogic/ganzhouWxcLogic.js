@@ -9,14 +9,14 @@ var prepay = require('./prepayLogic'),
     utils = require('util'),
     error = require('../Exception/error'),
     verify = require('../Tools/verify'),
-    mongoose = require('mongoose'),
     config = require('../config/sysConfig'),
-    PrepayCard = mongoose.model(config.prepayCard),
-    PrePayCardPushRecord = mongoose.mode(config.prepayCardPushRecord);
+    mongoose = require('mongoose'),
+    PrepayCard ='',// mongoose.model(config.prepayCard),
+    PrePayCardPushRecord ='';// mongoose.mode(config.prepayCardPushRecord);
 
 function GanZhouWXC() {
 };
-utils.inherits(GanZhouWXC, prepy);
+utils.inherits(GanZhouWXC, prepay);
 
 /**
  * 绑定临时卡
@@ -40,12 +40,12 @@ GanZhouWXC.prototype.BindCard = function (attribute, callback) {
         cardBindNo = userId;
     if (!cardNo)
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '卡号不能为空'));
-    if (!phone) {
-        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'phone不能为空'));
-    }
-    if (!verify.Phone(phone)) {
-        return callback(error.ThrowError(error.ErrorCode.DateFormatError, 'Phone格式错误'));
-    }
+    // if (!phone) {
+    //     return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'phone不能为空'));
+    // }
+    // if (!verify.Phone(phone)) {
+    //     return callback(error.ThrowError(error.ErrorCode.DateFormatError, 'Phone格式错误'));
+    // }
     if (!password) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '密码不能为空'));
     }

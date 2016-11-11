@@ -69,3 +69,5 @@ function CheckBid(req, res, next) {
     }
     next();
 }
+
+module.exports = router;

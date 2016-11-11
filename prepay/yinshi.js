@@ -8,7 +8,7 @@ var https = require('https'),
     error = require('../Exception/error'),
     qs = require('querystring');
 
-var serverPath = '地址：http://58.213.110.146/mixc-umsgz-http-server/servlet/server',
+var serverPath = 'http://58.213.110.146/mixc-umsgz-http-server/servlet/server',
     tellerNo = 'dman',
     key = '3df6a20f6278811f';
 

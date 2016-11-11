@@ -276,8 +276,8 @@ Dgwk.prototype.GetCardByOpenId = function (attribute, callback) {
         if (err) {
             return callback(error.ThrowError(error.ErrorCode.Error, err.message));
         }
-        cardNumber = result.length > 0 ? result[0].cardNumber : '';
-        if (cardNumber) {
+        if (result && result.length > 0) {
+            cardNumber = result[0].cardNumber;
             hd.GetMemberByCardNumber(cardNumber, function (err, result) {
                 if (err) {
                     return callback(err);
@@ -295,7 +295,32 @@ Dgwk.prototype.GetCardByOpenId = function (attribute, callback) {
                 });
             });
         } else {
-            return callback(error.ThrowError(error.ErrorCode.CardUndefined));
+            CardBinding.FindByOpenId(bid, openId, function (err, result) {
+                if (err) {
+                    return callback(error.ThrowError(error.ErrorCode.Error, err.message));
+                }
+                if (result && result.length > 0) {
+                    cardNumber = result[0].cardNumber;
+                    hd.GetMemberByCardNumber(cardNumber, function (err, result) {
+                        if (err) {
+                            return callback(err);
+                        }
+                        if (!result) {
+                            return callback(error.Success());
+                        }
+                        CardBinding.FindByCardNumber(bid, cardNumber, function (err, res) {
+                            if (err) {
+                                return callback(error.ThrowError(error.ErrorCode.Error, err.message));
+                            }
+                            if (res.length > 0)
+                                result.OpenId = res[0].openId;
+                            return callback(error.Success(result));
+                        });
+                    });
+                } else {
+                    return callback(error.ThrowError(error.ErrorCode.CardUndefined));
+                }
+            })
         }
     });
 };
