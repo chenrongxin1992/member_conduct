@@ -177,13 +177,13 @@ exports.PwdCrypto = function (cardBindNo, cardNo, pwd, callback) {
  * @param callback
  * @constructor
  */
-exports.CardDetial = function (cardBindNo, cardNo,isPay, callback) {
+exports.CardDetial = function (cardBindNo, cardNo, isPay, callback) {
     var post_data = {
             txnId: '50',
             tellerNo: tellerNo,
             linkMan: cardBindNo,
             pan: cardNo,
-            reason: isPay?'1':'',
+            reason: isPay ? '1' : '',
             sign: ''
         },
         sign = Sign(post_data);
@@ -287,7 +287,7 @@ exports.ConsumptionRecord = function (cardBindNo, cardNo, start, end, pn, ps, ca
     req.end();
 };
 
-function Sign(attr, key) {
+function Sign(attr, _key) {
     var keys = Object.keys(attr).sort();
     var stringA = '';
     for (var i in keys) {
@@ -297,9 +297,11 @@ function Sign(attr, key) {
             stringA += k + '=' + v + '&';
         }
     }
-    if (key) {
-        stringA += 'key=' + key;
+    if (_key) {
+        _key = key;
     }
+    if (!key)
+        stringA += 'key=' + _key;
     var _sign = crypto.createHash('sha256').update(stringA).digest('hex');
     return _sign;
 };

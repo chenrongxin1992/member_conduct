@@ -620,6 +620,7 @@ function ToCardDetial(result, callback) {
             Email: memberinfo.email[0],
             CardSource: GetBidByOrgId[cardinfo.signupSourceOrg],
             IdNo: memberinfo.idno ? memberinfo.idno[0] : memberinfo.idno,
+            pinganfuToken: memberinfo.pinganfuToken
         };
         return callback(null, cardDetial);
     });

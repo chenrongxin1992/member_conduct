@@ -20,4 +20,8 @@ prepay.prototype.ConsumptionRecord = function (attribute, callback) {
     return callback(Error.ThrowError(Error.ErrorCode.Unrealized));
 };
 
+prepay.prototype.PayPush = function (attribute, callback) {
+    return callback(Error.ThrowError(Error.ErrorCode.Unrealized));
+};
+
 module.exports = prepay;

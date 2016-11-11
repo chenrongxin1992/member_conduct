@@ -11,7 +11,7 @@ var http = require('http'),
     moment = require('moment');
 
 var fujiHost = '111.75.158.77', //'111.75.158.178'  //  //富基CRM HostPath
-fujiPort = '8098';  //8090; //端口号
+    fujiPort = '8098';  //8090; //端口号
 
 /**
  * 会员注册
@@ -342,6 +342,7 @@ exports.Integralrecord = function (cardNumber, crmMemberId, erpMemberId, startTi
                     var item = items[x];
                     values.push({
                         CardNumber: cardNumber,
+                        CrmName: item.CrmName,
                         DateTime: verify.CheckDate(item.DtCreate) ? moment(item.DtCreate, 'YYYY/MM/DD HH:mm:ss').format('YYYY/MM/DD HH:mm:ss') : '',
                         ShopId: '',
                         ShopName: '',
@@ -385,7 +386,6 @@ exports.IntegralAdjust = function (crmMemberId, erpMemberId, integral, callback)
             method: 'post',
             headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
         };
-    console.log('content:', content);
     var req = http.request(options, function (res) {
         res.setEncoding('utf8');
         var result = '';
@@ -393,7 +393,6 @@ exports.IntegralAdjust = function (crmMemberId, erpMemberId, integral, callback)
             result += chunk;
         });
         res.on('end', function () {
-            console.log('result', result);
             try {
                 result = JSON.parse(result);
                 if (typeof result == typeof '')

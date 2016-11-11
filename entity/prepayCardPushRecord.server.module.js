@@ -31,7 +31,7 @@ var PrepayCardPushRecordSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
-    rechargeDoc: String,//网点
+    rechargeDot: String,//网点
     sign: String,//签名值
     pushStatus: {
         type: Number,
