@@ -11,8 +11,8 @@ var prepay = require('./prepayLogic'),
     verify = require('../Tools/verify'),
     config = require('../config/sysConfig'),
     mongoose = require('mongoose'),
-    PrepayCard ='',// mongoose.model(config.prepayCard),
-    PrePayCardPushRecord ='';// mongoose.mode(config.prepayCardPushRecord);
+    PrepayCard = mongoose.model(config.prepayCard),
+    PrePayCardPushRecord = mongoose.model(config.prepayCardPushRecord);
 
 function GanZhouWXC() {
 };
@@ -31,8 +31,8 @@ GanZhouWXC.prototype.BindCard = function (attribute, callback) {
         cardBindNo = attribute.cardBindNo,
         cardNo = attribute.cardNo,
         password = attribute.pwd,
-        phone = attribute.phone,
-        name = attribute.name;
+        phone = attribute.phone || '',
+        name = attribute.name || '';
     if (!userId) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'userId不能为空'));
     }
@@ -53,54 +53,56 @@ GanZhouWXC.prototype.BindCard = function (attribute, callback) {
         if (err) {
             return callback(error.ThrowError(error.ErrorCode.Error, err.message));
         }
-        if (result.length > 0) {
+        if (result && result.length > 0) {
             return callback(error.ThrowError(error.ErrorCode.PrepayError.CardBindNoIsBind));
         }
         PrepayCard.FindOnByCardNo(cardNo, function (err, result) {
             if (err) {
                 return callback(error.ThrowError(error.ErrorCode.Error, err.message));
             }
-            if (result.length > 0) {
+            if (result && result.length > 0) {
                 return callback(error.ThrowError(error.ErrorCode.PrepayError.CardNoIsBind));
             }
             //卡密 明码转密码
-            ys.PwdCrypto(cardBindNo, cardNo, password, function (err, result) {
+            // ys.PwdCrypto(cardBindNo, cardNo, password, function (err, result) {
+            //     if (err) {
+            //         return callback(err);
+            //     }
+            //     console.log('PwdCrypto:', result);
+            //     if (result) {
+            //         return callback(error.ThrowError(error.ErrorCode.PrepayError.PwdCryptoError));
+            //     }
+            ys.BindCard(cardBindNo, cardNo, password, phone, name, function (err, result) {
                 if (err) {
                     return callback(err);
                 }
+                console.log('bindCard:', result);
                 if (result) {
-                    return callback(error.ThrowError(error.ErrorCode.PrepayError.PwdCryptoError));
+                    return callback(error.ThrowError(error.ErrorCode.Error, '绑卡失败'));
                 }
-                ys.BindCard(cardBindNo, cardNo, result, phone, name, function (err, result) {
+                var prepayCard = new PerpayCard({
+                    bid: bid,
+                    userId: userId,
+                    cardBindNo: cardBindNo,
+                    cardNo: cardNo,
+                    pwd: password,
+                    phone: phone,
+                    name: name,
+                    bindSerialNumber: result.rrn
+                });
+                prepayCard.save(function (err) {
                     if (err) {
-                        return callback(err);
+                        return callback(error.ThrowError(error.ErrorCode.Error, err.message));
                     }
-                    if (result) {
-                        return callback(error.ThrowError(error.ErrorCode.Error, '绑卡失败'));
-                    }
-                    var prepayCard = new PerpayCard({
-                        bid: bid,
-                        userId: userId,
-                        cardBindNo: cardBindNo,
-                        cardNo: cardNo,
-                        pwd: password,
-                        phone: phone,
-                        name: name,
-                        bindSerialNumber: result.rrn
-                    });
-                    prepayCard.save(function (err) {
+                    ys.CardDetial(cardBindNo, cardNo, function (err, result) {
                         if (err) {
-                            return callback(error.ThrowError(error.ErrorCode.Error, err.message));
+                            return callback(err);
                         }
-                        ys.CardDetial(cardBindNo, cardNo, function (err, result) {
-                            if (err) {
-                                return callback(err);
-                            }
-                            return callback(error.Success(result));
-                        });
+                        return callback(error.Success(result));
                     });
                 });
             });
+            // });
         });
     });
 };
@@ -263,6 +265,8 @@ GanZhouWXC.prototype.PayPush = function (attribute, callback) {
         Bal_amt: bal_amt,
         recharge_dot: recharge_dot
     };
+    console.log('PayPush body:', attribute);
+    console.log('Push Boyd:', pushBody);
     var _sign = ys.Sign(pushBody);
     if (_sign != sign) {
         console.log('_sign:', sign, '  sign:', sign, ' body:', pushBody);
@@ -321,3 +325,5 @@ GanZhouWXC.prototype.PayPush = function (attribute, callback) {
         };
     }
 };
+
+module.exports = GanZhouWXC;

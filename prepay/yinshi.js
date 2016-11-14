@@ -3,12 +3,19 @@
  *  @Create Date:   2016-10-25
  *  @Description:   赣州万象城 银石预付卡API对接
  **/
-var https = require('https'),
+var http = require('http'),
     crypto = require('crypto'),
     error = require('../Exception/error'),
-    qs = require('querystring');
+    qs = require('querystring'),
+    iconv = require('iconv-lite'),
+    Buffhelper = require('bufferhelper');
 
-var serverPath = 'http://58.213.110.146/mixc-umsgz-http-server/servlet/server',
+var serverPath = {
+        url: 'http://58.213.110.146/mixc-umsgz-http-server/servlet/server',
+        host: '58.213.110.146',
+        port: '80',
+        path: '/mixc-umsgz-http-server/servlet/server'
+    },
     tellerNo = 'dman',
     key = '3df6a20f6278811f';
 
@@ -31,24 +38,39 @@ exports.BindCard = function (cardBindNo, cardNo, pwd, phone, name, callback) {
             custName: name,
             pinData: pwd
         },
-        sign = Sign(post_data, key);
+        sign = Sign(post_data, key),
+        options = {
+            host: serverPath.host,
+            port: serverPath.port,
+            path: serverPath.path,
+            method: 'post',
+            headers: {'content-type': 'text/plain; charset=GBK'}
+        };
     post_data.sign = sign;
-    var req = https.request(serverPath, function (res) {
-        res.setEncoding('utf8');
-        var result = '';
+    var content = JSON.stringify(post_data);
+    var req = http.request(options, function (res) {
+        // res.setEncoding('utf8');
+        var bufferHelper = new Buffhelper();
         res.on('data', function (chunk) {
-            result += chunk;
+            bufferHelper.concat(chunk);
         });
         res.on('end', function () {
+            var result = bufferHelper.toBuffer().toString('hex');
+            console.log('result:', result);
             try {
                 result = JSON.parse(result);
                 if (typeof result == typeof '') {
                     result = JSON.parse(result);
                 }
+                console.log('result:', result);
+                console.log('result.rcDetial:', result.rcDetail);
+                console.log('result.rcDetial:', iconv.decode(result.rcDetail, 'ASCII'));
                 var sign = Sign(result, key);
                 if (sign != result.sign) {
+                    console.log('sing Error:');
                     return callback(error.ThrowError(error.ErrorCode.Error));
                 }
+                console.log('result:', result.rc);
                 if (result.rc == '00') {
                     return callback(null, {
                         txnData: result.txnData,
@@ -63,14 +85,16 @@ exports.BindCard = function (cardBindNo, cardNo, pwd, phone, name, callback) {
                 }
                 return callback(error.ThrowError(error.ErrorCode.Error, result.rcDetail));
             } catch (e) {
+                console.log('err', e);
                 return callback(error.ThrowError(error.ErrorCode.Error, e.message));
             }
         });
     });
     req.on('error', function (e) {
+        console.log('error');
         return callback(error.ThrowError(error.ErrorCode.Error, e.message));
     });
-    req.write(post_data);
+    req.write(content);
     req.end();
 };
 
@@ -87,10 +111,17 @@ exports.UnBindCard = function (cardBindNo, cardNo, txnData, txnTime, callback) {
             txnDate: txnData,
             txnTime: txnTime
         },
-        sign = Sign(post_data, key);
+        sign = Sign(post_data, key),
+        options = {
+            host: serverPath.host,
+            port: serverPath.port,
+            path: serverPath.path,
+            method: 'post',
+            headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+        };
     post_data.sign = sign;
-    var content = post_data;
-    var req = https.request(serverPath, function (res) {
+    var content = qs.stringify(post_data);
+    var req = http.request(options, function (res) {
         res.setEncoding('utf8');
         var result = '';
         res.on('data', function (chunk) {
@@ -135,16 +166,28 @@ exports.PwdCrypto = function (cardBindNo, cardNo, pwd, callback) {
             pan: cardNo,
             pinData: pwd
         },
-        sign = Sign(post_data, key);
+        sign = Sign(post_data, key),
+        options = {
+            host: serverPath.host,
+            port: serverPath.port,
+            path: serverPath.path,
+            method: 'post',
+            headers: {'content-type': 'text/plain; charset=gbk'}
+        };
     post_data.sign = sign;
-    var content = post_data;
-    var req = https.request(serverPath, function (res) {
+    console.log('post_data:', post_data);
+    var content = JSON.stringify(post_data);
+    console.log('content:', content);
+    //content = iconv.encode(content, 'GBK'); //iconv.encode(post_data, 'gbk').toString('binary');
+    // console.log('content:', content);
+    var req = http.request(options, function (res) {
         res.setEncoding('utf8');
         var result = '';
         res.on('data', function (chunk) {
             result += chunk;
         });
         res.on('end', function () {
+            console.log('result:', result);
             try {
                 result = JSON.parse(result);
                 if (typeof result == typeof '') {
@@ -164,6 +207,7 @@ exports.PwdCrypto = function (cardBindNo, cardNo, pwd, callback) {
         });
     });
     req.on('error', function (e) {
+        console.log('error:', e);
         return callback(error.ThrowError(error.ErrorCode.Error, e.message));
     });
     req.write(content);
@@ -186,10 +230,17 @@ exports.CardDetial = function (cardBindNo, cardNo, isPay, callback) {
             reason: isPay ? '1' : '',
             sign: ''
         },
-        sign = Sign(post_data);
+        sign = Sign(post_data),
+        options = {
+            host: serverPath.host,
+            port: serverPath.port,
+            path: serverPath.path,
+            method: 'post',
+            headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+        };
     post_data.sign = sign;
-    var content = post_data;
-    var req = https.request(serverPath, function (res) {
+    var content = qs.stringify(post_data);
+    var req = http.request(options, function (res) {
         res.setEncoding('utf8');
         var result = '';
         res.on('data', function (chunk) {
@@ -238,10 +289,17 @@ exports.ConsumptionRecord = function (cardBindNo, cardNo, start, end, pn, ps, ca
             currentPage: pn,
             pageRow: ps
         },
-        sign = Sign(post_data, key);
+        sign = Sign(post_data, key),
+        options = {
+            host: serverPath.host,
+            port: serverPath.port,
+            path: serverPath.path,
+            method: 'post',
+            headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+        };
     post_data.sign = sign;
-    var content = post_data;
-    var req = https.request(serverPath, function (res) {
+    var content = qs.stringify(post_data);
+    var req = http.request(options, function (res) {
         res.setEncoding('utf8');
         var result = '';
         res.on('data', function (chunk) {
@@ -287,21 +345,29 @@ exports.ConsumptionRecord = function (cardBindNo, cardNo, start, end, pn, ps, ca
     req.end();
 };
 
-function Sign(attr, _key) {
-    var keys = Object.keys(attr).sort();
-    var stringA = '';
-    for (var i in keys) {
-        var k = keys[i];
-        var v = attr[k];
-        if (k && k != 'sign' && v) {
-            stringA += k + '=' + v + '&';
-        }
-    }
-    if (_key) {
+function Sign(json, _key) {
+    if (!_key) {
         _key = key;
     }
-    if (!key)
-        stringA += 'key=' + _key;
+    json.key = _key;
+    var keys = Object.keys(json).sort();
+    var stringA = '';
+    var length = keys.length,
+        index = 0;
+    for (var i in keys) {
+        index++;
+        var k = keys[i];
+        var v = json[k];
+        if (k && k != 'sign' && v) {
+            stringA += k + '=' + v;
+            if (index < length) {
+                stringA += '&';
+            }
+        }
+    }
+    if (json.key)
+        delete json.key;
+    console.log('stringA:', stringA);
     var _sign = crypto.createHash('sha256').update(stringA).digest('hex');
     return _sign;
 };
