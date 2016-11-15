@@ -281,9 +281,9 @@ GanZhouWXC.prototype.PayPush = function (attribute, callback) {
             if (err) {
                 return callback(pushError(err.message));
             }
-            if (!result) { //只记录当前已经绑定的卡推送消息
-                return callback(pushSuccess());
-            }
+            // if (!result) { //只记录当前已经绑定的卡推送消息
+            //     return callback(pushSuccess());
+            // }
             var record = new PrePayCardPushRecord({
                 msgId: msgId,
                 trnId: trn_id,

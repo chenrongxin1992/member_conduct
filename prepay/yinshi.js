@@ -55,9 +55,9 @@ exports.BindCard = function (cardBindNo, cardNo, pwd, phone, name, callback) {
             bufferHelper.concat(chunk);
         });
         res.on('end', function () {
-            var result = ToJson(bufferHelper.toBuffer().toString());
-            console.log('result:', result);
             try {
+                var result = ToJson(bufferHelper.toBuffer().toString());
+                console.log('result:', result);
                 console.log('BindCard result:', result.rc);
                 if (result.rc == '00') {
                     return callback(null, {
@@ -216,6 +216,7 @@ exports.CardDetial = function (cardBindNo, cardNo, isPay, callback) {
         };
     post_data.sign = sign;
     var content = JSON.stringify(post_data);
+    console.log('content:', content);
     var req = http.request(options, function (res) {
         var bufferHelper = new Bufferhelper();
         res.on('data', function (chunk) {
@@ -224,6 +225,7 @@ exports.CardDetial = function (cardBindNo, cardNo, isPay, callback) {
         res.on('end', function () {
             try {
                 var result = ToJson(bufferHelper.toBuffer().toString());
+                console.log('result', result);
                 if (result.rc == '00') {
                     return callback(null, ToCardDetial(result));
                 }
@@ -382,7 +384,6 @@ function ToJson(result) {
     }
     if (result.rcDetail) {
         result.rcDetail = new Buffer(result.rcDetail, 'base64').toString();
-        console.log('rcDetail:', result.rcDetail);
     }
     return result;
 };
