@@ -216,7 +216,6 @@ exports.CardDetial = function (cardBindNo, cardNo, isPay, callback) {
         };
     post_data.sign = sign;
     var content = JSON.stringify(post_data);
-    console.log('content:', content);
     var req = http.request(options, function (res) {
         var bufferHelper = new Bufferhelper();
         res.on('data', function (chunk) {
@@ -225,7 +224,6 @@ exports.CardDetial = function (cardBindNo, cardNo, isPay, callback) {
         res.on('end', function () {
             try {
                 var result = ToJson(bufferHelper.toBuffer().toString());
-                console.log('result', result);
                 if (result.rc == '00') {
                     return callback(null, ToCardDetial(result));
                 }
@@ -306,6 +304,66 @@ exports.ConsumptionRecord = function (cardBindNo, cardNo, start, end, pn, ps, ca
     });
     req.on('error', function (e) {
         return callback(error.ThrowError(error.ErrorCode.Error, e.message));
+    });
+    req.write(content);
+    req.end();
+};
+
+/**
+ * 消息推送给平台
+ * @param pushInfo
+ * @param callback
+ * @constructor
+ */
+exports.SendPush = function (pushInfo, callback) {
+    var post_data = {
+            msgId: pushInfo.msgId,
+            trnId: pushInfo.trnId,
+            midName: pushInfo.midName,
+            userId: pushInfo.userId,
+            cardBindNo: pushInfo.cardBindNo,
+            cardNo: pushInfo.cardNo,
+            payAmt: pushInfo.payAmt,
+            payDate: pushInfo.tradeDate,
+            payNo: pushInfo.voucher,
+            balAmt: pushInfo.balAmt,
+            rechargeDot: pushInfo.rechargeDot
+        },
+        options = {
+            host: 'wox.w-lans.com',
+            port: 80,
+            path: '/Api/pushPayMsg',
+            headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+        },
+        content = qs.stringify(post_data);
+    console.log('SendPush content:', content);
+    var req = http.request(options, function (res) {
+        var bufferHelper = new Bufferhelper();
+        res.on('data', function (chunk) {
+            bufferHelper.concat(chunk);
+        });
+        res.on('end', function () {
+            try {
+                var result = bufferHelper.toBuffer().toString();
+                console.log('SendPush Result', result);
+                if (!result) {
+                    return callback(error.ThrowError(error.ErrorCode.Error))
+                }
+                if (result == 'success') {
+                    return callback();
+                }
+                result = JSON.parse(result);
+                if (typeof result == typeof '') {
+                    result = JSON.parse(result);
+                }
+                if (result && result.code && result.code == '100') {
+                    return callback();
+                }
+                return callback(error.ThrowError(error.ErrorCode.Error));
+            } catch (e) {
+                return callback(error.ThrowError(error.ErrorCode.Error, e.message));
+            }
+        });
     });
     req.write(content);
     req.end();

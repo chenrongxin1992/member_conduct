@@ -33,7 +33,7 @@ var PrepayCardPushRecordSchema = new mongoose.Schema({
     },
     rechargeDot: String,//网点
     sign: String,//签名值
-    pushStatus: {
+    pushStatus: {   //消息是否推送 0:未推送,-1：推送失败，1：推送成功
         type: Number,
         default: 0
     },
@@ -49,7 +49,7 @@ var PrepayCardPushRecordSchema = new mongoose.Schema({
  * @param calback
  * @constructor
  */
-PrepayCardPushRecordSchema.statics.FindOneByMsgId = function (msgId, calback) {
+PrepayCardPushRecordSchema.statics.FindOneByMsgId = function (msgId, callback) {
     this.findOne({msgId: msgId}, function (err, doc) {
         return callback(err, doc);
     });

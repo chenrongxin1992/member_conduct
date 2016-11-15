@@ -3,5 +3,5 @@ module.exports = {
     cardBinding: 'cardBinding',
     parkingPayRecord: 'parkingPayRecord',
     prepayCard: 'prepayCards',
-    prepayCardPushRecord: 'prepayCardPushRecord'
+    prepayCardPushRecord: 'prepayCardPushRecords'
 };

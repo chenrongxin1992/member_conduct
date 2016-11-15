@@ -251,31 +251,22 @@ GanZhouWXC.prototype.PayPush = function (attribute, callback) {
         bal_amt = attribute.bal_amt,
         recharge_dot = attribute.recharge_dot,
         sign = sign;
-    var pushBody = {
-        msgId: msgId,
-        trn_Id: trn_id,
-        mid_name: mid_name,
-        linkman: linkman,
-        pan: pan,
-        pay_amt: pay_amt,
-        date: date,
-        voucher: voucher,
-        Bal_amt: bal_amt,
-        recharge_dot: recharge_dot
-    };
-    console.log('PayPush body:', attribute);
-    console.log('Push Boyd:', pushBody);
+    //console.log('PayPush body:', attribute);
+    // console.log('Push Boyd:', pushBody);
     // var _sign = ys.Sign(pushBody);
     // if (_sign != sign) {
     //     console.log('_sign:', sign, '  sign:', sign, ' body:', pushBody);
     //     return callback(pushError('签名错误'));
     // }
+    if (!msgId) {
+        return callback(pushError('msgId不能为空'));
+    }
     PrePayCardPushRecord.FindOneByMsgId(msgId, function (err, result) {
         if (err) {
             return callback(pushError(err.message));
         }
-        if (result.length > 0) { //消息已存在直接返回成功
-            return callback(pushSuccess());
+        if (result) { //消息已存在直接返回成功
+            return callback(pushSuccess('消息已经存在'));
         }
         PrepayCard.FindOneByCarBindNo(linkman, function (err, result) {
             if (err) {
@@ -284,12 +275,13 @@ GanZhouWXC.prototype.PayPush = function (attribute, callback) {
             // if (!result) { //只记录当前已经绑定的卡推送消息
             //     return callback(pushSuccess());
             // }
+            var userId = result ? result.userId : '';
             var record = new PrePayCardPushRecord({
                 msgId: msgId,
                 trnId: trn_id,
                 midName: mid_name,
                 cardBindNo: linkman,
-                userId: result.userId,
+                userId: userId,
                 cardNo: pan,
                 payAmt: pay_amt,
                 tradeDate: date,
@@ -303,6 +295,24 @@ GanZhouWXC.prototype.PayPush = function (attribute, callback) {
                     return callback(pushError(err.message));
                 } else {
                     //尝试发送一次Push
+                    console.log('record:', record);
+                    ys.SendPush(record, function (err, result) {
+                        console.log('push Error:', err);
+                        if (err) {
+                            return;
+                        } else {
+                            PrePayCardPushRecord.update({_id: record._id}, {
+                                $set: {
+                                    pushStatus: 1
+                                }
+                            }, {upsert: false}, function (err) {
+                                if (err) {
+                                    console.log('PrePayCardPushRecord.update', err.message);
+                                }
+                                return;
+                            });
+                        }
+                    });
                     return callback(pushSuccess());
                 }
             });
@@ -316,12 +326,13 @@ GanZhouWXC.prototype.PayPush = function (attribute, callback) {
         };
     }
 
-    function pushSuccess() {
+    function pushSuccess(msg) {
         return {
             code: 101,
-            tip: '发送成功'
+            tip: msg ? msg : '发送成功'
         };
     }
-};
+}
+;
 
 module.exports = GanZhouWXC;
