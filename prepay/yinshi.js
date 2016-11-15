@@ -8,7 +8,8 @@ var http = require('http'),
     error = require('../Exception/error'),
     qs = require('querystring'),
     iconv = require('iconv-lite'),
-    Buffhelper = require('bufferhelper');
+    Bufferhelper = require('bufferhelper'),
+    moment = require('moment');
 
 var serverPath = {
         url: 'http://58.213.110.146/mixc-umsgz-http-server/servlet/server',
@@ -49,28 +50,15 @@ exports.BindCard = function (cardBindNo, cardNo, pwd, phone, name, callback) {
     post_data.sign = sign;
     var content = JSON.stringify(post_data);
     var req = http.request(options, function (res) {
-        // res.setEncoding('utf8');
-        var bufferHelper = new Buffhelper();
+        var bufferHelper = new Bufferhelper();
         res.on('data', function (chunk) {
             bufferHelper.concat(chunk);
         });
         res.on('end', function () {
-            var result = bufferHelper.toBuffer().toString('hex');
+            var result = ToJson(bufferHelper.toBuffer().toString());
             console.log('result:', result);
             try {
-                result = JSON.parse(result);
-                if (typeof result == typeof '') {
-                    result = JSON.parse(result);
-                }
-                console.log('result:', result);
-                console.log('result.rcDetial:', result.rcDetail);
-                console.log('result.rcDetial:', iconv.decode(result.rcDetail, 'ASCII'));
-                var sign = Sign(result, key);
-                if (sign != result.sign) {
-                    console.log('sing Error:');
-                    return callback(error.ThrowError(error.ErrorCode.Error));
-                }
-                console.log('result:', result.rc);
+                console.log('BindCard result:', result.rc);
                 if (result.rc == '00') {
                     return callback(null, {
                         txnData: result.txnData,
@@ -117,22 +105,20 @@ exports.UnBindCard = function (cardBindNo, cardNo, txnData, txnTime, callback) {
             port: serverPath.port,
             path: serverPath.path,
             method: 'post',
-            headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+            headers: {'content-type': 'application/json; charset=GBK'}
         };
     post_data.sign = sign;
-    var content = qs.stringify(post_data);
+    var content = JSON.stringify(post_data);
+    console.log('content:', content);
     var req = http.request(options, function (res) {
-        res.setEncoding('utf8');
-        var result = '';
+        var bufferHelper = new Bufferhelper();
         res.on('data', function (chunk) {
-            result += chunk;
+            bufferHelper.concat(chunk);
         });
         res.on('end', function () {
             try {
-                result = JSON.parse(result);
-                if (typeof result == typeof '') {
-                    result = JSON.parse(result);
-                }
+                var result = ToJson(bufferHelper.toBuffer().toString());
+                console.log('result:', result);
                 if (result.rc == '00') {
                     return callback(null);
                 }
@@ -166,37 +152,28 @@ exports.PwdCrypto = function (cardBindNo, cardNo, pwd, callback) {
             pan: cardNo,
             pinData: pwd
         },
-        sign = Sign(post_data, key),
-        options = {
-            host: serverPath.host,
-            port: serverPath.port,
-            path: serverPath.path,
-            method: 'post',
-            headers: {'content-type': 'text/plain; charset=gbk'}
-        };
+        sign = Sign(post_data, key);
     post_data.sign = sign;
-    console.log('post_data:', post_data);
     var content = JSON.stringify(post_data);
-    console.log('content:', content);
-    //content = iconv.encode(content, 'GBK'); //iconv.encode(post_data, 'gbk').toString('binary');
-    // console.log('content:', content);
+    var options = {
+        host: serverPath.host,
+        port: serverPath.port,
+        path: serverPath.path,
+        method: 'post',
+        headers: {
+            'content-type': 'text/plain; charset=GBK',
+            'Connection': 'Keep-alive',
+            'Content-Length': content.length
+        }
+    };
     var req = http.request(options, function (res) {
-        res.setEncoding('utf8');
-        var result = '';
+        var bufferHelper = new Bufferhelper();
         res.on('data', function (chunk) {
-            result += chunk;
+            bufferHelper.concat(chunk);
         });
         res.on('end', function () {
-            console.log('result:', result);
             try {
-                result = JSON.parse(result);
-                if (typeof result == typeof '') {
-                    result = JSON.parse(result);
-                }
-                var sign = Sign(result, key);
-                if (sign != result.sign) {
-                    return callback(error.ThrowError(error.ErrorCode.SignError));
-                }
+                var result = ToJson(bufferHelper.toBuffer().toString());
                 if (result.rc == '00') {
                     return callback(null, result.pinData);
                 }
@@ -207,7 +184,6 @@ exports.PwdCrypto = function (cardBindNo, cardNo, pwd, callback) {
         });
     });
     req.on('error', function (e) {
-        console.log('error:', e);
         return callback(error.ThrowError(error.ErrorCode.Error, e.message));
     });
     req.write(content);
@@ -236,26 +212,18 @@ exports.CardDetial = function (cardBindNo, cardNo, isPay, callback) {
             port: serverPath.port,
             path: serverPath.path,
             method: 'post',
-            headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+            headers: {'content-type': 'application/json; charset=GBK'}
         };
     post_data.sign = sign;
-    var content = qs.stringify(post_data);
+    var content = JSON.stringify(post_data);
     var req = http.request(options, function (res) {
-        res.setEncoding('utf8');
-        var result = '';
+        var bufferHelper = new Bufferhelper();
         res.on('data', function (chunk) {
-            result += chunk;
+            bufferHelper.concat(chunk);
         });
         res.on('end', function () {
             try {
-                result = JSON.parse(result);
-                if (typeof result == typeof '') {
-                    result = JSON.parse(result);
-                }
-                var sign = Sign(result, key); //签名验证
-                if (sign != result.sign) {
-                    return callback(error.ThrowError(error.ErrorCode.Error));
-                }
+                var result = ToJson(bufferHelper.toBuffer().toString());
                 if (result.rc == '00') {
                     return callback(null, ToCardDetial(result));
                 }
@@ -282,10 +250,10 @@ exports.ConsumptionRecord = function (cardBindNo, cardNo, start, end, pn, ps, ca
             sign: '',
             tellerNo: tellerNo,
             linkMan: cardBindNo,
-            queryType: 1,
+            queryType: '1',
             pan: cardNo,
-            txnDateForm: start,
-            txnDateTo: end,
+            txnDateFrom: moment(start, 'YYYY/MM/DD').format('YYYYMMDD'),
+            txnDateTo: moment(end, 'YYYY/MM/DD').format('YYYYMMDD'),
             currentPage: pn,
             pageRow: ps
         },
@@ -295,25 +263,21 @@ exports.ConsumptionRecord = function (cardBindNo, cardNo, start, end, pn, ps, ca
             port: serverPath.port,
             path: serverPath.path,
             method: 'post',
-            headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+            headers: {'content-type': 'application/json; charset=GBK'}
         };
     post_data.sign = sign;
-    var content = qs.stringify(post_data);
+    var content = JSON.stringify(post_data);
     var req = http.request(options, function (res) {
-        res.setEncoding('utf8');
-        var result = '';
+        var bufferHelper = new Bufferhelper();
         res.on('data', function (chunk) {
-            result += chunk;
+            bufferHelper.concat(chunk);
         });
         res.on('end', function () {
             try {
-                result = JSON.parse(result);
-                if (typeof result == typeof '') {
-                    result = JSON.parse(result);
-                }
+                var result = ToJson(bufferHelper.toBuffer().toString());
                 if (result.rc == '00') {
                     var items = result.trans;
-                    if (items.length <= 0) {
+                    if (!items || items.length <= 0) {
                         return callback();
                     }
                     var array = new Array();
@@ -352,25 +316,38 @@ function Sign(json, _key) {
     json.key = _key;
     var keys = Object.keys(json).sort();
     var stringA = '';
-    var length = keys.length,
-        index = 0;
     for (var i in keys) {
-        index++;
         var k = keys[i];
         var v = json[k];
         if (k && k != 'sign' && v) {
-            stringA += k + '=' + v;
-            if (index < length) {
-                stringA += '&';
-            }
+            stringA += k + '=' + v + '&';
         }
     }
     if (json.key)
         delete json.key;
-    console.log('stringA:', stringA);
+    if (stringA) {
+        stringA = stringA.substring(0, stringA.length - 1);
+    }
     var _sign = crypto.createHash('sha256').update(stringA).digest('hex');
     return _sign;
 };
+//验证签名
+function VerifySign(json) {
+    var keys = Object.keys(json).sort();
+    var stringA = '';
+    for (var i in keys) {
+        var k = keys[i];
+        var v = json[k];
+        if (k && k != 'sign' && v) {
+            stringA += k + '=' + v + '&';
+        }
+    }
+    if (stringA) {
+        stringA = stringA.substring(0, stringA.length - 1);
+    }
+    var _sign = crypto.createHash('sha256').update(stringA).digest('hex');
+    return _sign;
+}
 
 function ToCardDetial(result) {
     var str;
@@ -398,6 +375,17 @@ function ToCardDetial(result) {
     }
     return str;
 }
+function ToJson(result) {
+    result = JSON.parse(result);
+    if (typeof result == typeof '') {
+        result = JSON.parse(result);
+    }
+    if (result.rcDetail) {
+        result.rcDetail = new Buffer(result.rcDetail, 'base64').toString();
+        console.log('rcDetail:', result.rcDetail);
+    }
+    return result;
+};
 /***
  * 银石错误异常说明
  * @type {{}}

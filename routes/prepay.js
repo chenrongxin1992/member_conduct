@@ -58,7 +58,10 @@ router.post('/PayRecord', function (req, res) {
  * 消费推送
  */
 router.post('/GzWxc/PayPush', function (req, res) {
-
+    var logic = factory(20);
+    logic.PayPush(req.body, function (result) {
+        return res.json(result);
+    });
 });
 
 

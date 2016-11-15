@@ -36,16 +36,16 @@ GanZhouWXC.prototype.BindCard = function (attribute, callback) {
     if (!userId) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'userId不能为空'));
     }
-    if (cardBindNo)
+    if (!cardBindNo)
         cardBindNo = userId;
     if (!cardNo)
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '卡号不能为空'));
-    // if (!phone) {
-    //     return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'phone不能为空'));
-    // }
-    // if (!verify.Phone(phone)) {
-    //     return callback(error.ThrowError(error.ErrorCode.DateFormatError, 'Phone格式错误'));
-    // }
+    if (!phone) {
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'phone不能为空'));
+    }
+    if (!verify.Phone(phone)) {
+        return callback(error.ThrowError(error.ErrorCode.DateFormatError, 'Phone格式错误'));
+    }
     if (!password) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '密码不能为空'));
     }
@@ -64,45 +64,43 @@ GanZhouWXC.prototype.BindCard = function (attribute, callback) {
                 return callback(error.ThrowError(error.ErrorCode.PrepayError.CardNoIsBind));
             }
             //卡密 明码转密码
-            // ys.PwdCrypto(cardBindNo, cardNo, password, function (err, result) {
-            //     if (err) {
-            //         return callback(err);
-            //     }
-            //     console.log('PwdCrypto:', result);
-            //     if (result) {
-            //         return callback(error.ThrowError(error.ErrorCode.PrepayError.PwdCryptoError));
-            //     }
-            ys.BindCard(cardBindNo, cardNo, password, phone, name, function (err, result) {
+            ys.PwdCrypto(cardBindNo, cardNo, password, function (err, result) {
                 if (err) {
                     return callback(err);
                 }
-                console.log('bindCard:', result);
-                if (result) {
-                    return callback(error.ThrowError(error.ErrorCode.Error, '绑卡失败'));
+                if (!result) {
+                    return callback(error.ThrowError(error.ErrorCode.PrepayError.PwdCryptoError));
                 }
-                var prepayCard = new PerpayCard({
-                    bid: bid,
-                    userId: userId,
-                    cardBindNo: cardBindNo,
-                    cardNo: cardNo,
-                    pwd: password,
-                    phone: phone,
-                    name: name,
-                    bindSerialNumber: result.rrn
-                });
-                prepayCard.save(function (err) {
+                ys.BindCard(cardBindNo, cardNo, result, phone, name, function (err, result) {
                     if (err) {
-                        return callback(error.ThrowError(error.ErrorCode.Error, err.message));
+                        return callback(err);
                     }
-                    ys.CardDetial(cardBindNo, cardNo, function (err, result) {
+                    if (!result) {
+                        return callback(error.ThrowError(error.ErrorCode.Error, '绑卡失败'));
+                    }
+                    var prepayCard = new PrepayCard({
+                        bid: bid,
+                        userId: userId,
+                        cardBindNo: cardBindNo,
+                        cardNo: cardNo,
+                        pwd: password,
+                        phone: phone,
+                        name: name,
+                        bindSerialNumber: result.rrn
+                    });
+                    prepayCard.save(function (err) {
                         if (err) {
-                            return callback(err);
+                            return callback(error.ThrowError(error.ErrorCode.Error, err.message));
                         }
-                        return callback(error.Success(result));
+                        ys.CardDetial(cardBindNo, cardNo, '', function (err, result) {
+                            if (err) {
+                                return callback(err);
+                            }
+                            return callback(error.Success(result));
+                        });
                     });
                 });
             });
-            // });
         });
     });
 };
@@ -121,7 +119,7 @@ GanZhouWXC.prototype.UnbindCard = function (attribute, callback) {
     if (!userId) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'userId不能为空'));
     }
-    if (cardBindNo)
+    if (!cardBindNo)
         cardBindNo = userId;
     if (!cardNo)
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '卡号不能为空'));
@@ -162,7 +160,7 @@ GanZhouWXC.prototype.CardDetial = function (attribute, isPay, callback) {
     if (!userId) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'userId不能为空'));
     }
-    if (cardBindNo)
+    if (!cardBindNo)
         cardBindNo = userId;
     if (!cardNo)
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '卡号不能为空'));
@@ -170,13 +168,13 @@ GanZhouWXC.prototype.CardDetial = function (attribute, isPay, callback) {
         if (err) {
             return callback(error.ThrowError(error.ErrorCode.Error, err.message));
         }
-        if (res.length > 0) {
+        if (!result || result.length > 0) {
             return callback(error.ThrowError(error.ErrorCode.PrepayError.CardBindIsNotBind));
         }
-        if (res.userId == userId) {
+        if (result.userId != userId) {
             return callback(error.ThrowError(error.ErrorCode.PrepayError.BindInfoError));
         }
-        if (res.cardNo != cardNo) {
+        if (result.cardNo != cardNo) {
             return callback(error.ThrowError(error.ErrorCode.PrepayError.BindInfoError));
         }
         ys.CardDetial(cardBindNo, cardNo, isPay, function (err, result) {
@@ -186,7 +184,7 @@ GanZhouWXC.prototype.CardDetial = function (attribute, isPay, callback) {
             if (!result || result.length <= 0)
                 return callback(error.Success());
             result.userId = userId;
-            return callback(null, error.Success(result));
+            return callback(error.Success(result));
         });
     });
 };
@@ -209,30 +207,30 @@ GanZhouWXC.prototype.PayRecord = function (attribute, callback) {
     if (!userId) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'userId不能为空'));
     }
-    if (cardBindNo)
+    if (!cardBindNo)
         cardBindNo = userId;
     if (!cardNo)
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '卡号不能为空'));
-    if (pn) {
+    if (!pn) {
         pn = 1;
     }
-    if (ps) {
+    if (!ps) {
         ps = 10;
     }
     PrepayCard.FindOneByCarBindNo(cardBindNo, function (err, result) {
         if (err) {
             return callback(error.ThrowError(error.ErrorCode.Error, err.message));
         }
-        if (res.length > 0) {
+        if (!result || result.length < 0) {
             return callback(error.ThrowError(error.ErrorCode.PrepayError.CardBindIsNotBind));
         }
-        if (res.userId == userId) {
+        if (result.userId != userId) {
             return callback(error.ThrowError(error.ErrorCode.PrepayError.BindInfoError));
         }
-        if (res.cardNo != cardNo) {
+        if (result.cardNo != cardNo) {
             return callback(error.ThrowError(error.ErrorCode.PrepayError.BindInfoError));
         }
-        ys.ConsumptionRecord(cardBindNo, cardNo, startDate, endDate, pn, ps, function () {
+        ys.ConsumptionRecord(cardBindNo, cardNo, startDate, endDate, pn, ps, function (err, result) {
             if (err) {
                 return callback(err);
             }
@@ -267,11 +265,11 @@ GanZhouWXC.prototype.PayPush = function (attribute, callback) {
     };
     console.log('PayPush body:', attribute);
     console.log('Push Boyd:', pushBody);
-    var _sign = ys.Sign(pushBody);
-    if (_sign != sign) {
-        console.log('_sign:', sign, '  sign:', sign, ' body:', pushBody);
-        return callback(pushError('签名错误'));
-    }
+    // var _sign = ys.Sign(pushBody);
+    // if (_sign != sign) {
+    //     console.log('_sign:', sign, '  sign:', sign, ' body:', pushBody);
+    //     return callback(pushError('签名错误'));
+    // }
     PrePayCardPushRecord.FindOneByMsgId(msgId, function (err, result) {
         if (err) {
             return callback(pushError(err.message));
@@ -279,7 +277,7 @@ GanZhouWXC.prototype.PayPush = function (attribute, callback) {
         if (result.length > 0) { //消息已存在直接返回成功
             return callback(pushSuccess());
         }
-        PrePayCard.FindOneByCarBindNo(linkman, function (err, result) {
+        PrepayCard.FindOneByCarBindNo(linkman, function (err, result) {
             if (err) {
                 return callback(pushError(err.message));
             }

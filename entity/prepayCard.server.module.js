@@ -55,7 +55,7 @@ PrepayCardSchema.statics.FindByUserId = function (userId, callback) {
  * @constructor
  */
 PrepayCardSchema.statics.FindOneByCarBindNo = function (cardBindNo, callback) {
-    this.findOne({cardindNo: cardBindNo}, function (err, doc) {
+    this.findOne({cardBindNo: cardBindNo}, function (err, doc) {
         return callback(err, doc);
     });
 };

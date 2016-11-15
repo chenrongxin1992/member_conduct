@@ -17,11 +17,11 @@ const errorCode = {
     },
     PrepayError: {
         PwdCryptoError: {ErrCode: 7001, ErrMsg: '卡密加密错误'},
-        CardUndefinde: {ErrCode: 7002, ErrMsg: '卡密加密错误'},
+        CardUndefinde: {ErrCode: 7002, ErrMsg: '卡不存在'},
         CardBindIsNotBind: {ErrCode: 7003, ErrMsg: '会员编号未绑定该卡'},
         BindInfoError: {ErrCode: 7004, ErrMsg: '绑卡信息错误，该卡不属于该会员编号'},
         CardBindNoIsBind: {ErrCode: 7101, ErrMsg: '会员编号已绑定'},
-        CardNoIsBind: {ErrCode: 7102, ErrMsg: '该卡已呗绑定'}
+        CardNoIsBind: {ErrCode: 7102, ErrMsg: '该卡已被绑定'}
     }
 };
 exports.ThrowError = function (code, errMsg) {

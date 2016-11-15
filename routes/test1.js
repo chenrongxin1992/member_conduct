@@ -21,7 +21,7 @@ var getSign = function (stringA) {
 }
 
 //判断是否是会员
-exports.isMember = function ( callback) {
+exports.isMember = function (callback) {
     var args = {
         openid: 'oMHjkt_cUQwkxWR1XAAc1vmYHudw',
         time: getCurTime(),
