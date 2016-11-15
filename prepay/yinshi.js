@@ -333,6 +333,7 @@ exports.SendPush = function (pushInfo, callback) {
             host: 'wox.w-lans.com',
             port: 80,
             path: '/Api/pushPayMsg',
+            method: 'post',
             headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
         },
         content = qs.stringify(post_data);

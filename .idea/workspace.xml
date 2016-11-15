@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00a831d3-6f98-489a-b9df-c9ed98e0405b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/sysConfig.js" afterPath="$PROJECT_DIR$/config/sysConfig.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/entity/prepayCardPushRecord.server.module.js" afterPath="$PROJECT_DIR$/entity/prepayCardPushRecord.server.module.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prepay/yinshi.js" afterPath="$PROJECT_DIR$/prepay/yinshi.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prepayLogic/ganzhouWxcLogic.js" afterPath="$PROJECT_DIR$/prepayLogic/ganzhouWxcLogic.js" />
     </list>
     <ignored path="MemberConduct.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,8 +47,8 @@
           <file leaf-file-name="ganzhouWxcLogic.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/prepayLogic/ganzhouWxcLogic.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="294">
-                  <caret line="258" column="24" selection-start-line="258" selection-start-column="24" selection-end-line="258" selection-end-column="24" />
+                <state relative-caret-position="374">
+                  <caret line="262" column="5" selection-start-line="262" selection-start-column="5" selection-end-line="262" selection-end-column="5" />
                   <folding>
                     <element signature="e#743#3972#0" expanded="false" />
                     <element signature="e#4111#5432#0" expanded="false" />
@@ -101,8 +98,8 @@
           <file leaf-file-name="yinshi.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/prepay/yinshi.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="296">
-                  <caret line="338" column="46" selection-start-line="338" selection-start-column="46" selection-end-line="338" selection-end-column="46" />
+                <state relative-caret-position="336">
+                  <caret line="337" column="10" selection-start-line="337" selection-start-column="10" selection-end-line="337" selection-end-column="10" />
                   <folding>
                     <element signature="e#812#1041#0" expanded="false" />
                     <element signature="e#1098#1307#0" expanded="false" />
@@ -114,7 +111,7 @@
                     <element signature="n#!!block;n#Sign#0" expanded="false" />
                     <element signature="n#!!block;n#VerifySign#0" expanded="false" />
                     <element signature="n#!!block;n#ToCardDetial#0" expanded="false" />
-                    <element signature="e#14177#14409#0" expanded="false" />
+                    <element signature="e#14205#14437#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -192,8 +189,8 @@
         <option value="$PROJECT_DIR$/routes/prepay.js" />
         <option value="$PROJECT_DIR$/config/sysConfig.js" />
         <option value="$PROJECT_DIR$/entity/prepayCardPushRecord.server.module.js" />
-        <option value="$PROJECT_DIR$/prepay/yinshi.js" />
         <option value="$PROJECT_DIR$/prepayLogic/ganzhouWxcLogic.js" />
+        <option value="$PROJECT_DIR$/prepay/yinshi.js" />
       </list>
     </option>
   </component>
@@ -825,7 +822,7 @@
       <workItem from="1478829014249" duration="19219000" />
       <workItem from="1479047424295" duration="1725000" />
       <workItem from="1479087909168" duration="24433000" />
-      <workItem from="1479174965907" duration="17821000" />
+      <workItem from="1479174965907" duration="18725000" />
     </task>
     <task id="LOCAL-00001" summary="测试 push">
       <created>1464938639203</created>
@@ -1055,7 +1052,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="805880000" />
+    <option name="totallyTimeSpent" value="806784000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1523,8 +1520,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/prepayLogic/ganzhouWxcLogic.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="258" column="24" selection-start-line="258" selection-start-column="24" selection-end-line="258" selection-end-column="24" />
+        <state relative-caret-position="374">
+          <caret line="262" column="5" selection-start-line="262" selection-start-column="5" selection-end-line="262" selection-end-column="5" />
           <folding>
             <element signature="e#743#3972#0" expanded="false" />
             <element signature="e#4111#5432#0" expanded="false" />
@@ -1536,8 +1533,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/prepay/yinshi.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="338" column="46" selection-start-line="338" selection-start-column="46" selection-end-line="338" selection-end-column="46" />
+        <state relative-caret-position="336">
+          <caret line="337" column="10" selection-start-line="337" selection-start-column="10" selection-end-line="337" selection-end-column="10" />
           <folding>
             <element signature="e#812#1041#0" expanded="false" />
             <element signature="e#1098#1307#0" expanded="false" />
@@ -1549,7 +1546,7 @@
             <element signature="n#!!block;n#Sign#0" expanded="false" />
             <element signature="n#!!block;n#VerifySign#0" expanded="false" />
             <element signature="n#!!block;n#ToCardDetial#0" expanded="false" />
-            <element signature="e#14177#14409#0" expanded="false" />
+            <element signature="e#14205#14437#0" expanded="false" />
           </folding>
         </state>
       </provider>
