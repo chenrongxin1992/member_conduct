@@ -250,7 +250,7 @@ GanZhouWXC.prototype.PayPush = function (attribute, callback) {
         voucher = attribute.voucher,
         bal_amt = attribute.Bal_amt,
         recharge_dot = attribute.recharge_dot,
-        sign = Sign,
+        sign = attribute.Sign,
         pushBody = {
             msgId: msgId,
             trn_Id: trn_id,
