@@ -241,7 +241,7 @@ GanZhouWXC.prototype.PayRecord = function (attribute, callback) {
 
 GanZhouWXC.prototype.PayPush = function (attribute, callback) {
     var msgId = attribute.msgId,
-        trn_id = attribute.trn_id,
+        trn_id = attribute.trn_Id,
         mid_name = attribute.mid_name,
         linkman = attribute.linkman,
         pan = attribute.pan,
