@@ -248,16 +248,28 @@ GanZhouWXC.prototype.PayPush = function (attribute, callback) {
         pay_amt = attribute.pay_amt,
         date = attribute.date,
         voucher = attribute.voucher,
-        bal_amt = attribute.bal_amt,
+        bal_amt = attribute.Bal_amt,
         recharge_dot = attribute.recharge_dot,
-        sign = sign;
-    //console.log('PayPush body:', attribute);
-    // console.log('Push Boyd:', pushBody);
-    // var _sign = ys.Sign(pushBody);
-    // if (_sign != sign) {
-    //     console.log('_sign:', sign, '  sign:', sign, ' body:', pushBody);
-    //     return callback(pushError('签名错误'));
-    // }
+        sign = sign,
+        pushBody = {
+            msgId: msgId,
+            trn_Id: trn_id,
+            mid_name: mid_name,
+            linkman: linkman,
+            pan: pan,
+            pay_amt: pay_amt,
+            date: date,
+            voucher: voucher,
+            Bal_amt: bal_amt,
+            recharge_doc: recharge_dot
+        };
+    console.log('PayPush body:', attribute);
+    console.log('Push Boyd:', pushBody);
+    var _sign = ys.Sign(pushBody);
+    if (_sign != sign) {
+        console.log('_sign:', sign, '  sign:', sign, ' body:', pushBody);
+        return callback(pushError('签名错误'));
+    }
     if (!msgId) {
         return callback(pushError('msgId不能为空'));
     }

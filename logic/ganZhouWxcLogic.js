@@ -262,7 +262,7 @@ GanZhouWXC.prototype.GetCardByOpenId = function (attribute, callback) {
         if (err) {
             return callback(error.ThrowError(error.ErrorCode.Error, err.message));
         }
-        if (result.length > 0) {
+        if (result && result.length > 0) {
             fuji.GetMemberByMemberId(result[0].memberId_CRM, result[0].memberId_ERP, function (err, result) {
                 if (err) {
                     return callback(err);
