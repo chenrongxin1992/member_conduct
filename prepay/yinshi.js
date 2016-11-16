@@ -389,7 +389,7 @@ function Sign(json, _key) {
     if (stringA) {
         stringA = stringA.substring(0, stringA.length - 1);
     }
-    console.log('签名串 _sign: ', _sign);
+    console.log('签名串 _sign: ', stringA);
     var _sign = crypto.createHash('sha256').update(stringA).digest('hex');
     return _sign;
 };
