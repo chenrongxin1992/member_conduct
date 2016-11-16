@@ -56,8 +56,8 @@
       <file leaf-file-name="ganzhouWxcLogic.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/prepayLogic/ganzhouWxcLogic.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="253" column="20" selection-start-line="253" selection-start-column="20" selection-end-line="253" selection-end-column="20" />
+            <state relative-caret-position="235">
+              <caret line="269" column="24" selection-start-line="269" selection-start-column="24" selection-end-line="269" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -778,7 +778,7 @@
       <workItem from="1479087909168" duration="24433000" />
       <workItem from="1479174965907" duration="20096000" />
       <workItem from="1479261014617" duration="115000" />
-      <workItem from="1479261461895" duration="2290000" />
+      <workItem from="1479261461895" duration="2507000" />
     </task>
     <task id="LOCAL-00001" summary="测试 push">
       <created>1464938639203</created>
@@ -1008,7 +1008,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="810560000" />
+    <option name="totallyTimeSpent" value="810777000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1456,8 +1456,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/prepayLogic/ganzhouWxcLogic.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="253" column="20" selection-start-line="253" selection-start-column="20" selection-end-line="253" selection-end-column="20" />
+        <state relative-caret-position="235">
+          <caret line="269" column="24" selection-start-line="269" selection-start-column="24" selection-end-line="269" selection-end-column="24" />
           <folding />
         </state>
       </provider>

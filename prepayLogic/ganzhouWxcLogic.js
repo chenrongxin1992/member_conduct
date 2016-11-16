@@ -266,8 +266,8 @@ GanZhouWXC.prototype.PayPush = function (attribute, callback) {
     console.log('PayPush body:', attribute);
     console.log('Push Boyd:', pushBody);
     var _sign = ys.Sign(pushBody);
+    console.log('_sign:', _sign, '  sign:', sign);
     if (_sign != sign) {
-        console.log('_sign:', sign, '  sign:', sign, ' body:', pushBody);
         return callback(pushError('签名错误'));
     }
     if (!msgId) {
