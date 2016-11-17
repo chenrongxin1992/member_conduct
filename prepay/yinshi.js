@@ -275,24 +275,24 @@ exports.ConsumptionRecord = function (cardBindNo, cardNo, start, end, pn, ps, ca
         res.on('end', function () {
             try {
                 var result = ToJson(bufferHelper.toBuffer().toString());
-                console.log('result:', result);
                 if (result.rc == '00') {
-                    var items = result.trans;
+                    var items = result.transArray;
                     if (!items || items.length <= 0) {
                         return callback();
                     }
+
                     var array = new Array();
                     for (var i in items) {
                         var item = items[i];
                         array.push({
                             cardNo: item.pan,
                             tradeCode: item.txnId,
-                            tradeName: item.txnName,
-                            tradeDate: item.txnDate,
+                            tradeName: new Buffer(item.txnName, 'base64').toString(),
+                            tradeDate: item.txnDate ? moment(item.txnDate, 'YYYY-MM-DD HH:mm:ss').format('YYYY/MM/DD HH:mm:ss') : '',
                             tradeMoney: item.txnAmt,
                             surplusMoney: item.bal,
                             mid: item.mid,
-                            mchName: item.mchaName
+                            mchName: new Buffer(item.mchName, 'base64').toString(),
                         });
                     }
                     return callback(null, array);
@@ -325,7 +325,7 @@ exports.SendPush = function (pushInfo, callback) {
             cardBindNo: pushInfo.cardBindNo,
             cardNo: pushInfo.cardNo,
             payAmt: pushInfo.payAmt,
-            payDate: pushInfo.tradeDate,
+            payDate: pushInfo.tradeDate ? moment(pushInfo.tradeDate, 'YYYY-MM-DD HH:mm:ss').format('YYYY/MM/DD HH:mm:ss') : '',
             payNo: pushInfo.voucher,
             balAmt: pushInfo.balAmt,
             rechargeDot: pushInfo.rechargeDot

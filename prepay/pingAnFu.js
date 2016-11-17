@@ -34,7 +34,6 @@ exports.GetAccessor_Token = function (refreshToken, callback) {
             port: 29443,
             path: '/map/oauth',
             method: 'POST',
-            headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'},
             key: chunk_split_private_key(privateKey, 64, '\n'),
             cert: chunk_split_public_key(publicKey, 64, '\n')
         },

@@ -2,18 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00a831d3-6f98-489a-b9df-c9ed98e0405b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/prepay/yinshiKey/rsa_private_key.key" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/prepay/yinshiKey/rsa_public_key.key" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/prepayLogic/jingJiBaiNa.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crm/laoXiMenKechuan.js" afterPath="$PROJECT_DIR$/crm/laoXiMenKechuan.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prepay/pingAnFu.js" afterPath="$PROJECT_DIR$/prepay/pingAnFu.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prepay/yinshi.js" afterPath="$PROJECT_DIR$/prepay/yinshi.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prepayLogic/factoryLogic.js" afterPath="$PROJECT_DIR$/prepayLogic/factoryLogic.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prepayLogic/ganzhouWxcLogic.js" afterPath="$PROJECT_DIR$/prepayLogic/ganzhouWxcLogic.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prepayLogic/prepayLogic.js" afterPath="$PROJECT_DIR$/prepayLogic/prepayLogic.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/prepay.js" afterPath="$PROJECT_DIR$/routes/prepay.js" />
     </list>
     <ignored path="MemberConduct.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -110,23 +101,24 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="pingAnFu.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="pingAnFu.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/prepay/pingAnFu.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="207">
-                  <caret line="111" column="45" selection-start-line="111" selection-start-column="45" selection-end-line="111" selection-end-column="45" />
+                <state relative-caret-position="267">
+                  <caret line="30" column="10" selection-start-line="30" selection-start-column="10" selection-end-line="30" selection-end-column="10" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="yinshi.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="yinshi.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/prepay/yinshi.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="264">
-                  <caret line="260" column="19" selection-start-line="260" selection-start-column="19" selection-end-line="260" selection-end-column="19" />
+                <state relative-caret-position="354">
+                  <caret line="439" column="10" selection-start-line="439" selection-start-column="10" selection-end-line="439" selection-end-column="10" />
                   <folding>
-                    <element signature="e#11027#12075#0" expanded="false" />
+                    <element signature="e#10286#12423#0" expanded="false" />
+                    <element signature="e#11219#12267#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -217,9 +209,9 @@
         <option value="$PROJECT_DIR$/prepayLogic/factoryLogic.js" />
         <option value="$PROJECT_DIR$/prepayLogic/jingJiBaiNa.js" />
         <option value="$PROJECT_DIR$/prepayLogic/ganzhouWxcLogic.js" />
-        <option value="$PROJECT_DIR$/prepay/yinshi.js" />
         <option value="$PROJECT_DIR$/crm/laoXiMenKechuan.js" />
         <option value="$PROJECT_DIR$/prepay/pingAnFu.js" />
+        <option value="$PROJECT_DIR$/prepay/yinshi.js" />
       </list>
     </option>
   </component>
@@ -804,7 +796,7 @@
       <workItem from="1479174965907" duration="20096000" />
       <workItem from="1479261014617" duration="115000" />
       <workItem from="1479261461895" duration="17703000" />
-      <workItem from="1479347301008" duration="14227000" />
+      <workItem from="1479347301008" duration="17696000" />
     </task>
     <task id="LOCAL-00001" summary="测试 push">
       <created>1464938639203</created>
@@ -1034,7 +1026,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="840200000" />
+    <option name="totallyTimeSpent" value="843669000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1054,7 +1046,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20564516" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.59892327" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33916554" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32142857" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -1426,16 +1418,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/prepay/yinshi.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="260" column="19" selection-start-line="260" selection-start-column="19" selection-end-line="260" selection-end-column="19" />
-          <folding>
-            <element signature="e#11027#12075#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/logic/factoryLogic.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="332">
@@ -1514,9 +1496,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/prepay/pingAnFu.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="111" column="45" selection-start-line="111" selection-start-column="45" selection-end-line="111" selection-end-column="45" />
+        <state relative-caret-position="267">
+          <caret line="30" column="10" selection-start-line="30" selection-start-column="10" selection-end-line="30" selection-end-column="10" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/prepay/yinshi.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="439" column="10" selection-start-line="439" selection-start-column="10" selection-end-line="439" selection-end-column="10" />
+          <folding>
+            <element signature="e#10286#12423#0" expanded="false" />
+            <element signature="e#11219#12267#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
