@@ -23,5 +23,8 @@ prepay.prototype.ConsumptionRecord = function (attribute, callback) {
 prepay.prototype.PayPush = function (attribute, callback) {
     return callback(Error.ThrowError(Error.ErrorCode.Unrealized));
 };
-
+//替换Token
+prepay.prototype.ReplaceToken = function (attribute, callback) {
+    return callback(Error.ThrowError(Error.ErrorCode.Unrealized));
+};
 module.exports = prepay;

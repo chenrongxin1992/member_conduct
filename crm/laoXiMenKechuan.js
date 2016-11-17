@@ -510,20 +510,22 @@ exports.BonusChange = function (vipCode, integral, source, desc, callback) {
             ]
         },
         xmlStr = Xml(xmlOptions);
+    console.log('xmlStr:', xmlStr);
     Soap.createClient(url, function (err, client) {
         if (err) {
             console.log('crmKeChuan>BonsChange>Soap.CreateClient:', err);
-            callback(error.ThrowError(error.ErrorCode.Error, err));
+            callback(Error.ThrowError(Error.ErrorCode.Error, err));
             return;
         }
         client.BonusChange(xmlStr, function (err, result) {
             if (err) {
-                callback(error.ThrowError(error.ErrorCode.Error, err));
+                callback(Error.ThrowError(Error.ErrorCode.Error, err));
                 return;
             }
+            console.log('result:', result);
             var code = result.BonusChangeResult.Header.ERRCODE;
             if (code != 0) {
-                callback(Error.ThrowError(error.ErrorCode.Error, result.BonusChangeResult.Header.ERRMSG));
+                callback(Error.ThrowError(Error.ErrorCode.Error, result.BonusChangeResult.Header.ERRMSG));
                 return;
             }
             callback(err, '');

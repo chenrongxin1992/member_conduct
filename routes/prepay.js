@@ -6,7 +6,8 @@
 
 var express = require('express'),
     router = express.Router(),
-    factory = require('../prepayLogic/factoryLogic');
+    factory = require('../prepayLogic/factoryLogic'),
+    error = require('../Exception/error');
 
 
 router.post('/CardBind', CheckBid);
@@ -64,13 +65,20 @@ router.post('/GzWxc/PayPush', function (req, res) {
     });
 });
 
+router.post('/ReplaceToken', CheckBid);
+router.post('/ReplaceToken', function (req, res) {
+    var bid = req.body.bid ? parseInt(req.body.bid) : 0;
+    var logic = factory(bid);
+    logic.ReplaceToken(req.body, function (result) {
+        return res.json(result);
+    });
+});
 
 function CheckBid(req, res, next) {
     if (!req.body.bid) {
-        res.json(error.ThrowError(error.ErrorCode.InfoIncomplete, 'bid不能为空'));
-        return;
+        return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete, 'bid不能为空'));
     }
     next();
-}
+};
 
 module.exports = router;

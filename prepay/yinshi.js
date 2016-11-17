@@ -275,6 +275,7 @@ exports.ConsumptionRecord = function (cardBindNo, cardNo, start, end, pn, ps, ca
         res.on('end', function () {
             try {
                 var result = ToJson(bufferHelper.toBuffer().toString());
+                console.log('result:', result);
                 if (result.rc == '00') {
                     var items = result.trans;
                     if (!items || items.length <= 0) {
@@ -366,6 +367,9 @@ exports.SendPush = function (pushInfo, callback) {
             }
         });
     });
+    req.on('error', function (e) {
+        callback(error.ThrowError(error.ErrorCode.Error, e.message));
+    });
     req.write(content);
     req.end();
 };
@@ -430,8 +434,8 @@ function ToCardDetial(result) {
             cardGrader: result.VipCls,
             balance: result.balAmt,
             balanceFreeze: result.balAmt3,
-            cardBeqindate: result.cardBeqindate,
-            cardExpdate: result.cardExpdate,
+            cardBeqindate: result.cardBeqindate ? moment(result.cardBeqindate).format('YYYY/MM/DD') : '',
+            cardExpdate: result.cardExpdate ? moment(result.cardExpdate).format('YYYY/MM/DD') : '',
             status: result.cardStatus
         };
     }

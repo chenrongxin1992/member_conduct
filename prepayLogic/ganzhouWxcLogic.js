@@ -263,13 +263,13 @@ GanZhouWXC.prototype.PayPush = function (attribute, callback) {
             Bal_amt: bal_amt,
             recharge_doc: recharge_dot
         };
-    console.log('PayPush body:', attribute);
-    console.log('Push Boyd:', pushBody);
-    var _sign = ys.Sign(pushBody);
-    console.log('_sign:', _sign, '  sign:', sign);
-    if (_sign != sign) {
-        return callback(pushError('签名错误'));
-    }
+    // console.log('PayPush body:', attribute);
+    // console.log('Push Boyd:', pushBody);
+    // var _sign = ys.Sign(pushBody);
+    // console.log('_sign:', _sign, '  sign:', sign);
+    // if (_sign != sign) {
+    //     return callback(pushError('签名错误'));
+    // }
     if (!msgId) {
         return callback(pushError('msgId不能为空'));
     }
