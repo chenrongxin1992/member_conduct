@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00a831d3-6f98-489a-b9df-c9ed98e0405b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crm/crmASQ.js" afterPath="$PROJECT_DIR$/crm/crmASQ.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crm/laoXiMenKechuan.js" afterPath="$PROJECT_DIR$/crm/laoXiMenKechuan.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prepay/pingAnFu.js" afterPath="$PROJECT_DIR$/prepay/pingAnFu.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prepayLogic/jingJiBaiNa.js" afterPath="$PROJECT_DIR$/prepayLogic/jingJiBaiNa.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
     </list>
     <ignored path="MemberConduct.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,17 +31,57 @@
     </favorites_list>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.4799659">
+    <splitter split-orientation="horizontal" split-proportion="0.5549872">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="pingAnFu.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="pingAnFu.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/prepay/pingAnFu.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="382">
-                  <caret line="31" column="35" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="35" />
+                <state relative-caret-position="305">
+                  <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
                   <folding>
-                    <element signature="e#1172#1488#0" expanded="false" />
+                    <element signature="e#1174#1490#0" expanded="false" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="member.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/routes/member.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="300">
+                  <caret line="86" column="9" selection-start-line="86" selection-start-column="9" selection-end-line="86" selection-end-column="9" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="laoXiMenKechuan.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/crm/laoXiMenKechuan.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="326">
+                  <caret line="26" column="8" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
+                  <folding>
+                    <element signature="e#778#2992#0" expanded="false" />
+                    <element signature="e#3174#4919#0" expanded="false" />
+                    <element signature="e#5215#7564#0" expanded="false" />
+                    <element signature="e#7696#9991#0" expanded="false" />
+                    <element signature="e#10104#12709#0" expanded="false" />
+                    <element signature="e#12847#15359#0" expanded="false" />
+                    <element signature="e#13038#13789#0" expanded="false" />
+                    <element signature="e#13877#15355#0" expanded="false" />
+                    <element signature="e#15442#16550#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="crmASQ.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/crm/crmASQ.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="280">
+                  <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -129,7 +167,6 @@
         <option value="$PROJECT_DIR$/logic/dgwkLogic.js" />
         <option value="$PROJECT_DIR$/config/mongoose.js" />
         <option value="$PROJECT_DIR$/routes/other.js" />
-        <option value="$PROJECT_DIR$/crm/crmASQ.js" />
         <option value="$PROJECT_DIR$/entity/prepayCard.server.module.js" />
         <option value="$PROJECT_DIR$/routes/test1.js" />
         <option value="$PROJECT_DIR$/Exception/error.js" />
@@ -140,12 +177,13 @@
         <option value="$PROJECT_DIR$/routes/prepay.js" />
         <option value="$PROJECT_DIR$/prepayLogic/factoryLogic.js" />
         <option value="$PROJECT_DIR$/prepayLogic/ganzhouWxcLogic.js" />
-        <option value="$PROJECT_DIR$/crm/laoXiMenKechuan.js" />
         <option value="$PROJECT_DIR$/prepay/yinshi.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/prepayLogic/jingJiBaiNa.js" />
         <option value="$PROJECT_DIR$/prepay/pingAnFu.js" />
+        <option value="$PROJECT_DIR$/crm/laoXiMenKechuan.js" />
+        <option value="$PROJECT_DIR$/crm/crmASQ.js" />
       </list>
     </option>
   </component>
@@ -266,20 +304,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="crm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="member_conduct" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="member_conduct" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -742,7 +766,7 @@
       <workItem from="1479261461895" duration="17703000" />
       <workItem from="1479347301008" duration="26821000" />
       <workItem from="1479433950041" duration="3551000" />
-      <workItem from="1479438417956" duration="10080000" />
+      <workItem from="1479438417956" duration="12592000" />
     </task>
     <task id="LOCAL-00001" summary="测试 push">
       <created>1464938639203</created>
@@ -972,7 +996,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="866425000" />
+    <option name="totallyTimeSpent" value="868937000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -993,7 +1017,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33240223" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20564516" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1890166" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2541507" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32015306" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -1274,14 +1298,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/member.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="84" column="3" selection-start-line="84" selection-start-column="3" selection-end-line="84" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/logic/laoXiMenLogic.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
@@ -1301,21 +1317,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
           <caret line="386" column="31" selection-start-line="386" selection-start-column="12" selection-end-line="386" selection-end-column="89" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/crm/laoXiMenKechuan.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="13" column="27" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/crm/crmASQ.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6900">
-          <caret line="21" column="38" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
           <folding />
         </state>
       </provider>
@@ -1418,11 +1419,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/prepay/pingAnFu.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="31" column="35" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="35" />
+        <state relative-caret-position="305">
+          <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
           <folding>
-            <element signature="e#1172#1488#0" expanded="false" />
+            <element signature="e#1174#1490#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/member.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="86" column="9" selection-start-line="86" selection-start-column="9" selection-end-line="86" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crm/laoXiMenKechuan.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="26" column="8" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
+          <folding>
+            <element signature="e#778#2992#0" expanded="false" />
+            <element signature="e#3174#4919#0" expanded="false" />
+            <element signature="e#5215#7564#0" expanded="false" />
+            <element signature="e#7696#9991#0" expanded="false" />
+            <element signature="e#10104#12709#0" expanded="false" />
+            <element signature="e#12847#15359#0" expanded="false" />
+            <element signature="e#13038#13789#0" expanded="false" />
+            <element signature="e#13877#15355#0" expanded="false" />
+            <element signature="e#15442#16550#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crm/crmASQ.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>

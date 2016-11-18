@@ -33,8 +33,8 @@ exports.GetAccessor_Token = function (callback) {
     //     port: 29443,
     //     path: '/map/oauth',
     //     method: 'POST',
-    //     rejectUnauthorized: true,
-    //     requestCert: true,
+    //     rejectUnauthorized: false,
+    //     requestCert: false,
     //     headers: {'content-type': 'application/x-www-form-urlencoded'}
     // },
     var timeStamp = moment().format('X'),
