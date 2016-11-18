@@ -36,7 +36,6 @@ router.get('/Test', function (req, res, next) {
         signer.update(new Buffer(stringA));
         console.log('signer');
         sign = signer.sign(privateKey, 'base64');
-        // var sign = crypto.createHash('sha256').update(stringA).digest('hex')
         console.log('sign:', sign);
     } catch (e) {
         console.log('error:', e.message);
