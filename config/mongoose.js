@@ -7,5 +7,6 @@ module.exports = function () {
     require('../entity/parkingPayRecord.server.module');
     require('../entity/prepayCard.server.module');
     require('../entity/prepayCardPushRecord.server.module');
+    require('../entity/accessTokenInfo.server.module');
     return db;
 };
