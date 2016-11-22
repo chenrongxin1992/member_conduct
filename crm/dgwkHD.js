@@ -156,7 +156,6 @@ exports.GetMemberByCardNumber = function (cardNo, callback) {
         });
     });
     req.on('error', function (e) {
-        console.log('error:', e.message);
         callback(error.ThrowError(error.ErrorCode.Error, e.message));
     });
     req.write(content);
@@ -352,7 +351,7 @@ function ToCardResult(result) {
             Email: result.FMEMEMAILADR,
             CardSource: '',
             IdNo: result.FMEMIDCARD
-        }
+        };
     console.log('str:', str);
     if (str.CardGrade == '' || (!str.CardGrade))
         str.CardGrade = defaultGrade;

@@ -61,7 +61,7 @@ Dgwk.prototype.Register = function (attribute, callback) {
                     result.openId = openId;
                     var cardBinding = new CardBinding({
                         bid: bid,
-                        cardNumber: result.CardNumber,
+                        cardNumber: (result.CardNumber + ''),
                         openId: openId,
                         cardGrade: result.CardGrade
                     });
@@ -110,8 +110,7 @@ Dgwk.prototype.CardBinding = function (attribute, callback) {
         }
         //存在实体卡
         if (result.length > 0) {
-            callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
-            return;
+            return callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
         }
         else {
             hd.GetMemberByCardNumber(cardNumber, function (err, result) {
@@ -127,14 +126,15 @@ Dgwk.prototype.CardBinding = function (attribute, callback) {
                 if (!(name == result.Name)) {
                     return callback(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡姓名不正确'));
                 }
-                if (result.CardGrade == defaultCardGrade) {
-                    return callback(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡类型错误，绑卡不能为虚拟卡'));
-                }
+                //兼容之前的异常的卡，绑定
+                // if (result.CardGrade == defaultCardGrade) {
+                //     return callback(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡类型错误，绑卡不能为虚拟卡'));
+                // }
                 result.OpenId = openId;
                 //4、绑定OpenId
                 var cardBinding = new CardBinding({
                     bid: bid,
-                    cardNumber: result.CardNumber,
+                    cardNumber: (result.CardNumber + ''),
                     openId: openId,
                     cardGrade: result.CardGrade
                 });
@@ -279,20 +279,15 @@ Dgwk.prototype.GetCardByOpenId = function (attribute, callback) {
         if (result && result.length > 0) {
             cardNumber = result[0].cardNumber;
             hd.GetMemberByCardNumber(cardNumber, function (err, result) {
+                console.log('BB err:', err, '\n', 'result:', result);
                 if (err) {
                     return callback(err);
                 }
                 if (!result) {
                     return callback(error.Success());
                 }
-                CardBinding.FindByCardNumber(bid, cardNumber, function (err, res) {
-                    if (err) {
-                        return callback(error.ThrowError(error.ErrorCode.Error, err.message));
-                    }
-                    if (res.length > 0)
-                        result.OpenId = res[0].openId;
-                    return callback(error.Success(result));
-                });
+                result.openId = openId;
+                return callback(error.Success(result));
             });
         } else {
             CardBinding.FindByOpenId(bid, openId, function (err, result) {

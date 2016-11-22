@@ -22,7 +22,6 @@ var key = '20150226152452',
     xmlHeader = '<?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"> <soap:Body>',
     xmlFooter = '</soap:Body> </soap:Envelope>';
 
-
 router.get('/Test', function (req, res, next) {
     console.log('Test');
     var sign = '';

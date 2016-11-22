@@ -46,7 +46,9 @@ CardBindingSchema.statics.FindByOpenId = function (bid, openId, callback) {
  * @constructor
  */
 CardBindingSchema.statics.FindByCardNumber = function (bid, cardNumber, callback) {
-    this.find({bid: bid, cardNumber: cardNumber}, function (err, docs) {
+    var num = parseInt(cardNumber);
+    this.find({bid: bid, cardNumber:{$in:[cardNumber+'',num]}}, function (err, docs) {
+        console.log('docs:', docs);
         return callback(err, docs);
     });
 };
@@ -62,7 +64,5 @@ CardBindingSchema.statics.FindByOpenidInNotGrade = function (bid, openId, cardGr
         return callback(err, docs);
     });
 };
-
-
 
 mongoose.model(config.cardBinding, CardBindingSchema);

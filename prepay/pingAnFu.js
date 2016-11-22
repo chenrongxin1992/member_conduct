@@ -37,25 +37,26 @@ exports.GetAccessor_Token = function (callback) {
     //     requestCert: false,
     //     headers: {'content-type': 'application/x-www-form-urlencoded'}
     // },
-    var timeStamp = moment().format('X'),
+    var timeStamp = moment().format('YYYYMMDDHHmmss'),
         sign_data = {
             state: timeStamp,
             redirect_url: 'https://oauth.pinganfu.com',
             scope: '',
-            app_id: 000000,
-            merchant_no: '900000158902',
+            app_id: '000000',
+            merchant_no: '600000000403',
             timestamp: timeStamp,
             mid: '',
             uid: '',
             sign_type: 'RSA',
             sign: ''
         };
-    sign_data.sign = 'Base64(SHA1withRSA(' + sign_data.state + '&' + sign_data.redirect_url +
+    var sign_content = sign_data.state + '&' + sign_data.redirect_url +
         '&' + sign_data.scope + '&' + sign_data.app_id + '&' + sign_data.merchant_no +
-        '&' + sign_data.timestamp + '&&&RSA))';
-    var contentKey = signStr(sign_data);
-    var _signData = signData(contentKey);
-    //post_data.signData = _signData;
+        '&' + sign_data.timestamp + '&&&RSA';
+    console.log('sign_Str:', sign_content);
+    sign_data.sign = signData(sign_content);
+    console.log('sign:', sign_data.sign);
+    var _signData = signStr(sign_data);
     console.log('post_data:', _signData);
     return callback(null, _signData);
     // var content = JSON.stringify(post_data);
@@ -99,7 +100,7 @@ exports.GetAccessor_Token = function (callback) {
 };
 
 function signData(stringA) {
-    var privateKey = 'MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAOgQag8QBcI3zEPdmLrvqc/UcA7l5IOL3fntwoo98jiQ3Y/DxxuZzqZEe7bk0Fux/VbbUOhQUv6o5TW0icP2muGiydBwrtGPm87ixcGlhTcuLzz4kVPtA71+scR0xaVbTgkZrTk0owS/tptGDD2anDOOh0RKBSMxW4AAy1TclU85AgMBAAECgYEA0CUY29XFNISTpDN4MAOSziR/Nf2hTxP+z5MgMJqLTY0yDSbOycTVA3DdfhgRgo1M68De+uBA8MVQgTEjeC8SjqXguNPtlzwAGl/kVI52rPXa3BQoKWPozSF+DVcUMov35IDVQfShwy4mp1rWubszaPBKuRJlsMMFXscjpKQGugECQQD7UvU+sQqZB9aHFixXYeYD37lJHSzJoKTTVy3KypC71IGF0UnyL4mCaMJg/1zZ/RdJk/S1EsONSzLSTSQRQ34ZAkEA7GG46wKvRfuMs2KixIVcap5QvnXTw63cGQJt8qSSryjoChDLBp0U9xwWm7yTm2FzX0PonUDATZJB/t0vOBg+IQJAFA5kv+IFBH1Zo2Ijm72WS4zZDnqjjluhi7QTVXGg5zxoMbOoAQnGIYAWswLt9/94kkiaaLDcpjPwFFRPookOUQJAC/tgHjmCnO+FUEp9qayA5L6lpSHf3BliALqIzDXfYZWXPXtgbzNjLqtz0e0bJlMoP/n3PpFbrhLt2Xdov1UrQQJBAKls21WEcfvxVwhUtax2o20yYmAfT84FaDmMGRyla/rteisrf/OGeCc0kt8Fxvqx6qivTNNSsfvqKxTB2RtzAbQ=';
+    var privateKey = 'MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAO77S5ZJakSMgbOm7E2CWPrTAwg2ZBvcJMRuy2JI97Jcv7Y5nNzbAgNTq/cW4CXvWaAdm9GOStkXKqmKBvqg1fb4OXwWRVog+nr2CDGhRgNHXw3t+PpAXyE1HGQY1UM+IqIyYtGRdzpbqkv2cLKzhzJzX5qNDMnvB1hm9h0rxxjXAgMBAAECgYAoIUCfGvLiUenRvhz+Iv5IGDjxHxkOaJgv+B7lATW+2L5EnkYN/CTJZDqDQm8fT6LwNSieNtOwwqgiUhA789gZzqD4wYLXaO8qkBfg2Qeo7EV7nKB2/YiXSbLdhbJqIpfJJ6Rpq8J+7IhAILJR8CUcDbS06sLS+jntAFlzXexzoQJBAPg9rRIZSD/5k65A3HuLxBf09fKU97iuG6jvsYvoE1rdeVwJSVy5gyAlxoj0jtxg+MC2YH0xWwvgr6ePcrd6ULECQQD2c4eu7PwWZmhtAtasVXP3+KWZdIjwVZsF/rP6y43MAoTyCrB4Aued+3fv1erKcnNqZB+r+bn/58DFZGSK9iQHAkEA2JgH0Eja72b14g6Z0fpLKJQFnJk545uWarpo8aeWa6veXd2EczEyJfSP26N2mvbJVGxMmC9eP2jWGp9g+pHwoQJAaZsZ8kBEyYh6iPPlb5Vyizi2JWrFX08fjdMV5oshKOGPfHROKC7+dzkRrOkaokOm51keJUBujpUNisg5OT6+MwJAEjvr3RA4hb2rXoHxt7ARSluS7gevDdQjmpJaJkn89XVK2zQvmRdGN61fcyx3Quk3PNKFGNxc1aaeBFHFIYzL1Q==';
     privateKey = chunk_split_private_key(privateKey, 64, '\n');
     var signer = crypto.createSign('RSA-SHA1');
     signer.update(new Buffer(stringA));
