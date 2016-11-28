@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00a831d3-6f98-489a-b9df-c9ed98e0405b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crm/crmASQ.js" afterPath="$PROJECT_DIR$/crm/crmASQ.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/entity/cardBinding.server.module.js" afterPath="$PROJECT_DIR$/entity/cardBinding.server.module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logic/dgwkLogic.js" afterPath="$PROJECT_DIR$/logic/dgwkLogic.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logic/jingjiBaiNaLogic.js" afterPath="$PROJECT_DIR$/logic/jingjiBaiNaLogic.js" />
     </list>
     <ignored path="MemberConduct.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,16 +35,39 @@
           <file leaf-file-name="crmASQ.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/crm/crmASQ.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="320">
-                  <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
+                <state relative-caret-position="360">
+                  <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
                   <folding>
-                    <element signature="e#851#946#0" expanded="false" />
-                    <element signature="e#968#1061#0" expanded="false" />
-                    <element signature="e#1100#1280#0" expanded="false" />
-                    <element signature="e#1383#2740#0" expanded="false" />
-                    <element signature="e#2928#4118#0" expanded="false" />
-                    <element signature="e#4266#5173#0" expanded="false" />
-                    <element signature="e#5280#6420#0" expanded="false" />
+                    <element signature="e#849#944#0" expanded="false" />
+                    <element signature="e#966#1059#0" expanded="false" />
+                    <element signature="e#1098#1278#0" expanded="false" />
+                    <element signature="e#1381#2738#0" expanded="false" />
+                    <element signature="e#2926#4116#0" expanded="false" />
+                    <element signature="e#4264#5171#0" expanded="false" />
+                    <element signature="e#5278#6418#0" expanded="false" />
+                    <element signature="e#6551#7787#0" expanded="false" />
+                    <element signature="e#7861#9022#0" expanded="false" />
+                    <element signature="n#!!block;n#GetIntegral#0" expanded="false" />
+                    <element signature="e#10039#10572#0" expanded="false" />
+                    <element signature="e#10715#12191#0" expanded="false" />
+                    <element signature="e#10738#11356#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="jingjiBaiNaLogic.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/logic/jingjiBaiNaLogic.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="360">
+                  <caret line="191" column="17" selection-start-line="191" selection-start-column="17" selection-end-line="191" selection-end-column="17" />
+                  <folding>
+                    <element signature="e#395#2234#0" expanded="false" />
+                    <element signature="e#2297#4044#0" expanded="false" />
+                    <element signature="e#4103#4431#0" expanded="false" />
+                    <element signature="e#4497#4955#0" expanded="false" />
+                    <element signature="e#5022#5439#0" expanded="false" />
+                    <element signature="e#5501#6204#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -77,8 +96,8 @@
           <file leaf-file-name="factoryLogic.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/logic/factoryLogic.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="520">
-                  <caret line="26" column="22" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
+                <state relative-caret-position="323">
+                  <caret line="24" column="26" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
                   <folding />
                 </state>
               </provider>
@@ -857,7 +876,7 @@
       <workItem from="1479965736439" duration="1202000" />
       <workItem from="1480037837491" duration="903000" />
       <workItem from="1480057766284" duration="600000" />
-      <workItem from="1480297958164" duration="1214000" />
+      <workItem from="1480297958164" duration="1988000" />
     </task>
     <task id="LOCAL-00001" summary="测试 push">
       <created>1464938639203</created>
@@ -1087,7 +1106,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="916757000" />
+    <option name="totallyTimeSpent" value="917531000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1190,7 +1209,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="103" />
+      <option name="time" value="104" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1427,14 +1446,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/logic/factoryLogic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="26" column="22" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="760">
@@ -1504,14 +1515,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/logic/jingjiBaiNaLogic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="239" column="20" selection-start-line="239" selection-start-column="19" selection-end-line="239" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/crm/dgwkHD.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
@@ -1531,18 +1534,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/logic/factoryLogic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="24" column="26" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logic/jingjiBaiNaLogic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="191" column="17" selection-start-line="191" selection-start-column="17" selection-end-line="191" selection-end-column="17" />
+          <folding>
+            <element signature="e#395#2234#0" expanded="false" />
+            <element signature="e#2297#4044#0" expanded="false" />
+            <element signature="e#4103#4431#0" expanded="false" />
+            <element signature="e#4497#4955#0" expanded="false" />
+            <element signature="e#5022#5439#0" expanded="false" />
+            <element signature="e#5501#6204#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/crm/crmASQ.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
+        <state relative-caret-position="360">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding>
-            <element signature="e#851#946#0" expanded="false" />
-            <element signature="e#968#1061#0" expanded="false" />
-            <element signature="e#1100#1280#0" expanded="false" />
-            <element signature="e#1383#2740#0" expanded="false" />
-            <element signature="e#2928#4118#0" expanded="false" />
-            <element signature="e#4266#5173#0" expanded="false" />
-            <element signature="e#5280#6420#0" expanded="false" />
+            <element signature="e#849#944#0" expanded="false" />
+            <element signature="e#966#1059#0" expanded="false" />
+            <element signature="e#1098#1278#0" expanded="false" />
+            <element signature="e#1381#2738#0" expanded="false" />
+            <element signature="e#2926#4116#0" expanded="false" />
+            <element signature="e#4264#5171#0" expanded="false" />
+            <element signature="e#5278#6418#0" expanded="false" />
+            <element signature="e#6551#7787#0" expanded="false" />
+            <element signature="e#7861#9022#0" expanded="false" />
+            <element signature="n#!!block;n#GetIntegral#0" expanded="false" />
+            <element signature="e#10039#10572#0" expanded="false" />
+            <element signature="e#10715#12191#0" expanded="false" />
+            <element signature="e#10738#11356#0" expanded="false" />
           </folding>
         </state>
       </provider>

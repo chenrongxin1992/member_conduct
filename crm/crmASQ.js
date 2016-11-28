@@ -15,7 +15,7 @@ var companyId = 'C001',
     cardId = '1396977334', //商家ID
     orgId = '10001',
     appCode = 'WeChat',
-    crmName = '富基CRM';
+    crmName = '安胜奇';
 
 var url = 'http://183.62.205.28:8002/WebPOS.asmx?wsdl',// 'http://asiatic.ticp.net:7009/WebPOS.asmx?wsdl', //'http://183.62.205.27:8082/WebPOS.asmx?wsdl', //
     defaultOpenCardTypeCode = 'WC', //默认会员开卡等级
