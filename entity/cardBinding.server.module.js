@@ -47,8 +47,7 @@ CardBindingSchema.statics.FindByOpenId = function (bid, openId, callback) {
  */
 CardBindingSchema.statics.FindByCardNumber = function (bid, cardNumber, callback) {
     var num = parseInt(cardNumber);
-    this.find({bid: bid, cardNumber:{$in:[cardNumber+'',num]}}, function (err, docs) {
-        console.log('docs:', docs);
+    this.find({bid: bid, cardNumber: {$in: [cardNumber + '', num]}}, function (err, docs) {
         return callback(err, docs);
     });
 };

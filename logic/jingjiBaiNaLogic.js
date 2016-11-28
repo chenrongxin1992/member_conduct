@@ -144,6 +144,7 @@ JJBN.prototype.GetCardByPhone = function (attribute, callback) {
 
 JJBN.prototype.GetCardByOpenId = function (attribute, callback) {
     var openId = attribute.openId;
+    console.log('openId:', openId);
     if (!openId) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'openId不能为空'));
     }

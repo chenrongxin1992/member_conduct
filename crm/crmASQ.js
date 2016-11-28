@@ -17,7 +17,7 @@ var companyId = 'C001',
     appCode = 'WeChat',
     crmName = '富基CRM';
 
-var url = 'http://asiatic.ticp.net:7009/WebPOS.asmx?wsdl', //'http://183.62.205.28:8002/WebPOS.asmx?wsdl',// 'http://183.62.205.27:8082/WebPOS.asmx?wsdl', //
+var url = 'http://183.62.205.28:8002/WebPOS.asmx?wsdl',// 'http://asiatic.ticp.net:7009/WebPOS.asmx?wsdl', //'http://183.62.205.27:8082/WebPOS.asmx?wsdl', //
     defaultOpenCardTypeCode = 'WC', //默认会员开卡等级
     defaultPassword = '123456',//默认开卡密码
     soapUserName = 'pos',
@@ -282,6 +282,7 @@ exports.GetCardByOpenId = function (openId, callback) {
         },
         strXml = xml(xmlContent);
     SendCommod(strXml, function (err, result) {
+        console.log('GetCardByOpenId err:', err, '\n', 'result:', result);
         if (err) {
             return callback(err);
         }

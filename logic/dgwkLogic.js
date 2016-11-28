@@ -278,6 +278,7 @@ Dgwk.prototype.GetCardByOpenId = function (attribute, callback) {
         }
         if (result && result.length > 0) {
             cardNumber = result[0].cardNumber;
+            console.log('cardNumber:', cardNumber);
             hd.GetMemberByCardNumber(cardNumber, function (err, result) {
                 console.log('BB err:', err, '\n', 'result:', result);
                 if (err) {
@@ -286,7 +287,7 @@ Dgwk.prototype.GetCardByOpenId = function (attribute, callback) {
                 if (!result) {
                     return callback(error.Success());
                 }
-                result.openId = openId;
+                result.OpenId = openId;
                 return callback(error.Success(result));
             });
         } else {
