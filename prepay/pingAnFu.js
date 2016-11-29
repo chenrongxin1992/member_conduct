@@ -43,7 +43,7 @@ exports.GetAccessor_Token = function (callback) {
             redirect_url: 'https://oauth.pinganfu.com',
             scope: '',
             app_id: '000000',
-            merchant_no: '600000000403',
+            merchant_no: '600000001001',//'600000000403',//
             timestamp: timeStamp,
             mid: '',
             uid: '',
