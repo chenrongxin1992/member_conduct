@@ -10,7 +10,7 @@ var moment = require('moment'),
     md5 = require('md5');
 
 
-var thridCode = '16000107550001',//停车场编号
+var thridCode = '16000207360001',//'16000107550001',// 停车场编号
     thridType = {
         weiXin: 1,
         zhiFuBao: 2,
