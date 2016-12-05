@@ -11,7 +11,7 @@ var http = require('http'),
     moment = require('moment');
 
 var fujiHost = '111.75.158.77', //'111.75.158.178'  //  //富基CRM HostPath
-    fujiPort = '8098';  //8090; //端口号
+    fujiPort = 8090; // '8098';  //端口号
 
 /**
  * 会员注册
