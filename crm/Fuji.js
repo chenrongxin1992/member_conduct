@@ -10,7 +10,7 @@ var http = require('http'),
     error = require('../Exception/error'),
     moment = require('moment');
 
-var fujiHost = '111.75.158.77', //'111.75.158.178'  //  //富基CRM HostPath
+var fujiHost = '111.75.158.178', //'111.75.158.77', //  //富基CRM HostPath
     fujiPort = 8090; // '8098';  //端口号
 
 /**
