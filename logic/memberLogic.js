@@ -54,6 +54,17 @@ Member.prototype.GetCardByOpenId = function (attribute, callback) {
 Member.prototype.GetCardByPhone = function (attribute, callback) {
     callback(Error.ThrowError(Error.ErrorCode.Unrealized));
 };
+
+/**
+ * 根据MemberId查询会员卡
+ * @param attribute
+ * @param callback
+ * @constructor
+ */
+Member.prototype.GetCardByMemberId = function (attribute, callback) {
+    callback(Error.ThrowError(Error.ErrorCode.Unrealized));
+};
+
 /**
  * 修改会员卡资料
  * @param attribute
@@ -99,6 +110,21 @@ Member.prototype.CardUnbind = function (attribute, callback) {
 };
 
 Member.prototype.Test = function (attribute, callback) {
+    callback(Error.ThrowError(Error.ErrorCode.Unrealized));
+};
+Member.prototype.Sales = function (attribute, callback) {
+    callback(Error.ThrowError(Error.ErrorCode.Unrealized));
+};
+Member.prototype.CouponList = function (attribute, callback) {
+    callback(Error.ThrowError(Error.ErrorCode.Unrealized));
+};
+Member.prototype.VoucherRedeem = function (attribute, callback) {
+    callback(Error.ThrowError(Error.ErrorCode.Unrealized));
+};
+Member.prototype.UserCardList = function (attribute, callback) {
+    callback(Error.ThrowError(Error.ErrorCode.Unrealized));
+};
+Member.prototype.UserCouponList = function (attribute, callback) {
     callback(Error.ThrowError(Error.ErrorCode.Unrealized));
 };
 module.exports = Member;

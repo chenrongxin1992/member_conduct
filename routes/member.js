@@ -54,6 +54,16 @@ router.post('/CardDetialByPhone', function (req, res) {
     });
 });
 
+//根据MemberId查询会员卡
+router.post('/CardDetialByMemberId', CheckBid);
+router.post('/CardDetialByMemberId', function (req, res) {
+    var bid = req.body.bid ? parseInt(req.body.bid) : 0;
+    var logic = factory(bid);
+    logic.GetCardByMemberId(req.body, function (result) {
+        res.json(result);
+    });
+});
+
 //修改会员卡资料
 router.post('/CardModify', CheckBid);
 router.post('/CardModify', function (req, res) {
@@ -121,15 +131,63 @@ router.post('/test', function (req, res) {
 //     });
 // });
 
+//赣州万象城 数据回兑
 router.post('/AddMemberDetial', CheckBid);
 router.post('/AddMemberDetial', function (req, res) {
-   var bid = req.body.bid ? parseInt(req.body.bid) : 0;
+    var bid = req.body.bid ? parseInt(req.body.bid) : 0;
     var logic = factory(bid);
     logic.AddMemberDetial(req.body, function (result) {
         //console.log('result:', result);
         res.json(result);
     });
 });
+
+//销售下单  二维码扫描积分
+router.post('/Sales', CheckBid);
+router.post('/Sales', function (req, res) {
+    var bid = req.body.bid ? parseInt(req.body.bid) : 0;
+    var logic = factory(bid);
+    logic.Sales(req.body, function (result) {
+        res.json(result);
+    });
+});
+//可兑换卡券列表
+router.post('/CouponList', CheckBid);
+router.post('/CouponList', function (req, res) {
+    var bid = req.body.bid ? parseInt(req.body.bid) : 0;
+    var logic = factory(bid);
+    logic.CouponList(req.body, function (result) {
+        res.json(result);
+    });
+});
+//兑换卡券
+router.post('/VoucherRedeem', CheckBid);
+router.post('/VoucherRedeem', function (req, res) {
+    var bid = req.body.bid ? parseInt(req.body.bid) : 0;
+    var logic = factory(bid);
+    logic.VoucherRedeem(req.body, function (result) {
+        res.json(result);
+    });
+});
+//会员 会员卡列表
+router.post('/UserCardList', CheckBid);
+router.post('/UserCardList', function (req, res) {
+    var bid = req.body.bid ? parseInt(req.body.bid) : 0;
+    var logic = factory(bid);
+    logic.UserCardList(req.body, function (result) {
+        res.json(result);
+    });
+});
+//用户卡券列表
+router.post('/UserCouponList', CheckBid);
+router.post('/UserCouponList', function (req, res) {
+    var bid = req.body.bid ? parseInt(req.body.bid) : 0;
+    var logic = factory(bid);
+    logic.UserCouponList(req.body, function (result) {
+        res.json(result);
+    });
+});
+
 
 module.exports = router;
 function CheckBid(req, res, next) {

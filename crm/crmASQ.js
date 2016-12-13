@@ -13,11 +13,11 @@ var companyId = 'C001',
     storeId = 'STORE123',
     caShierId = 'USER9987',
     cardId = '1396977334', //商家ID
-    orgId = '10001',
+    orgId = '11',
     appCode = 'WeChat',
     crmName = '安胜奇';
 
-var url = 'http://183.62.205.28:8002/WebPOS.asmx?wsdl',//'http://asiatic.ticp.net:7009/WebPOS.asmx?wsdl', // 'http://183.62.205.27:8082/WebPOS.asmx?wsdl', //
+var url = 'http://183.62.205.27:8002/WebPOS.asmx?wsdl', //'http://asiatic.ticp.net:7009/WebPOS.asmx?wsdl', //'http://183.62.205.28:8002/WebPOS.asmx?wsdl',//正式环境  //
     defaultOpenCardTypeCode = 'WC', //默认会员开卡等级
     defaultPassword = '123456',//默认开卡密码
     soapUserName = 'pos',
@@ -96,6 +96,7 @@ exports.OpenCard = function (bid, openId, mobile, cardType, callback) {
             return callback(err);
         }
         var _cardNo = result.card[0].cardCode[0];
+        console.log('openCard cardNo:', _cardNo);
         GetCardByCardNo(_cardNo, function (err, result) {
             if (err) {
                 return callback(err);
@@ -147,6 +148,7 @@ exports.BindCard = function (openId, cardNo, name, phone, callback) {
         if (err) {
             return callback(err);
         }
+        console.log('memberId:', result);
         var _cardNo = result.card[0].cardCode[0];
         GetCardByCardNo(_cardNo, function (err, result) {
             if (err) {
@@ -198,6 +200,7 @@ exports.CardUnBind = function (openId, cardNo, callback) {
         return callback(null);
     });
 };
+
 /**
  * 根据手机号查询卡号
  * @param phone
@@ -245,6 +248,7 @@ exports.GetCardByPhone = function (phone, callback) {
         });
     });
 };
+
 /**
  * 根据OpenID查询会员卡
  * @param openId
@@ -271,7 +275,7 @@ exports.GetCardByOpenId = function (openId, callback) {
                 {
                     enquiry: [
                         {
-                            _attr: {cardID: openId}, //卡号设置为OpenId（富基说的）
+                            _attr: {cardID: openId}, //卡号设置为OpenId（安胜奇说的）
                         },
                         {
                             _attr: {mobileNO: ''}
@@ -318,7 +322,7 @@ var GetCardByCardNo = function (cardNo, callback) {
                 {
                     enquiry: [
                         {
-                            _attr: {cardID: cardNo}, //卡号设置为OpenId（富基说的）
+                            _attr: {cardID: cardNo},
                         },
                         {
                             _attr: {mobileNO: ''}
@@ -341,6 +345,56 @@ var GetCardByCardNo = function (cardNo, callback) {
     });
 };
 exports.GetCardByCardNo = GetCardByCardNo;
+
+/**
+ * 根据MemberId查询最高等级卡号
+ * @param memberId
+ * @param callback
+ * @constructor
+ */
+var GetCardByMemberId = function (memberId, callback) {
+    var xmlContent = {
+            cmd: [
+                {
+                    _attr: {type: 'CARDENQUIRY'},
+                },
+                {
+                    _attr: {appCode: appCode}
+                },
+                {
+                    shared: [
+                        {companyID: companyId},
+                        {orgID: orgId},
+                        {storeID: storeId},
+                        {cashierID: caShierId}
+                    ]
+                },
+                {
+                    enquiry: [
+                        {
+                            _attr: {memberId: memberId},
+                        },
+                        {
+                            _attr: {mobileNO: ''}
+                        }
+                    ]
+                }
+            ]
+        },
+        strXml = xml(xmlContent);
+    SendCommod(strXml, function (err, result) {
+        if (err) {
+            return callback(err);
+        }
+        ToCardDetial(result, function (err, result) {
+            if (err) {
+                return callback(err);
+            }
+            return callback(err, result);
+        });
+    });
+};
+exports.GetCardByMemberId = GetCardByMemberId;
 
 /**
  * 查询剩余积分
@@ -510,7 +564,7 @@ exports.CardGenderList = function (callback) {
  * @param callback
  * @constructor
  */
-exports.CardModify = function (cardNo, openId, fullName, gender, birthDay, idNo, email, callback) {
+exports.CardModify = function (memberId, cardNo, openId, fullName, gender, birthDay, idNo, email, callback) {
     var xmlContent = {
             cmd: [
                 {_attr: {type: 'UPDATEUSERINFO'}},
@@ -525,6 +579,7 @@ exports.CardModify = function (cardNo, openId, fullName, gender, birthDay, idNo,
                 },
                 {
                     userinfo: [
+                        {memberId: memberId},
                         {openid: openId},
                         {cardid: cardNo},
                         {name: fullName},
@@ -551,6 +606,264 @@ exports.CardModify = function (cardNo, openId, fullName, gender, birthDay, idNo,
     });
 };
 
+
+/**
+ * 销售接口   二维码扫描得积分
+ * @constructor
+ */
+exports.Sales = function (_companyId, _orgId, _storeId, _cashierId, txnDateTime, cardId, receiptNo, salesTendered, callback) {
+    var xmlContent = {
+            cmd: [
+                {_attr: {type: 'SALES'}},
+                {_attr: {appCode: appCode}},
+                {
+                    shared: [
+                        {_attr: {offline: 'false'}},
+                        {companyID: _companyId},
+                        {orgID: _orgId},
+                        {storeID: _storeId},
+                        {cashierID: _cashierId}
+                    ]
+                }, {
+                    sales: [
+                        {_attr: {txnDateTime: txnDateTime}},
+                        {_attr: {cardID: cardId}},
+                        {_attr: {receiptNo: receiptNo}},
+                        {_attr: {salesTendered: salesTendered}},
+                        {_attr: {actualAmount: salesTendered}}
+                    ]
+                }
+            ]
+        },
+        strXml = xml(xmlContent);
+    SendCommod(strXml, function (err, result) {
+        if (err) {
+            return callback(err);
+        }
+        var sales = result.sales[0],
+            cardNo = sales.$.cardId,
+            type = result.currentReward[0].cr[0].$.type,
+            typeValue = result.currentReward[0].cr[0].$.value,
+            integral = type == '1' ? typeValue : 0;
+        var str = {
+            cardNumber: cardNo,
+            integral: integral
+        };
+        return callback(null, str);
+    });
+};
+
+/**
+ * 可兑换卡券列表
+ * @constructor
+ */
+exports.CouponList = function (callback) {
+    var xmlContent = {
+            cmd: [
+                {_attr: {type: 'GetRedeemableVoucherList'}},
+                {_attr: {appCode: appCode}},
+                {
+                    shared: [
+                        {companyID: companyId},
+                        {orgID: orgId},
+                        {storeID: storeId},
+                        {cashierID: caShierId}
+                    ]
+                }
+            ]
+        },
+        strXml = xml(xmlContent);
+    SendCommod(strXml, function (err, result) {
+        if (err) {
+            return callback(err);
+        }
+        var items = result.redeemableVoucherList[0].redeemableVoucher;
+        var array = new Array();
+        for (var i in items) {
+            var item = items[i];
+            array.push({
+                redeemRuleId: item.$.redeemRuleId, //兑换规则ID
+                code: item.$.voucherTypeCode,
+                name: item.$.voucherTypeName,
+                cardType: item.$.cardType,
+                cardTypeCode: item.$.cardTypeCode,
+                minIntegral: item.$.minRewardtoDeduct,
+                validFrom: item.$.validFrom,
+                validTo: item.$.validTo,
+                maxRedeem: item.$.maxRedeem
+            });
+        }
+        return callback(null, array);
+    });
+};
+
+/**
+ * 兑换卡券
+ * @constructor
+ */
+exports.VoucherRedeem = function (cardNo, ruleId, code, num, callback) {
+    var xmlContent = {
+            cmd: [
+                {_attr: {type: 'VoucherRedeem'}},
+                {_attr: {appCode: appCode}},
+                {
+                    shared: [
+                        {companyID: companyId},
+                        {orgID: orgId},
+                        {storeID: storeId},
+                        {cashierID: caShierId}
+                    ]
+                },
+                {cardCode: cardNo},
+                {
+                    VoucherRedeem: [
+                        {_attr: {redeemRuleId: ruleId}},
+                        {_attr: {voucherTypeCode: code}},
+                        {_attr: {qty: num}}
+                    ]
+                }
+            ]
+        },
+        strXml = xml(xmlContent);
+    SendCommod(strXml, function (err, result) {
+        if (err) {
+            return callback(err);
+        }
+        var integral = result.result[0].$.totalRewardDeducted;  //兑换消耗的积分
+        return callback(null, integral);
+    });
+};
+/**
+ * 用户会员卡列表
+ * @param memberId
+ * @param callback
+ * @constructor
+ */
+exports.GetGradList = function (memberId, callback) {
+    var xmlContent = {
+            cmd: [
+                {_attr: {type: 'GetCardList'}},
+                {_attr: {appCode: appCode}},
+                {
+                    shared: [
+                        {companyID: companyId},
+                        {orgID: orgId},
+                        {storeID: storeId},
+                        {cashierID: caShierId}
+                    ]
+                },
+                {memberId: memberId}
+            ]
+        },
+        strXml = xml(xmlContent);
+    SendCommod(strXml, function (err, result) {
+        if (err) {
+            return callback(err);
+        }
+        var cardList = result.cardList[0].card;
+        var array = new Array();
+        for (var i in cardList) {
+            var item = cardList[i];
+            array.push({
+                cardNumber: item.$.cardCode,
+                cardTypeName: item.$.cardTypeName,
+                cardTypeCode: item.$.cardTypeCode
+            });
+        }
+        return callback(null, array);
+    });
+};
+
+/**
+ * 卡券详细信息
+ * @param guid
+ * @param callback
+ * @constructor
+ */
+exports.CouponDetial = function (guid, callback) {
+    var xmlContent = {
+            cmd: [
+                {_attr: {type: 'VoucherInfo'}},
+                {_attr: {appCode: appCode}},
+                {
+                    shared: [
+                        {companyID: companyId},
+                        {orgID: orgId},
+                        {storeID: storeId},
+                        {cashierID: caShierId}
+                    ]
+                },
+                {voucheId: guid}
+            ]
+        },
+        strXml = xml(xmlContent);
+    SendCommod(strXml, function (err, result) {
+        if (err) {
+            return callback(err);
+        }
+        var voucher = result.voucher[0];
+        var detial = {
+            id: voucher.$.id,
+            voucherCode: voucher.$.voucherCode,
+            validFrom: voucher.$.validFrom,
+            validTo: voucher.$.validTo,
+            type: voucher.$.type,
+            amount: voucher.$.amount
+        };
+        return callback(null, detial);
+    });
+};
+
+/**
+ * 用户的卡券列表
+ * @param openId
+ * @param cardNo
+ * @param callback
+ * @constructor
+ */
+exports.UserCouponList = function (openId, cardNo, callback) {
+    var xmlContent = {
+            cmd: [
+                {_attr: {type: 'HistoryVoucherQuery'}},
+                {_attr: {appCode: appCode}},
+                {
+                    shared: [
+                        {companyID: companyId},
+                        {orgID: orgId},
+                        {storeID: storeId},
+                        {cashierID: caShierId}
+                    ]
+                },
+                {
+                    cardinfo: [
+                        {openid: openId},
+                        {cardcode: cardNo}
+                    ]
+                }
+            ]
+        },
+        strXml = xml(xmlContent);
+    SendCommod(strXml, function (err, result) {
+        if (err) {
+            return callback(err);
+        }
+        var array = new Array();
+        var infos = result.infos[0].entity;
+        for (var i in infos) {
+            var item = infos[i];
+            array.push({
+                voucherId: item.VoucherID[0],
+                voucherCode: item.VoucherCode[0],
+                voucherName: item.VoucherName[0],
+                effectiveDate: item.EffectiveDate[0],
+                expiryDate: item.ExpiryDate[0],
+                voucherStatus: item.VoucherStatus[0]
+            });
+        }
+        return callback(null, array);
+    });
+};
+
 //发送命令
 function SendCommod(strXml, callback) {
     strXml = '<?xml version="1.0" encoding="utf-8"?>' + strXml;
@@ -569,6 +882,7 @@ function SendCommod(strXml, callback) {
         },
         strXmlHeaders = xml(xmlHeaders);
     strXml = xml(xmlContent);
+    //console.log('strXml:', strXml);
     soap.createClient(url, function (err, client) {
         if (err) {
             return callback(err);
@@ -579,20 +893,22 @@ function SendCommod(strXml, callback) {
                 console.log('SendCommod Error  strXml:', strXml);
                 return callback(err, result.CmdResult);
             }
+            //console.log('XML:', '\n', result);
+            //console.log('XML:', '\n', result.CmdResult);
             xmlParser(result.CmdResult, function (err, result) {
+                //console.log('err:', err, '\n', 'xmlParse:', result);
                 if (err) {
-                    return callback(error.ThrowError(error.ErrorCode.Error, errCode), err.message);
+                    return callback(error.ThrowError(error.ErrorCode.Error, err.message));
                 }
                 result = result.return;
+                //console.log('result:', result);
                 var isError = result.$ ? result.$.hasError : result.hasError[0];
-                console.log('isError:', isError);
                 if (isError != 'false') {
                     var errCode = result.error[0].$.code,
                         errMsg = result.error[0].$.message;
                     console.log('isError:', isError, ' errCode:', errCode, ' errMsg:', errMsg);
                     return callback(error.ThrowError(error.ErrorCode.Error, errCode + ':' + errMsg));
                 }
-                console.log('')
                 return callback(null, result);
             });
         });
@@ -621,7 +937,8 @@ function ToCardDetial(result, callback) {
             Email: memberinfo.email[0],
             CardSource: GetBidByOrgId[cardinfo.signupSourceOrg],
             IdNo: memberinfo.idno ? memberinfo.idno[0] : memberinfo.idno,
-            pinganfuToken: memberinfo.pinganfuToken ? memberinfo.pinganfuToken[0] : ''
+            PinganfuToken: memberinfo.pinganfuToken ? memberinfo.pinganfuToken[0] : '',
+            MemberId: memberinfo.memberId ? memberinfo.memberId[0] : ''
         };
         return callback(null, cardDetial);
     });

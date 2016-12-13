@@ -8,7 +8,8 @@ var member = require('./memberLogic'),
     utils = require('util'),
     error = require('../Exception/error'),
     asq = require('../crm/crmASQ'),
-    verify = require('../Tools/verify');
+    verify = require('../Tools/verify'),
+    moment = require('moment');
 
 function JJBN() {
 };
@@ -36,7 +37,7 @@ JJBN.prototype.Register = function (attribute, callback) {
                 if (result) {
                     return callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
                 }
-                asq.OpenCard(bid, openId, phone, cardType, function (err, cardNo) {
+                asq.OpenCard(bid, openId, phone, cardType, function (err, result) {
                     if (err) {
                         return callback(err);
                     }
@@ -95,7 +96,6 @@ JJBN.prototype.CardBinding = function (attribute, callback) {
             if (err) {
                 return callback(err);
             }
-            console.log('result:', result.Phone, '  ', phone);
             if (result.Phone != phone) {
                 return callback(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡手机号错误'));
             }
@@ -157,6 +157,20 @@ JJBN.prototype.GetCardByOpenId = function (attribute, callback) {
     });
 };
 
+JJBN.prototype.GetCardByMemberId = function (attribute, callback) {
+    var memberId = attribute.memberId;
+    if (!memberId) {
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'memberId不能为空'));
+    }
+    asq.GetCardByMemberId(memberId, function (err, result) {
+        console.log('err:', err, 'result:', result);
+        if (err) {
+            return callback(err);
+        }
+        return callback(error.Success(result));
+    });
+};
+
 JJBN.prototype.CardModify = function (attribute, callback) {
     var cardNo = attribute.cardNumber,
         openId = attribute.openId,
@@ -171,29 +185,42 @@ JJBN.prototype.CardModify = function (attribute, callback) {
     if (!cardNo) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '会员卡号cardNumber不能为空'));
     }
-    asq.CardModify(cardNo, openId, fullName, gender, birthday, idNo, email, function (err, result) {
+    asq.GetCardByOpenId(openId, function (err, result) {
         if (err) {
             return callback(err);
         }
-        return callback(error.Success(result));
+        var memberId = result.MemberId;
+        asq.CardModify(memberId, cardNo, openId, fullName, gender, birthday, idNo, email, function (err, result) {
+            if (err) {
+                return callback(err);
+            }
+            return callback(error.Success(result));
+        });
     });
 };
 
 JJBN.prototype.IntegralRecord = function (attribute, callback) {
-    var cardNo = attribute.cardNumber,
+    var openId = attribute.openId,
         pn = attribute.pn;
-    if (!cardNo) {
-        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '卡号不能为空'));
+    if (!openId) {
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'openId不能为空'));
     }
     if (!pn) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'pn不能为空'));
     }
-    pn = pn + 1;
-    asq.IntegralRecord(cardNo, pn, function (err, result) {
+    if (pn <= 0) {
+        pn = 1;
+    }
+    asq.GetCardByOpenId(openId, function (err, result) {
         if (err) {
             return callback(err);
         }
-        return callback(error.Success(result));
+        asq.IntegralRecord(result.CardNumber, pn, function (err, result) {
+            if (err) {
+                return callback(err);
+            }
+            return callback(error.Success(result));
+        });
     });
 };
 
@@ -232,6 +259,143 @@ JJBN.prototype.CardUnbind = function (attribute, callback) {
                 }
                 return callback(error.Success());
             });
+        });
+    });
+};
+
+//销售下单 二维码扫描
+JJBN.prototype.Sales = function (attribute, callback) {
+    var companyId = attribute.companyId,  //公司ID
+        orgId = attribute.orgId,  //组织ID
+        storeId = attribute.storeId, //门店编号
+        cashierId = attribute.cashierId,  //收营员
+        txnDateTime = attribute.txnDateTime,  //交易时间 YYYY-MM-dd HH:mm:ss:ffff
+        openId = attribute.openId,  //微信OpenId
+        receiptNo = attribute.receiptNo, //小票号
+        salesTendered = attribute.salesTendered; // 销售金额 decimal(18,2)
+    if (!companyId) {
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'companId不能为空'));
+    }
+    if (!orgId) {
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'orgId不能为空'));
+    }
+    if (!storeId) {
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'storeId不能为空'));
+    }
+    if (!cashierId) {
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'cashierId不能为空'));
+    }
+    if (!txnDateTime) {
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'txnDateTime不能为空'));
+    }
+    if (!verify.CheckDate(txnDateTime)) {
+        return callback(error.ThrowError(error.ErrorCode.DateFormatError, 'txnDateTime格式错误'));
+    }
+    txnDateTime = moment(txnDateTime, 'YYYY/MM/DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss');
+    if (!receiptNo) {
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'receiptNo不能为空'));
+    }
+    if (!salesTendered) {
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'salesTendered不能为空'));
+    }
+    asq.GetCardByOpenId(openId, function (err, result) {
+        if (err) {
+            return callback(err);
+        }
+        var cardNo = result.CardNumber;
+        asq.Sales(companyId, orgId, storeId, cashierId, txnDateTime, cardNo, receiptNo, salesTendered, function (err, result) {
+            if (err) {
+                return callback(err);
+            }
+            return callback(error.Success(result));
+        });
+    });
+};
+
+//可兑换卡列表
+JJBN.prototype.CouponList = function (attribute, callback) {
+    asq.CouponList(function (err, result) {
+        if (err) {
+            return callback(err);
+        }
+        return callback(error.Success(result));
+    });
+};
+
+//兑换卡券
+JJBN.prototype.VoucherRedeem = function (attribute, callback) {
+    var openId = attribute.openId,
+        ruleId = attribute.ruleId,
+        code = attribute.code,
+        num = attribute.num;
+    if (!openId) {
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'openId不能为空'));
+    }
+    if (!ruleId) {
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'ruleId不能为空'));
+    }
+    if (!code) {
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'code不能为空'));
+    }
+    if (!num) {
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'num不能为空'));
+    }
+    if (!verify.CheckNumber(num)) {
+        return callback(error.ThrowError(error.ErrorCode.DateFormatError, 'num必须为正整数'));
+    }
+    num = parseInt(num);
+    if (num <= 0) {
+        return callback(error.ThrowError(error.ErrorCode.DateFormatError, 'num必须为正整数,且不小于1'));
+    }
+    asq.GetCardByOpenId(openId, function (err, result) {
+        if (err) {
+            return callback(err);
+        }
+        var cardNo = result.CardNumber;
+        asq.VoucherRedeem(cardNo, ruleId, code, num, function (err, result) {
+            if (err) {
+                return callback(err);
+            }
+            return callback(error.Success(result)); //返回兑换所消耗的积分数量
+        });
+    });
+};
+
+//会员下会员卡列表
+JJBN.prototype.UserCardList = function (attribute, callback) {
+    var openId = attribute.openId;
+    if (!openId) {
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'openId不能为空'));
+    }
+    asq.GetCardByOpenId(openId, function (err, result) {
+        if (err) {
+            return callback(err);
+        }
+        var memberId = result.MemberId;
+        asq.GetGradList(memberId, function (err, result) {
+            if (err) {
+                return callback(err);
+            }
+            return callback(error.Success(result));
+        });
+    });
+};
+
+//用户的卡券列表
+JJBN.prototype.UserCouponList = function (attribute, callback) {
+    var openId = attribute.openId;
+    if (!openId) {
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'openId不能为空'));
+    }
+    asq.GetCardByOpenId(openId, function (err, result) {
+        if (err) {
+            return callback(err);
+        }
+        asq.UserCouponList(openId, result.CardNumber, function (err, result) {
+            if (err) {
+                return callback(err);
+            }
+            return callback(error.Success(result));
         });
     });
 };
