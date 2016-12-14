@@ -18,7 +18,7 @@ var companyId = 'C001',
     crmName = '安胜奇';
 
 //172.16.200.13 'http://183.62.205.28:8002/WebPOS.asmx?wsdl'
-var url = 'http://172.16.200.13:8002/WebPOS.asmx?wsdl',//正式环境  //'http://172.16.200.14:8002/WebPOS.asmx?wsdl',//'http://183.62.205.27:8002/WebPOS.asmx?wsdl', //'http://asiatic.ticp.net:7009/WebPOS.asmx?wsdl', //
+var url = 'http://183.62.205.28:8002/WebPOS.asmx?wsdl',//正式环境  //'http://172.16.200.14:8002/WebPOS.asmx?wsdl',//'http://183.62.205.27:8002/WebPOS.asmx?wsdl', //'http://asiatic.ticp.net:7009/WebPOS.asmx?wsdl', //
     defaultOpenCardTypeCode = 'WC', //默认会员开卡等级
     defaultPassword = '123456',//默认开卡密码
     soapUserName = 'pos',
@@ -622,7 +622,6 @@ exports.CardModify = function (bid, memberId, cardNo, openId, fullName, gender, 
  * @constructor
  */
 exports.Sales = function (bid, _companyId, _orgId, _storeId, _cashierId, txnDateTime, cardId, receiptNo, salesTendered, callback) {
-
     var xmlContent = {
             cmd: [
                 {_attr: {type: 'SALES'}},
@@ -651,10 +650,11 @@ exports.Sales = function (bid, _companyId, _orgId, _storeId, _cashierId, txnDate
         if (err) {
             return callback(err);
         }
+        console.log('result:', JSON.stringify(result));
         var sales = result.sales[0],
             cardNo = sales.$.cardId,
-            type = result.currentReward[0].cr[0].$.type,
-            typeValue = result.currentReward[0].cr[0].$.value,
+            type = result.currentReward ? result.currentReward[0].cr[0].$.type : 0,
+            typeValue = result.currentReward ? result.currentReward[0].cr[0].$.value : 0,
             integral = type == '1' ? typeValue : 0;
         var str = {
             cardNumber: cardNo,
