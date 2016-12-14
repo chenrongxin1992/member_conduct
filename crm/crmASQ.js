@@ -150,9 +150,8 @@ exports.BindCard = function (bid, openId, cardNo, name, phone, callback) {
         if (err) {
             return callback(err);
         }
-        console.log('memberId:', result);
         var _cardNo = result.card[0].cardCode[0];
-        GetCardByCardNo(_cardNo, function (err, result) {
+        GetCardByCardNo(bid, _cardNo, function (err, result) {
             if (err) {
                 return callback(err);
             }
@@ -910,15 +909,14 @@ function SendCommod(strXml, callback) {
                 return callback(err, result.CmdResult);
             }
             console.log('XML:', '\n', result);
-            console.log('XML:', '\n', result.CmdResult);
+           // console.log('XML:', '\n', result.CmdResult);
             xmlParser(result.CmdResult, function (err, result) {
                 console.log('err:', err, '\n', 'xmlParse:', JSON.stringify(result));
                 if (err) {
                     return callback(error.ThrowError(error.ErrorCode.Error, err.message));
-                    parse
                 }
                 result = result.return;
-                console.log('result:', result);
+                console.log('result:', JSON.stringify(result));
                 var isError = result.$ ? result.$.hasError : result.hasError[0];
                 if (isError != 'false') {
                     var errCode = result.error[0].$.code,

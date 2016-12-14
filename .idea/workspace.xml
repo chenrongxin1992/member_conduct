@@ -29,37 +29,38 @@
     </favorites_list>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.5737344">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="crmASQ.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/crm/crmASQ.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="140">
-                  <caret line="19" column="60" selection-start-line="19" selection-start-column="60" selection-end-line="19" selection-end-column="60" />
+                <state relative-caret-position="192">
+                  <caret line="913" column="16" selection-start-line="913" selection-start-column="16" selection-end-line="913" selection-end-column="16" />
                   <folding>
                     <element signature="e#961#1056#0" expanded="false" />
                     <element signature="e#1078#1171#0" expanded="false" />
                     <element signature="e#1210#1390#0" expanded="false" />
                     <element signature="e#1493#2900#0" expanded="false" />
                     <element signature="e#1624#2456#0" expanded="false" />
-                    <element signature="e#3093#4363#0" expanded="false" />
-                    <element signature="e#4516#5461#0" expanded="false" />
-                    <element signature="e#5574#6752#0" expanded="false" />
-                    <element signature="e#6891#8166#0" expanded="false" />
-                    <element signature="e#6951#7752#0" expanded="false" />
-                    <element signature="e#8245#9424#0" expanded="false" />
-                    <element signature="e#9613#10796#0" expanded="false" />
+                    <element signature="e#3153#3927#0" expanded="false" />
+                    <element signature="e#4479#5424#0" expanded="false" />
+                    <element signature="e#6854#8129#0" expanded="false" />
+                    <element signature="e#6914#7715#0" expanded="false" />
+                    <element signature="e#9576#10759#0" expanded="false" />
                     <element signature="n#!!block;n#GetIntegral#0" expanded="false" />
-                    <element signature="e#11817#12350#0" expanded="false" />
-                    <element signature="e#15442#16325#0" expanded="false" />
-                    <element signature="e#18469#19791#0" expanded="false" />
-                    <element signature="e#19902#20931#0" expanded="false" />
-                    <element signature="e#21063#22108#0" expanded="false" />
-                    <element signature="e#22233#23235#0" expanded="false" />
-                    <element signature="e#22293#22732#0" expanded="false" />
-                    <element signature="e#23452#24041#0" expanded="false" />
-                    <element signature="n#!!block;n#SendCommod#0" expanded="false" />
+                    <element signature="e#11780#12313#0" expanded="false" />
+                    <element signature="e#15405#16288#0" expanded="false" />
+                    <element signature="e#18432#19754#0" expanded="false" />
+                    <element signature="e#19865#20894#0" expanded="false" />
+                    <element signature="e#21026#22071#0" expanded="false" />
+                    <element signature="e#22196#23198#0" expanded="false" />
+                    <element signature="e#22256#22695#0" expanded="false" />
+                    <element signature="e#23355#24691#0" expanded="false" />
+                    <element signature="e#23415#24004#0" expanded="false" />
+                    <element signature="e#24826#24966#0" expanded="false" />
+                    <element signature="e#24989#25187#0" expanded="false" />
+                    <element signature="n#!!block;n#ToCardDetial#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -72,8 +73,8 @@
           <file leaf-file-name="jingjiBaiNaLogic.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/logic/jingjiBaiNaLogic.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="138">
-                  <caret line="77" column="18" selection-start-line="77" selection-start-column="18" selection-end-line="77" selection-end-column="18" />
+                <state relative-caret-position="95">
+                  <caret line="105" column="20" selection-start-line="105" selection-start-column="20" selection-end-line="105" selection-end-column="20" />
                   <folding>
                     <element signature="e#427#2276#0" expanded="false" />
                     <element signature="e#1660#2266#0" expanded="false" />
@@ -84,13 +85,22 @@
                     <element signature="e#6086#7030#0" expanded="false" />
                     <element signature="e#7096#7803#0" expanded="false" />
                     <element signature="e#7864#8068#0" expanded="false" />
-                    <element signature="e#8130#9132#0" expanded="false" />
                     <element signature="e#9202#11292#0" expanded="false" />
                     <element signature="e#11363#11563#0" expanded="false" />
                     <element signature="e#11635#12930#0" expanded="false" />
                     <element signature="e#13005#13562#0" expanded="false" />
                     <element signature="e#13638#14175#0" expanded="false" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="member.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/routes/member.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="280">
+                  <caret line="17" column="25" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="25" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -294,20 +304,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Exception" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="member_conduct" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="member_conduct" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="entity" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -809,7 +805,7 @@
       <workItem from="1481278790091" duration="323000" />
       <workItem from="1481525470849" duration="6003000" />
       <workItem from="1481596688847" duration="18455000" />
-      <workItem from="1481681665054" duration="17088000" />
+      <workItem from="1481681665054" duration="20873000" />
     </task>
     <task id="LOCAL-00001" summary="测试 push">
       <created>1464938639203</created>
@@ -1039,7 +1035,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1021958000" />
+    <option name="totallyTimeSpent" value="1025743000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1059,7 +1055,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20564516" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33243608" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.49528936" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32015306" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -1142,7 +1138,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="111" />
+      <option name="time" value="112" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1450,13 +1446,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/xml2js/lib/xml2js.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="523" column="2" selection-start-line="523" selection-start-column="2" selection-end-line="523" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/entity/cardBinding.server.module.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-126">
@@ -1488,16 +1477,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/member.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="740">
-          <caret line="181" column="28" selection-start-line="181" selection-start-column="14" selection-end-line="181" selection-end-column="28" />
+        <state relative-caret-position="280">
+          <caret line="17" column="25" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/xml2js/lib/xml2js.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="488" column="17" selection-start-line="488" selection-start-column="17" selection-end-line="488" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/logic/jingjiBaiNaLogic.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="77" column="18" selection-start-line="77" selection-start-column="18" selection-end-line="77" selection-end-column="18" />
+        <state relative-caret-position="95">
+          <caret line="105" column="20" selection-start-line="105" selection-start-column="20" selection-end-line="105" selection-end-column="20" />
           <folding>
             <element signature="e#427#2276#0" expanded="false" />
             <element signature="e#1660#2266#0" expanded="false" />
@@ -1508,7 +1505,6 @@
             <element signature="e#6086#7030#0" expanded="false" />
             <element signature="e#7096#7803#0" expanded="false" />
             <element signature="e#7864#8068#0" expanded="false" />
-            <element signature="e#8130#9132#0" expanded="false" />
             <element signature="e#9202#11292#0" expanded="false" />
             <element signature="e#11363#11563#0" expanded="false" />
             <element signature="e#11635#12930#0" expanded="false" />
@@ -1520,31 +1516,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/crm/crmASQ.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="19" column="60" selection-start-line="19" selection-start-column="60" selection-end-line="19" selection-end-column="60" />
+        <state relative-caret-position="192">
+          <caret line="913" column="16" selection-start-line="913" selection-start-column="16" selection-end-line="913" selection-end-column="16" />
           <folding>
             <element signature="e#961#1056#0" expanded="false" />
             <element signature="e#1078#1171#0" expanded="false" />
             <element signature="e#1210#1390#0" expanded="false" />
             <element signature="e#1493#2900#0" expanded="false" />
             <element signature="e#1624#2456#0" expanded="false" />
-            <element signature="e#3093#4363#0" expanded="false" />
-            <element signature="e#4516#5461#0" expanded="false" />
-            <element signature="e#5574#6752#0" expanded="false" />
-            <element signature="e#6891#8166#0" expanded="false" />
-            <element signature="e#6951#7752#0" expanded="false" />
-            <element signature="e#8245#9424#0" expanded="false" />
-            <element signature="e#9613#10796#0" expanded="false" />
+            <element signature="e#3153#3927#0" expanded="false" />
+            <element signature="e#4479#5424#0" expanded="false" />
+            <element signature="e#6854#8129#0" expanded="false" />
+            <element signature="e#6914#7715#0" expanded="false" />
+            <element signature="e#9576#10759#0" expanded="false" />
             <element signature="n#!!block;n#GetIntegral#0" expanded="false" />
-            <element signature="e#11817#12350#0" expanded="false" />
-            <element signature="e#15442#16325#0" expanded="false" />
-            <element signature="e#18469#19791#0" expanded="false" />
-            <element signature="e#19902#20931#0" expanded="false" />
-            <element signature="e#21063#22108#0" expanded="false" />
-            <element signature="e#22233#23235#0" expanded="false" />
-            <element signature="e#22293#22732#0" expanded="false" />
-            <element signature="e#23452#24041#0" expanded="false" />
-            <element signature="n#!!block;n#SendCommod#0" expanded="false" />
+            <element signature="e#11780#12313#0" expanded="false" />
+            <element signature="e#15405#16288#0" expanded="false" />
+            <element signature="e#18432#19754#0" expanded="false" />
+            <element signature="e#19865#20894#0" expanded="false" />
+            <element signature="e#21026#22071#0" expanded="false" />
+            <element signature="e#22196#23198#0" expanded="false" />
+            <element signature="e#22256#22695#0" expanded="false" />
+            <element signature="e#23355#24691#0" expanded="false" />
+            <element signature="e#23415#24004#0" expanded="false" />
+            <element signature="e#24826#24966#0" expanded="false" />
+            <element signature="e#24989#25187#0" expanded="false" />
+            <element signature="n#!!block;n#ToCardDetial#0" expanded="false" />
           </folding>
         </state>
       </provider>
