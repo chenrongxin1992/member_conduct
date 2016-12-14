@@ -408,8 +408,7 @@ exports.GetCardByMemberId = GetCardByMemberId;
  * @param callback
  * @constructor
  */
-function GetIntegral(bid, cardNo, callback) {
-    var _orgId = GetOrgIdByBid[bid];
+function GetIntegral(cardNo, callback) {
     var xmlContent = {
             cmd: [
                 {_attr: {type: 'CREDIT'}},
@@ -417,7 +416,7 @@ function GetIntegral(bid, cardNo, callback) {
                 {
                     shared: [
                         {companyID: companyId},
-                        {orgID: _orgId},
+                        {orgID: orgId},
                         {storeID: storeId},
                         {cashierID: caShierId}
                     ]
