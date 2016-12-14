@@ -115,7 +115,8 @@ exports.OpenCard = function (bid, openId, mobile, cardType, callback) {
  * @param callback
  * @constructor
  */
-exports.BindCard = function (openId, cardNo, name, phone, callback) {
+exports.BindCard = function (bid, openId, cardNo, name, phone, callback) {
+    var _orgId = GetOrgIdByBid[bid];
     var xmlContent = {
             cmd: [
                 {
@@ -127,7 +128,7 @@ exports.BindCard = function (openId, cardNo, name, phone, callback) {
                 {
                     shared: [
                         {companyID: companyId},
-                        {orgID: orgId},
+                        {orgID: _orgId},
                         {storeID: storeId},
                         {cashierID: caShierId}
                     ]
@@ -166,7 +167,8 @@ exports.BindCard = function (openId, cardNo, name, phone, callback) {
  * @param callback
  * @constructor
  */
-exports.CardUnBind = function (openId, cardNo, callback) {
+exports.CardUnBind = function (bid, openId, cardNo, callback) {
+    var _orgId = GetOrgIdByBid[bid];
     var xmlContent = {
             cmd: [
                 {
@@ -178,7 +180,7 @@ exports.CardUnBind = function (openId, cardNo, callback) {
                 {
                     shared: [
                         {companyID: companyId},
-                        {orgID: orgId},
+                        {orgID: _orgId},
                         {storeID: storeId},
                         {cashierID: caShierId}
                     ]
@@ -206,7 +208,8 @@ exports.CardUnBind = function (openId, cardNo, callback) {
  * @param phone
  * @constructor
  */
-exports.GetCardByPhone = function (phone, callback) {
+exports.GetCardByPhone = function (bid, phone, callback) {
+    var _orgId = GetOrgIdByBid[bid];
     var xmlContent = {
             cmd: [
                 {
@@ -218,7 +221,7 @@ exports.GetCardByPhone = function (phone, callback) {
                 {
                     shared: [
                         {companyID: companyId},
-                        {orgID: orgId},
+                        {orgID: _orgId},
                         {storeID: storeId},
                         {cashierID: caShierId}
                     ]
@@ -255,7 +258,8 @@ exports.GetCardByPhone = function (phone, callback) {
  * @param callback
  * @constructor
  */
-exports.GetCardByOpenId = function (openId, callback) {
+exports.GetCardByOpenId = function (bid, openId, callback) {
+    var _orgId = GetOrgIdByBid[bid];
     var xmlContent = {
             cmd: [
                 {
@@ -267,7 +271,7 @@ exports.GetCardByOpenId = function (openId, callback) {
                 {
                     shared: [
                         {companyID: companyId},
-                        {orgID: orgId},
+                        {orgID: _orgId},
                         {storeID: storeId},
                         {cashierID: caShierId}
                     ]
@@ -302,7 +306,8 @@ exports.GetCardByOpenId = function (openId, callback) {
 /**
  * 根据卡号查询会员卡
  */
-var GetCardByCardNo = function (cardNo, callback) {
+var GetCardByCardNo = function (bid, cardNo, callback) {
+    var _orgId = GetOrgIdByBid[bid];
     var xmlContent = {
             cmd: [
                 {
@@ -314,7 +319,7 @@ var GetCardByCardNo = function (cardNo, callback) {
                 {
                     shared: [
                         {companyID: companyId},
-                        {orgID: orgId},
+                        {orgID: _orgId},
                         {storeID: storeId},
                         {cashierID: caShierId}
                     ]
@@ -352,7 +357,8 @@ exports.GetCardByCardNo = GetCardByCardNo;
  * @param callback
  * @constructor
  */
-var GetCardByMemberId = function (memberId, callback) {
+var GetCardByMemberId = function (bid, memberId, callback) {
+    var _orgId = GetOrgIdByBid[bid];
     var xmlContent = {
             cmd: [
                 {
@@ -364,7 +370,7 @@ var GetCardByMemberId = function (memberId, callback) {
                 {
                     shared: [
                         {companyID: companyId},
-                        {orgID: orgId},
+                        {orgID: _orgId},
                         {storeID: storeId},
                         {cashierID: caShierId}
                     ]
@@ -402,7 +408,8 @@ exports.GetCardByMemberId = GetCardByMemberId;
  * @param callback
  * @constructor
  */
-function GetIntegral(cardNo, callback) {
+function GetIntegral(bid, cardNo, callback) {
+    var _orgId = GetOrgIdByBid[bid];
     var xmlContent = {
             cmd: [
                 {_attr: {type: 'CREDIT'}},
@@ -410,7 +417,7 @@ function GetIntegral(cardNo, callback) {
                 {
                     shared: [
                         {companyID: companyId},
-                        {orgID: orgId},
+                        {orgID: _orgId},
                         {storeID: storeId},
                         {cashierID: caShierId}
                     ]
@@ -465,7 +472,8 @@ exports.MaillList = function (callback) {
  * @param callback
  * @constructor
  */
-exports.IntegralRecord = function (cardNo, pn, callback) {
+exports.IntegralRecord = function (bid, cardNo, pn, callback) {
+    var _orgId = GetOrgIdByBid[bid];
     var xmlContent = {
             cmd: [
                 {_attr: {type: 'REWARDLOGLIST'}},
@@ -473,7 +481,7 @@ exports.IntegralRecord = function (cardNo, pn, callback) {
                 {
                     shared: [
                         {companyID: companyId},
-                        {orgID: orgId},
+                        {orgID: _orgId},
                         {storeID: storeId},
                         {cashierID: caShierId}
                     ]
@@ -518,7 +526,8 @@ exports.IntegralRecord = function (cardNo, pn, callback) {
  * @param callback
  * @constructor
  */
-exports.CardGenderList = function (callback) {
+exports.CardGenderList = function (bid, callback) {
+    var _orgId = GetOrgIdByBid[bid];
     var xmlContent = {
             cmd: [
                 {_attr: {type: 'CARDTYPELIST'}},
@@ -526,7 +535,7 @@ exports.CardGenderList = function (callback) {
                 {
                     shared: [
                         {companyID: companyId},
-                        {orgID: orgId},
+                        {orgID: _orgId},
                         {storeID: storeId},
                         {cashierID: caShierId}
                     ]
@@ -564,7 +573,8 @@ exports.CardGenderList = function (callback) {
  * @param callback
  * @constructor
  */
-exports.CardModify = function (memberId, cardNo, openId, fullName, gender, birthDay, idNo, email, callback) {
+exports.CardModify = function (bid, memberId, cardNo, openId, fullName, gender, birthDay, idNo, email, callback) {
+    var _orgId = GetOrgIdByBid[bid];
     var xmlContent = {
             cmd: [
                 {_attr: {type: 'UPDATEUSERINFO'}},
@@ -572,7 +582,7 @@ exports.CardModify = function (memberId, cardNo, openId, fullName, gender, birth
                 {
                     shared: [
                         {companyID: companyId},
-                        {orgID: orgId},
+                        {orgID: _orgId},
                         {storeID: storeId},
                         {cashierID: caShierId}
                     ]
@@ -611,7 +621,8 @@ exports.CardModify = function (memberId, cardNo, openId, fullName, gender, birth
  * 销售接口   二维码扫描得积分
  * @constructor
  */
-exports.Sales = function (_companyId, _orgId, _storeId, _cashierId, txnDateTime, cardId, receiptNo, salesTendered, callback) {
+exports.Sales = function (bid, _companyId, _orgId, _storeId, _cashierId, txnDateTime, cardId, receiptNo, salesTendered, callback) {
+    var _orgId = GetOrgIdByBid[bid];
     var xmlContent = {
             cmd: [
                 {_attr: {type: 'SALES'}},
@@ -657,7 +668,8 @@ exports.Sales = function (_companyId, _orgId, _storeId, _cashierId, txnDateTime,
  * 可兑换卡券列表
  * @constructor
  */
-exports.CouponList = function (callback) {
+exports.CouponList = function (bid, callback) {
+    var _orgId = GetOrgIdByBid[bid];
     var xmlContent = {
             cmd: [
                 {_attr: {type: 'GetRedeemableVoucherList'}},
@@ -665,7 +677,7 @@ exports.CouponList = function (callback) {
                 {
                     shared: [
                         {companyID: companyId},
-                        {orgID: orgId},
+                        {orgID: _orgId},
                         {storeID: storeId},
                         {cashierID: caShierId}
                     ]
@@ -701,7 +713,8 @@ exports.CouponList = function (callback) {
  * 兑换卡券
  * @constructor
  */
-exports.VoucherRedeem = function (cardNo, ruleId, code, num, callback) {
+exports.VoucherRedeem = function (bid, cardNo, ruleId, code, num, callback) {
+    var _orgId = GetOrgIdByBid[bid];
     var xmlContent = {
             cmd: [
                 {_attr: {type: 'VoucherRedeem'}},
@@ -709,7 +722,7 @@ exports.VoucherRedeem = function (cardNo, ruleId, code, num, callback) {
                 {
                     shared: [
                         {companyID: companyId},
-                        {orgID: orgId},
+                        {orgID: _orgId},
                         {storeID: storeId},
                         {cashierID: caShierId}
                     ]
@@ -739,7 +752,8 @@ exports.VoucherRedeem = function (cardNo, ruleId, code, num, callback) {
  * @param callback
  * @constructor
  */
-exports.GetGradList = function (memberId, callback) {
+exports.GetGradList = function (bid, memberId, callback) {
+    var _orgId = GetOrgIdByBid[bid];
     var xmlContent = {
             cmd: [
                 {_attr: {type: 'GetCardList'}},
@@ -747,7 +761,7 @@ exports.GetGradList = function (memberId, callback) {
                 {
                     shared: [
                         {companyID: companyId},
-                        {orgID: orgId},
+                        {orgID: _orgId},
                         {storeID: storeId},
                         {cashierID: caShierId}
                     ]
@@ -780,7 +794,8 @@ exports.GetGradList = function (memberId, callback) {
  * @param callback
  * @constructor
  */
-exports.CouponDetial = function (guid, callback) {
+exports.CouponDetial = function (bid, guid, callback) {
+    var _orgId = GetOrgIdByBid[bid];
     var xmlContent = {
             cmd: [
                 {_attr: {type: 'VoucherInfo'}},
@@ -788,7 +803,7 @@ exports.CouponDetial = function (guid, callback) {
                 {
                     shared: [
                         {companyID: companyId},
-                        {orgID: orgId},
+                        {orgID: _orgId},
                         {storeID: storeId},
                         {cashierID: caShierId}
                     ]
@@ -821,7 +836,8 @@ exports.CouponDetial = function (guid, callback) {
  * @param callback
  * @constructor
  */
-exports.UserCouponList = function (openId, cardNo, callback) {
+exports.UserCouponList = function (bid, openId, cardNo, callback) {
+    var _orgId = GetOrgIdByBid[bid];
     var xmlContent = {
             cmd: [
                 {_attr: {type: 'HistoryVoucherQuery'}},
@@ -829,7 +845,7 @@ exports.UserCouponList = function (openId, cardNo, callback) {
                 {
                     shared: [
                         {companyID: companyId},
-                        {orgID: orgId},
+                        {orgID: _orgId},
                         {storeID: storeId},
                         {cashierID: caShierId}
                     ]

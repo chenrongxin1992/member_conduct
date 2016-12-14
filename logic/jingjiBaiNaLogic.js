@@ -28,12 +28,12 @@ JJBN.prototype.Register = function (attribute, callback) {
         if (!verify.Phone(phone)) { //验证手机号的有效性
             return callback(error.ThrowError(error.ErrorCode.DateFormatError, 'Phone格式错误'));
         }
-        asq.GetCardByPhone(phone, function (err, result) {
+        asq.GetCardByPhone(bid, phone, function (err, result) {
             if (result) { //手机号已经注册其他会员卡
                 return callback(error.ThrowError(error.ErrorCode.PhoneHasEmploy));
             }
             //OpenId是否已绑定会员卡
-            asq.GetCardByOpenId(openId, function (err, result) {
+            asq.GetCardByOpenId(bid, openId, function (err, result) {
                 if (result) {
                     return callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
                 }
@@ -70,7 +70,8 @@ JJBN.prototype.CardBinding = function (attribute, callback) {
     var openId = attribute.openId,
         cardNo = attribute.cardNumber,
         name = attribute.name,
-        phone = attribute.phone;
+        phone = attribute.phone,
+        bid = attribute.bid;
     if (!openId) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'openId不能为空'));
     }
@@ -86,13 +87,13 @@ JJBN.prototype.CardBinding = function (attribute, callback) {
     if (!verify.Phone(phone)) { //验证手机号的有效性
         return callback(error.ThrowError(error.ErrorCode.DateFormatError, 'Phone格式错误'));
     }
-    asq.GetCardByOpenId(openId, function (err, result) {
+    asq.GetCardByOpenId(bid, openId, function (err, result) {
         if (result) {
             if (result.CardGrade != asq.DefautCardType) {
                 return callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
             }
         }
-        asq.GetCardByCardNo(cardNo, function (err, result) {
+        asq.GetCardByCardNo(bid, cardNo, function (err, result) {
             if (err) {
                 return callback(err);
             }
@@ -102,7 +103,7 @@ JJBN.prototype.CardBinding = function (attribute, callback) {
             // if (result.Name != name) {
             //     return callback(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡姓名错误'))
             // }
-            asq.BindCard(openId, cardNo, name, phone, function (err, result) {
+            asq.BindCard(bid, openId, cardNo, name, phone, function (err, result) {
                 if (err) {
                     return callback(err);
                 }
@@ -113,11 +114,12 @@ JJBN.prototype.CardBinding = function (attribute, callback) {
 };
 
 JJBN.prototype.GetCard = function (attribute, callback) {
-    var cardNo = attribute.cardNumber;
+    var cardNo = attribute.cardNumber,
+        bid = attribute.bid;
     if (!cardNo) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '卡号不能为空'));
     }
-    asq.GetCardByCardNo(cardNo, function (err, result) {
+    asq.GetCardByCardNo(bid, cardNo, function (err, result) {
         if (err) {
             return callback(err);
         }
@@ -126,7 +128,8 @@ JJBN.prototype.GetCard = function (attribute, callback) {
 };
 
 JJBN.prototype.GetCardByPhone = function (attribute, callback) {
-    var phone = attribute.phone;
+    var phone = attribute.phone,
+        bid = attribute.bid;
     if (!phone) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'phone不能为空'));
     }
@@ -134,7 +137,7 @@ JJBN.prototype.GetCardByPhone = function (attribute, callback) {
         callback(error.ThrowError(error.ErrorCode.DateFormatError, 'Phone格式错误'));
         return;
     }
-    asq.GetCardByPhone(phone, function (err, result) {
+    asq.GetCardByPhone(bid, phone, function (err, result) {
         if (err) {
             return callback(err);
         }
@@ -143,12 +146,12 @@ JJBN.prototype.GetCardByPhone = function (attribute, callback) {
 };
 
 JJBN.prototype.GetCardByOpenId = function (attribute, callback) {
-    var openId = attribute.openId;
-    console.log('openId:', openId);
+    var openId = attribute.openId,
+        bid = attribute.bid;
     if (!openId) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'openId不能为空'));
     }
-    asq.GetCardByOpenId(openId, function (err, result) {
+    asq.GetCardByOpenId(bid, openId, function (err, result) {
         console.log('err:', err, 'result:', result);
         if (err) {
             return callback(err);
@@ -158,11 +161,12 @@ JJBN.prototype.GetCardByOpenId = function (attribute, callback) {
 };
 
 JJBN.prototype.GetCardByMemberId = function (attribute, callback) {
-    var memberId = attribute.memberId;
+    var memberId = attribute.memberId,
+        bid = attribute.bid;
     if (!memberId) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'memberId不能为空'));
     }
-    asq.GetCardByMemberId(memberId, function (err, result) {
+    asq.GetCardByMemberId(bid, memberId, function (err, result) {
         console.log('err:', err, 'result:', result);
         if (err) {
             return callback(err);
@@ -178,19 +182,20 @@ JJBN.prototype.CardModify = function (attribute, callback) {
         gender = attribute.sex,
         birthday = attribute.birthday,
         email = attribute.email,
-        idNo = attribute.idNo;
+        idNo = attribute.idNo,
+        bid = attribute.bid;
     if (!openId) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'openId不能为空'));
     }
     if (!cardNo) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '会员卡号cardNumber不能为空'));
     }
-    asq.GetCardByOpenId(openId, function (err, result) {
+    asq.GetCardByOpenId(bid, openId, function (err, result) {
         if (err) {
             return callback(err);
         }
         var memberId = result.MemberId;
-        asq.CardModify(memberId, cardNo, openId, fullName, gender, birthday, idNo, email, function (err, result) {
+        asq.CardModify(bid, memberId, cardNo, openId, fullName, gender, birthday, idNo, email, function (err, result) {
             if (err) {
                 return callback(err);
             }
@@ -201,7 +206,8 @@ JJBN.prototype.CardModify = function (attribute, callback) {
 
 JJBN.prototype.IntegralRecord = function (attribute, callback) {
     var openId = attribute.openId,
-        pn = attribute.pn;
+        pn = attribute.pn,
+        bid = attribute.bid;
     if (!openId) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'openId不能为空'));
     }
@@ -211,11 +217,11 @@ JJBN.prototype.IntegralRecord = function (attribute, callback) {
     if (pn <= 0) {
         pn = 1;
     }
-    asq.GetCardByOpenId(openId, function (err, result) {
+    asq.GetCardByOpenId(bid, openId, function (err, result) {
         if (err) {
             return callback(err);
         }
-        asq.IntegralRecord(result.CardNumber, pn, function (err, result) {
+        asq.IntegralRecord(bid, result.CardNumber, pn, function (err, result) {
             if (err) {
                 return callback(err);
             }
@@ -225,7 +231,8 @@ JJBN.prototype.IntegralRecord = function (attribute, callback) {
 };
 
 JJBN.prototype.GradeList = function (attribute, callback) {
-    asq.CardGenderList(function (err, result) {
+    var bid = attribute.bid;
+    asq.CardGenderList(bid, function (err, result) {
         if (err) {
             return callback(err);
         }
@@ -235,25 +242,26 @@ JJBN.prototype.GradeList = function (attribute, callback) {
 
 JJBN.prototype.CardUnbind = function (attribute, callback) {
     var openId = attribute.openId,
-        cardNo = attribute.cardNumber;
+        cardNo = attribute.cardNumber,
+        bid = attribute.bid;
     if (!openId) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'openId不能为空'));
     }
     if (!cardNo) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '会员卡号cardNumber不能为空'));
     }
-    asq.GetCardByOpenId(openId, function (err, result) {
+    asq.GetCardByOpenId(bid, openId, function (err, result) {
         if (err) {
             return callback(err);
         }
         if (result.CardNumber !== cardNo) {
             return callback(error.ThrowError(error.ErrorCode.CardInfoError, '与该微信绑定的会员卡不相符'))
         }
-        asq.GetCardByCardNo(cardNo, function (err, result) {
+        asq.GetCardByCardNo(bid, cardNo, function (err, result) {
             if (err) {
                 return callback(err);
             }
-            asq.CardUnBind(openId, cardNo, function (err, result) {
+            asq.CardUnBind(bid, openId, cardNo, function (err, result) {
                 if (err) {
                     return callback(err);
                 }
@@ -272,9 +280,13 @@ JJBN.prototype.Sales = function (attribute, callback) {
         txnDateTime = attribute.txnDateTime,  //交易时间 YYYY-MM-dd HH:mm:ss:ffff
         openId = attribute.openId,  //微信OpenId
         receiptNo = attribute.receiptNo, //小票号
-        salesTendered = attribute.salesTendered; // 销售金额 decimal(18,2)
+        salesTendered = attribute.salesTendered, // 销售金额 decimal(18,2)
+        bid = attribute.bid;
     if (!companyId) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'companId不能为空'));
+    }
+    if (!openId) {
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'openId不能为空'));
     }
     if (!orgId) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'orgId不能为空'));
@@ -298,12 +310,12 @@ JJBN.prototype.Sales = function (attribute, callback) {
     if (!salesTendered) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'salesTendered不能为空'));
     }
-    asq.GetCardByOpenId(openId, function (err, result) {
+    asq.GetCardByOpenId(bid, openId, function (err, result) {
         if (err) {
             return callback(err);
         }
         var cardNo = result.CardNumber;
-        asq.Sales(companyId, orgId, storeId, cashierId, txnDateTime, cardNo, receiptNo, salesTendered, function (err, result) {
+        asq.Sales(bid, companyId, orgId, storeId, cashierId, txnDateTime, cardNo, receiptNo, salesTendered, function (err, result) {
             if (err) {
                 return callback(err);
             }
@@ -314,7 +326,8 @@ JJBN.prototype.Sales = function (attribute, callback) {
 
 //可兑换卡列表
 JJBN.prototype.CouponList = function (attribute, callback) {
-    asq.CouponList(function (err, result) {
+    var bid = attribute.bid;
+    asq.CouponList(bid, function (err, result) {
         if (err) {
             return callback(err);
         }
@@ -327,7 +340,8 @@ JJBN.prototype.VoucherRedeem = function (attribute, callback) {
     var openId = attribute.openId,
         ruleId = attribute.ruleId,
         code = attribute.code,
-        num = attribute.num;
+        num = attribute.num,
+        bid = attribute.bid;
     if (!openId) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'openId不能为空'));
     }
@@ -347,12 +361,12 @@ JJBN.prototype.VoucherRedeem = function (attribute, callback) {
     if (num <= 0) {
         return callback(error.ThrowError(error.ErrorCode.DateFormatError, 'num必须为正整数,且不小于1'));
     }
-    asq.GetCardByOpenId(openId, function (err, result) {
+    asq.GetCardByOpenId(bid, openId, function (err, result) {
         if (err) {
             return callback(err);
         }
         var cardNo = result.CardNumber;
-        asq.VoucherRedeem(cardNo, ruleId, code, num, function (err, result) {
+        asq.VoucherRedeem(bid, cardNo, ruleId, code, num, function (err, result) {
             if (err) {
                 return callback(err);
             }
@@ -363,16 +377,17 @@ JJBN.prototype.VoucherRedeem = function (attribute, callback) {
 
 //会员下会员卡列表
 JJBN.prototype.UserCardList = function (attribute, callback) {
-    var openId = attribute.openId;
+    var openId = attribute.openId,
+        bid = attribute.bid;
     if (!openId) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'openId不能为空'));
     }
-    asq.GetCardByOpenId(openId, function (err, result) {
+    asq.GetCardByOpenId(bid, openId, function (err, result) {
         if (err) {
             return callback(err);
         }
         var memberId = result.MemberId;
-        asq.GetGradList(memberId, function (err, result) {
+        asq.GetGradList(bid, memberId, function (err, result) {
             if (err) {
                 return callback(err);
             }
@@ -383,15 +398,16 @@ JJBN.prototype.UserCardList = function (attribute, callback) {
 
 //用户的卡券列表
 JJBN.prototype.UserCouponList = function (attribute, callback) {
-    var openId = attribute.openId;
+    var openId = attribute.openId,
+        bid = attribute.bid;
     if (!openId) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'openId不能为空'));
     }
-    asq.GetCardByOpenId(openId, function (err, result) {
+    asq.GetCardByOpenId(bid, openId, function (err, result) {
         if (err) {
             return callback(err);
         }
-        asq.UserCouponList(openId, result.CardNumber, function (err, result) {
+        asq.UserCouponList(bid, openId, result.CardNumber, function (err, result) {
             if (err) {
                 return callback(err);
             }
