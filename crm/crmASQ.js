@@ -17,7 +17,7 @@ var companyId = 'C001',
     appCode = 'WeChat',
     crmName = '安胜奇';
 
-var url = 'http://183.62.205.27:8002/WebPOS.asmx?wsdl',//'http://183.62.205.27:8002/WebPOS.asmx?wsdl', //'http://asiatic.ticp.net:7009/WebPOS.asmx?wsdl', //'http://183.62.205.28:8002/WebPOS.asmx?wsdl',//正式环境  //
+var url = 'http://183.62.205.28:8002/WebPOS.asmx?wsdl',//正式环境  //'http://172.16.200.14:8002/WebPOS.asmx?wsdl',//'http://183.62.205.27:8002/WebPOS.asmx?wsdl', //'http://asiatic.ticp.net:7009/WebPOS.asmx?wsdl', //
     defaultOpenCardTypeCode = 'WC', //默认会员开卡等级
     defaultPassword = '123456',//默认开卡密码
     soapUserName = 'pos',
@@ -882,7 +882,7 @@ function SendCommod(strXml, callback) {
         },
         strXmlHeaders = xml(xmlHeaders);
     strXml = xml(xmlContent);
-    //console.log('strXml:', strXml);
+    console.log('strXml:', strXml);
     soap.createClient(url, function (err, client) {
         if (err) {
             return callback(err);
@@ -893,15 +893,16 @@ function SendCommod(strXml, callback) {
                 console.log('SendCommod Error  strXml:', strXml);
                 return callback(err, result.CmdResult);
             }
-            //console.log('XML:', '\n', result);
-            //console.log('XML:', '\n', result.CmdResult);
+            console.log('XML:', '\n', result);
+            console.log('XML:', '\n', result.CmdResult);
             xmlParser(result.CmdResult, function (err, result) {
-                //console.log('err:', err, '\n', 'xmlParse:', result);
+                console.log('err:', err, '\n', 'xmlParse:', JSON.stringify(result));
                 if (err) {
                     return callback(error.ThrowError(error.ErrorCode.Error, err.message));
+                    parse
                 }
                 result = result.return;
-                //console.log('result:', result);
+                console.log('result:', result);
                 var isError = result.$ ? result.$.hasError : result.hasError[0];
                 if (isError != 'false') {
                     var errCode = result.error[0].$.code,

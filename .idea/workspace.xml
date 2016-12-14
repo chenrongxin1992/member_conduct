@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00a831d3-6f98-489a-b9df-c9ed98e0405b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crm/crmASQ.js" afterPath="$PROJECT_DIR$/crm/crmASQ.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prepay/pingAnFu.js" afterPath="$PROJECT_DIR$/prepay/pingAnFu.js" />
     </list>
@@ -35,17 +34,18 @@
       <file leaf-file-name="crmASQ.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/crm/crmASQ.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="881" column="10" selection-start-line="881" selection-start-column="10" selection-end-line="881" selection-end-column="10" />
+            <state relative-caret-position="319">
+              <caret line="515" column="3" selection-start-line="515" selection-start-column="3" selection-end-line="515" selection-end-column="3" />
               <folding>
                 <element signature="e#900#995#0" expanded="false" />
                 <element signature="e#1017#1110#0" expanded="false" />
                 <element signature="e#1149#1329#0" expanded="false" />
-                <element signature="e#1432#2839#0" expanded="false" />
+                <element signature="e#1563#2395#0" expanded="false" />
                 <element signature="e#3027#4259#0" expanded="false" />
                 <element signature="e#3050#3823#0" expanded="false" />
                 <element signature="e#4407#5314#0" expanded="false" />
                 <element signature="e#5422#6562#0" expanded="false" />
+                <element signature="e#6696#7933#0" expanded="false" />
                 <element signature="e#8007#9148#0" expanded="false" />
                 <element signature="e#8030#8809#0" expanded="false" />
                 <element signature="e#9332#10477#0" expanded="false" />
@@ -68,9 +68,14 @@
       <file leaf-file-name="pingAnFu.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/prepay/pingAnFu.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="640">
-              <caret line="32" column="20" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
-              <folding />
+            <state relative-caret-position="267">
+              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+              <folding>
+                <element signature="e#608#1498#0" expanded="false" />
+                <element signature="n#!!block;n#signData#0" expanded="false" />
+                <element signature="n#!!block;n#chunk_split_private_key#0" expanded="false" />
+                <element signature="n#!!block;n#signStr#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -98,17 +103,24 @@
       <file leaf-file-name="jingjiBaiNaLogic.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/logic/jingjiBaiNaLogic.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="354" column="20" selection-start-line="354" selection-start-column="20" selection-end-line="354" selection-end-column="20" />
+            <state relative-caret-position="245">
+              <caret line="273" column="45" selection-start-line="273" selection-start-column="45" selection-end-line="273" selection-end-column="45" />
               <folding>
                 <element signature="e#427#2266#0" expanded="false" />
+                <element signature="e#1650#2256#0" expanded="false" />
+                <element signature="e#2329#4013#0" expanded="false" />
                 <element signature="e#4072#4400#0" expanded="false" />
                 <element signature="e#4466#4924#0" expanded="false" />
                 <element signature="e#4991#5408#0" expanded="false" />
                 <element signature="e#5477#5870#0" expanded="false" />
                 <element signature="e#5932#6837#0" expanded="false" />
                 <element signature="e#6903#7571#0" expanded="false" />
+                <element signature="e#7632#7802#0" expanded="false" />
                 <element signature="e#7864#8822#0" expanded="false" />
+                <element signature="e#10900#11066#0" expanded="false" />
+                <element signature="e#11138#12394#0" expanded="false" />
+                <element signature="e#12469#12987#0" expanded="false" />
+                <element signature="e#13063#13561#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -127,8 +139,8 @@
       <file leaf-file-name="member.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/member.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="167" column="23" selection-start-line="167" selection-start-column="10" selection-end-line="167" selection-end-column="23" />
+            <state relative-caret-position="280">
+              <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -192,10 +204,10 @@
         <option value="$PROJECT_DIR$/logic/memberLogic.js" />
         <option value="$PROJECT_DIR$/crm/Fuji.js" />
         <option value="$PROJECT_DIR$/routes/member.js" />
-        <option value="$PROJECT_DIR$/logic/jingjiBaiNaLogic.js" />
         <option value="$PROJECT_DIR$/entity/cardBinding.server.module.js" />
-        <option value="$PROJECT_DIR$/prepay/pingAnFu.js" />
+        <option value="$PROJECT_DIR$/logic/jingjiBaiNaLogic.js" />
         <option value="$PROJECT_DIR$/crm/crmASQ.js" />
+        <option value="$PROJECT_DIR$/prepay/pingAnFu.js" />
       </list>
     </option>
   </component>
@@ -846,7 +858,7 @@
       <workItem from="1481278790091" duration="323000" />
       <workItem from="1481525470849" duration="6003000" />
       <workItem from="1481596688847" duration="18455000" />
-      <workItem from="1481681665054" duration="2125000" />
+      <workItem from="1481681665054" duration="11407000" />
     </task>
     <task id="LOCAL-00001" summary="测试 push">
       <created>1464938639203</created>
@@ -1076,7 +1088,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1006995000" />
+    <option name="totallyTimeSpent" value="1016277000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1096,7 +1108,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20564516" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39703903" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33243608" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32015306" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -1179,7 +1191,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="108" />
+      <option name="time" value="109" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1512,50 +1524,63 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/member.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="167" column="23" selection-start-line="167" selection-start-column="10" selection-end-line="167" selection-end-column="23" />
+        <state relative-caret-position="280">
+          <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/logic/jingjiBaiNaLogic.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="354" column="20" selection-start-line="354" selection-start-column="20" selection-end-line="354" selection-end-column="20" />
+        <state relative-caret-position="245">
+          <caret line="273" column="45" selection-start-line="273" selection-start-column="45" selection-end-line="273" selection-end-column="45" />
           <folding>
             <element signature="e#427#2266#0" expanded="false" />
+            <element signature="e#1650#2256#0" expanded="false" />
+            <element signature="e#2329#4013#0" expanded="false" />
             <element signature="e#4072#4400#0" expanded="false" />
             <element signature="e#4466#4924#0" expanded="false" />
             <element signature="e#4991#5408#0" expanded="false" />
             <element signature="e#5477#5870#0" expanded="false" />
             <element signature="e#5932#6837#0" expanded="false" />
             <element signature="e#6903#7571#0" expanded="false" />
+            <element signature="e#7632#7802#0" expanded="false" />
             <element signature="e#7864#8822#0" expanded="false" />
+            <element signature="e#10900#11066#0" expanded="false" />
+            <element signature="e#11138#12394#0" expanded="false" />
+            <element signature="e#12469#12987#0" expanded="false" />
+            <element signature="e#13063#13561#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/prepay/pingAnFu.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="32" column="20" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
-          <folding />
+        <state relative-caret-position="267">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding>
+            <element signature="e#608#1498#0" expanded="false" />
+            <element signature="n#!!block;n#signData#0" expanded="false" />
+            <element signature="n#!!block;n#chunk_split_private_key#0" expanded="false" />
+            <element signature="n#!!block;n#signStr#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/crm/crmASQ.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="881" column="10" selection-start-line="881" selection-start-column="10" selection-end-line="881" selection-end-column="10" />
+        <state relative-caret-position="319">
+          <caret line="515" column="3" selection-start-line="515" selection-start-column="3" selection-end-line="515" selection-end-column="3" />
           <folding>
             <element signature="e#900#995#0" expanded="false" />
             <element signature="e#1017#1110#0" expanded="false" />
             <element signature="e#1149#1329#0" expanded="false" />
-            <element signature="e#1432#2839#0" expanded="false" />
+            <element signature="e#1563#2395#0" expanded="false" />
             <element signature="e#3027#4259#0" expanded="false" />
             <element signature="e#3050#3823#0" expanded="false" />
             <element signature="e#4407#5314#0" expanded="false" />
             <element signature="e#5422#6562#0" expanded="false" />
+            <element signature="e#6696#7933#0" expanded="false" />
             <element signature="e#8007#9148#0" expanded="false" />
             <element signature="e#8030#8809#0" expanded="false" />
             <element signature="e#9332#10477#0" expanded="false" />
