@@ -35,18 +35,30 @@
           <file leaf-file-name="crmASQ.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/crm/crmASQ.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="296">
-                  <caret line="418" column="38" selection-start-line="418" selection-start-column="38" selection-end-line="418" selection-end-column="38" />
+                <state relative-caret-position="194">
+                  <caret line="628" column="44" selection-start-line="628" selection-start-column="44" selection-end-line="628" selection-end-column="44" />
                   <folding>
-                    <element signature="e#900#995#0" expanded="false" />
-                    <element signature="e#1017#1110#0" expanded="false" />
-                    <element signature="e#1149#1329#0" expanded="false" />
-                    <element signature="e#1563#2395#0" expanded="false" />
-                    <element signature="e#11756#12289#0" expanded="false" />
-                    <element signature="e#15381#16264#0" expanded="false" />
-                    <element signature="e#22099#23101#0" expanded="false" />
-                    <element signature="e#22159#22598#0" expanded="false" />
-                    <element signature="e#23318#23907#0" expanded="false" />
+                    <element signature="e#961#1056#0" expanded="false" />
+                    <element signature="e#1078#1171#0" expanded="false" />
+                    <element signature="e#1210#1390#0" expanded="false" />
+                    <element signature="e#1493#2900#0" expanded="false" />
+                    <element signature="e#1624#2456#0" expanded="false" />
+                    <element signature="e#3093#4363#0" expanded="false" />
+                    <element signature="e#4516#5461#0" expanded="false" />
+                    <element signature="e#5574#6752#0" expanded="false" />
+                    <element signature="e#6891#8166#0" expanded="false" />
+                    <element signature="e#6951#7752#0" expanded="false" />
+                    <element signature="e#8245#9424#0" expanded="false" />
+                    <element signature="e#9613#10796#0" expanded="false" />
+                    <element signature="n#!!block;n#GetIntegral#0" expanded="false" />
+                    <element signature="e#11817#12350#0" expanded="false" />
+                    <element signature="e#15442#16325#0" expanded="false" />
+                    <element signature="e#18360#19682#0" expanded="false" />
+                    <element signature="e#19793#20822#0" expanded="false" />
+                    <element signature="e#20954#21999#0" expanded="false" />
+                    <element signature="e#22124#23126#0" expanded="false" />
+                    <element signature="e#22184#22623#0" expanded="false" />
+                    <element signature="e#23343#23932#0" expanded="false" />
                     <element signature="n#!!block;n#SendCommod#0" expanded="false" />
                   </folding>
                 </state>
@@ -797,7 +809,7 @@
       <workItem from="1481278790091" duration="323000" />
       <workItem from="1481525470849" duration="6003000" />
       <workItem from="1481596688847" duration="18455000" />
-      <workItem from="1481681665054" duration="14639000" />
+      <workItem from="1481681665054" duration="16594000" />
     </task>
     <task id="LOCAL-00001" summary="测试 push">
       <created>1464938639203</created>
@@ -1027,7 +1039,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1019509000" />
+    <option name="totallyTimeSpent" value="1021464000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1508,18 +1520,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/crm/crmASQ.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="418" column="38" selection-start-line="418" selection-start-column="38" selection-end-line="418" selection-end-column="38" />
+        <state relative-caret-position="194">
+          <caret line="628" column="44" selection-start-line="628" selection-start-column="44" selection-end-line="628" selection-end-column="44" />
           <folding>
-            <element signature="e#900#995#0" expanded="false" />
-            <element signature="e#1017#1110#0" expanded="false" />
-            <element signature="e#1149#1329#0" expanded="false" />
-            <element signature="e#1563#2395#0" expanded="false" />
-            <element signature="e#11756#12289#0" expanded="false" />
-            <element signature="e#15381#16264#0" expanded="false" />
-            <element signature="e#22099#23101#0" expanded="false" />
-            <element signature="e#22159#22598#0" expanded="false" />
-            <element signature="e#23318#23907#0" expanded="false" />
+            <element signature="e#961#1056#0" expanded="false" />
+            <element signature="e#1078#1171#0" expanded="false" />
+            <element signature="e#1210#1390#0" expanded="false" />
+            <element signature="e#1493#2900#0" expanded="false" />
+            <element signature="e#1624#2456#0" expanded="false" />
+            <element signature="e#3093#4363#0" expanded="false" />
+            <element signature="e#4516#5461#0" expanded="false" />
+            <element signature="e#5574#6752#0" expanded="false" />
+            <element signature="e#6891#8166#0" expanded="false" />
+            <element signature="e#6951#7752#0" expanded="false" />
+            <element signature="e#8245#9424#0" expanded="false" />
+            <element signature="e#9613#10796#0" expanded="false" />
+            <element signature="n#!!block;n#GetIntegral#0" expanded="false" />
+            <element signature="e#11817#12350#0" expanded="false" />
+            <element signature="e#15442#16325#0" expanded="false" />
+            <element signature="e#18360#19682#0" expanded="false" />
+            <element signature="e#19793#20822#0" expanded="false" />
+            <element signature="e#20954#21999#0" expanded="false" />
+            <element signature="e#22124#23126#0" expanded="false" />
+            <element signature="e#22184#22623#0" expanded="false" />
+            <element signature="e#23343#23932#0" expanded="false" />
             <element signature="n#!!block;n#SendCommod#0" expanded="false" />
           </folding>
         </state>
