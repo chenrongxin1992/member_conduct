@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="00a831d3-6f98-489a-b9df-c9ed98e0405b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crm/Fuji.js" afterPath="$PROJECT_DIR$/crm/Fuji.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crm/crmASQ.js" afterPath="$PROJECT_DIR$/crm/crmASQ.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logic/jingjiBaiNaLogic.js" afterPath="$PROJECT_DIR$/logic/jingjiBaiNaLogic.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logic/memberLogic.js" afterPath="$PROJECT_DIR$/logic/memberLogic.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/member.js" afterPath="$PROJECT_DIR$/routes/member.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prepay/pingAnFu.js" afterPath="$PROJECT_DIR$/prepay/pingAnFu.js" />
     </list>
     <ignored path="MemberConduct.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,32 +35,52 @@
       <file leaf-file-name="crmASQ.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/crm/crmASQ.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="852" column="32" selection-start-line="852" selection-start-column="32" selection-end-line="852" selection-end-column="32" />
+            <state relative-caret-position="99">
+              <caret line="881" column="10" selection-start-line="881" selection-start-column="10" selection-end-line="881" selection-end-column="10" />
               <folding>
-                <element signature="e#853#948#0" expanded="false" />
-                <element signature="e#970#1063#0" expanded="false" />
-                <element signature="e#1102#1282#0" expanded="false" />
-                <element signature="e#1385#2792#0" expanded="false" />
-                <element signature="e#2980#4212#0" expanded="false" />
-                <element signature="e#3003#3776#0" expanded="false" />
-                <element signature="e#4360#5267#0" expanded="false" />
-                <element signature="e#5375#6515#0" expanded="false" />
-                <element signature="e#7960#9101#0" expanded="false" />
-                <element signature="e#7983#8762#0" expanded="false" />
-                <element signature="e#9285#10430#0" expanded="false" />
-                <element signature="e#9308#10091#0" expanded="false" />
+                <element signature="e#900#995#0" expanded="false" />
+                <element signature="e#1017#1110#0" expanded="false" />
+                <element signature="e#1149#1329#0" expanded="false" />
+                <element signature="e#1432#2839#0" expanded="false" />
+                <element signature="e#3027#4259#0" expanded="false" />
+                <element signature="e#3050#3823#0" expanded="false" />
+                <element signature="e#4407#5314#0" expanded="false" />
+                <element signature="e#5422#6562#0" expanded="false" />
+                <element signature="e#8007#9148#0" expanded="false" />
+                <element signature="e#8030#8809#0" expanded="false" />
+                <element signature="e#9332#10477#0" expanded="false" />
+                <element signature="e#9355#10138#0" expanded="false" />
                 <element signature="n#!!block;n#GetIntegral#0" expanded="false" />
-                <element signature="e#11451#11984#0" expanded="false" />
-                <element signature="e#12127#13603#0" expanded="false" />
-                <element signature="e#13705#14642#0" expanded="false" />
-                <element signature="e#14925#16224#0" expanded="false" />
-                <element signature="e#14948#15830#0" expanded="false" />
-                <element signature="e#16396#17775#0" expanded="false" />
-                <element signature="e#21489#22453#0" expanded="false" />
-                <element signature="e#21512#21950#0" expanded="false" />
-                <element signature="e#22628#23216#0" expanded="false" />
+                <element signature="e#11498#12031#0" expanded="false" />
+                <element signature="e#12174#13650#0" expanded="false" />
+                <element signature="e#13752#14689#0" expanded="false" />
+                <element signature="e#14972#16271#0" expanded="false" />
+                <element signature="e#14995#15877#0" expanded="false" />
+                <element signature="e#16443#17822#0" expanded="false" />
+                <element signature="e#21536#22500#0" expanded="false" />
+                <element signature="e#21559#21997#0" expanded="false" />
+                <element signature="e#22675#23263#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pingAnFu.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/prepay/pingAnFu.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="640">
+              <caret line="32" column="20" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cardBinding.server.module.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/entity/cardBinding.server.module.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-126">
+              <caret line="31" column="18" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -81,8 +98,8 @@
       <file leaf-file-name="jingjiBaiNaLogic.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/logic/jingjiBaiNaLogic.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="354" column="21" selection-start-line="354" selection-start-column="21" selection-end-line="354" selection-end-column="21" />
+            <state relative-caret-position="160">
+              <caret line="354" column="20" selection-start-line="354" selection-start-column="20" selection-end-line="354" selection-end-column="20" />
               <folding>
                 <element signature="e#427#2266#0" expanded="false" />
                 <element signature="e#4072#4400#0" expanded="false" />
@@ -100,7 +117,7 @@
       <file leaf-file-name="memberLogic.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/logic/memberLogic.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
+            <state relative-caret-position="201">
               <caret line="124" column="26" selection-start-line="124" selection-start-column="26" selection-end-line="124" selection-end-column="26" />
               <folding />
             </state>
@@ -110,8 +127,8 @@
       <file leaf-file-name="member.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/member.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="181" column="41" selection-start-line="181" selection-start-column="41" selection-end-line="181" selection-end-column="41" />
+            <state relative-caret-position="340">
+              <caret line="167" column="23" selection-start-line="167" selection-start-column="10" selection-end-line="167" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -170,14 +187,14 @@
         <option value="$PROJECT_DIR$/entity/accessToken.server.module.js" />
         <option value="$PROJECT_DIR$/entity/accessTokenInfo.server.module.js" />
         <option value="$PROJECT_DIR$/config/mongoose.js" />
-        <option value="$PROJECT_DIR$/entity/cardBinding.server.module.js" />
         <option value="$PROJECT_DIR$/logic/dgwkLogic.js" />
         <option value="$PROJECT_DIR$/parking/laoXiMen.js" />
-        <option value="$PROJECT_DIR$/prepay/pingAnFu.js" />
         <option value="$PROJECT_DIR$/logic/memberLogic.js" />
         <option value="$PROJECT_DIR$/crm/Fuji.js" />
         <option value="$PROJECT_DIR$/routes/member.js" />
         <option value="$PROJECT_DIR$/logic/jingjiBaiNaLogic.js" />
+        <option value="$PROJECT_DIR$/entity/cardBinding.server.module.js" />
+        <option value="$PROJECT_DIR$/prepay/pingAnFu.js" />
         <option value="$PROJECT_DIR$/crm/crmASQ.js" />
       </list>
     </option>
@@ -285,6 +302,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="prepay" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="member_conduct" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="member_conduct" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="logic" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -300,6 +331,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Exception" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="member_conduct" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="member_conduct" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entity" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -800,7 +845,8 @@
       <workItem from="1481247338433" duration="2939000" />
       <workItem from="1481278790091" duration="323000" />
       <workItem from="1481525470849" duration="6003000" />
-      <workItem from="1481596688847" duration="18386000" />
+      <workItem from="1481596688847" duration="18455000" />
+      <workItem from="1481681665054" duration="2125000" />
     </task>
     <task id="LOCAL-00001" summary="测试 push">
       <created>1464938639203</created>
@@ -1030,7 +1076,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1004801000" />
+    <option name="totallyTimeSpent" value="1006995000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1050,7 +1096,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20564516" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39434725" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39703903" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32015306" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -1337,13 +1383,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/prepay/pingAnFu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1820">
-          <caret line="91" column="14" selection-start-line="91" selection-start-column="14" selection-end-line="91" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/parking/zhongzhou.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1391,13 +1430,6 @@
         <state relative-caret-position="340">
           <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/entity/cardBinding.server.module.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="22" column="18" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -1452,14 +1484,44 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-219">
           <caret line="7" column="3" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/xml2js/lib/xml2js.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="523" column="2" selection-start-line="523" selection-start-column="2" selection-end-line="523" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/entity/cardBinding.server.module.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-126">
+          <caret line="31" column="18" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logic/memberLogic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="124" column="26" selection-start-line="124" selection-start-column="26" selection-end-line="124" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/member.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="167" column="23" selection-start-line="167" selection-start-column="10" selection-end-line="167" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/logic/jingjiBaiNaLogic.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="354" column="21" selection-start-line="354" selection-start-column="21" selection-end-line="354" selection-end-column="21" />
+        <state relative-caret-position="160">
+          <caret line="354" column="20" selection-start-line="354" selection-start-column="20" selection-end-line="354" selection-end-column="20" />
           <folding>
             <element signature="e#427#2266#0" expanded="false" />
             <element signature="e#4072#4400#0" expanded="false" />
@@ -1473,57 +1535,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/xml2js/lib/xml2js.js">
+    <entry file="file://$PROJECT_DIR$/prepay/pingAnFu.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="523" column="2" selection-start-line="523" selection-start-column="2" selection-end-line="523" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logic/memberLogic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="124" column="26" selection-start-line="124" selection-start-column="26" selection-end-line="124" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/member.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="181" column="41" selection-start-line="181" selection-start-column="41" selection-end-line="181" selection-end-column="41" />
+        <state relative-caret-position="640">
+          <caret line="32" column="20" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/crm/crmASQ.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="852" column="32" selection-start-line="852" selection-start-column="32" selection-end-line="852" selection-end-column="32" />
+        <state relative-caret-position="99">
+          <caret line="881" column="10" selection-start-line="881" selection-start-column="10" selection-end-line="881" selection-end-column="10" />
           <folding>
-            <element signature="e#853#948#0" expanded="false" />
-            <element signature="e#970#1063#0" expanded="false" />
-            <element signature="e#1102#1282#0" expanded="false" />
-            <element signature="e#1385#2792#0" expanded="false" />
-            <element signature="e#2980#4212#0" expanded="false" />
-            <element signature="e#3003#3776#0" expanded="false" />
-            <element signature="e#4360#5267#0" expanded="false" />
-            <element signature="e#5375#6515#0" expanded="false" />
-            <element signature="e#7960#9101#0" expanded="false" />
-            <element signature="e#7983#8762#0" expanded="false" />
-            <element signature="e#9285#10430#0" expanded="false" />
-            <element signature="e#9308#10091#0" expanded="false" />
+            <element signature="e#900#995#0" expanded="false" />
+            <element signature="e#1017#1110#0" expanded="false" />
+            <element signature="e#1149#1329#0" expanded="false" />
+            <element signature="e#1432#2839#0" expanded="false" />
+            <element signature="e#3027#4259#0" expanded="false" />
+            <element signature="e#3050#3823#0" expanded="false" />
+            <element signature="e#4407#5314#0" expanded="false" />
+            <element signature="e#5422#6562#0" expanded="false" />
+            <element signature="e#8007#9148#0" expanded="false" />
+            <element signature="e#8030#8809#0" expanded="false" />
+            <element signature="e#9332#10477#0" expanded="false" />
+            <element signature="e#9355#10138#0" expanded="false" />
             <element signature="n#!!block;n#GetIntegral#0" expanded="false" />
-            <element signature="e#11451#11984#0" expanded="false" />
-            <element signature="e#12127#13603#0" expanded="false" />
-            <element signature="e#13705#14642#0" expanded="false" />
-            <element signature="e#14925#16224#0" expanded="false" />
-            <element signature="e#14948#15830#0" expanded="false" />
-            <element signature="e#16396#17775#0" expanded="false" />
-            <element signature="e#21489#22453#0" expanded="false" />
-            <element signature="e#21512#21950#0" expanded="false" />
-            <element signature="e#22628#23216#0" expanded="false" />
+            <element signature="e#11498#12031#0" expanded="false" />
+            <element signature="e#12174#13650#0" expanded="false" />
+            <element signature="e#13752#14689#0" expanded="false" />
+            <element signature="e#14972#16271#0" expanded="false" />
+            <element signature="e#14995#15877#0" expanded="false" />
+            <element signature="e#16443#17822#0" expanded="false" />
+            <element signature="e#21536#22500#0" expanded="false" />
+            <element signature="e#21559#21997#0" expanded="false" />
+            <element signature="e#22675#23263#0" expanded="false" />
           </folding>
         </state>
       </provider>

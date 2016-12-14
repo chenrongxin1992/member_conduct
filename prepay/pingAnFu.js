@@ -22,28 +22,13 @@ var urlPath = 'https://test5-oauth.stg.1qianbao.com:29443/map/oauth';
  * @constructor
  */
 exports.GetAccessor_Token = function (callback) {
-    // var post_data = {
-    //         serviceCode: 'exchange_token',
-    //         grantType: 'refresh_token',
-    //         refreshToken: refreshToken,
-    //         signData: ''
-    //     },
-    // options = {
-    //     host: 'test5-oauth.stg.1qianbao.com',
-    //     port: 29443,
-    //     path: '/map/oauth',
-    //     method: 'POST',
-    //     rejectUnauthorized: false,
-    //     requestCert: false,
-    //     headers: {'content-type': 'application/x-www-form-urlencoded'}
-    // },
     var timeStamp = moment().format('YYYYMMDDHHmmss'),
         sign_data = {
             state: timeStamp,
             redirect_url: 'https://oauth.pinganfu.com',
             scope: '',
             app_id: '000000',
-            merchant_no: '600000000221',//'600000001001',//'600000000403',//
+            merchant_no: '600000001001',//'600000001001',//'600000000403',//
             timestamp: timeStamp,
             mid: '',
             uid: '',
@@ -59,48 +44,10 @@ exports.GetAccessor_Token = function (callback) {
     var _signData = signStr(sign_data);
     console.log('post_data:', _signData);
     return callback(null, _signData);
-    // var content = JSON.stringify(post_data);
-    // console.log('content:', content);
-    // console.log('options:', options);
-
-    // var req = https.request(options, function (res) {
-    //     console.log('状态码：', res.statusCode);
-    //     console.log('响应头：', JSON.stringify(res.headers));
-    //     //var bufferHelper = new BufferHelper();
-    //     var result = '';
-    //     res.on('data', function (chunk) {
-    //         result += chunk;
-    //         //bufferHelper.concat(chunk);
-    //     });
-    //     res.on('end', function () {
-    //         try {
-    //             //var result = bufferHelper.toBuffer().toString();
-    //             console.log('result buffer:', result);
-    //             result = JSON.parse(result);
-    //             if (typeof result == typeof '') {
-    //                 result = JSON.parse(result);
-    //             }
-    //             console.log('result:', result);
-    //             console.log('rCode:', result.rCode);
-    //             if (result && result.rCode == '1000') {
-    //                 return callback(null, result.accessToken);
-    //             }
-    //             return callback(error.ThrowError(error.ErrorCode.Error, '[' + result.rCode + ']' + result.rMemo));
-    //         } catch (e) {
-    //             return callback(error.ThrowError(error.ErrorCode.Error, e.message));
-    //         }
-    //     });
-    // });
-    // req.on('error', function (e) {
-    //     console.log('Error:', e, ' \n', e.message);
-    //     return callback(error.ThrowError(error.ErrorCode.Error, e.message));
-    // });
-    // req.write(content);
-    // req.end();
 };
 
 function signData(stringA) {
-    var privateKey = 'MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAMmLa22E5gHC5YudZIz4FuCcPl3AQB6WYE7+aOJOifD+uxmHVQHRYZiTxUmH7zAfBHpalrSprt97UXKgx3uU2lPyF/Axpy6V2nFkHlbinaisGb1sphM/KJHQTPQtt9i2iUKqgsxBoEpI62qDQI+DS+6memu1xWHMd1g81OYZdwWTAgMBAAECgYAlQcurJD0sqC2s4Hyc/qOkA94XkJmJzfyhva//3crsLPrDXlwdiOpEvVRkImfZ+nHmeGaRoSh9kZtd2FDoDH1LYUgOQKB17AF9XkoPH7PH99ebsbL25pTqqpU3I8FZDJTvrafVluPBT0cQhf9QY+0F9bNQJFmH4zO7lCIDlhu0wQJBAO7o/8yYLyyk1frgk7gpQbPu14HtSELM/435bY0992CwpsXEwknWczowYu9XoSyBTRwRYR6MjCqP1pA3sH4kkDMCQQDX9iucLIGA7j2ID+ZVJBdFmZHvvLB/Ty70a14JAABw/+K7kZMSEWKFNAdoTJ46G7ZhqhBzeb5PRQlGDbysItUhAkA8gbo3QNvBvMWM0k/XNmuzfGwMNeI1OOIIPQGn4efDDzpNoDVsqelo9VQ5NcJWGTFESIqGSCY/qUo4IEKM0AnNAkEAoDStC1D0zRlvKgVpgBWi8e3HlgnrALZUBdu0SYbnzOv2XeDTMl8VL+115UiZRFAUjwTi6VcR96omBALiyOuaIQJBAKL8iS6Tr5aaG4wGRZC/7U7w4c64coqGXLQp2ISvOdxG/bCJgBuMPpjCEkhnk2qhq3iJdN+kdvdPF4Tk2X3jnWU=';
+    var privateKey = 'MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBANdpHC3ZhXojLSCR3k1IMTlueFKu5bmdgikOawRy4C4uTE3pgjPRW3xR6iYxqY8VNdYP4YuW7c1haFvIWUQYNTgEe+uRoXDYoIckKKd2n7+XPtkxHgELMrZN16lIN0UCF8AViU1DJ9GZmqF7u8yLkxgbdjCFHj7AJgqUPoBFaGE7AgMBAAECgYEAppt8mRXSACqu368S0pFQyUvhMopl0g+6OYkWSsWTEQTsLaK6+tsluF0fDlWBANL15dA4sZ+V5DE/5yVprZpPpc3CkUH83J7oKkUinOioZ0wGl17TAWle28cE9Gm48lVWF8mihj1lfeVHT3LqqxL1BuOnxJI0WFSOPpO4/fKAQZkCQQDtRpy600zP9bB2KIdx52ssKee5NO8CFeYouGcy2/O7hi2yFbyBunLQgt3PD3K5YP3nIa0SpmlZicbmTaTBMmFPAkEA6GjIF2oas64hbJaWJq60M71ysOcA7tqoNP8zdtFPUI5iZ+yswBhkAkCVRnj/ll47y9gSAUyN0R7ctPfYB3hOVQJBAORIVJBWrQdDnTQBSFbpTK5f3ubMq8s44Ih66ib/gV8A+EPnL8csaDx+ PAN0HG+Ihp/yQX65BpCzwt5fA00xOHcCQCAqEDcdWiCv4rRSiulDmHDosSzGa5yi6lCbWRYClcWCTyAu4yGavoyJP5+HM2guFnx5pNRFMgNVEBqDioROJBkCQE6EuT577CTF/VnZOvSEVh356UHGFeS7q4mNA6S7QcLJrLQz17t6RQ5SBtBL/8oY1O1vH4E7i9vKQSFkpn77dDQ=';
     privateKey = chunk_split_private_key(privateKey, 64, '\n');
     var signer = crypto.createSign('RSA-SHA1');
     signer.update(new Buffer(stringA));
