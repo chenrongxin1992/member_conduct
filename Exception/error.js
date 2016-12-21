@@ -26,7 +26,7 @@ const errorCode = {
 };
 exports.ThrowError = function (code, errMsg) {
     code = code ? code : errorCode.Error;
-    var str = {ErrCode: code.ErrCode, ErrMsg: code.ErrMsg};
+    var str = {ErrCode: code.ErrCode || code, ErrMsg: code.ErrMsg};
     if (errMsg) {
         str.ErrMsg = errMsg;
     }
