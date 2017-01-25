@@ -3,7 +3,8 @@ var zhongzhou = require('./zhongZhouLogic'),
     ganZhouWxc = require('./ganZhouWxcLogic'),
     laoXiMen = require('./laoXiMenLogic'),
     jingJiBaiNa = require('./jingjiBaiNaLogic'),
-    dgwk = require('./dgwkLogic');
+    dgwk = require('./dgwkLogic'),
+    dgwkV2 = require('./dgwkLogicV2');
 
 module.exports = function (bid) {
     var _m;
@@ -19,13 +20,14 @@ module.exports = function (bid) {
             break;
         case 27: //京基百纳 南山
         case 26://KKMAll
-        case 28://沙井
+        case 28://沙井w
         case 25://KKONE
         case 44://总部
             _m = new jingJiBaiNa();
             break;
         case 38://东莞万科
-            _m = new dgwk();
+            //_m = new dgwk();
+            _m = new dgwkV2();
             break;
         default:
             _m = new _default();

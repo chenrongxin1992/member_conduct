@@ -5,6 +5,7 @@ var moment = require('moment');
 var soap = require('soap');
 var http = require('http');
 var xml = require('xml');
+var crypto = require('crypto');
 
 var mongoose = require('mongoose');
 
@@ -21,6 +22,8 @@ var key = '20150226152452',
     xf_vipcodeprefix = '110',
     xmlHeader = '<?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"> <soap:Body>',
     xmlFooter = '</soap:Body> </soap:Envelope>';
+
+var crmHD = require('../crm/crmHD');
 
 router.get('/Test', function (req, res, next) {
     console.log('Test');
@@ -71,4 +74,100 @@ router.get('/', function (req, res, next) {
     });
     res.end('BBBBB:');
 });
+
+router.get('/HhLogin', function (req, res, next) {
+    console.log('AAAAAAAAAAAAAAAAAA');
+    var str = req.query.phone;
+    crmHD.getUserInfoByPhone(str, function (err, result) {
+        console.log('str:', str);
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(result);
+        }
+    });
+});
+router.post('/register', function (req, res, next) {
+    var openId = req.body.openId,
+        phone = req.body.phone,
+        name = req.body.name || '',
+        idNo = req.body.idNo || '',
+        birthday = req.body.birthday || '',
+        gender = req.body.gender || 0,
+        address = req.body.address | '',
+        email = req.body.email || '';
+    console.log('openId:', openId, 'phone:', phone, 'name:', name, 'idNo:', idNo, 'gender:', gender, 'address:', address, 'email:', email);
+    crmHD.register(openId, phone, name, idNo, gender, address, birthday, email, function (err, result) {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(result);
+        }
+    });
+});
+router.post('/modify', function (req, res, next) {
+    var cardNo = req.body.cardNo,
+        phone = req.body.phone,
+        email = req.body.email,
+        name = req.body.name,
+        sex = req.body.sex,
+        birthday = req.body.birthday,
+        address = req.body.address;
+    crmHD.modify(cardNo, phone, email, name, sex, birthday, address, function (err, result) {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(result);
+        }
+    });
+});
+router.post('/getUserByPhone', function (req, res, next) {
+    var phone = req.body.phone;
+    crmHD.getUserInfoByPhone(phone, function (err, result) {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(result);
+        }
+    });
+});
+router.post('/integralModify', function (req, res, next) {
+    var cardNo = req.body.cardNo,
+        integral = req.body.integral;
+    random(4, function (err, result) {
+        if (err) {
+            res.json(err);
+        } else {
+            console.log('random:', result);
+            var uuId = 'wx' + cardNo + result + moment().format('X');
+            console.log('uuId', uuId);
+            crmHD.integralModify(cardNo, uuId, integral, function (err, result) {
+                if (err) {
+                    res.json(err);
+                } else {
+                    res.json(result);
+                }
+            });
+        }
+    })
+});
+
+router.post('/integralRecord', function (req, res, next) {
+    var cardNo = req.body.cardNo,
+        start = req.body.start,
+        end = req.body.end;
+    crmHD.integralRecord(cardNo, start, end, 1, 10, function (err, result) {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(result);
+        }
+    });
+});
+
+function random(num, callback) {
+    crypto.randomBytes(num, function (err, buf) {
+        callback(err, buf ? buf.toString('hex') : '');
+    });
+};
 module.exports = router;

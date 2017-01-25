@@ -34,7 +34,7 @@ var feeType = {
 };
 exports.FeeType = feeType;
 
-var apiHost = '103.44.60.13',
+var apiHost = '218.75.132.68',//'103.44.60.13', //
     apiPort = 6013;
 var urlPath = {
     loginUrl: '/api/FujicaApi/UserLogin',  //登录
