@@ -403,7 +403,7 @@ function ToCardResult(result) {
             Sex: result.FMEMSEX,
             Integral: result.FCARDTOTALSCORE,
             OpenId: '',
-            CardGrade: result.FCARDTYPE,
+            CardGrade: result.FCRMMEMBERTYPECODE,
             Email: result.FMEMEMAILADR,
             CardSource: '',
             IdNo: result.FMEMIDCARD,
