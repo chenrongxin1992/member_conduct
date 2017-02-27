@@ -909,7 +909,7 @@ function SendCommod(strXml, callback) {
                 return callback(err, result.CmdResult);
             }
             console.log('XML:', '\n', result);
-           // console.log('XML:', '\n', result.CmdResult);
+            // console.log('XML:', '\n', result.CmdResult);
             xmlParser(result.CmdResult, function (err, result) {
                 console.log('err:', err, '\n', 'xmlParse:', JSON.stringify(result));
                 if (err) {

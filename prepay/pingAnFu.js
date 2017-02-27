@@ -25,10 +25,10 @@ exports.GetAccessor_Token = function (callback) {
     var timeStamp = moment().format('YYYYMMDDHHmmss'),
         sign_data = {
             state: timeStamp,
-            redirect_url: 'https://oauth.pinganfu.com',
+            redirect_url: 'https://test3-oauth.stg.1qianbao.com/',//STG3 'https://oauth.pinganfu.com', //正式环境
             scope: '',
             app_id: '000000',
-            merchant_no: '600000000221',//'600000001001',//'600000000403',//
+            merchant_no: '600000000210',//stg3 '600000000221',//正式环境 '600000001001',//'600000000403',//
             timestamp: timeStamp,
             mid: '',
             uid: '',
