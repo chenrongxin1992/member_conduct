@@ -237,13 +237,13 @@ var integralRecord = function (cardNo, startDate, endDate, callback) {
             if (list) {
                 async.eachLimit(list, 10, function (item, cb) {
                     arr.push({
-                        CardNo: cardNo,
+                        CardNumber: cardNo,
                         Detial: item.StoreName,
                         MovementType: 1,
                         AddType: 1,
                         Amount: item.Score,
                         Integral: item.Score,
-                        DtCreate: moment(item.FilDate, 'YYYY.MM.DD HH:mm:ss').format('YYYY/MM/DD HH:mm:ss')
+                        DateTime: moment(item.FilDate, 'YYYY.MM.DD HH:mm:ss').format('YYYY/MM/DD HH:mm:ss')
                     })
                     cb();
                 }, function (err) {
