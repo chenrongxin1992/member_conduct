@@ -17,22 +17,50 @@ var util = require('util'),
     request = require('request');
 
 var urlPath = 'https://test5-oauth.stg.1qianbao.com:29443/map/oauth';
+
+var configs = {
+    stg2: {
+        h5url: 'https://test2-h5.stg.1qianbao.com/commercial/estate/index.html#/index',
+        merchantNo: '600000001001',
+        channelId: 'J-100014',
+        tokenUrl: 'https://test2-oauth.stg.1qianbao.com:26443',
+        app_id: '000000',
+        sign_type: 'RSA'
+    },
+    stg3: {
+        h5url: 'https://test3-h5.stg.1qianbao.com/commercial/estate/index.html#/index',
+        merchantNo: '600000000210',
+        channelId: 'J-100014',
+        tokenUrl: 'https://test3-oauth.stg.1qianbao.com/',
+        app_id: '000000',
+        sign_type: 'RSA'
+    },
+    shengchan: {
+        h5url: 'https://h5.1qianbao.com/commercial/estate/index.html#/index',
+        merchantNo: '600000000221',
+        channelId: 'J-100014',
+        tokenUrl: 'https://oauth.1qianbao.com/map/oauth',
+        app_id: '000000',
+        sign_type: 'RSA'
+    }
+};
 /**
  * 获取短Token
  * @constructor
  */
 exports.GetAccessor_Token = function (callback) {
+    var _config = config.shengchan;
     var timeStamp = moment().format('YYYYMMDDHHmmss'),
         sign_data = {
             state: timeStamp,
-            redirect_url: 'https://test3-oauth.stg.1qianbao.com/',//STG3 'https://oauth.pinganfu.com', //正式环境
+            redirect_url: _config.tokenUrl,
             scope: '',
-            app_id: '000000',
-            merchant_no: '600000000210',//stg3 '600000000221',//正式环境 '600000001001',//'600000000403',//
+            app_id: _config.app_id,
+            merchant_no: _config.merchantNo,
             timestamp: timeStamp,
             mid: '',
             uid: '',
-            sign_type: 'RSA',
+            sign_type: _config.sign_type,
             sign: ''
         };
     var sign_content = sign_data.state + '&' + sign_data.redirect_url +
@@ -47,7 +75,7 @@ exports.GetAccessor_Token = function (callback) {
 };
 
 function signData(stringA) {
-    var privateKey = 'MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAMmLa22E5gHC5YudZIz4FuCcPl3AQB6WYE7+aOJOifD+uxmHVQHRYZiTxUmH7zAfBHpalrSprt97UXKgx3uU2lPyF/Axpy6V2nFkHlbinaisGb1sphM/KJHQTPQtt9i2iUKqgsxBoEpI62qDQI+DS+6memu1xWHMd1g81OYZdwWTAgMBAAECgYAlQcurJD0sqC2s4Hyc/qOkA94XkJmJzfyhva//3crsLPrDXlwdiOpEvVRkImfZ+nHmeGaRoSh9kZtd2FDoDH1LYUgOQKB17AF9XkoPH7PH99ebsbL25pTqqpU3I8FZDJTvrafVluPBT0cQhf9QY+0F9bNQJFmH4zO7lCIDlhu0wQJBAO7o/8yYLyyk1frgk7gpQbPu14HtSELM/435bY0992CwpsXEwknWczowYu9XoSyBTRwRYR6MjCqP1pA3sH4kkDMCQQDX9iucLIGA7j2ID+ZVJBdFmZHvvLB/Ty70a14JAABw/+K7kZMSEWKFNAdoTJ46G7ZhqhBzeb5PRQlGDbysItUhAkA8gbo3QNvBvMWM0k/XNmuzfGwMNeI1OOIIPQGn4efDDzpNoDVsqelo9VQ5NcJWGTFESIqGSCY/qUo4IEKM0AnNAkEAoDStC1D0zRlvKgVpgBWi8e3HlgnrALZUBdu0SYbnzOv2XeDTMl8VL+115UiZRFAUjwTi6VcR96omBALiyOuaIQJBAKL8iS6Tr5aaG4wGRZC/7U7w4c64coqGXLQp2ISvOdxG/bCJgBuMPpjCEkhnk2qhq3iJdN+kdvdPF4Tk2X3jnWU=';
+    var privateKey = 'MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAoGBAOINoL/bx/jUaQ9zTwoa252yBM5EVHoZuZU7CJyVNdXvCTAWdfN1rfyIJkGAas5GeL0hJRR7uuwO5pthz6Qn1xTqAs+kKYsSthqQefkngz3uTYXEaeqd8iDBo2/U02IwX3QrQQX5aE02XF3TnLgF7pzUuRpLVKCNHTupWXzZLWPJAgMBAAECgYAaYFq0aFGyEB7eJadAV5fuk5oJ82EkCiJkbkn381UfzE93I/fJW57ci4pjNDfCL+jgsKBh/nn2F1sDIGuZDOkEmIWBQvhgonPlXIkjeYcT8MJ0R0eXPllovhobjed7x56OepIs0Nvy6nWpYwWFg+TaY4nDn8lbj1Pyy0lHyMvWAQJBAPrFjgCxxFQpIpeRfpBG5D2Hveo3mjcaXkk4wGNlvajPYgu+Kwvc/zS6vWKgCjFEea+SDu2UZHcpFiKOuEitKUECQQDmxCSqNXil06UrNSQp8p4wtYr/7gDLhTOsT7bXVOFSFqVRZ1uDOn+SiORpH3ox63EZsr0+2iJrVkOdWmqCHlCJAkEAz1p29qAHBMgWsFk/27CinTYWlQpw28tT1xu0CPxhfKouGiOemGqeI02dt2U5yE8kh0YwTcZ75AP3J4/3VTDJgQJBAIwQjTiKT/pGpb+9939GdWGXLxD8ApuE88IoeA/mwwQyHpF0LIVQIlJsqEZuBpr6DqHMbTUS7UU9DLkbQf5MLBECQQDEW2mQQY8sE1PeK1bSVfo438X8uo21n4IbGNFQjoGPH+JWFdjpMRruJrVumBxfjgHDwc5EYwTHKvxswnetDpSU';
     privateKey = chunk_split_private_key(privateKey, 64, '\n');
     var signer = crypto.createSign('RSA-SHA1');
     signer.update(new Buffer(stringA));
