@@ -49,7 +49,7 @@ var configs = {
  * @constructor
  */
 exports.GetAccessor_Token = function (callback) {
-    var _config = config.shengchan;
+    var _config = configs.shengchan;
     var timeStamp = moment().format('YYYYMMDDHHmmss'),
         sign_data = {
             state: timeStamp,
