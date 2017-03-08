@@ -499,8 +499,10 @@ exports.IntegralRecord = function (bid, cardNo, pn, callback) {
         if (err) {
             return callback(err);
         }
-        var logs = result.log[0].rcl;
-        console.log('logs:', logs);
+        var logs = '';
+        if (result.log) {
+            logs = result.log[0].rcl;
+        }
         var logList = new Array();
         for (var i in logs) {
             var log = logs[i];
@@ -897,7 +899,7 @@ function SendCommod(strXml, callback) {
         },
         strXmlHeaders = xml(xmlHeaders);
     strXml = xml(xmlContent);
-    console.log('strXml:', strXml);
+    //console.log('strXml:', strXml);
     soap.createClient(url, function (err, client) {
         if (err) {
             return callback(err);
@@ -908,15 +910,15 @@ function SendCommod(strXml, callback) {
                 console.log('SendCommod Error  strXml:', strXml);
                 return callback(err, result.CmdResult);
             }
-            console.log('XML:', '\n', result);
+            //console.log('XML:', '\n', result);
             // console.log('XML:', '\n', result.CmdResult);
             xmlParser(result.CmdResult, function (err, result) {
-                console.log('err:', err, '\n', 'xmlParse:', JSON.stringify(result));
+                //console.log('err:', err, '\n', 'xmlParse:', JSON.stringify(result));
                 if (err) {
                     return callback(error.ThrowError(error.ErrorCode.Error, err.message));
                 }
                 result = result.return;
-                console.log('result:', JSON.stringify(result));
+                //console.log('result:', JSON.stringify(result));
                 var isError = result.$ ? result.$.hasError : result.hasError[0];
                 if (isError != 'false') {
                     var errCode = result.error[0].$.code,
