@@ -64,15 +64,16 @@ LaoXiMen.prototype.Register = function (attribute, callback) {
         }
         //注册 (判断当前手机号是否已经注册）
         kechuan.VipCreate(name, phone, sex, grade, function (err, result) {
+            console.log('注册 err', err, 'result', result);
             if (err) {  //注册失败
-                callback(err);
-                return;
+                return callback(err);
             }
+            console.log('cardNumber:', result.CardNumber);
             //注册成功，绑定OpenId
             kechuan.BindOpenID(result.CardNumber, phone, openId, function (err) {
+                console.log('绑卡 err', err, 'result', result);
                 if (err) {
-                    callback(err);
-                    return;
+                    return callback(err);
                 }
                 kechuan.GetVipInfo(result.CardNumber, function (err, result) {
                     if (err)

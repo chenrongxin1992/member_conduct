@@ -33,7 +33,7 @@ exports.VipGrade = vipgrade;  //默认开卡等级，
  */
 exports.VipCreate = function (name, phone, sex, grade, callback) {
     var reqDate = Moment().format('YYYYMMDD'),
-        reqTime = Moment().format('HH24mmss'),
+        reqTime = Moment().format('HHmmss'),
         signStr = reqDate + reqTime + phone + key,
         sign = Md5(signStr);
     var xmlOptions = {
@@ -65,6 +65,7 @@ exports.VipCreate = function (name, phone, sex, grade, callback) {
             ]
         },
         strXml = Xml(xmlOptions);
+    console.log('strXml',strXml);
     Soap.createClient(url, function (err, client) {
             if (err) {
                 console.log('crmKeChuan>VipCreate>Soap.CreateClient Error:', err);
@@ -97,7 +98,7 @@ exports.VipCreate = function (name, phone, sex, grade, callback) {
  */
 exports.BindOpenID = function (vipcode, phone, openid, callback) {
     var reqDate = Moment().format('YYYYMMDD'),
-        reqTime = Moment().format('HH24mmss'),
+        reqTime = Moment().format('HHmmss'),
         signStr = reqDate + reqTime + vipcode + key,
         sign = Md5(signStr);
     var xmlOptions = {
@@ -132,6 +133,7 @@ exports.BindOpenID = function (vipcode, phone, openid, callback) {
         }
         console.log('StrXml:', strXml);
         client.BindOpenID(strXml, function (err, result) {
+            console.log('bing err:', err, 'result:', result);
             if (err) {
                 callback(Error.ThrowError(Error.ErrorCode.Error, err));
                 return;
@@ -161,7 +163,7 @@ exports.BindOpenID = function (vipcode, phone, openid, callback) {
  */
 exports.VipModify = function (cardNumber, name, phone, sex, birthday, idNo, address, email, callback) {
     var reqDate = Moment().format('YYYYMMDD'),
-        reqTime = Moment().format('HH24mmss'),
+        reqTime = Moment().format('HHmmss'),
         signStr = reqDate + reqTime + cardNumber + key,
         sign = Md5(signStr);
     var _bithday = birthday ? Moment(birthday, 'YYYY/MM/DD HH:mm:ss').format('YYYY-MM-DD HH:mm:ss') : '';
@@ -227,7 +229,7 @@ exports.VipModify = function (cardNumber, name, phone, sex, birthday, idNo, addr
  */
 exports.GetVipInfo = function (vipCode, callback) {
     var reqDate = Moment().format('YYYYMMDD'),
-        reqTime = Moment().format('HH24mmss'),
+        reqTime = Moment().format('HHmmss'),
         signStr = reqDate + reqTime + key,
         sign = Md5(signStr);
     var xmlOptions = {
@@ -296,7 +298,7 @@ exports.GetVipInfo = function (vipCode, callback) {
  */
 exports.GetVipInfoByMobileOpenId = function (openid, callback) {
     var reqDate = Moment().format('YYYYMMDD'),
-        reqTime = Moment().format('HH24mmss'),
+        reqTime = Moment().format('HHmmss'),
         signStr = reqDate + reqTime + key,
         sign = Md5(signStr);
     var xmlOpentions = {
@@ -369,7 +371,7 @@ exports.GetVipInfoByMobileOpenId = function (openid, callback) {
  */
 exports.GetVipInfoByMobile = function (phone, callback) {
     var reqDate = Moment().format('YYYYMMDD'),
-        reqTime = Moment().format('HH24mmss'),
+        reqTime = Moment().format('HHmmss'),
         signStr = reqDate + reqTime + key,
         sign = Md5(signStr);
     var xmlOpentions = {
@@ -480,7 +482,7 @@ exports.GetGradeList = function (callback) {
  */
 exports.BonusChange = function (vipCode, integral, source, desc, callback) {
     var reqDate = Moment().format('YYYYMMDD'),
-        reqTime = Moment().format('HH24mmss'),
+        reqTime = Moment().format('HHmmss'),
         signStr = reqDate + reqTime + integral + key,
         sign = Md5(signStr);
     var expadate = Moment().add(365, 'days').format('YYYY/MM/DD');
@@ -541,7 +543,7 @@ exports.BonusChange = function (vipCode, integral, source, desc, callback) {
  */
 exports.GetBonusledgerRecord = function (cardNumber, callback) {
     var reqDate = Moment().format('YYYYMMDD'),
-        reqTime = Moment().format('HH24mmss'),
+        reqTime = Moment().format('HHmmss'),
         signStr = reqDate + reqTime + cardNumber + key,
         sign = Md5(signStr);
     var xmlOptions = {
