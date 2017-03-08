@@ -42,8 +42,8 @@
       <file leaf-file-name="crmASQ.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/crm/crmASQ.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="918" column="17" lean-forward="true" selection-start-line="918" selection-start-column="17" selection-end-line="918" selection-end-column="17" />
+            <state relative-caret-position="247">
+              <caret line="599" column="39" lean-forward="true" selection-start-line="599" selection-start-column="39" selection-end-line="599" selection-end-column="39" />
               <folding>
                 <element signature="e#1493#2900#0" expanded="false" />
                 <element signature="e#2903#3019#0" expanded="false" />
@@ -56,12 +56,11 @@
                 <element signature="n#!!block;n#GetIntegral#0" expanded="false" />
                 <element signature="e#11780#12313#0" expanded="false" />
                 <element signature="e#14105#15080#0" expanded="false" />
-                <element signature="e#15368#16705#0" expanded="false" />
-                <element signature="e#18455#19777#0" expanded="false" />
-                <element signature="e#19888#20917#0" expanded="false" />
-                <element signature="e#21049#22094#0" expanded="false" />
-                <element signature="e#22219#23221#0" expanded="false" />
-                <element signature="e#23378#24714#0" expanded="false" />
+                <element signature="e#18478#19800#0" expanded="false" />
+                <element signature="e#19911#20940#0" expanded="false" />
+                <element signature="e#21072#22117#0" expanded="false" />
+                <element signature="e#22242#23244#0" expanded="false" />
+                <element signature="e#23401#24737#0" expanded="false" />
                 <element signature="n#!!block;n#ToCardDetial#0" expanded="false" />
               </folding>
             </state>
@@ -927,7 +926,7 @@
       <workItem from="1487900246008" duration="4449000" />
       <workItem from="1488160439326" duration="4310000" />
       <workItem from="1488789495933" duration="3543000" />
-      <workItem from="1488943401489" duration="9013000" />
+      <workItem from="1488943401489" duration="9205000" />
     </task>
     <task id="LOCAL-00001" summary="测试 push">
       <created>1464938639203</created>
@@ -1157,7 +1156,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1208094000" />
+    <option name="totallyTimeSpent" value="1208286000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1659,8 +1658,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/crm/crmASQ.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="918" column="17" lean-forward="true" selection-start-line="918" selection-start-column="17" selection-end-line="918" selection-end-column="17" />
+        <state relative-caret-position="247">
+          <caret line="599" column="39" lean-forward="true" selection-start-line="599" selection-start-column="39" selection-end-line="599" selection-end-column="39" />
           <folding>
             <element signature="e#1493#2900#0" expanded="false" />
             <element signature="e#2903#3019#0" expanded="false" />
@@ -1673,12 +1672,11 @@
             <element signature="n#!!block;n#GetIntegral#0" expanded="false" />
             <element signature="e#11780#12313#0" expanded="false" />
             <element signature="e#14105#15080#0" expanded="false" />
-            <element signature="e#15368#16705#0" expanded="false" />
-            <element signature="e#18455#19777#0" expanded="false" />
-            <element signature="e#19888#20917#0" expanded="false" />
-            <element signature="e#21049#22094#0" expanded="false" />
-            <element signature="e#22219#23221#0" expanded="false" />
-            <element signature="e#23378#24714#0" expanded="false" />
+            <element signature="e#18478#19800#0" expanded="false" />
+            <element signature="e#19911#20940#0" expanded="false" />
+            <element signature="e#21072#22117#0" expanded="false" />
+            <element signature="e#22242#23244#0" expanded="false" />
+            <element signature="e#23401#24737#0" expanded="false" />
             <element signature="n#!!block;n#ToCardDetial#0" expanded="false" />
           </folding>
         </state>

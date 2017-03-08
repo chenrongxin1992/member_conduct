@@ -595,7 +595,7 @@ exports.CardModify = function (bid, memberId, cardNo, openId, fullName, gender, 
                         {cardid: cardNo},
                         {name: fullName},
                         {gender: gender == 1 ? '男' : '女'},
-                        {birthDay: moment(birthDay).format('YYYY-MM-DD')},
+                        {birthDay: moment(birthDay, 'YYYY/MM/DD HH:mm:ss').format('YYYY-MM-DD')},
                         {idNo: idNo},
                         {email: email},
                     ]
