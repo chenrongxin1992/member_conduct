@@ -21,8 +21,8 @@ var companyId = 'C001',
 //172.16.200.13 'http://183.62.205.28:8002/WebPOS.asmx?wsdl'
 //http://183.62.205.27:8002/WebPOS.asmx?wsdl
 //'http://172.16.200.14:8002/WebPOS.asmx?wsdl',//
-//'http://183.62.205.27:8002/WebPOS.asmx?wsdl', //
-//'http://asiatic.ticp.net:7009/WebPOS.asmx?wsdl', //
+//'http://183.62.205.27:8002/WebPOS.asmx?wsdl', // 测试环境
+//'http://asiatic.ticp.net:7009/WebPOS.asmx?wsdl', // 已经搞不清这是什么环境了
 //'http://183.62.205.28:8002/WebPOS.asmx?wsdl',//正式环境
 var url = 'http://183.62.205.27:8002/WebPOS.asmx?wsdl',//
     defaultOpenCardTypeCode = 'WC', //默认会员开卡等级
@@ -905,7 +905,7 @@ function SendCommod(strXml, callback) {
         },
         strXmlHeaders = xml(xmlHeaders);
     strXml = xml(xmlContent);
-    console.log('strXml:', strXml);
+    //console.log('strXml:', strXml);
     soap.createClient(url, function (err, client) {
         if (err) {
             return callback(err);
@@ -916,7 +916,7 @@ function SendCommod(strXml, callback) {
                 console.log('SendCommod Error  strXml:', strXml);
                 return callback(err, result.CmdResult);
             }
-            console.log('XML:', '\n', result);
+            //console.log('XML:', '\n', result);
             // console.log('XML:', '\n', result.CmdResult);
             xmlParser(result.CmdResult, function (err, result) {
                 //console.log('err:', err, '\n', 'xmlParse:', JSON.stringify(result));
