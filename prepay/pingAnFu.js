@@ -49,7 +49,7 @@ var configs = {
  * @constructor
  */
 exports.GetAccessor_Token = function (callback) {
-    var _config = configs.stg3;
+    var _config = configs.stg2;
     var timeStamp = moment().format('YYYYMMDDHHmmss'),
         sign_data = {
             state: timeStamp,
@@ -75,7 +75,7 @@ exports.GetAccessor_Token = function (callback) {
 };
 
 function signData(stringA) {
-    var privateKey = 'MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBALo0OW25zouxjSthde5Omv+5M8GmfToiP58sahlET+Q7pQOBB4ZzXAzj5A5+IYNgNyXapm/z1RdhPVHN2/SRgoSm59GwKI/iCsT/VPYP3ry/jdv2OQAv9pZH/S6/a0aDOi9j7vJzckFqepJhdn0sOqy6KNMd3P+T3G6v479donBzAgMBAAECgYAgs8daRAXIdvhqJAXIQrnqK6axXgIkUZuG4xAHO/4kAW2rvd+Kd3w1L1kASpqsLhvBZDNS+in0nzlbwqHcxCl9we6M4+O/hDYg/tNjhWbeotxFPr8RV66uz/4GOWvYo9+5XFsCxxD6lUk8rEqBH6Sn0l+ejPTgVzR4cCZKxVutAQJBAOHXW7X3M8Kjm/8pNtzu1tDOvKj4GsMmhbR+Falfe/d2HixaT3NMNt0Qoksw+4mR+2BwuLK8HNwsuodn6x4VA8ECQQDTEdJQecqeloH9cul8GmDvK9YmJVv0qdfBm1cE1F0rGJoiWpsJUUlbSRDWR1fczaAoONENl+S3qxXfphFJavEzAkAgxmdJ3ilF2wadnjaXE5ZbUVVx1CfWIHYQ/qdYIEJWZG72ktiq6+meZXaYIPCwQ15O3a0AS2qIzXj4g61MfVJBAkASBCFpkRvEcaBi294mI7JGd/1tgB7bQWwTMIk69k2FkjIF4Kn/H5sdWZ1ATRKo3DxhcogVmvOA4e+aCXjMRX6VAkEAj4QFzB1aiWiulWmxGKUI2BcrybV31bpdHoHC7fMJT2ks2lGg8L81zLtR+HbPOxglexyNOBhpsrlLrUjXGXfRzg== ';
+    var privateKey = 'MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBANdpHC3ZhXojLSCR3k1IMTlueFKu5bmdgikOawRy4C4uTE3pgjPRW3xR6iYxqY8VNdYP4YuW7c1haFvIWUQYNTgEe+uRoXDYoIckKKd2n7+XPtkxHgELMrZN16lIN0UCF8AViU1DJ9GZmqF7u8yLkxgbdjCFHj7AJgqUPoBFaGE7AgMBAAECgYEAppt8mRXSACqu368S0pFQyUvhMopl0g+6OYkWSsWTEQTsLaK6+tsluF0fDlWBANL15dA4sZ+V5DE/5yVprZpPpc3CkUH83J7oKkUinOioZ0wGl17TAWle28cE9Gm48lVWF8mihj1lfeVHT3LqqxL1BuOnxJI0WFSOPpO4/fKAQZkCQQDtRpy600zP9bB2KIdx52ssKee5NO8CFeYouGcy2/O7hi2yFbyBunLQgt3PD3K5YP3nIa0SpmlZicbmTaTBMmFPAkEA6GjIF2oas64hbJaWJq60M71ysOcA7tqoNP8zdtFPUI5iZ+yswBhkAkCVRnj/ll47y9gSAUyN0R7ctPfYB3hOVQJBAORIVJBWrQdDnTQBSFbpTK5f3ubMq8s44Ih66ib/gV8A+EPnL8csaDx+ PAN0HG+Ihp/yQX65BpCzwt5fA00xOHcCQCAqEDcdWiCv4rRSiulDmHDosSzGa5yi6lCbWRYClcWCTyAu4yGavoyJP5+HM2guFnx5pNRFMgNVEBqDioROJBkCQE6EuT577CTF/VnZOvSEVh356UHGFeS7q4mNA6S7QcLJrLQz17t6RQ5SBtBL/8oY1O1vH4E7i9vKQSFkpn77dDQ=';
     privateKey = chunk_split_private_key(privateKey, 64, '\n');
     var signer = crypto.createSign('RSA-SHA1');
     signer.update(new Buffer(stringA));
