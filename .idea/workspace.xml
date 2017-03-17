@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00a831d3-6f98-489a-b9df-c9ed98e0405b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crm/crmASQ.js" afterPath="$PROJECT_DIR$/crm/crmASQ.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prepay/pingAnFu.js" afterPath="$PROJECT_DIR$/prepay/pingAnFu.js" />
     </list>
     <ignored path="MemberConduct.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,7 +28,7 @@
     </favorites_list>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.6753569">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="yuanyang.js" pinned="false" current-in-tab="false">
@@ -62,11 +62,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="crmASQ.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="crmASQ.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/crm/crmASQ.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="247">
-                  <caret line="28" column="39" lean-forward="true" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
+                <state relative-caret-position="479">
+                  <caret line="573" column="18" lean-forward="true" selection-start-line="573" selection-start-column="18" selection-end-line="573" selection-end-column="18" />
                   <folding>
                     <element signature="e#1628#3035#0" expanded="false" />
                     <element signature="e#3038#3154#0" expanded="false" />
@@ -78,6 +78,7 @@
                     <element signature="e#9711#10894#0" expanded="false" />
                     <element signature="n#!!block;n#GetIntegral#0" expanded="false" />
                     <element signature="e#11915#12448#0" expanded="false" />
+                    <element signature="e#12596#14132#0" expanded="false" />
                     <element signature="e#12656#13275#0" expanded="false" />
                     <element signature="e#14239#15214#0" expanded="false" />
                     <element signature="e#15502#16862#0" expanded="false" />
@@ -142,11 +143,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="pingAnFu.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="pingAnFu.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/prepay/pingAnFu.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="249">
-                  <caret line="51" column="30" lean-forward="true" selection-start-line="51" selection-start-column="30" selection-end-line="51" selection-end-column="30" />
+                <state relative-caret-position="401">
+                  <caret line="79" column="63" lean-forward="true" selection-start-line="79" selection-start-column="63" selection-end-line="79" selection-end-column="63" />
                   <folding />
                 </state>
               </provider>
@@ -182,8 +183,8 @@
           <file leaf-file-name="member.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/routes/member.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="209">
-                  <caret line="17" column="38" lean-forward="true" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
+                <state relative-caret-position="399">
+                  <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -258,10 +259,10 @@
         <option value="$PROJECT_DIR$/crm/laoXiMenKechuan.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/logic/factoryLogic.js" />
-        <option value="$PROJECT_DIR$/prepay/pingAnFu.js" />
         <option value="$PROJECT_DIR$/logic/yuanYangLogic.js" />
         <option value="$PROJECT_DIR$/crm/yuanyang.js" />
         <option value="$PROJECT_DIR$/crm/crmASQ.js" />
+        <option value="$PROJECT_DIR$/prepay/pingAnFu.js" />
       </list>
     </option>
   </component>
@@ -966,7 +967,7 @@
       <workItem from="1488160439326" duration="4310000" />
       <workItem from="1488789495933" duration="3543000" />
       <workItem from="1488943401489" duration="42389000" />
-      <workItem from="1489715441904" duration="7538000" />
+      <workItem from="1489715441904" duration="8132000" />
     </task>
     <task id="LOCAL-00001" summary="测试 push">
       <created>1464938639203</created>
@@ -1196,7 +1197,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1249008000" />
+    <option name="totallyTimeSpent" value="1249602000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1642,14 +1643,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/member.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="17" column="38" lean-forward="true" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/logic/yuanYangLogic.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1539">
@@ -1698,18 +1691,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/prepay/pingAnFu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="51" column="30" lean-forward="true" selection-start-line="51" selection-start-column="30" selection-end-line="51" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/crm/crmASQ.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="28" column="39" lean-forward="true" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
+        <state relative-caret-position="479">
+          <caret line="573" column="18" lean-forward="true" selection-start-line="573" selection-start-column="18" selection-end-line="573" selection-end-column="18" />
           <folding>
             <element signature="e#1628#3035#0" expanded="false" />
             <element signature="e#3038#3154#0" expanded="false" />
@@ -1721,6 +1706,7 @@
             <element signature="e#9711#10894#0" expanded="false" />
             <element signature="n#!!block;n#GetIntegral#0" expanded="false" />
             <element signature="e#11915#12448#0" expanded="false" />
+            <element signature="e#12596#14132#0" expanded="false" />
             <element signature="e#12656#13275#0" expanded="false" />
             <element signature="e#14239#15214#0" expanded="false" />
             <element signature="e#15502#16862#0" expanded="false" />
@@ -1732,6 +1718,22 @@
             <element signature="e#23535#24871#0" expanded="false" />
             <element signature="n#!!block;n#ToCardDetial#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/member.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/prepay/pingAnFu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="79" column="63" lean-forward="true" selection-start-line="79" selection-start-column="63" selection-end-line="79" selection-end-column="63" />
+          <folding />
         </state>
       </provider>
     </entry>
