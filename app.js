@@ -56,6 +56,7 @@ if (app.get('env') === 'development') {
         });
     });
 }
+
 app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
@@ -63,6 +64,7 @@ app.use(function (err, req, res, next) {
         error: {}
     });
 });
+
 var port = 5001;
 app.listen(port, function () {
     console.log('app is runing.... port:', port);

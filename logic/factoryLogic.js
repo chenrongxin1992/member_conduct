@@ -4,7 +4,8 @@ var zhongzhou = require('./zhongZhouLogic'),
     laoXiMen = require('./laoXiMenLogic'),
     jingJiBaiNa = require('./jingjiBaiNaLogic'),
     dgwk = require('./dgwkLogic'),
-    dgwkV2 = require('./dgwkLogicV2');
+    dgwkV2 = require('./dgwkLogicV2'),
+    yuanyang = require('./yuanYangLogic');
 
 module.exports = function (bid) {
     var _m;
@@ -28,6 +29,9 @@ module.exports = function (bid) {
         case 38://东莞万科
             //_m = new dgwk();
             _m = new dgwkV2();
+            break;
+        case 78:
+            _m = new yuanyang();
             break;
         default:
             _m = new _default();
