@@ -104,7 +104,7 @@ exports.OpenCard = function (bid, openId, mobile, cardType, callback) {
         }
         var _cardNo = result.card[0].cardCode[0];
         console.log('openCard cardNo:', _cardNo);
-        GetCardByCardNo(_cardNo, function (err, result) {
+        GetCardByCardNo(bid, _cardNo, function (err, result) {
             if (err) {
                 return callback(err);
             }
@@ -521,7 +521,7 @@ exports.IntegralRecord = function (bid, cardNo, pn, callback) {
                 Action: movememtType[log.$.movementType],
                 Integral: log.$.value,
                 Amount: log.$.amount,
-                Remark:'',
+                Remark: '',
             });
         }
         return callback(null, logList);
@@ -917,7 +917,7 @@ function SendCommod(strXml, callback) {
                 return callback(err, result.CmdResult);
             }
             //console.log('XML:', '\n', result);
-            console.log('XML:', '\n', result.CmdResult);
+            //console.log('XML:', '\n', result.CmdResult);
             xmlParser(result.CmdResult, function (err, result) {
                 //console.log('err:', err, '\n', 'xmlParse:', JSON.stringify(result));
                 if (err) {
