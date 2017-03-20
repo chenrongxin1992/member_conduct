@@ -195,6 +195,7 @@ JJBN.prototype.CardModify = function (attribute, callback) {
             return callback(err);
         }
         var memberId = result.MemberId;
+        console.log('memberID：', memberId);
         asq.CardModify(bid, memberId, cardNo, openId, fullName, gender, birthday, idNo, email, function (err, result) {
             if (err) {
                 return callback(err);

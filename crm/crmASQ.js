@@ -296,7 +296,7 @@ exports.GetCardByOpenId = function (bid, openId, callback) {
         },
         strXml = xml(xmlContent);
     SendCommod(strXml, function (err, result) {
-        console.log('GetCardByOpenId err:', err, '\n', 'result:', result);
+        //console.log('GetCardByOpenId err:', err, '\n', 'result:', result);
         if (err) {
             return callback(err);
         }
@@ -600,7 +600,7 @@ exports.CardModify = function (bid, memberId, cardNo, openId, fullName, gender, 
                         {openid: openId},
                         {cardid: cardNo},
                         {name: fullName},
-                        {gender: gender == 1 ? '男' : '女'},
+                        {gender: gender},
                         {birthDay: moment(birthDay, 'YYYY/MM/DD HH:mm:ss').format('YYYY-MM-DD')},
                         {idNo: idNo},
                         {email: email},
@@ -609,12 +609,13 @@ exports.CardModify = function (bid, memberId, cardNo, openId, fullName, gender, 
             ]
         },
         strXml = xml(xmlContent);
+    console.log('strXml', strXml);
     SendCommod(strXml, function (err, result) {
         if (err) {
             return callback(err);
         }
         var _cardNo = result.card[0].cardCode[0];
-        GetCardByCardNo(_cardNo, function (err, result) {
+        GetCardByCardNo(bid, _cardNo, function (err, result) {
             if (err) {
                 return callback(err);
             }
