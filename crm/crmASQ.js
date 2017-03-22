@@ -103,7 +103,7 @@ exports.OpenCard = function (bid, openId, mobile, cardType, callback) {
             return callback(err);
         }
         var _cardNo = result.card[0].cardCode[0];
-        console.log('openCard cardNo:', _cardNo);
+        //console.log('openCard cardNo:', _cardNo);
         GetCardByCardNo(bid, _cardNo, function (err, result) {
             if (err) {
                 return callback(err);
@@ -496,7 +496,7 @@ exports.IntegralRecord = function (bid, cardNo, pn, callback) {
                         {cardID: cardNo},
                         {mobileNO: ''},
                         {pageIndex: pn},
-                        {beginDate: '2001-01-01'},
+                        {beginDate: '2014-07-13'},
                         {endDate: moment().format('YYYY-MM-DD')}
                     ]
                 }
@@ -528,6 +528,7 @@ exports.IntegralRecord = function (bid, cardNo, pn, callback) {
                 Remark: '',
             });
         }
+        //console.log('logList:', logList.length);
         return callback(null, logList);
     });
 };
@@ -923,7 +924,8 @@ function SendCommod(strXml, callback) {
             }
             //console.log('XML:', '\n', result);
             //console.log('XML:', '\n', result.CmdResult);
-            xmlParser(result.CmdResult, function (err, result) {
+            var cmdResult = result.CmdResult.replace(/&/g, ' '); //替换Xml重点的特殊字符
+            xmlParser(cmdResult, function (err, result) {
                 //console.log('err:', err, '\n', 'xmlParse:', JSON.stringify(result));
                 if (err) {
                     return callback(error.ThrowError(error.ErrorCode.Error, err.message));
