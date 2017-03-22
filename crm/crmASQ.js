@@ -481,7 +481,7 @@ exports.IntegralRecord = function (bid, cardNo, pn, callback) {
     var _orgId = GetOrgIdByBid[bid];
     var xmlContent = {
             cmd: [
-                {_attr: {type: 'REWARDLOGLIST'}},
+                {_attr: {type: 'REWARDCYCLELOGSEARCH'}},
                 {_attr: {appCode: appCode}},
                 {
                     shared: [
@@ -495,12 +495,15 @@ exports.IntegralRecord = function (bid, cardNo, pn, callback) {
                     enquiry: [
                         {cardID: cardNo},
                         {mobileNO: ''},
-                        {pageIndex: pn}
+                        {pageIndex: pn},
+                        {beginDate: '2001-01-01'},
+                        {endDate: moment().format('YYYY-MM-DD')}
                     ]
                 }
             ]
         },
         strXml = xml(xmlContent);
+    //console.log('strXml', strXml);
     SendCommod(strXml, function (err, result) {
         if (err) {
             return callback(err);
@@ -519,7 +522,8 @@ exports.IntegralRecord = function (bid, cardNo, pn, callback) {
                 ShopId: log.$.store,
                 shopName: log.$.store,
                 Action: movememtType[log.$.movementType],
-                Integral: log.$.value,
+                Type: log.$.type,
+                Integral: (log.$.type == 2 ? '-' : '') + log.$.value,
                 Amount: log.$.amount,
                 Remark: '',
             });
