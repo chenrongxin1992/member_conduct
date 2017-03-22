@@ -30,7 +30,7 @@ module.exports = function (bid) {
             //_m = new dgwk();
             _m = new dgwkV2();
             break;
-        case 78:
+        case 79:
             _m = new yuanyang();
             break;
         default:
