@@ -262,7 +262,7 @@ exports.GetVipInfo = function (vipCode, callback) {
             callback(Error.ThrowError(Error.ErrorCode.Error, err));
             return;
         }
-       // console.log('stXml:', strXml);
+        // console.log('stXml:', strXml);
         client.GetVipInfo(strXml, function (err, result) {
             //console.log('err:', err, 'result:', result);
             if (err) {
@@ -286,7 +286,7 @@ exports.GetVipInfo = function (vipCode, callback) {
                 Phone: data.xf_telephone,
                 Birthday: data.xf_birthdayyyyy + '/' + data.xf_birthdaymm + '/' + data.xf_birthdaydd,
                 Sex: data.xf_sex == 'M' ? 1 : 0,
-                Integral: data.xf_bonus,
+                Integral: (data.xf_bonus+'').replace(/,/g, ''),
                 OpenId: data.xf_weixin,
                 CardGrade: data.xf_grade,
                 Email: data.xf_vipemail,
@@ -359,7 +359,7 @@ exports.GetVipInfoByMobileOpenId = function (openid, callback) {
                 Phone: data.xf_telephone,
                 Birthday: data.xf_birthdayyyyy + '/' + data.xf_birthdaymm + '/' + data.xf_birthdaydd,
                 Sex: data.xf_sex == 'M' ? 1 : 0,
-                Integral: data.xf_bonus,
+                Integral: (data.xf_bonus+'').replace(/,/g, ''),
                 OpenId: data.xf_weixin,
                 CardGrade: data.xf_grade,
                 Email: data.xf_vipemail,
@@ -431,7 +431,7 @@ exports.GetVipInfoByMobile = function (phone, callback) {
                 Phone: data.xf_telephone,
                 Birthday: data.xf_birthdayyyyy + '/' + data.xf_birthdaymm + '/' + data.xf_birthdaydd,
                 Sex: data.xf_sex == 'M' ? 1 : 0,
-                Integral: data.xf_bonus,
+                Integral: (data.xf_bonus+'').replace(/,/g, ''),
                 OpenId: data.xf_weixin,
                 CardGrade: data.xf_grade,
                 Email: data.xf_vipemail,
@@ -608,7 +608,7 @@ exports.GetBonusledgerRecord = function (cardNumber, callback) {
                     ShopId: item.XF_STORECODE,
                     ShopName: item.STOREDESC,
                     Action: item.XF_ACTION,
-                    Integral: item.XF_BONUS,
+                    Integral: (item.XF_BONUS + '').replace(/,/g, ''),
                     Amount: item.XF_AMOUNT,
                     Remark: item.XF_REMARK
                 });

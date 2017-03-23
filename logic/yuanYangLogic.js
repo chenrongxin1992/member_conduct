@@ -125,9 +125,9 @@ YuanYang.prototype.CardBinding = function (attribute, callback) {
             if (result.OpenId != '') {
                 return callback(error.ThrowError(error.ErrorCode.CardInfoError, '该会员卡已经被其他微信号绑定'));
             }
-            if (result.CardGrade == yuanYang.VipGrade) {
-                return callback(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡类型错误，绑卡不能为虚拟卡'));
-            }
+            // if (result.CardGrade == yuanYang.VipGrade) {
+            //     return callback(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡类型错误，绑卡不能为虚拟卡'));
+            // }
             yuanYang.BindOpenID(cardNumber, phone, openId, function (err) {
                 if (err)
                     callback(err);
