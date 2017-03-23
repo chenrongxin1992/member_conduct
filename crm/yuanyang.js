@@ -15,7 +15,7 @@ var url = 'http://124.160.94.150:8025/?wsdl',
     storeCode = 'ZHZ000041',
     xf_vipcodeprefix = '880605',//VIP开卡前缀
     reasoncode = 'wxtz',// 'WX0001', //积分调整原因
-    vipgrade = 'AA',//会员卡默认开卡等级
+    vipgrade = 'V1',//会员卡默认开卡等级
     user = 'test';
 
 /**
