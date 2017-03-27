@@ -24,7 +24,7 @@ var companyId = 'C001',
 //'http://183.62.205.27:8002/WebPOS.asmx?wsdl', // 测试环境
 //'http://asiatic.ticp.net:7009/WebPOS.asmx?wsdl', // 已经搞不清这是什么环境了
 //'http://183.62.205.28:8002/WebPOS.asmx?wsdl',//正式环境
-var url = 'http://183.62.205.28:8002/WebPOS.asmx?wsdl',//
+var url = 'http://183.62.205.27:8002/WebPOS.asmx?wsdl',//
     defaultOpenCardTypeCode = 'WC', //默认会员开卡等级
     defaultPassword = '123456',//默认开卡密码
     soapUserName = 'pos',
