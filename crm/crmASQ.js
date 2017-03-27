@@ -7,15 +7,16 @@ var soap = require('soap'),
     xml = require('xml'),
     error = require('../Exception/error'),
     xmlParser = require('xml2js').parseString,
-    moment = require('moment');
+    moment = require('moment'),
+    asqConfig = require('../config/crm/asq');
 
-var companyId = 'C001',
-    storeId = 'STORE123',
-    caShierId = 'USER9987',
-    cardId = '1396977334', //商家ID
-    orgId = '11',
-    appCode = 'WeChat',
-    crmName = '安胜奇';
+var companyId = asqConfig.companyId,
+    storeId = asqConfig.storeId,
+    caShierId = asqConfig.caShierId,
+    cardId = asqConfig.cardId, //商家ID
+    orgId = asqConfig.orgId,
+    appCode = asqConfig.appCode,
+    crmName = asqConfig.crmName;
 
 //环境真多，我特么已经分不清了
 //172.16.200.13 'http://183.62.205.28:8002/WebPOS.asmx?wsdl'
@@ -24,45 +25,18 @@ var companyId = 'C001',
 //'http://183.62.205.27:8002/WebPOS.asmx?wsdl', // 测试环境
 //'http://asiatic.ticp.net:7009/WebPOS.asmx?wsdl', // 已经搞不清这是什么环境了
 //'http://183.62.205.28:8002/WebPOS.asmx?wsdl',//正式环境
-var url = 'http://183.62.205.28:8002/WebPOS.asmx?wsdl',//
-    defaultOpenCardTypeCode = 'WC', //默认会员开卡等级
-    defaultPassword = '123456',//默认开卡密码
-    soapUserName = 'pos',
-    soapPassword = 'CF79AE6ADDBA60AD018347359BD144D2';
+var url = asqConfig.url,//
+    defaultOpenCardTypeCode = asqConfig.defaultOpenCardTypeCode, //默认会员开卡等级
+    defaultPassword = asqConfig.defaultPassword,//默认开卡密码
+    soapUserName = asqConfig.soapUserName,
+    soapPassword = asqConfig.soapPassword;
 
 exports.DefautCardType = defaultOpenCardTypeCode;
 
-var GetBidByOrgId = {
-    10: 27,//南山京基
-    11: 26,//KKmall
-    12: 28,//沙井京基
-    13: 25,//KKONE
-    100: 44 //总部
-};
-var GetOrgIdByBid = {
-    27: 10,//南山京基
-    26: 11,//KKmall
-    28: 12,//沙井
-    25: 13,//KKONE
-    44: 100 //总部
-};
-
+var GetBidByOrgId = asqConfig.GetBidByOrgId
+var GetOrgIdByBid = asqConfig.GetOrgIdByBid
 //积分记录移动类型 /操作类型
-var movememtType = {
-    1: '初始化',
-    2: '交易',
-    3: '兑换',
-    4: '抽奖',
-    5: '转移',
-    6: '转入',
-    7: '退货',
-    8: '手工操作',
-    9: '系统清零',
-    10: '互动',
-    11: '活动',
-    12: '促销',
-    13: '营销'
-};
+var movememtType = asqConfig.movememtType
 
 /**
  * 开卡

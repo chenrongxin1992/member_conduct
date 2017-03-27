@@ -1,5 +1,5 @@
 var mongoose = require('mongoose'),
-    config = require('./sysConfig');
+    config = require('./sys/sysConfig');
 
 module.exports = function () {
     var db = mongoose.connect(config.mongodb);

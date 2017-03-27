@@ -1,5 +1,5 @@
 var mongoose = require('mongoose'),
-    config = require('../config/sysConfig');
+    config = require('../config/sys');
 
 var ParkingPayRecordSchema = new mongoose.Schema({
     bid: Number,

@@ -20,6 +20,9 @@ var member = require('./routes/member');
 var parking = require('./routes/parkingLot');
 var prepay = require('./routes/prepay');
 
+//load sysconfig
+var sysConfig = require('./config/sys')
+
 var app = express();
 
 // view engine setup
@@ -65,7 +68,7 @@ app.use(function (err, req, res, next) {
     });
 });
 
-var port = 5001;
-app.listen(port, function () {
-    console.log('app is runing.... port:', port);
+//var port = 5001;
+app.listen(sysConfig.port, function () {
+    console.log('app is runing.... port:', sysConfig.port);
 });

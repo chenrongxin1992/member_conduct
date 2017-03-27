@@ -8,11 +8,12 @@ var http = require('http'),
     qs = require('querystring'),
     verify = require('../Tools/verify'),
     error = require('../Exception/error'),
-    moment = require('moment');
+    moment = require('moment'),
+    dgwkConfig = require('../config/crm/dgwk');
 
-var hdHost = '103.44.60.13',//中转程序地址
-    hdPort = 7081; //中转程序端口号
-var defaultGrade = '0001';
+var hdHost = dgwkConfig.hdHost,//中转程序地址
+    hdPort = dgwkConfig.hdPort; //中转程序端口号
+var defaultGrade = dgwkConfig.defaultGrade;
 exports.DefaultGrader = defaultGrade; //默认卡等级
 /**
  * 会员注册

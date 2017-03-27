@@ -9,16 +9,17 @@ var http = require('http'),
     qs = require('querystring'),
     iconv = require('iconv-lite'),
     Bufferhelper = require('bufferhelper'),
-    moment = require('moment');
+    moment = require('moment'),
+    yinshiConfig = require('../config/prepay');
 
 var serverPath = {
-        url: 'http://58.213.110.146/mixc-umsgz-http-server/servlet/server',
-        host: '58.213.110.146',
-        port: '80',
-        path: '/mixc-umsgz-http-server/servlet/server'
+        url: yinshiConfig.url,
+        host: yinshiConfig.host,
+        port: yinshiConfig.port,
+        path: yinshiConfig.path
     },
-    tellerNo = 'dman',
-    key = '3df6a20f6278811f';
+    tellerNo = yinshiConfig.tellerNo,
+    key = yinshiConfig.key
 
 /**
  * 预付卡与会员绑定

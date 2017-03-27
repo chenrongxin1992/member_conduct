@@ -8,14 +8,15 @@ var Md5 = require('md5'),
     Soap = require('soap'),
     Xml = require('xml'),
     Error = require('../Exception/error'),
-    verify = require('../Tools/verify');
+    verify = require('../Tools/verify'),
+    laoximenConfig = require('../config/crm/laoximen');
 
-var url = 'http://218.75.132.68:1887/CRM_VIP_Proxy.asmx?wsdl',
-    key = '20150226152452',
-    storeCode = 'ZHZ000041',
-    xf_vipcodeprefix = '110',//VIP开卡前缀
-    reasoncode = 'wxtz',// 'WX0001', //积分调整原因
-    vipgrade = 'AA';//会员卡默认开卡等级
+var url = laoximenConfig.url,
+    key = laoximenConfig.key,
+    storeCode = laoximenConfig.storeCode,
+    xf_vipcodeprefix = laoximenConfig.xf_vipcodeprefix,//VIP开卡前缀
+    reasoncode = laoximenConfig.reasoncode,// 'WX0001', //积分调整原因
+    vipgrade = laoximenConfig.vipgrade;//会员卡默认开卡等级
 
 /**
  * 导出公用参数

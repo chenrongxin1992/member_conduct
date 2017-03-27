@@ -8,15 +8,16 @@ var Md5 = require('md5'),
     Soap = require('soap'),
     Xml = require('xml'),
     Error = require('../Exception/error'),
-    verify = require('../Tools/verify');
+    verify = require('../Tools/verify'),
+    yuanyangConfig = require('../config/crm/yuanyang');
 
-var url = 'http://124.160.94.150:8025/?wsdl',
-    key = '20150226152452',
-    storeCode = 'ZHZ000041',
-    xf_vipcodeprefix = '880605',//VIP开卡前缀
-    reasoncode = 'wxtz',// 'WX0001', //积分调整原因
-    vipgrade = 'AA',//会员卡默认开卡等级
-    user = 'test';
+var url = yuanyangConfig.url,
+    key = yuanyangConfig.key,
+    storeCode = yuanyangConfig.storeCode,
+    xf_vipcodeprefix = yuanyangConfig.xf_vipcodeprefix,//VIP开卡前缀
+    reasoncode = yuanyangConfig.reasoncode,// 'WX0001', //积分调整原因
+    vipgrade = yuanyangConfig.vipgrade,//会员卡默认开卡等级
+    user = yuanyangConfig.user;
 
 /**
  * 导出公用参数

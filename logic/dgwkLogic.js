@@ -3,7 +3,7 @@ var hd = require('../crm/dgwkHD'),
     error = require('../Exception/error'),
     member = require('./memberLogic'),
     utils = require('util'),
-    config = require('../config/sysConfig'),
+    config = require('../config/sys'),
     mongoose = require('mongoose'),
     CardBinding = mongoose.model(config.cardBinding);
 
