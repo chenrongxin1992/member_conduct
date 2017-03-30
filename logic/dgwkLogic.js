@@ -5,7 +5,8 @@ var hd = require('../crm/dgwkHD'),
     utils = require('util'),
     config = require('../config/sys'),
     mongoose = require('mongoose'),
-    CardBinding = mongoose.model(config.cardBinding);
+    CardBinding = mongoose.model(config.cardBinding)
+    async = require('async');
 
 var defaultCardGrade = '0001'; //默认开卡会员卡等级
 function Dgwk() {
@@ -41,7 +42,7 @@ Dgwk.prototype.Register = function (attribute, callback) {
     if (!verify.Phone(phone)) {
         return callback(error.ThrowError(error.ErrorCode.DateFormatError, 'Phone格式错误'));
     }
-    CardBinding.FindByOpenId(bid, openId, function (err, result) {
+    /*CardBinding.FindByOpenId(bid, openId, function (err, result) {
         if (err) {
             return callback(error.ThrowError(error.ErrorCode.Error, err.message));
         }
@@ -76,7 +77,59 @@ Dgwk.prototype.Register = function (attribute, callback) {
                 }
             });
         });
-    });
+    });*/
+    async.waterfall([
+        function(cb){
+            CardBinding.FindByOpenId(bid, openId, function (err, result) {
+                if (err) {
+                    return callback(error.ThrowError(error.ErrorCode.Error, err.message));
+                }
+                if (result.length > 0) {
+                    return callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
+                }
+                cb(null,result)
+            })
+        },
+        function(result,cb){
+            hd.GetMemberByPhone(phone, function (err, result) {
+                if (result) {
+                    return callback(error.ThrowError(error.ErrorCode.PhoneHasEmploy));
+                }
+                cb(null,result)
+            })
+        },
+        function(result,cb){
+             hd.Register(openId, phone, name, gender, birthday, idNo, address, email, function (err, result) {
+                if (err) {
+                    return callback(err);
+                }
+                if (result) {
+                    result.openId = openId;
+                    var cardBinding = new CardBinding({
+                        bid: bid,
+                        cardNumber: (result.CardNumber + ''),
+                        openId: openId,
+                        cardGrade: result.CardGrade
+                    });
+                    cb(null,cardBinding,result)
+                }else{
+                    return callback(error.ThrowError(error.ErrorCode.Error, '注册失败'));
+                }
+             })
+        },
+        function(cardBinding,result,cb){
+            cardBinding.save(function (err) {
+                if (err)
+                    return callback(error.ThrowError(error.ErrorCode.Error, err.message));
+                cb(null,result)
+            })
+        }
+    ],function(err,result){
+        if(err){
+            return callback(err)
+        }
+        return callback(error.Success(result))
+    })
 };
 
 /**
@@ -242,7 +295,7 @@ Dgwk.prototype.CardModify = function (attribute, callback) {
     if (!cardNumber) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'cardNumber不能为空'));
     }
-    hd.Modify(cardNumber, name, sex, birthday, idNo, email, address, function (err, result) {
+    /*hd.Modify(cardNumber, name, sex, birthday, idNo, email, address, function (err, result) {
         if (err) {
             return callback(err);
         }
@@ -262,7 +315,43 @@ Dgwk.prototype.CardModify = function (attribute, callback) {
                 return callback(error.Success(result));
             });
         });
-    });
+    });*/
+    async.waterfall([
+        function(cb){
+            hd.Modify(cardNumber, name, sex, birthday, idNo, email, address, function (err, result) {
+                if (err) {
+                    return callback(err);
+                }
+                cb(null,result)
+            })
+        },
+        function(result,cb){
+             hd.GetMemberByCardNumber(cardNumber, function (err, result) {
+                if (err) {
+                    return callback(err);
+                }
+                if (!result) {
+                    return callback(error.Success());
+                }
+                cb(null,result)
+             })
+        },
+        function(result,cb){
+            CardBinding.FindByCardNumber(bid, cardNumber, function (err, res) {
+                if (err) {
+                    return callback(error.ThrowError(error.ErrorCode.Error, err.message));
+                }
+                if (res.length > 0)
+                    result.OpenId = res[0].openId;
+                cb(null,result)
+            })
+        }
+    ],function(err,result){
+        if(err){
+            return callback(err)
+        }
+        return callback(error.Success(result))
+    })
 };
 
 Dgwk.prototype.GetCardByOpenId = function (attribute, callback) {
@@ -382,7 +471,7 @@ Dgwk.prototype.IntegralChange = function (attribute, callback) {
     if (integral == 0) {
         return callback(error.ThrowError(error.ErrorCode.DateFormatError, '无效的积分'));
     }
-    hd.IntegralModify(cardNumber, integral, function (err, result) {
+    /*hd.IntegralModify(cardNumber, integral, function (err, result) {
         if (err) {
             return callback(err);
         }
@@ -399,7 +488,40 @@ Dgwk.prototype.IntegralChange = function (attribute, callback) {
                 return callback(error.Success(result));
             });
         });
-    });
+    });*/
+    async.waterfall([
+        function(cb){
+             hd.IntegralModify(cardNumber, integral, function (err, result) {
+                if (err) {
+                    return callback(err);
+                }
+                cb(null,result)
+             })
+        },
+        function(result,cb){
+            hd.GetMemberByCardNumber(cardNumber, function (err, result) {
+                if (err) {
+                    return callback(err);
+                }
+                cb(null,result)
+            })
+        },
+        function(result,cb){
+            CardBinding.FindByCardNumber(bid, result.CardNumber, function (err, res) {
+                if (err) {
+                    return callback(error.ThrowError(error.ErrorCode.Error, err.message));
+                }
+                if (res.length > 0)
+                    result.OpenId = res[0].openId;
+                cb(null,result)
+            })
+        }
+    ],function(err,result){
+        if(err){
+            return callback(err)
+        }
+        return callback(error.Success(result))
+    })
 };
 
 Dgwk.prototype.GradeList = function (attribute, callback) {

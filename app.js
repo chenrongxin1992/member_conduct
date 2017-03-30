@@ -1,6 +1,7 @@
 var express = require('express');
 var path = require('path');
-
+//load sysconfig
+var sysConfig = require('./config/sys')
 
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -20,8 +21,8 @@ var member = require('./routes/member');
 var parking = require('./routes/parkingLot');
 var prepay = require('./routes/prepay');
 
-//load sysconfig
-var sysConfig = require('./config/sys')
+//routes for test
+var testroutes = require('./routes/testroutes')
 
 var app = express();
 
@@ -42,6 +43,8 @@ app.use('/member', member);
 app.use('/parking', parking);
 app.use('/prepay', prepay);
 app.post('/aaa', test.AAA);
+
+app.use('/testroutes',testroutes)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

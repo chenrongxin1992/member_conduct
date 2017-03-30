@@ -21,5 +21,6 @@ module.exports = {
     parkingPayRecord: 'parkingPayRecord',
     prepayCard: 'prepayCards',
     prepayCardPushRecord: 'prepayCardPushRecords',
-    accessTokenInfo: 'accessTokenInfo'
+    accessTokenInfo: 'accessTokenInfo',
+    cardDetail: 'cardDetail'
 };
