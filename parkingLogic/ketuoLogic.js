@@ -123,11 +123,13 @@ keTuo.prototype.GetCarDetial = function(attribute,callback){
 						cardId : 0,
 						carType : 10,
 						validFrom : 0,
-						validTo : 0
+						validTo : 0,
+						note : '车辆类型为空'
 					}
 				}
 				if(arg1.data != null){
-					arg1 = arg1.data[0]
+					arg1 = arg1.data[0],
+					arg1.note = '车辆类型不为空'
 				}
 				 
 				var arg2 = arg2.data[0],
@@ -148,7 +150,8 @@ keTuo.prototype.GetCarDetial = function(attribute,callback){
 						isTicket : arg3.isTicket,
 						ticketTime : arg3.ticketTime,
 						ticketMoney : arg3.ticketMoney,
-						detailSearchType : '车牌号'
+						detailSearchType : '车牌号',
+						note : arg1.note
 					})
 				console.log('---------------------  save detail  -------------------------')
 				console.log(ketuoCar)
