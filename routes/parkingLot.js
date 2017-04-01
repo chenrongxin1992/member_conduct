@@ -6,7 +6,8 @@
 
 var express = require('express'),
     router = express.Router(),
-    factory = require('../parkingLogic/factoryLogic');
+    factory = require('../parkingLogic/factoryLogic'),
+    error = require('../Exception/error')
 //获取车辆信息
 router.post('/CarDetial', CheckBid);
 router.post('/CarDetial', function (req, res) {
@@ -26,11 +27,21 @@ router.post('/CardPayNotice', function (req, res) {
     });
 });
 //科拓接口   bid = 18
+//车辆详情
 router.post('/ketuoCarDetail',CheckBid)
 router.post('/ketuoCarDetail',function(req,res){
     var bid = req.body.bid ? parseInt(req.body.bid) : 0
     var logic = factory(bid)
     logic.GetCarDetial(req.body,function(result){
+        return res.json(result)
+    })
+})
+//支付成功调用
+router.post('/PaySuccess',CheckBid)
+router.post('/PaySuccess',function(req,res){
+    var bid = req.body.bid ? parseInt(req.body.bid) : 0
+    var logic = factory(bid)
+    logic.PaySuccess(req.body,function(result){
         return res.json(result)
     })
 })

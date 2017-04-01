@@ -23,7 +23,7 @@ keTuo.prototype.GetCarDetial = function(attribute,callback){
 
 	//plateNo = 'KEY180'  //临时测试车牌
 	//plateNo = 'A12345'
-	cardNo = '112318010578' //临时卡号
+	//cardNo = '112318010578' //临时卡号
 
 	if(plateNo == '' && cardNo == '')
 		return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '车牌plateNo或卡号carNo不能为空!'))
@@ -159,9 +159,9 @@ keTuo.prototype.PaySuccess = function(attribute,callback){
 		payMethod = attribute.payMethod,
 		freeMoney = attribute.freeMoney,
 		freeTime = attribute.freeTime,
-		freeDetail = freeDetail
+		freeDetail = attribute.freeDetail
 	//临时数据
-	orderNo = '0001201704011142437329',
+	/*orderNo = '0001201704011142437329',
 	amount = 120,
 	discount = 60,
 	payType = 4,
@@ -174,7 +174,7 @@ keTuo.prototype.PaySuccess = function(attribute,callback){
 		"time" : "60",
 		"code" : "00000"
 	}]
-	freeDetail = JSON.stringify(freeDetail)
+	freeDetail = JSON.stringify(freeDetail)*/
 
 	if(!orderNo){
 		return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '订单号orderNo不能为空'))
