@@ -96,7 +96,7 @@ keTuo.prototype.GetCarDetial = function(attribute,callback){
 			function(arg1,cb){
 				ketuo.GetParkingPaymentInfo(plateNo,function(res){
 					if(res.resCode != 0){
-						return cb(error.ThrowError(res.resMsg))
+						return cb(error.ThrowError(res.resCode,res.resMsg))
 					}
 					cb(null,arg1,res)
 				})
@@ -118,7 +118,7 @@ keTuo.prototype.GetCarDetial = function(attribute,callback){
 				console.log(arg2)
 				console.log('---------------------  result of CheckPrePaidTicket  -------------------------')
 				console.log(arg3)
-				if(arg1.data[0] == null){
+				if(arg1.data == null){
 					arg1 = {
 						cardId : 0,
 						carType : 10,
@@ -126,7 +126,7 @@ keTuo.prototype.GetCarDetial = function(attribute,callback){
 						validTo : 0
 					}
 				}
-				if(arg1.data[0] != null){
+				if(arg1.data != null){
 					arg1 = arg1.data[0]
 				}
 				 
@@ -150,6 +150,7 @@ keTuo.prototype.GetCarDetial = function(attribute,callback){
 						ticketMoney : arg3.ticketMoney,
 						detailSearchType : '车牌号'
 					})
+				console.log('---------------------  save detail  -------------------------')
 				console.log(ketuoCar)
 				ketuoCar.save(function(err){
 					console.log('++++++++++++++++++++++++  save process  +++++++++++++++++++++++++++++')
