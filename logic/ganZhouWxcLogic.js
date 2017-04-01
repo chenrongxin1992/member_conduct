@@ -94,10 +94,10 @@ GanZhouWXC.prototype.Register = function (attribute, callback) {
         function(cb){
             CardBinding.FindByOpenId(bid, openId, function (err, result){
                 if (err) {
-                    return callback(error.ThrowError(error.ErrorCode.Error, err.message));
+                    return cb(error.ThrowError(error.ErrorCode.Error, err.message));
                 }
                 if (result.length > 0) {
-                    return callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
+                    return cb(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
                 }
                 cb(null,result)
             })
@@ -105,7 +105,7 @@ GanZhouWXC.prototype.Register = function (attribute, callback) {
         function(result,cb){
             fuji.GetMemberByPhone(phone, function (err, result) {
                 if (!err) { //手机号已被注册
-                    return callback(error.ThrowError(error.ErrorCode.PhoneHasEmploy));
+                    return cb(error.ThrowError(error.ErrorCode.PhoneHasEmploy));
                 }
                 cb(null,result)
             })
@@ -113,7 +113,7 @@ GanZhouWXC.prototype.Register = function (attribute, callback) {
         function(result,cb){
             fuji.Register(phone, name, idNo, address, email, function (err, result) {
                 if (err) {
-                    return callback(err);
+                    return cb(err);
                 }
                 if (result) {
                     result.OpenId = openId;
@@ -130,9 +130,9 @@ GanZhouWXC.prototype.Register = function (attribute, callback) {
                     cardBinding.save(function (err) {
                         console.log('cardBind Save:', err);
                         if (err)
-                            return callback(error.ThrowError(error.ErrorCode.Error, err.message));
+                            return cb(error.ThrowError(error.ErrorCode.Error, err.message));
                         else
-                            return callback(error.Success(result));
+                            return cb(error.Success(result));
                     });
                 }
                 cb(null,result)
@@ -301,10 +301,10 @@ GanZhouWXC.prototype.CardModify = function (attribute, callback) {
         function(cb){
             CardBinding.FindByCardNumber(bid,cardNumber,function(err,res){
                 if(err){
-                    return callback(error.ThrowError(error.ErrorCode.Error,err.message))
+                    return cb(error.ThrowError(error.ErrorCode.Error,err.message))
                 }
                 if(res.length <= 0){
-                    return callback(error.ThrowError(error.ErrorCode.CardUndefined, '会员卡尚未与微信绑定'))
+                    return cb(error.ThrowError(error.ErrorCode.CardUndefined, '会员卡尚未与微信绑定'))
                 }
                 cb(null,res[0].memberId_CRM, res[0].memberId_ERP, idNo,sex,birthday,address,email)
             })
@@ -312,7 +312,7 @@ GanZhouWXC.prototype.CardModify = function (attribute, callback) {
         function(memberId_CRM,memberId_ERP,idNo,sex,birthday,address,email,cb){
             fuji.Modify(memberId_CRM,memberId_ERP,idNo,sex,birthday,address,email,function(err,result){
                 if(err){
-                    return callback(err)
+                    return cb(err)
                 }
                 cb(null,memberId_CRM,memberId_ERP)
             })
@@ -320,7 +320,7 @@ GanZhouWXC.prototype.CardModify = function (attribute, callback) {
         function(memberId_CRM,memberId_ERP,cb){
             fuji.GetMemberByMemberId(memberId_CRM,memberId_ERP,function(err,result){
                 if(err){
-                    return callback(err)
+                    return cb(err)
                 }
                 if(result){
                     result.Openid = openId
@@ -519,10 +519,10 @@ GanZhouWXC.prototype.IntegralChange = function (attribute, callback) {
         function(cb){
             CardBinding.FindByCardNumber(bid,cardNumber,function(err,result){
                 if(err){
-                    return callback(error.ThrowError(error.ErrorCode.Error,err.message))
+                    return cb(error.ThrowError(error.ErrorCode.Error,err.message))
                 }
                 if(result.length <= 0){
-                    return callback(error.ThrowError(error.ErrorCode.CardUndefined))
+                    return cb(error.ThrowError(error.ErrorCode.CardUndefined))
                 }
                 cb(null,result[0].memberId_CRM, result[0].memberId_ERP)
             })
@@ -530,7 +530,7 @@ GanZhouWXC.prototype.IntegralChange = function (attribute, callback) {
         function(memberId_CRM,memberId_ERP,cb){
             fuji.IntegralAdjust(memberId_CRM,memberId_ERP,integral,function(err,result){
                 if(err){
-                    return callback(err)
+                    return cb(err)
                 }
                 cb(null,result)
             })
@@ -538,7 +538,7 @@ GanZhouWXC.prototype.IntegralChange = function (attribute, callback) {
         function(result,cb){
             fuji.GetMemberByCardNumber(cardNumber, function (err, result) {
                 if(err){
-                    return callback(err)
+                    return cb(err)
                 }
                 cb(nul,result.cardNumber)
             })
@@ -546,7 +546,7 @@ GanZhouWXC.prototype.IntegralChange = function (attribute, callback) {
         function(cardNumber,cb){
             CardBinding.FindByCardNumber(bid, result.CardNumber, function (err, res) {
                 if(err){
-                    return callback(error.ThrowError(error.ErrorCode.Error, err.message));
+                    return cb(error.ThrowError(error.ErrorCode.Error, err.message));
                 }
                 if (res.length > 0)
                     result.OpenId = res[0].openId;
@@ -609,10 +609,10 @@ GanZhouWXC.prototype.CardUnbind = function (attribute, callback) {
         function(cb){
             fuji.GetMemberByCardNumber(cardNumber,function(err,result){
                 if(err){
-                    return callback(err)
+                    return cb(err)
                 }
                 if(result.CardGrade == defaultCardGrade){
-                     return callback(error.ThrowError(error.ErrorCode.Error, '卡类型错误，该卡类型不能解绑'));
+                     return cb(error.ThrowError(error.ErrorCode.Error, '卡类型错误，该卡类型不能解绑'));
                 }
                 cb(null,result)
             })
@@ -620,13 +620,13 @@ GanZhouWXC.prototype.CardUnbind = function (attribute, callback) {
         function(result,cb){
             CardBinding.FindByCardNumber(bid,cardNumber,function(err,result){
                 if (err) {
-                    return callback(error.ThrowError(error.ErrorCode.Error, err.message));
+                    return cb(error.ThrowError(error.ErrorCode.Error, err.message));
                 }
                 if (!result || result.length <= 0) {
-                    return callback(error.ThrowError(error.ErrorCode.Error, 'OpenId未绑定会员卡'));
+                    return cb(error.ThrowError(error.ErrorCode.Error, 'OpenId未绑定会员卡'));
                 }
                 if (openId != result[0].openId) {
-                    return callback(error.ThrowError(error.ErrorCode.Error, '会员卡对应的微信号不正确'));
+                    return cb(error.ThrowError(error.ErrorCode.Error, '会员卡对应的微信号不正确'));
                 }
                 cb(null,result[0]._id)
             })
@@ -634,7 +634,7 @@ GanZhouWXC.prototype.CardUnbind = function (attribute, callback) {
         function (_id,cb) {
             CardBinding.remove({_id: result[0]._id}, function (err) {
                 if (err) {
-                    return callback(error.ThrowError(error.ErrorCode.Error, '解绑失败'));
+                    return cb(error.ThrowError(error.ErrorCode.Error, '解绑失败'));
                 } 
                 cb(null,result)
             })

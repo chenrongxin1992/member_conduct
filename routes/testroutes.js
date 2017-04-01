@@ -6,7 +6,8 @@
 var express = require('express'),
 	router = express.Router(),
 	error = require('../Exception/error'),
-	ketuo = require('../parking/ketuo')
+	ketuo = require('../parking/ketuo'),
+	factory = require('../parkingLogic/factoryLogic')
 
 	//1．停车场信息查询接口 GetParkingLotInfo
 	router.post('/GetParkingLotInfo',function(req,res){
@@ -169,8 +170,8 @@ var express = require('express'),
 	})
 	//5.停车费支付(账单同步)接口PayParkingFee
 	//orderNo,amount,discount,payType,payMethod,freeMoney,freeTime,freeDetail,
-	router.post('/PayParkingFee',function(req,res){
-		var orderNo = '0001201703301406404536',
+	router.post('/PayParkingFee',function(req,res){//0001201704011104300364,0001201704010941533474
+		var orderNo = '0001201704011126596133',//有parkingTIme
 			amount = 120,
 			discount = 60,
 			payType = 4,
@@ -213,7 +214,7 @@ var express = require('express'),
 	})
 	//8．订单支付状态查询接口GetPaymentStatus
 	router.post('/GetPaymentStatus',function(req,res){
-		var orderNo = '3123213'
+		var orderNo = '0001201704011126596133'
 		ketuo.GetPaymentStatus(orderNo,function(result){
 			res.json(result)
 		})
@@ -280,4 +281,26 @@ var express = require('express'),
 			res.json(result)
 		})
 	})
-	module.exports = router
+
+	//科拓接口   bid = 18
+//router.post('/ketuoCarDetail',CheckBid)
+router.post('/ketuoCarDetail',function(req,res){
+	console.log('++++++++++++++++++++++++  in router  +++++++++++++++++++++++++++++')
+    var bid = req.body.bid ? parseInt(req.body.bid) : 0
+    bid = 18
+    var logic = factory(bid)
+    logic.GetCarDetial(req.body,function(result){
+        return res.json(result)
+    })
+})
+router.post('/ketuoPaySuccess',function(req,res){
+	console.log('++++++++++++++++++++++++  in router  +++++++++++++++++++++++++++++')
+    var bid = req.body.bid ? parseInt(req.body.bid) : 0
+    bid = 18
+    var logic = factory(bid)
+    logic.PaySuccess(req.body,function(result){
+        return res.json(result)
+    })
+})
+
+module.exports = router

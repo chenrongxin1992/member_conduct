@@ -50,7 +50,7 @@ JJBN.prototype.Register = function (attribute, callback) {
             function(cb){
                 asq.GetCardByPhone(bid,phone,function(err,result){
                     if(result){
-                        return callback(error.ThrowError(error.ErrorCode.PhoneHasEmploy))
+                        return cb(error.ThrowError(error.ErrorCode.PhoneHasEmploy))
                     }
                     cb(null,result)
                 })
@@ -58,7 +58,7 @@ JJBN.prototype.Register = function (attribute, callback) {
             function(result,cb){
                 asq.GetCardByOpenId(bid,openId,function(err,result){
                     if(result){
-                        return callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy))
+                        return cb(error.ThrowError(error.ErrorCode.OpenIdHasEmploy))
                     }
                     cb(null,result)
                 })
@@ -66,7 +66,7 @@ JJBN.prototype.Register = function (attribute, callback) {
             function (result,cb) {
                 asq.OpenCard(bid,openId,phone,cardType,function(err,result){
                     if(err){
-                        return callback(err)
+                        return cb(err)
                     }
                     cb(null.result)
                 })
@@ -99,7 +99,7 @@ JJBN.prototype.Register = function (attribute, callback) {
              function(cb){
                 asq.GetCardByPhone(bid,phone,function(err,result){
                     if(result){
-                        return callback(error.ThrowError(error.ErrorCode.PhoneHasEmploy))
+                        return cb(error.ThrowError(error.ErrorCode.PhoneHasEmploy))
                     }
                     cb(null,result)
                 })
@@ -107,7 +107,7 @@ JJBN.prototype.Register = function (attribute, callback) {
             function (result,cb) {
                 asq.OpenCard(bid,openId,phone,cardType,function(err,result){
                     if(err){
-                        return callback(err)
+                        return cb(err)
                     }
                     cb(null.result)
                 })
@@ -115,7 +115,7 @@ JJBN.prototype.Register = function (attribute, callback) {
             function(result,cb){
                 asq.GetCardByOpenId(bid,openId,function(err,result){
                     if(result){
-                        return callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy))
+                        return cb(error.ThrowError(error.ErrorCode.OpenIdHasEmploy))
                     }
                     cb(null,result)
                 })
@@ -178,7 +178,7 @@ JJBN.prototype.CardBinding = function (attribute, callback) {
         function(cb){
             asq.GetCardByOpenId(bid,openId,function(err,result){
                 if(result){
-                    return callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy))
+                    return cb(error.ThrowError(error.ErrorCode.OpenIdHasEmploy))
                 }
                 cb(null,result)
             })
@@ -186,10 +186,10 @@ JJBN.prototype.CardBinding = function (attribute, callback) {
         function(result,cb){
             asq.GetCardByCardNo(bid,cardNo,function(err,result){
                 if(err){
-                    return callback(err)
+                    return cb(err)
                 }
                 if(result.phone != phone){
-                    return callback(error.ThrowError(error.ErrorCode.CardInfoError,'会员卡手机号错误'))
+                    return cb(error.ThrowError(error.ErrorCode.CardInfoError,'会员卡手机号错误'))
                 }
                 cb(null,result)
             })
@@ -197,7 +197,7 @@ JJBN.prototype.CardBinding = function (attribute, callback) {
         function(result,cb){
             asq.BindCard(bid,openId,cardNo,name,phone,function(err,result){
                 if(err){
-                    return callback(err)
+                    return cb(err)
                 }
                 cb(null,result)
             })
@@ -371,10 +371,10 @@ JJBN.prototype.CardUnbind = function (attribute, callback) {
         function(cb){
             asq.GetCardByOpenId(bid,openId,function(err,result){
                 if(err){
-                    return callback(err)
+                    return cb(err)
                 }
                 if(result.CardNumber !== cardNo){
-                    return callback(error.ThrowError(error.ErrorCode.CardInfoError, '与该微信绑定的会员卡不相符'))
+                    return cb(error.ThrowError(error.ErrorCode.CardInfoError, '与该微信绑定的会员卡不相符'))
                 }
                 cb(null,result)
             })
@@ -382,7 +382,7 @@ JJBN.prototype.CardUnbind = function (attribute, callback) {
         function(result,cb){
             asq.GetCardByCardNo(bid,cardNo,function(err,result){
                 if(err){
-                    return callback(err)
+                    return cb(err)
                 }
                 cb(null,result)
             })
@@ -390,7 +390,7 @@ JJBN.prototype.CardUnbind = function (attribute, callback) {
         function(result,cb){
             asq.CardUnBind(bid,openId,cardNo,function(err,result){
                 if(err){
-                    return callback(err)
+                    return cb(err)
                 }
                 cb(null,result)
             })

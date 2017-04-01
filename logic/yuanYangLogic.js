@@ -86,7 +86,7 @@ YuanYang.prototype.Register = function (attribute, callback) {
         function(cb){
             yuanYang.GetVipInfoByMobileOpenId(openId,function(err,result){
                 if (err) {
-                    callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy))
+                    cb(error.ThrowError(error.ErrorCode.OpenIdHasEmploy))
                     return
                 }
                 cb(null,result)
@@ -95,7 +95,7 @@ YuanYang.prototype.Register = function (attribute, callback) {
         function(result,err){
             yuanYang.VipCreate(name,phone,sex,grade,function(err,result){
                 if (err) {
-                    return callback(err)
+                    return cb(err)
                 }
                 cb(null,result.CardNumber)
             })
@@ -103,7 +103,7 @@ YuanYang.prototype.Register = function (attribute, callback) {
         function(result,cb){
             yuanYang.GetVipInfo(result,function(err,result){
                 if(err){
-                    callback(err)
+                    cb(err)
                 }
                 cb(null,result)
             })
@@ -176,7 +176,7 @@ YuanYang.prototype.CardBinding = function (attribute, callback) {
         function(cb){
             yuanYang.GetVipInfoByMobileOpenId(openId,function(err,result){
                 if(!err && result.CardGrade != yuanYang.VipGrade){
-                    return callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy))
+                    return cb(error.ThrowError(error.ErrorCode.OpenIdHasEmploy))
                 }
                 cb(null,result)
             })
@@ -184,16 +184,16 @@ YuanYang.prototype.CardBinding = function (attribute, callback) {
         function(result,cb){
             yuanYang.GetVipInfo(cardNumber,function(err,result){
                 if(err){
-                    return callback(err)
+                    return cb(err)
                 }
             if (!(result.Phone == phone)) {
-                return callback(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡信息错误，手机号不正确'));
+                return cb(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡信息错误，手机号不正确'));
             }
             if (result.OpenId != '') {
-                return callback(error.ThrowError(error.ErrorCode.CardInfoError, '该会员卡已经被其他微信号绑定'));
+                return cb(error.ThrowError(error.ErrorCode.CardInfoError, '该会员卡已经被其他微信号绑定'));
             }
             if (result.CardGrade == yuanYang.VipGrade) {
-                return callback(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡类型错误，绑卡不能为虚拟卡'));
+                return cb(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡类型错误，绑卡不能为虚拟卡'));
             }
             cb(null.result)
             })
@@ -201,7 +201,7 @@ YuanYang.prototype.CardBinding = function (attribute, callback) {
         function(result,cb){
             yuanYang.BindOpenID(cardNumber,phone,openId,function(err){
                 if(err){
-                    callback(err)
+                    cb(err)
                 }
                 result.openId = openId
                 cb(null,result)
@@ -304,11 +304,11 @@ YuanYang.prototype.CardModify = function (attribute, callback) {
         function(cb){
             yuanYang.GetVipInfo(cardNumber,function(err,result){
                 if(err){
-                    callback(err)
+                    cb(err)
                     return
                 }
                 if(!result){
-                    callback(error.ThrowError(error.ErrorCode.CardUndefined))
+                    cb(error.ThrowError(error.ErrorCode.CardUndefined))
                 }
                 cb(null,result)
             })
@@ -323,7 +323,7 @@ YuanYang.prototype.CardModify = function (attribute, callback) {
             name = name == result.Name ? '' : name;
             yuanYang.VipModify(cardNumber,name,phone,sex,birthday,idNo,address,email,function(err,result){
                 if(err){
-                    callback(err)
+                    cb(err)
                     return
                 }
                 cb(null,result)
@@ -332,7 +332,7 @@ YuanYang.prototype.CardModify = function (attribute, callback) {
         function(result,cb){
             yuanYang.GetVipInfo(cardNumber,function(err,result){
                 if(err){
-                    callback(err)
+                    cb(err)
                     return
                 }
                 callback(null,result)

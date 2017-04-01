@@ -82,10 +82,10 @@ Dgwk.prototype.Register = function (attribute, callback) {
         function(cb){
             CardBinding.FindByOpenId(bid, openId, function (err, result) {
                 if (err) {
-                    return callback(error.ThrowError(error.ErrorCode.Error, err.message));
+                    return cb(error.ThrowError(error.ErrorCode.Error, err.message));
                 }
                 if (result.length > 0) {
-                    return callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
+                    return cb(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
                 }
                 cb(null,result)
             })
@@ -93,7 +93,7 @@ Dgwk.prototype.Register = function (attribute, callback) {
         function(result,cb){
             hd.GetMemberByPhone(phone, function (err, result) {
                 if (result) {
-                    return callback(error.ThrowError(error.ErrorCode.PhoneHasEmploy));
+                    return cb(error.ThrowError(error.ErrorCode.PhoneHasEmploy));
                 }
                 cb(null,result)
             })
@@ -101,7 +101,7 @@ Dgwk.prototype.Register = function (attribute, callback) {
         function(result,cb){
              hd.Register(openId, phone, name, gender, birthday, idNo, address, email, function (err, result) {
                 if (err) {
-                    return callback(err);
+                    return cb(err);
                 }
                 if (result) {
                     result.openId = openId;
@@ -113,14 +113,14 @@ Dgwk.prototype.Register = function (attribute, callback) {
                     });
                     cb(null,cardBinding,result)
                 }else{
-                    return callback(error.ThrowError(error.ErrorCode.Error, '注册失败'));
+                    return cb(error.ThrowError(error.ErrorCode.Error, '注册失败'));
                 }
              })
         },
         function(cardBinding,result,cb){
             cardBinding.save(function (err) {
                 if (err)
-                    return callback(error.ThrowError(error.ErrorCode.Error, err.message));
+                    return cb(error.ThrowError(error.ErrorCode.Error, err.message));
                 cb(null,result)
             })
         }
@@ -320,7 +320,7 @@ Dgwk.prototype.CardModify = function (attribute, callback) {
         function(cb){
             hd.Modify(cardNumber, name, sex, birthday, idNo, email, address, function (err, result) {
                 if (err) {
-                    return callback(err);
+                    return cb(err);
                 }
                 cb(null,result)
             })
@@ -328,10 +328,10 @@ Dgwk.prototype.CardModify = function (attribute, callback) {
         function(result,cb){
              hd.GetMemberByCardNumber(cardNumber, function (err, result) {
                 if (err) {
-                    return callback(err);
+                    return cb(err);
                 }
                 if (!result) {
-                    return callback(error.Success());
+                    return cb(error.Success());
                 }
                 cb(null,result)
              })
@@ -339,7 +339,7 @@ Dgwk.prototype.CardModify = function (attribute, callback) {
         function(result,cb){
             CardBinding.FindByCardNumber(bid, cardNumber, function (err, res) {
                 if (err) {
-                    return callback(error.ThrowError(error.ErrorCode.Error, err.message));
+                    return cb(error.ThrowError(error.ErrorCode.Error, err.message));
                 }
                 if (res.length > 0)
                     result.OpenId = res[0].openId;
@@ -493,7 +493,7 @@ Dgwk.prototype.IntegralChange = function (attribute, callback) {
         function(cb){
              hd.IntegralModify(cardNumber, integral, function (err, result) {
                 if (err) {
-                    return callback(err);
+                    return cb(err);
                 }
                 cb(null,result)
              })
@@ -501,7 +501,7 @@ Dgwk.prototype.IntegralChange = function (attribute, callback) {
         function(result,cb){
             hd.GetMemberByCardNumber(cardNumber, function (err, result) {
                 if (err) {
-                    return callback(err);
+                    return cb(err);
                 }
                 cb(null,result)
             })
@@ -509,7 +509,7 @@ Dgwk.prototype.IntegralChange = function (attribute, callback) {
         function(result,cb){
             CardBinding.FindByCardNumber(bid, result.CardNumber, function (err, res) {
                 if (err) {
-                    return callback(error.ThrowError(error.ErrorCode.Error, err.message));
+                    return cb(error.ThrowError(error.ErrorCode.Error, err.message));
                 }
                 if (res.length > 0)
                     result.OpenId = res[0].openId;

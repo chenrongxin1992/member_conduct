@@ -81,7 +81,7 @@ ZhongZhou.prototype.Register = function (attribute, callback) {
         function(cb){
             kechuan.GetVipInfoByMobileOpenId(openId,function(err,result){
                 if(!err){
-                    callback(error.ThrowError(error.error.ErrorCode.OpenIdHasEmploy))
+                    cb(error.ThrowError(error.error.ErrorCode.OpenIdHasEmploy))
                     return
                 }
                 cb(null,result)
@@ -90,7 +90,7 @@ ZhongZhou.prototype.Register = function (attribute, callback) {
         function(result,cb){
             kechuan.VipCreate(name,phone,sex,function(err,result){
                 if(err){
-                    callback(err)
+                    cb(err)
                     return
                 }
                 cb(err,result)
@@ -99,7 +99,7 @@ ZhongZhou.prototype.Register = function (attribute, callback) {
         function(result,cb){
             kechuan.BindOpenID(result.cardNumber,phone,openid,function(err){
                 if(err){
-                    callback(err)
+                    cb(err)
                     return
                 }
                 cb(err,result)
@@ -108,7 +108,7 @@ ZhongZhou.prototype.Register = function (attribute, callback) {
         function(result,cb){
             kechuan.GetVipInfo(result.cardNumber,function(err,result){
                 if(err){
-                    callback(err)
+                    cb(err)
                 }
                 cb(err,result)
             })
@@ -179,7 +179,7 @@ ZhongZhou.prototype.CardBinding = function (attribute, callback) {
         function(cb){
             kechuan.GetVipInfoByMobileOpenId(openId,function(err,result){
                 if(!err && result.cardGrade != kechuan.VipGrade){
-                    return callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy))
+                    return cb(error.ThrowError(error.ErrorCode.OpenIdHasEmploy))
                 }
                 cb(null,result)
             })
@@ -187,16 +187,16 @@ ZhongZhou.prototype.CardBinding = function (attribute, callback) {
         function(result,cb){
             kechuan.GetVipInfo(cardNumber,function(err,result){
                 if(err){
-                    return callback(err)
+                    return cb(err)
                 }
                 if (!(result.Phone == phone)) {
-                    return callback(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡信息错误，手机号不正确'));
+                    return cb(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡信息错误，手机号不正确'));
                 }
                 if (result.OpenId != '') {
-                    return callback(error.ThrowError(error.ErrorCode.CardInfoError, '该会员卡已经被其他微信号绑定'));
+                    return cb(error.ThrowError(error.ErrorCode.CardInfoError, '该会员卡已经被其他微信号绑定'));
                 }
                 if (result.CardGrade == kechuan.VipGrade) {
-                    return callback(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡类型错误，绑卡不能为虚拟卡'));
+                    return cb(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡类型错误，绑卡不能为虚拟卡'));
                 }
                 cb(null,result)
             })
@@ -204,7 +204,7 @@ ZhongZhou.prototype.CardBinding = function (attribute, callback) {
         function(result,cb){
             kechuan.BindOpenID(cardNumber,phone,openid,function(err){
                 if(err){
-                    callback(err)
+                    cb(err)
                 }
                 cb(null,result)
             })
@@ -303,11 +303,11 @@ ZhongZhou.prototype.CardModify = function (attribute, callback) {
         function(cb){
             kechuan.GetVipInfo(cardNumber,function(err,result){
                 if(err){
-                    callback(err)
+                    cb(err)
                     return
                 }
                 if(!result){
-                    callback(error.ThrowError(error.ErrorCode.CardUndefined))
+                    cb(error.ThrowError(error.ErrorCode.CardUndefined))
                     return 
                 }
                 cb(null,result)
@@ -323,7 +323,7 @@ ZhongZhou.prototype.CardModify = function (attribute, callback) {
             name = name == result.Name ? '' : name;
             kechuan.VipModify(cardNumber,name,phone,sex,birthday,idNo,address,email,function(err,result){
                 if(err){
-                    callback(err)
+                    cb(err)
                     return
                 }
                 cb(null,result)
@@ -332,7 +332,7 @@ ZhongZhou.prototype.CardModify = function (attribute, callback) {
         function(result,cb){
             kechuan.GetVipInfo(cardNumber,function(err,result){
                 if(err){
-                    callback(err)
+                    cb(err)
                     return
                 }
                 cb(null,result)
@@ -495,10 +495,10 @@ ZhongZhou.prototype.CardUnbind = function (attribute, callback) {
         function (cb){
             kechuan.GetVipInfo(cardNumber,function(err,result){
                 if(err){
-                    return callback(err)
+                    return cb(err)
                 }
                 if(!result.cardNumber || result.cardNumber == ''){
-                    return callback(error.ThrowError(error.error.ErrorCode.CardUndefined))
+                    return cb(error.ThrowError(error.error.ErrorCode.CardUndefined))
                 }
                 cb(err,result.Phone)
             })
@@ -506,7 +506,7 @@ ZhongZhou.prototype.CardUnbind = function (attribute, callback) {
         function(result,cb){
             kechuan.BindOpenID(cardNumber,result,'',function(err){
                 if(err){
-                    callback(err)
+                    cb(err)
                 }
                 cb(err,result)
             })

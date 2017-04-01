@@ -1,7 +1,7 @@
 /**
  *  @Author:  chenrx
  *  @Create Date:   2017-03-28
- *  @Description:   科拓停车场对接
+ *  @Description:   科拓停车场(接口)
  */
 var http = require('http'),
 	ketuoConfig = require('../config/parking/ketuo'),
@@ -759,6 +759,8 @@ exports.GetParkingPaymentInfo = function(plateNo,callback){
     	res.on('end',function(){
     		console.log(result)
     		console.log()
+    		// if(result.resCode != 0)
+    		// 	return callback(error.ThrowError(1,result.resMsg))
     		result = JSON.parse(result)
     		return callback(result)
     	})
