@@ -220,11 +220,11 @@ var express = require('express'),
 	})
 	//2．停车费(账单)查询接口GetParkingPaymentInfo
 	router.post('/GetParkingPaymentInfo',function(req,res){
-		//var plateNo = 'AJQ002'
-		if(!req.body.plateNo){
-			return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'plateNo不能为空'))
-		}
-		var plateNo = req.body.plateNo//'KEY180'
+		var plateNo = 'AJQ002'
+		// if(!req.body.plateNo){
+		// 	return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'plateNo不能为空'))
+		// }
+		// var plateNo = req.body.plateNo//'KEY180'
 
 		ketuo.GetParkingPaymentInfo(plateNo,function(result){
 			res.json(result)
@@ -266,8 +266,8 @@ var express = require('express'),
 			}]
 			freeDetail = req.body.freeDetail,
 		freeDetail = JSON.stringify(freeDetail)*/
-			var detial=req.body.freeDetail;
-			console.log('detial',typeof detial,detial);
+		/*	var detial=req.body.freeDetail;
+			console.log('detial',typeof detial,detial);*/
 		var data={
 			orderNo : req.body.orderNo,//'0001201703301406404536',
 			freeMoney : req.body.freeMoney,//100,
@@ -278,13 +278,13 @@ var express = require('express'),
 				"time" : req.body.freeDetail.time,
 				"code" : req.body.freeDetail.code
 			}]
-		}
-			
-		data = JSON.stringify(data);
+		};
+		console.log('data',data);	
+	var	data = JSON.stringify(data);
 	
-		console.log('-----------------------------------------------------------------------------------')
+		/*console.log('-----------------------------------------------------------------------------------')
 		console.log(typeof freeDetail)
-		console.log('data',data,'\n');
+		console.log('data',data,'\n');*/
 		ketuo.GetPaymentRecharge(data,function(result){
 			res.json(result)
 		})
@@ -316,23 +316,40 @@ var express = require('express'),
 		if(!req.body.freeDetail){
 			return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'freeDetail不能为空'))
 		}
-		var orderNo = req.body.orderNo,//'0001201704011126596133',//有parkingTIme
-			amount = parseInt(req.body.amount),//120,
-			discount = parseInt(req.body.discount),//60,
-			payType = parseInt(req.body.payType),//4,
-			payMethod = parseInt(req.body.payMethod),//4,
-			freeMoney = parseInt(req.body.freeMoney),//100,
-			freeTime = parseInt(req.body.freeTime),//60,
-			/*freeDetail = [{
-				"type" : "0",
-				"money" : "100",
-				"time" : "60",
-				"code" : "00000"
-			}]*/
-			freeDetail = req.body.freeDetail
-		freeDetail = JSON.stringify(freeDetail)
-
-		ketuo.PayParkingFee(orderNo,amount,discount,payType,payMethod,freeMoney,freeTime,freeDetail,function(result){
+		// var orderNo = req.body.orderNo,//'0001201704011126596133',//有parkingTIme
+		// 	amount = parseInt(req.body.amount),//120,
+		// 	discount = parseInt(req.body.discount),//60,
+		// 	payType = parseInt(req.body.payType),//4,
+		// 	payMethod = parseInt(req.body.payMethod),//4,
+		// 	freeMoney = parseInt(req.body.freeMoney),//100,
+		// 	freeTime = parseInt(req.body.freeTime),//60,
+		// 	/*freeDetail = [{
+		// 		"type" : "0",
+		// 		"money" : "100",
+		// 		"time" : "60",
+		// 		"code" : "00000"
+		// 	}]*/
+		// 	freeDetail = req.body.freeDetail
+		// freeDetail = JSON.stringify(freeDetail)
+		var data = {
+			orderNo : req.body.orderNo,//'0001201704011126596133',//有parkingTIme
+			amount : parseInt(req.body.amount),//120,
+			discount : parseInt(req.body.discount),//60,
+			payType : parseInt(req.body.payType),//4,
+			payMethod : parseInt(req.body.payMethod),//4,
+			freeMoney : parseInt(req.body.freeMoney),//100,
+			freeTime : parseInt(req.body.freeTime),//60,
+			freeDetail : [{
+				"type" : req.body.freeDetail.type,
+				"money" : req.body.freeDetail.money,
+				"time" : req.body.freeDetail.time,
+				"code" : req.body.freeDetail.code
+			}]
+			//freeDetail = req.body.freeDetail
+		}
+		data = JSON.stringify(data)
+		console.log('data: ',data)
+		ketuo.PayParkingFee(data,function(result){
 			res.json(result)
 		})
 	})

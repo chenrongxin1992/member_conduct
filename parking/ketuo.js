@@ -830,15 +830,16 @@ exports.GetParkingPaymentInfoByCard = function(cardNo,callback){
     req.end()
 }
 //4.账单减免计费接口GetPaymentRecharge
-exports.GetPaymentRecharge = function(data,callback){
+exports.GetPaymentRecharge = function(datastr,callback){
 	var data = {
 	         alg: alg,   
 	         autoPad: true,
 	         key: key,
-	         text : data,
+	         text : datastr,
 	         iv: iv
-   		},
-   		crypt_result = crypto3DES.encrypt3DES(data),
+   		};
+   		console.log('data 2',data);
+   	var	crypt_result = crypto3DES.encrypt3DES(data),
 	    
     	post_data = JSON.stringify({
 	    	data : crypt_result
@@ -849,11 +850,11 @@ exports.GetPaymentRecharge = function(data,callback){
 			path : ketuoConfig.GetPaymentRecharge,
 			method : 'post',
 			headers : {
-				'content-type': 'application/json',
+				'content-type': 'application/json;charset=UTF-8',
 				'user' : user,
 				'pwd' : pwd
 			}
-	    }
+	    };
 
 	console.log('加密数据结果: '+ crypt_result)
 	console.log()
@@ -885,17 +886,17 @@ exports.GetPaymentRecharge = function(data,callback){
     req.end()
 }
 //5.停车费支付(账单同步)接口PayParkingFee
-exports.PayParkingFee = function(orderNo,amount,discount,payType,payMethod,freeMoney,freeTime,freeDetail,callback){
+exports.PayParkingFee = function(datastr,callback){
 	var data = {
 	         alg: alg,   
 	         autoPad: true,
 	         key: key,
-	         text: '{"orderNo":"'+orderNo+'","amount":"'+amount+'","discount":"'+discount+'","payType":"'+payType+'","payMethod":"'+payMethod+'","freeMoney":"'+freeMoney+'","freeTime":"'+freeTime+'","freeDetail":'+freeDetail+'}',
+	         text:datastr,
 	         iv: iv
-   		}
+   		},
    		crypt_result = crypto3DES.encrypt3DES(data),
 	    
-    	post_data = querystring.stringify({
+    	post_data = JSON.stringify({
 	    	data : crypt_result
 	    }),
 	    options = {
@@ -904,7 +905,7 @@ exports.PayParkingFee = function(orderNo,amount,discount,payType,payMethod,freeM
 			path : ketuoConfig.PayParkingFee,
 			method : 'post',
 			headers : {
-				'content-type': content_type,
+				'content-type': 'application/json;charset=UTF-8',
 				'user' : user,
 				'pwd' : pwd
 			}
