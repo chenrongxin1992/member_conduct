@@ -830,17 +830,17 @@ exports.GetParkingPaymentInfoByCard = function(cardNo,callback){
     req.end()
 }
 //4.账单减免计费接口GetPaymentRecharge
-exports.GetPaymentRecharge = function(orderNo,freeMoney,freeTime,freeDetail,callback){
+exports.GetPaymentRecharge = function(data,callback){
 	var data = {
 	         alg: alg,   
 	         autoPad: true,
 	         key: key,
-	         text: '{"orderNo":"'+orderNo+'","freeMoney":"'+freeMoney+'","freeTime":"'+freeTime+'","freeDetail":'+freeDetail+'}',
+	         text : data,
 	         iv: iv
-   		}
+   		},
    		crypt_result = crypto3DES.encrypt3DES(data),
 	    
-    	post_data = querystring.stringify({
+    	post_data = JSON.stringify({
 	    	data : crypt_result
 	    }),
 	    options = {
@@ -849,7 +849,7 @@ exports.GetPaymentRecharge = function(orderNo,freeMoney,freeTime,freeDetail,call
 			path : ketuoConfig.GetPaymentRecharge,
 			method : 'post',
 			headers : {
-				'content-type': content_type,
+				'content-type': 'application/json',
 				'user' : user,
 				'pwd' : pwd
 			}

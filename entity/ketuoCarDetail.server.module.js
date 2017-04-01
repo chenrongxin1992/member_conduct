@@ -46,6 +46,7 @@ var ketuoCarDetailSchema = new mongoose.Schema({
         type : String,
         default : '卡号'
     },
+    note : String,
     status: {
         type: Number,
         default: 0

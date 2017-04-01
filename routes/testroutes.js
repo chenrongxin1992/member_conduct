@@ -220,10 +220,12 @@ var express = require('express'),
 	})
 	//2．停车费(账单)查询接口GetParkingPaymentInfo
 	router.post('/GetParkingPaymentInfo',function(req,res){
+		//var plateNo = 'AJQ002'
 		if(!req.body.plateNo){
 			return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'plateNo不能为空'))
 		}
 		var plateNo = req.body.plateNo//'KEY180'
+
 		ketuo.GetParkingPaymentInfo(plateNo,function(result){
 			res.json(result)
 		})
@@ -253,19 +255,37 @@ var express = require('express'),
 		if(!req.body.freeDetail){
 			return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'freeDetail不能为空'))
 		}
-		var orderNo = req.body.orderNo,//'0001201703301406404536',
+		/*var orderNo = req.body.orderNo,//'0001201703301406404536',
 			freeMoney = parseInt(req.body.freeMoney),//100,
 			freeTime = parseInt(req.body.freeTime),//60,
-			/*freeDetail = [{
+			freeDetail = [{
 				"type" : "0",
 				"money" : "100",
 				"time" : "60",
 				"code" : "00000"
-			}]*/
+			}]
 			freeDetail = req.body.freeDetail,
-		freeDetail = JSON.stringify(freeDetail)
-		//console.log(typeof freeDetail)
-		ketuo.GetPaymentRecharge(orderNo,freeMoney,freeTime,freeDetail,function(result){
+		freeDetail = JSON.stringify(freeDetail)*/
+			var detial=req.body.freeDetail;
+			console.log('detial',typeof detial,detial);
+		var data={
+			orderNo : req.body.orderNo,//'0001201703301406404536',
+			freeMoney : req.body.freeMoney,//100,
+			freeTime : req.body.freeTime,//60,
+			freeDetail : [{
+				"type" : req.body.freeDetail.type,
+				"money" : req.body.freeDetail.money,
+				"time" : req.body.freeDetail.time,
+				"code" : req.body.freeDetail.code
+			}]
+		}
+			
+		data = JSON.stringify(data);
+	
+		console.log('-----------------------------------------------------------------------------------')
+		console.log(typeof freeDetail)
+		console.log('data',data,'\n');
+		ketuo.GetPaymentRecharge(data,function(result){
 			res.json(result)
 		})
 	})

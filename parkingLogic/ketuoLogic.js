@@ -118,7 +118,7 @@ keTuo.prototype.GetCarDetial = function(attribute,callback){
 				console.log(arg2)
 				console.log('---------------------  result of CheckPrePaidTicket  -------------------------')
 				console.log(arg3)
-				if(arg1.data == null){
+				if(arg1.data == null){//车牌号对应的车辆类型为空，默认设置参数的值
 					arg1 = {
 						cardId : 0,
 						carType : 10,
