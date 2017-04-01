@@ -8,15 +8,16 @@ var Md5 = require('md5'),
     Soap = require('soap'),
     Xml = require('xml'),
     Error = require('../Exception/error'),
-    verify = require('../Tools/verify');
+    verify = require('../Tools/verify'),
+    kechuanConfig = require('../config/crm/kechuan');
 
-var url = 'http://113.105.66.51:1880/CRM_VIP_Proxy.asmx?wsdl',
-    key = '201511201140', //,
-    storeCode = 'ZHZ000041',
-    xf_vipcodeprefix = '110',
-    user = 'APP',
-    reasoncode = 'WX0001', //积分调整原因
-    vipgrade = 'AA';//会员卡默认开卡等级
+var url = kechuanConfig.url,
+    key = kechuanConfig.key, //,
+    storeCode = kechuanConfig.storeCode,
+    xf_vipcodeprefix = kechuanConfig.xf_vipcodeprefix,
+    user = kechuanConfig.user,
+    reasoncode = kechuanConfig.reasoncode, //积分调整原因
+    vipgrade = kechuanConfig.vipgrade;//会员卡默认开卡等级
 
 /**
  * 导出公用参数

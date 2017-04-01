@@ -8,7 +8,8 @@ var member = require('./memberLogic'),
     utils = require('util'),
     error = require('../Exception/error'),
     yuanYang = require('../crm/yuanyang'),
-    verify = require('../Tools/verify');
+    verify = require('../Tools/verify'),
+    async = require('async');
 
 function YuanYang() {
 };
@@ -57,30 +58,63 @@ YuanYang.prototype.Register = function (attribute, callback) {
         return;
     }
     //判断当前OpenId是否已有绑定会员卡
-    yuanYang.GetVipInfoByMobileOpenId(openId, function (err, result) {
-        if (result) {
-            callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
-            return;
-        }
-        //注册 (判断当前手机号是否已经注册）
-        yuanYang.VipCreate(name, phone, sex, grade, function (err, result) {
-            if (err) {  //注册失败
-                return callback(err);
-            }
-            //注册成功，绑定OpenId
-            yuanYang.BindOpenID(result.CardNumber, phone, openId, function (err) {
+    // yuanYang.GetVipInfoByMobileOpenId(openId, function (err, result) {
+    //     if (result) {
+    //         callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
+    //         return;
+    //     }
+    //     //注册 (判断当前手机号是否已经注册）
+    //     yuanYang.VipCreate(name, phone, sex, grade, function (err, result) {
+    //         if (err) {  //注册失败
+    //             return callback(err);
+    //         }
+    //         //注册成功，绑定OpenId
+    //         yuanYang.BindOpenID(result.CardNumber, phone, openId, function (err) {
+    //             if (err) {
+    //                 return callback(err);
+    //             }
+    //             yuanYang.GetVipInfo(result.CardNumber, function (err, result) {
+    //                 if (err)
+    //                     callback(err);
+    //                 else
+    //                     callback(error.Success(result));
+    //             });
+    //         });
+    //     });
+    // });
+    async.waterfall([
+        function(cb){
+            yuanYang.GetVipInfoByMobileOpenId(openId,function(err,result){
                 if (err) {
-                    return callback(err);
+                    cb(error.ThrowError(error.ErrorCode.OpenIdHasEmploy))
+                    return
                 }
-                yuanYang.GetVipInfo(result.CardNumber, function (err, result) {
-                    if (err)
-                        callback(err);
-                    else
-                        callback(error.Success(result));
-                });
-            });
-        });
-    });
+                cb(null,result)
+            })
+        },
+        function(result,err){
+            yuanYang.VipCreate(name,phone,sex,grade,function(err,result){
+                if (err) {
+                    return cb(err)
+                }
+                cb(null,result.CardNumber)
+            })
+        },
+        function(result,cb){
+            yuanYang.GetVipInfo(result,function(err,result){
+                if(err){
+                    cb(err)
+                }
+                cb(null,result)
+            })
+        }
+    ],function(err,result){
+        if(err){
+            callback(err)
+            return
+        }
+        callback(error.Success(result))
+    })
 };
 
 /**
@@ -110,7 +144,7 @@ YuanYang.prototype.CardBinding = function (attribute, callback) {
     }
     //查询OpenId是否已绑定
     //判断当前OpenId是否已有绑定会员卡
-    yuanYang.GetVipInfoByMobileOpenId(openId, function (err, result) {
+    /*yuanYang.GetVipInfoByMobileOpenId(openId, function (err, result) {
         if (!err && result.CardGrade != yuanYang.VipGrade) {
             return callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
         }
@@ -137,7 +171,48 @@ YuanYang.prototype.CardBinding = function (attribute, callback) {
                 }
             });
         });
-    });
+    });*/
+    async.waterfall([
+        function(cb){
+            yuanYang.GetVipInfoByMobileOpenId(openId,function(err,result){
+                if(!err && result.CardGrade != yuanYang.VipGrade){
+                    return cb(error.ThrowError(error.ErrorCode.OpenIdHasEmploy))
+                }
+                cb(null,result)
+            })
+        },
+        function(result,cb){
+            yuanYang.GetVipInfo(cardNumber,function(err,result){
+                if(err){
+                    return cb(err)
+                }
+            if (!(result.Phone == phone)) {
+                return cb(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡信息错误，手机号不正确'));
+            }
+            if (result.OpenId != '') {
+                return cb(error.ThrowError(error.ErrorCode.CardInfoError, '该会员卡已经被其他微信号绑定'));
+            }
+            if (result.CardGrade == yuanYang.VipGrade) {
+                return cb(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡类型错误，绑卡不能为虚拟卡'));
+            }
+            cb(null.result)
+            })
+        },
+        function(result,cb){
+            yuanYang.BindOpenID(cardNumber,phone,openId,function(err){
+                if(err){
+                    cb(err)
+                }
+                result.openId = openId
+                cb(null,result)
+            })
+        }
+    ],function(err,result){
+        if(err){
+            callback(err)
+        }
+        callback(error.Success(result))
+    })
 };
 
 /**
@@ -195,7 +270,7 @@ YuanYang.prototype.CardModify = function (attribute, callback) {
         callback(error.ThrowError(error.ErrorCode.DateFormatError, 'birthday格式错误'));
         return;
     }
-    yuanYang.GetVipInfo(cardNumber, function (err, result) {
+    /*yuanYang.GetVipInfo(cardNumber, function (err, result) {
         if (err) {
             callback(err);
             return;
@@ -224,7 +299,51 @@ YuanYang.prototype.CardModify = function (attribute, callback) {
                 callback(error.Success(result));
             });
         });
-    });
+    });*/
+    async.waterfall([
+        function(cb){
+            yuanYang.GetVipInfo(cardNumber,function(err,result){
+                if(err){
+                    cb(err)
+                    return
+                }
+                if(!result){
+                    cb(error.ThrowError(error.ErrorCode.CardUndefined))
+                }
+                cb(null,result)
+            })
+        },
+        function(result,cb){
+             //差异化信息提交  若信息没有修改，则传空值
+            phone = phone == result.Phone ? '' : phone;
+            email = email == result.Email ? '' : email;
+            idNo = idNo == result.IdNo ? '' : idNo;
+            birthday = birthday == result.birthday ? '' : birthday;
+            sex = sex == result.Sex ? '' : sex;
+            name = name == result.Name ? '' : name;
+            yuanYang.VipModify(cardNumber,name,phone,sex,birthday,idNo,address,email,function(err,result){
+                if(err){
+                    cb(err)
+                    return
+                }
+                cb(null,result)
+            })
+        },
+        function(result,cb){
+            yuanYang.GetVipInfo(cardNumber,function(err,result){
+                if(err){
+                    cb(err)
+                    return
+                }
+                callback(null,result)
+            })
+        }
+    ],function(err,result){
+        if(err){
+            callback(err)
+        }
+        callback(error.Success(result))
+    })
 };
 
 /**

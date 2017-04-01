@@ -4,7 +4,7 @@
  *  @Description:   交易推送流水信息
  */
 var mongoose = require('mongoose'),
-    config = require('../config/sysConfig');
+    config = require('../config/sys');
 
 var PrepayCardPushRecordSchema = new mongoose.Schema({
     msgId: String, //消息ID

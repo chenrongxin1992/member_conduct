@@ -1,5 +1,5 @@
 var mongoose = require('mongoose'),
-    config = require('../config/sysConfig');
+    config = require('../config/sys');
 
 var accessTokenInfoSchema = new mongoose.Schema({
     bid: Number,

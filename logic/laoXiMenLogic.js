@@ -7,7 +7,8 @@ var member = require('./memberLogic'),
     utils = require('util'),
     error = require('../Exception/error'),
     kechuan = require('../crm/laoXiMenKechuan'),
-    verify = require('../Tools/verify');
+    verify = require('../Tools/verify'),
+    async = require('async');
 
 function LaoXiMen() {
 };
@@ -56,7 +57,7 @@ LaoXiMen.prototype.Register = function (attribute, callback) {
         return;
     }
     //判断当前OpenId是否已有绑定会员卡
-    kechuan.GetVipInfoByMobileOpenId(openId, function (err, result) {
+   /* kechuan.GetVipInfoByMobileOpenId(openId, function (err, result) {
         console.log('step1 err:', err);
         if (!err) {
             callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
@@ -83,7 +84,52 @@ LaoXiMen.prototype.Register = function (attribute, callback) {
                 });
             });
         });
-    });
+    });*/
+    async.waterfall([
+        function(cb){
+            kechuan.GetVipInfoByMobileOpenId(openId,function(err,result){
+                console.log('step 1 err:', err)
+                if(!err){
+                    cb(error.ThrowError(error.ErrorCode>OpenIdHasEmploy))
+                    return
+                }
+                cb(null,result)
+            })
+        },
+        function(result,cb){
+            kechuan.VipCreate(name,phone,sex,grade,function(err,result){
+                console.log('注册 err ',err,'result: ',result)
+                if(err){
+                    return cb(err)
+                }
+                console.log('cardNumber: ' , result.cardNumber)
+                cb(null.result.cardNumber)
+            })
+        },
+        function(result,cb){
+            kechuan.BindOpenID(result,phone,openId,function(err){
+               //console.log('绑卡 err ',err,'result: 'result)
+                if(err){
+                    return cb(err)
+                }
+                cb(null,result)
+            })
+        },
+        function(result,cb){
+            kechuan.GetVipInfo(result,function(err,result){
+                if(err){
+                    cb(err)
+                }
+                cb(null,result)
+            })
+        }
+    ],function(err,result){
+        if(err){
+            callback(err)
+        }
+        callback(error.ThrowError(error.ErrorCode>OpenIdHasEmploy))
+        return 
+    })
 };
 
 /**
@@ -113,7 +159,7 @@ LaoXiMen.prototype.CardBinding = function (attribute, callback) {
     }
     //查询OpenId是否已绑定
     //判断当前OpenId是否已有绑定会员卡
-    kechuan.GetVipInfoByMobileOpenId(openId, function (err, result) {
+   /* kechuan.GetVipInfoByMobileOpenId(openId, function (err, result) {
         if (!err && result.CardGrade != kechuan.VipGrade) {
             return callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
         }
@@ -139,7 +185,47 @@ LaoXiMen.prototype.CardBinding = function (attribute, callback) {
                     callback(error.Success(result)); //返回会员卡信息
             });
         });
-    });
+    });*/
+    async.waterfall([
+        function(cb){
+            kechuan.GetVipInfoByMobileOpenId(openId,function(err,result){
+                if(!err && result.CardGrade != kechuan.VipGrade){
+                    return cb(error.ThrowError(error.ErrorCode.OpenIdHasEmploy))
+                }
+                cb(null,result)
+            })
+        },
+        function(result,cb){
+            kechuan.GetVipInfo(cardNumber,function(err,result){
+                if(err){
+                    return cb(err)
+                }
+                if (!(result.Phone == phone)) {
+                    return cb(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡信息错误，手机号不正确'));
+                }
+                if (result.OpenId != '') {
+                    return cb(error.ThrowError(error.ErrorCode.CardInfoError, '该会员卡已经被其他微信号绑定'));
+                }
+                if (result.CardGrade == kechuan.VipGrade) {
+                    return cb(error.ThrowError(error.ErrorCode.CardInfoError, '会员卡类型错误，绑卡不能为虚拟卡'));
+                }
+                cb(null,result)
+            })
+        },
+        function(result,cb){
+            kechuan.BindOpenID(cardNumber,phone,openId,function(err){
+                if(err){
+                    cb(err)
+                }
+                cb(null,result)
+            })
+        }
+    ],function(err,result){
+        if(err){
+            callback(err)
+        }
+        callback(error.Success(result))
+    })
 };
 
 /**
@@ -197,36 +283,80 @@ LaoXiMen.prototype.CardModify = function (attribute, callback) {
         callback(error.ThrowError(error.ErrorCode.DateFormatError, 'birthday格式错误'));
         return;
     }
-    kechuan.GetVipInfo(cardNumber, function (err, result) {
-        if (err) {
-            callback(err);
-            return;
-        }
-        if (!result) {
-            callback(error.ThrowError(error.ErrorCode.CardUndefined));
-            return;
-        }
-        //差异化信息提交  若信息没有修改，则传空值
+    // kechuan.GetVipInfo(cardNumber, function (err, result) {
+    //     if (err) {
+    //         callback(err);
+    //         return;
+    //     }
+    //     if (!result) {
+    //         callback(error.ThrowError(error.ErrorCode.CardUndefined));
+    //         return;
+    //     }
+    //     //差异化信息提交  若信息没有修改，则传空值
+    //     phone = phone == result.Phone ? '' : phone;
+    //     email = email == result.Email ? '' : email;
+    //     idNo = idNo == result.IdNo ? '' : idNo;
+    //     birthday = birthday == result.birthday ? '' : birthday;
+    //     sex = sex == result.Sex ? '' : sex;
+    //     name = name == result.Name ? '' : name;
+    //     kechuan.VipModify(cardNumber, name, phone, sex, birthday, idNo, address, email, function (err, result) {
+    //         if (err) {
+    //             callback(err);
+    //             return;
+    //         }
+    //         kechuan.GetVipInfo(cardNumber, function (err, result) {
+    //             if (err) {
+    //                 callback(err);
+    //                 return;
+    //             }
+    //             callback(error.Success(result));
+    //         });
+    //     });
+    // });
+    //差异化信息提交  若信息没有修改，则传空值
         phone = phone == result.Phone ? '' : phone;
         email = email == result.Email ? '' : email;
         idNo = idNo == result.IdNo ? '' : idNo;
         birthday = birthday == result.birthday ? '' : birthday;
         sex = sex == result.Sex ? '' : sex;
         name = name == result.Name ? '' : name;
-        kechuan.VipModify(cardNumber, name, phone, sex, birthday, idNo, address, email, function (err, result) {
-            if (err) {
-                callback(err);
-                return;
-            }
-            kechuan.GetVipInfo(cardNumber, function (err, result) {
-                if (err) {
-                    callback(err);
-                    return;
+    async.waterfall([
+        function(cb){
+            kechuan.GetVipInfo(cardNumber,function(err,result){
+                if(err){
+                    cb(err)
+                    return 
                 }
-                callback(error.Success(result));
-            });
-        });
-    });
+                if(!result){
+                    cb(error.ThrowError(error.error.ErrorCode.CardUndefined))
+                    return
+                }
+                cb(null,result)
+            })
+        },
+        function(result,cb){
+            kechuan.VipModify(cardNumber,name,phone,sex,birthday,idNo,address,email,function(err,result){
+                if(err){
+                    cb(err)
+                    return
+                }
+                cb(null,result)
+            })
+        },
+        function(result,cb){
+            kechuan.GetVipInfo(cardNumber,function(err,result){
+                if(err){
+                    return cb(err)
+                }
+                cb(null,result)
+            })
+        }
+    ],function(err,result){
+        if(err){
+            callback(err)
+        }
+        callback(error.Success(result))
+    })
 };
 
 /**

@@ -25,6 +25,16 @@ router.post('/CardPayNotice', function (req, res) {
         return res.json(result);
     });
 });
+//科拓接口   bid = 18
+router.post('/ketuoCarDetail',CheckBid)
+router.post('/ketuoCarDetail',function(req,res){
+    var bid = req.body.bid ? parseInt(req.body.bid) : 0
+    var logic = factory(bid)
+    logic.GetCarDetial(req.body,function(result){
+        return res.json(result)
+    })
+})
+
 module.exports = router;
 function CheckBid(req, res, next) {
     if (!req.body.bid) {

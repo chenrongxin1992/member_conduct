@@ -9,7 +9,8 @@ var member = require('./memberLogic'),
     error = require('../Exception/error'),
     asq = require('../crm/crmASQ'),
     verify = require('../Tools/verify'),
-    moment = require('moment');
+    moment = require('moment'),
+    async = require('async');
 
 function JJBN() {
 };
@@ -28,7 +29,7 @@ JJBN.prototype.Register = function (attribute, callback) {
         if (!verify.Phone(phone)) { //验证手机号的有效性
             return callback(error.ThrowError(error.ErrorCode.DateFormatError, 'Phone格式错误'));
         }
-        asq.GetCardByPhone(bid, phone, function (err, result) {
+        /*asq.GetCardByPhone(bid, phone, function (err, result) {
             if (result) { //手机号已经注册其他会员卡
                 return callback(error.ThrowError(error.ErrorCode.PhoneHasEmploy));
             }
@@ -44,10 +45,41 @@ JJBN.prototype.Register = function (attribute, callback) {
                     return callback(error.Success(result));
                 });
             });
-        });
+        });*/
+        async.waterfall([
+            function(cb){
+                asq.GetCardByPhone(bid,phone,function(err,result){
+                    if(result){
+                        return cb(error.ThrowError(error.ErrorCode.PhoneHasEmploy))
+                    }
+                    cb(null,result)
+                })
+            },
+            function(result,cb){
+                asq.GetCardByOpenId(bid,openId,function(err,result){
+                    if(result){
+                        return cb(error.ThrowError(error.ErrorCode.OpenIdHasEmploy))
+                    }
+                    cb(null,result)
+                })
+            },
+            function (result,cb) {
+                asq.OpenCard(bid,openId,phone,cardType,function(err,result){
+                    if(err){
+                        return cb(err)
+                    }
+                    cb(null.result)
+                })
+            }
+        ],function(err,result){
+            if(err){
+                return callback(err)
+            }
+            return callback(error.Success(result))
+        })
     }
     else {
-        asq.GetCardByOpenId(openId, function (err, result) {
+        /*asq.GetCardByOpenId(openId, function (err, result) {
             if (result) {  //OpenId已经绑定其他会员卡了
                 return callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
             }
@@ -62,7 +94,38 @@ JJBN.prototype.Register = function (attribute, callback) {
                     return callback(error.Success(result));
                 });
             });
-        });
+        });*/
+        async.waterfall([
+             function(cb){
+                asq.GetCardByPhone(bid,phone,function(err,result){
+                    if(result){
+                        return cb(error.ThrowError(error.ErrorCode.PhoneHasEmploy))
+                    }
+                    cb(null,result)
+                })
+            },
+            function (result,cb) {
+                asq.OpenCard(bid,openId,phone,cardType,function(err,result){
+                    if(err){
+                        return cb(err)
+                    }
+                    cb(null.result)
+                })
+            },
+            function(result,cb){
+                asq.GetCardByOpenId(bid,openId,function(err,result){
+                    if(result){
+                        return cb(error.ThrowError(error.ErrorCode.OpenIdHasEmploy))
+                    }
+                    cb(null,result)
+                })
+            }
+        ],function(err,result){
+            if(err){
+                return callback(err)
+            }
+            return callback(error.Success(result))
+        })
     }
 };
 
@@ -87,7 +150,7 @@ JJBN.prototype.CardBinding = function (attribute, callback) {
     if (!verify.Phone(phone)) { //验证手机号的有效性
         return callback(error.ThrowError(error.ErrorCode.DateFormatError, 'Phone格式错误'));
     }
-    asq.GetCardByOpenId(bid, openId, function (err, result) {
+    /*asq.GetCardByOpenId(bid, openId, function (err, result) {
         if (result) {
             if (result.CardGrade != asq.DefautCardType) {
                 return callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
@@ -110,7 +173,41 @@ JJBN.prototype.CardBinding = function (attribute, callback) {
                 return callback(error.Success(result));
             });
         });
-    });
+    });*/
+    async.waterfall([
+        function(cb){
+            asq.GetCardByOpenId(bid,openId,function(err,result){
+                if(result){
+                    return cb(error.ThrowError(error.ErrorCode.OpenIdHasEmploy))
+                }
+                cb(null,result)
+            })
+        },
+        function(result,cb){
+            asq.GetCardByCardNo(bid,cardNo,function(err,result){
+                if(err){
+                    return cb(err)
+                }
+                if(result.phone != phone){
+                    return cb(error.ThrowError(error.ErrorCode.CardInfoError,'会员卡手机号错误'))
+                }
+                cb(null,result)
+            })
+        },
+        function(result,cb){
+            asq.BindCard(bid,openId,cardNo,name,phone,function(err,result){
+                if(err){
+                    return cb(err)
+                }
+                cb(null,result)
+            })
+        }
+    ],function(err,result){
+        if(err){
+            return callback(err)
+        }
+        return callback(error.Success(result))
+    })
 };
 
 JJBN.prototype.GetCard = function (attribute, callback) {
@@ -251,7 +348,7 @@ JJBN.prototype.CardUnbind = function (attribute, callback) {
     if (!cardNo) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '会员卡号cardNumber不能为空'));
     }
-    asq.GetCardByOpenId(bid, openId, function (err, result) {
+    /*asq.GetCardByOpenId(bid, openId, function (err, result) {
         if (err) {
             return callback(err);
         }
@@ -269,7 +366,41 @@ JJBN.prototype.CardUnbind = function (attribute, callback) {
                 return callback(error.Success());
             });
         });
-    });
+    });*/
+    async.waterfall([
+        function(cb){
+            asq.GetCardByOpenId(bid,openId,function(err,result){
+                if(err){
+                    return cb(err)
+                }
+                if(result.CardNumber !== cardNo){
+                    return cb(error.ThrowError(error.ErrorCode.CardInfoError, '与该微信绑定的会员卡不相符'))
+                }
+                cb(null,result)
+            })
+        },
+        function(result,cb){
+            asq.GetCardByCardNo(bid,cardNo,function(err,result){
+                if(err){
+                    return cb(err)
+                }
+                cb(null,result)
+            })
+        },
+        function(result,cb){
+            asq.CardUnBind(bid,openId,cardNo,function(err,result){
+                if(err){
+                    return cb(err)
+                }
+                cb(null,result)
+            })
+        }
+    ],function(err,result){
+        if(err){
+            return callback(err)
+        }
+        return callback(error.Success())
+    })
 };
 
 //销售下单 二维码扫描

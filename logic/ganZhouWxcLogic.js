@@ -9,9 +9,10 @@ var fuji = require('../crm/Fuji'),
     error = require('../Exception/error'),
     member = require('./memberLogic'),
     utils = require('util'),
-    config = require('../config/sysConfig'),
+    config = require('../config/sys'),
     mongoose = require('mongoose'),
-    CardBinding = mongoose.model(config.cardBinding);
+    CardBinding = mongoose.model(config.cardBinding),
+    async = require('async');
 
 var defaultCardGrade = 'E'; //默认开卡会员卡等级，虚拟卡
 
@@ -48,7 +49,7 @@ GanZhouWXC.prototype.Register = function (attribute, callback) {
      * 3>注册用户
      * 4>用户与微信OpenId绑定
      */
-    CardBinding.FindByOpenId(bid, openId, function (err, result) {
+    /*CardBinding.FindByOpenId(bid, openId, function (err, result) {
         if (err) {
             return callback(error.ThrowError(error.ErrorCode.Error, err.message));
         }
@@ -88,7 +89,61 @@ GanZhouWXC.prototype.Register = function (attribute, callback) {
                     return callback(error.ThrowError(error.ErrorCode.Error, '注册失败'));
             });
         });
-    });
+    });*/
+    async.waterfall([
+        function(cb){
+            CardBinding.FindByOpenId(bid, openId, function (err, result){
+                if (err) {
+                    return cb(error.ThrowError(error.ErrorCode.Error, err.message));
+                }
+                if (result.length > 0) {
+                    return cb(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
+                }
+                cb(null,result)
+            })
+        },
+        function(result,cb){
+            fuji.GetMemberByPhone(phone, function (err, result) {
+                if (!err) { //手机号已被注册
+                    return cb(error.ThrowError(error.ErrorCode.PhoneHasEmploy));
+                }
+                cb(null,result)
+            })
+        },
+        function(result,cb){
+            fuji.Register(phone, name, idNo, address, email, function (err, result) {
+                if (err) {
+                    return cb(err);
+                }
+                if (result) {
+                    result.OpenId = openId;
+                    //转换Result
+                    //4、绑定OpenId
+                    var cardBinding = new CardBinding({
+                        bid: bid,
+                        cardNumber: result.CardNumber,
+                        openId: openId,
+                        cardGrade: result.CardGrade,
+                        memberId_CRM: result.MemberId_CRM,
+                        memberId_ERP: result.MemberId_ERP
+                    });
+                    cardBinding.save(function (err) {
+                        console.log('cardBind Save:', err);
+                        if (err)
+                            return cb(error.ThrowError(error.ErrorCode.Error, err.message));
+                        else
+                            return cb(error.Success(result));
+                    });
+                }
+                cb(null,result)
+            })
+        }
+    ],function(err,result){
+        if(err){
+            return callback(err)
+        }
+        return callback(error.Success(result))
+    })
 };
 
 /**
@@ -220,7 +275,7 @@ GanZhouWXC.prototype.CardModify = function (attribute, callback) {
     if (!cardNumber) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'cardNumber不能为空'));
     }
-    CardBinding.FindByCardNumber(bid, cardNumber, function (err, res) {
+    /*CardBinding.FindByCardNumber(bid, cardNumber, function (err, res) {
         if (err) {
             return callback(error.ThrowError(error.ErrorCode.Error, err.message));
         }
@@ -241,7 +296,44 @@ GanZhouWXC.prototype.CardModify = function (attribute, callback) {
                 return callback(error.Success(result));
             });
         });
-    });
+    });*/
+    async.waterfall([
+        function(cb){
+            CardBinding.FindByCardNumber(bid,cardNumber,function(err,res){
+                if(err){
+                    return cb(error.ThrowError(error.ErrorCode.Error,err.message))
+                }
+                if(res.length <= 0){
+                    return cb(error.ThrowError(error.ErrorCode.CardUndefined, '会员卡尚未与微信绑定'))
+                }
+                cb(null,res[0].memberId_CRM, res[0].memberId_ERP, idNo,sex,birthday,address,email)
+            })
+        },
+        function(memberId_CRM,memberId_ERP,idNo,sex,birthday,address,email,cb){
+            fuji.Modify(memberId_CRM,memberId_ERP,idNo,sex,birthday,address,email,function(err,result){
+                if(err){
+                    return cb(err)
+                }
+                cb(null,memberId_CRM,memberId_ERP)
+            })
+        },
+        function(memberId_CRM,memberId_ERP,cb){
+            fuji.GetMemberByMemberId(memberId_CRM,memberId_ERP,function(err,result){
+                if(err){
+                    return cb(err)
+                }
+                if(result){
+                    result.Openid = openId
+                }
+                cb(null,result)
+            })
+        }
+    ],function(err,result){
+        if(err){
+            return callback(err)
+        }
+        return callback(error.Success(result))
+    })
 };
 
 /**
@@ -396,7 +488,7 @@ GanZhouWXC.prototype.IntegralChange = function (attribute, callback) {
     if (integral == 0) {
         return callback(error.ThrowError(error.ErrorCode.DateFormatError, '无效的积分'));
     }
-    CardBinding.FindByCardNumber(bid, cardNumber, function (err, result) {
+    /*CardBinding.FindByCardNumber(bid, cardNumber, function (err, result) {
         if (err) {
             return callback(error.ThrowError(error.ErrorCode.Error, err.message));
         }
@@ -422,7 +514,51 @@ GanZhouWXC.prototype.IntegralChange = function (attribute, callback) {
                 });
             });
         });
-    });
+    });*/
+    async.waterfall([
+        function(cb){
+            CardBinding.FindByCardNumber(bid,cardNumber,function(err,result){
+                if(err){
+                    return cb(error.ThrowError(error.ErrorCode.Error,err.message))
+                }
+                if(result.length <= 0){
+                    return cb(error.ThrowError(error.ErrorCode.CardUndefined))
+                }
+                cb(null,result[0].memberId_CRM, result[0].memberId_ERP)
+            })
+        },
+        function(memberId_CRM,memberId_ERP,cb){
+            fuji.IntegralAdjust(memberId_CRM,memberId_ERP,integral,function(err,result){
+                if(err){
+                    return cb(err)
+                }
+                cb(null,result)
+            })
+        },
+        function(result,cb){
+            fuji.GetMemberByCardNumber(cardNumber, function (err, result) {
+                if(err){
+                    return cb(err)
+                }
+                cb(nul,result.cardNumber)
+            })
+        },
+        function(cardNumber,cb){
+            CardBinding.FindByCardNumber(bid, result.CardNumber, function (err, res) {
+                if(err){
+                    return cb(error.ThrowError(error.ErrorCode.Error, err.message));
+                }
+                if (res.length > 0)
+                    result.OpenId = res[0].openId;
+                cb(null,result)
+            })
+        }
+    ],function(err,result){
+        if(err){
+            return callback(err)
+        }
+        return callback(error.Success(result))
+    })
 };
 
 /**
@@ -442,7 +578,7 @@ GanZhouWXC.prototype.CardUnbind = function (attribute, callback) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, 'openid不能为空'));
     }
     //判断卡是否存在
-    fuji.GetMemberByCardNumber(cardNumber, function (err, result) {
+    /*fuji.GetMemberByCardNumber(cardNumber, function (err, result) {
         if (err) {
             return callback(err);
         }
@@ -468,7 +604,47 @@ GanZhouWXC.prototype.CardUnbind = function (attribute, callback) {
                 }
             });
         });
-    });
+    });*/
+    async.waterfall([
+        function(cb){
+            fuji.GetMemberByCardNumber(cardNumber,function(err,result){
+                if(err){
+                    return cb(err)
+                }
+                if(result.CardGrade == defaultCardGrade){
+                     return cb(error.ThrowError(error.ErrorCode.Error, '卡类型错误，该卡类型不能解绑'));
+                }
+                cb(null,result)
+            })
+        },
+        function(result,cb){
+            CardBinding.FindByCardNumber(bid,cardNumber,function(err,result){
+                if (err) {
+                    return cb(error.ThrowError(error.ErrorCode.Error, err.message));
+                }
+                if (!result || result.length <= 0) {
+                    return cb(error.ThrowError(error.ErrorCode.Error, 'OpenId未绑定会员卡'));
+                }
+                if (openId != result[0].openId) {
+                    return cb(error.ThrowError(error.ErrorCode.Error, '会员卡对应的微信号不正确'));
+                }
+                cb(null,result[0]._id)
+            })
+        },
+        function (_id,cb) {
+            CardBinding.remove({_id: result[0]._id}, function (err) {
+                if (err) {
+                    return cb(error.ThrowError(error.ErrorCode.Error, '解绑失败'));
+                } 
+                cb(null,result)
+            })
+        }
+    ],function(err,result){
+        if(err){
+            return callback(err)
+        }
+        return callback(error.Success())
+    })
 };
 
 /**

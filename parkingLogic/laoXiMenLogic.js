@@ -4,7 +4,7 @@ var parking = require('../parking/laoXiMen'),
     utils = require('util'),
     parent = require('./parkingLogic');
 
-var config = require('../config/sysConfig'),
+var config = require('../config/sys'),
     mongoose = require('mongoose'),
     parkingPayRecord = mongoose.model(config.parkingPayRecord);
 
