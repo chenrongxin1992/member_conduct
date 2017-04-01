@@ -112,6 +112,12 @@ keTuo.prototype.GetCarDetial = function(attribute,callback){
 				})
 			},
 			function(arg1,arg2,arg3,cb){
+				console.log('---------------------  result of GetCarCardInfo  -------------------------')
+				console.log(arg1)
+				console.log('---------------------  result of GetParkingPaymentInfo  -------------------------')
+				console.log(arg2)
+				console.log('---------------------  result of CheckPrePaidTicket  -------------------------')
+				console.log(arg3)
 				var arg1 = arg1.data[0],
 					arg2 = arg2.data[0],
 					arg3 = arg3.data,
