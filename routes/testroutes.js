@@ -452,10 +452,11 @@ var express = require('express'),
 	})
 	//12.内部车查询接口GetCarCardInfo（定制）
 	router.post('/GetCarCardInfo',function(req,res){
-		if(!req.body.plateNo){
-			return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'plateNo不能为空'))
-		}
+		// if(!req.body.plateNo){
+		// 	return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'plateNo不能为空'))
+		// }
 		var plateNo = req.body.plateNo//'A12345'
+		plateNo = 'KEY180'
 		ketuo.GetCarCardInfo(plateNo,function(result){
 			res.json(result)
 		})

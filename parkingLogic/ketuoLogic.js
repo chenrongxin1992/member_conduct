@@ -118,8 +118,19 @@ keTuo.prototype.GetCarDetial = function(attribute,callback){
 				console.log(arg2)
 				console.log('---------------------  result of CheckPrePaidTicket  -------------------------')
 				console.log(arg3)
-				var arg1 = arg1.data[0],
-					arg2 = arg2.data[0],
+				if(arg1.data[0] == null){
+					arg1 = {
+						cardId : 0,
+						carType : 10,
+						validFrom : 0,
+						validTo : 0
+					}
+				}
+				if(arg1.data[0] != null){
+					arg1 = arg1.data[0]
+				}
+				 
+				var arg2 = arg2.data[0],
 					arg3 = arg3.data,
 					ketuoCar = new ketuoCarDetail({
 						plateNo : plateNo,
