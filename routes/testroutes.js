@@ -295,7 +295,7 @@ var express = require('express'),
 		var	data = JSON.stringify(reqData);
 	
 		console.log('---------------------------------- check data --------------------------------------')
-		console.log('data',data,'\n');
+		console.log('data',data);
 		ketuo.GetPaymentRecharge(data,function(result){
 			res.json(result)
 		})
@@ -346,7 +346,7 @@ var express = require('express'),
 				}]
 			},
 			data = JSON.stringify(reqData)
-		console.log('data: ',data,'\n')
+		console.log('data: ',data)
 		ketuo.PayParkingFee(data,function(result){
 			res.json(result)
 		})

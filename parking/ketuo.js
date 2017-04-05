@@ -31,7 +31,7 @@ exports.GetParkingLotInfo = function(callback){
 			'pwd' : pwd
 		}
 	}
-	console.log(options,'\n')
+	console.log(options)
 
 	var req = http.request(options,function(res){
 		res.setEncoding('utf8')
@@ -110,8 +110,8 @@ exports.GetAreaList = function(floorId,callback){
 				'pwd' : pwd
 			}
 	    }
-    console.log(crypt_result,'\n')
-    console.log(options,'\n')
+    console.log(crypt_result)
+    console.log(options)
 
     var req = http.request(options,function(res){
     	console.log('------------------------------  sendRequest  -------------------------------')
@@ -121,7 +121,7 @@ exports.GetAreaList = function(floorId,callback){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result,'\n')
+    		console.log(result)
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -159,8 +159,8 @@ exports.GetCarLocInfo = function(plateNo,callback){
 				'pwd' : pwd
 			}
 	    }
-    console.log(crypt_result,'\n')
-    console.log(options,'\n')
+    console.log(crypt_result)
+    console.log(options)
 
     var req = http.request(options,function(res){
     	console.log('------------------------------  sendRequest  -------------------------------')
@@ -170,7 +170,7 @@ exports.GetCarLocInfo = function(plateNo,callback){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result,'\n')
+    		console.log(result)
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -209,8 +209,8 @@ exports.GetCarLocList = function(dataStr,callback){
 				'pwd' : pwd
 			}
 	    }
-    console.log(crypt_result,'\n')
-    console.log(options,'\n')
+    console.log(crypt_result)
+    console.log(options)
 
     var req = http.request(options,function(res){
     	console.log('------------------------------  sendRequest  -------------------------------')
@@ -220,7 +220,7 @@ exports.GetCarLocList = function(dataStr,callback){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result,'\n')
+    		console.log(result)
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -259,8 +259,8 @@ exports.GetCarLocList2 = function(dataStr,callback){
 				'pwd' : pwd
 			}
 	    }
-    console.log(crypt_result,'\n')
-    console.log(options,'\n')
+    console.log(crypt_result)
+    console.log(options)
 
     var req = http.request(options,function(res){
     	console.log('------------------------------  sendRequest  -------------------------------')
@@ -270,7 +270,7 @@ exports.GetCarLocList2 = function(dataStr,callback){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result,'\n')
+    		console.log(result)
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -309,8 +309,8 @@ exports.GetFreeSpaceNum = function(dataStr,callback){
 				'pwd' : pwd
 			}
 	    }
-    console.log(crypt_result,'\n')
-    console.log(options,'\n')
+    console.log(crypt_result)
+    console.log(options)
 
     var req = http.request(options,function(res){
     	console.log('------------------------------  sendRequest  -------------------------------')
@@ -320,7 +320,7 @@ exports.GetFreeSpaceNum = function(dataStr,callback){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result,'\n')
+    		console.log(result)
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -359,8 +359,8 @@ exports.GetSpaceInfo = function(dataStr,callback){
 				'pwd' : pwd
 			}
 	    }
-    console.log(crypt_result,'\n')
-    console.log(options,'\n')
+    console.log(crypt_result)
+    console.log(options)
 
     var req = http.request(options,function(res){
     	console.log('------------------------------  sendRequest  -------------------------------')
@@ -370,7 +370,7 @@ exports.GetSpaceInfo = function(dataStr,callback){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result,'\n')
+    		console.log(result)
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -409,8 +409,8 @@ exports.GetReservableInfo = function(dataStr,callback){
 				'pwd' : pwd
 			}
 	    }
-    console.log(crypt_result,'\n')
-    console.log(options,'\n')
+    console.log(crypt_result)
+    console.log(options)
 
     var req = http.request(options,function(res){
     	console.log('------------------------------  sendRequest  -------------------------------')
@@ -420,7 +420,7 @@ exports.GetReservableInfo = function(dataStr,callback){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result,'\n')
+    		console.log(result)
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -459,8 +459,8 @@ exports.ReserveSpace = function(dataStr,callback){
 				'pwd' : pwd
 			}
 	    }
-    console.log(crypt_result,'\n')
-    console.log(options,'\n')
+    console.log(crypt_result)
+    console.log(options)
 
     var req = http.request(options,function(res){
     	console.log('------------------------------  sendRequest  -------------------------------')
@@ -470,7 +470,7 @@ exports.ReserveSpace = function(dataStr,callback){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result,'\n')
+    		console.log(result)
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -509,8 +509,8 @@ exports.GetReserveState = function(plateNo,callback){
 				'pwd' : pwd
 			}
 	    }
-    console.log(crypt_result,'\n')
-    console.log(options,'\n')
+    console.log(crypt_result)
+    console.log(options)
 
     var req = http.request(options,function(res){
     	console.log('------------------------------  sendRequest  -------------------------------')
@@ -520,7 +520,7 @@ exports.GetReserveState = function(plateNo,callback){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result,'\n')
+    		console.log(result)
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -559,8 +559,8 @@ exports.CancelReserve = function(plateNo,callback){
 				'pwd' : pwd
 			}
 	    }
-    console.log(crypt_result,'\n')
-    console.log(options,'\n')
+    console.log(crypt_result)
+    console.log(options)
 
     var req = http.request(options,function(res){
     	console.log('------------------------------  sendRequest  -------------------------------')
@@ -570,7 +570,7 @@ exports.CancelReserve = function(plateNo,callback){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result,'\n')
+    		console.log(result)
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -608,10 +608,10 @@ exports.GetCarLocRoute = function(dataStr,callback){
 			}
 	    }
 
-	console.log('加密数据结果: '+ crypt_result,'\n')
+	console.log('加密数据结果: '+ crypt_result)
     console.log('请求选项:')
-    console.log(options,'\n')
-    console.log('post_data: '+post_data,'\n')
+    console.log(options)
+    console.log('post_data: '+post_data)
 
     var req = http.request(options,function(res){
     	console.log('------------------------------  sendRequest  -------------------------------')
@@ -621,7 +621,7 @@ exports.GetCarLocRoute = function(dataStr,callback){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result,'\n')
+    		console.log(result)
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -662,8 +662,8 @@ exports.GetTrafficNum = function(dataStr,callback){
 			}
 	    }
 
-	console.log(crypt_result,'\n')
-    console.log(options,'\n')
+	console.log(crypt_result)
+    console.log(options)
 
     var req = http.request(options,function(res){
     	console.log('------------------------------  sendRequest  -------------------------------')
@@ -673,7 +673,7 @@ exports.GetTrafficNum = function(dataStr,callback){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result,'\n')
+    		console.log(result)
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -710,8 +710,8 @@ exports.GetParkingPaymentInfo = function(plateNo,callback){
 				'pwd' : pwd
 			}
 	    }
-	console.log(crypt_result,'\n')
-    console.log(options,'\n')
+	console.log(crypt_result)
+    console.log(options)
 
     var req = http.request(options,function(res){
     	console.log('------------------------------  sendRequest  -------------------------------')
@@ -721,7 +721,7 @@ exports.GetParkingPaymentInfo = function(plateNo,callback){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result,'\n')
+    		console.log(result)
     		// if(result.resCode != 0)
     		// 	return callback(error.ThrowError(1,result.resMsg))
     		result = JSON.parse(result)
@@ -763,10 +763,10 @@ exports.GetParkingPaymentInfoByCard = function(cardNo,callback){
 			}
 	    }
 
-	console.log('加密数据结果: '+ crypt_result,'\n')
+	console.log('加密数据结果: '+ crypt_result)
     console.log('请求选项:')
-    console.log(options,'\n')
-    console.log('post_data: '+post_data,'\n')
+    console.log(options)
+    console.log('post_data: '+post_data)
 
     var req = http.request(options,function(res){
     	console.log('------------------------------  sendRequest  -------------------------------')
@@ -776,7 +776,7 @@ exports.GetParkingPaymentInfoByCard = function(cardNo,callback){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result,'\n')
+    		console.log(result)
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -816,10 +816,10 @@ exports.GetPaymentRecharge = function(dataStr,callback){
 			}
 	    };
 
-	console.log('加密数据结果: '+ crypt_result,'\n')
+	console.log('加密数据结果: '+ crypt_result)
     console.log('请求选项:')
-    console.log(options,'\n')
-    console.log('post_data: '+post_data,'\n')
+    console.log(options)
+    //console.log('post_data: '+post_data)
 
     var req = http.request(options,function(res){
     	console.log('------------------------------  sendRequest  -------------------------------')
@@ -829,7 +829,7 @@ exports.GetPaymentRecharge = function(dataStr,callback){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result,'\n')
+    		console.log(result)
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -868,10 +868,10 @@ exports.PayParkingFee = function(dataStr,callback){
 			}
 	    }
 
-	console.log('加密数据结果: '+ crypt_result,'\n')
+	console.log('加密数据结果: '+ crypt_result)
     console.log('请求选项:')
-    console.log(options,'\n')
-    console.log('post_data: '+post_data,'\n')
+    console.log(options)
+    console.log('post_data: '+post_data)
 
     var req = http.request(options,function(res){
     	console.log('------------------------------  sendRequest  -------------------------------')
@@ -881,7 +881,7 @@ exports.PayParkingFee = function(dataStr,callback){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result,'\n')
+    		console.log(result)
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -919,10 +919,10 @@ exports.GetCarInOutInfoByPlate = function(dataStr,callback){
 			}
 	    }
 
-	console.log('加密数据结果: '+ crypt_result,'\n')
+	console.log('加密数据结果: '+ crypt_result)
     console.log('请求选项:')
-    console.log(options,'\n')
-    console.log('post_data: '+post_data,'\n')
+    console.log(options)
+    console.log('post_data: '+post_data)
 
     var req = http.request(options,function(res){
     	console.log('------------------------------  sendRequest  -------------------------------')
@@ -932,7 +932,7 @@ exports.GetCarInOutInfoByPlate = function(dataStr,callback){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result,'\n')
+    		console.log(result)
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -970,10 +970,10 @@ exports.GetCarInOutInfoByPlace = function(dataStr,callback){
 			}
 	    }
 
-	console.log('加密数据结果: '+ crypt_result,'\n')
+	console.log('加密数据结果: '+ crypt_result)
     console.log('请求选项:')
-    console.log(options,'\n')
-    console.log('post_data: '+post_data,'\n')
+    console.log(options)
+    console.log('post_data: '+post_data)
 
     var req = http.request(options,function(res){
     	console.log('------------------------------  sendRequest  -------------------------------')
@@ -983,7 +983,7 @@ exports.GetCarInOutInfoByPlace = function(dataStr,callback){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result,'\n')
+    		console.log(result)
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -1022,10 +1022,10 @@ exports.GetPaymentStatus = function(orderNo,callback){
 			}
 	    }
 
-	console.log('加密数据结果: '+ crypt_result,'\n')
+	console.log('加密数据结果: '+ crypt_result)
     console.log('请求选项:')
-    console.log(options,'\n')
-    console.log('post_data: '+post_data,'\n')
+    console.log(options)
+    console.log('post_data: '+post_data)
 
     var req = http.request(options,function(res){
     	console.log('------------------------------  sendRequest  -------------------------------')
@@ -1035,7 +1035,7 @@ exports.GetPaymentStatus = function(orderNo,callback){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result,'\n')
+    		console.log(result)
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -1073,10 +1073,10 @@ exports.GetFuzzyCarInfo = function(dataStr,callback){
 			}
 	    }
 
-	console.log('加密数据结果: '+ crypt_result,'\n')
+	console.log('加密数据结果: '+ crypt_result)
     console.log('请求选项:')
-    console.log(options,'\n')
-    console.log('post_data: '+post_data,'\n')
+    console.log(options)
+    console.log('post_data: '+post_data)
 
     var req = http.request(options,function(res){
     	console.log('------------------------------  sendRequest  -------------------------------')
@@ -1086,7 +1086,7 @@ exports.GetFuzzyCarInfo = function(dataStr,callback){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result,'\n')
+    		console.log(result)
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -1125,10 +1125,10 @@ exports.CheckPrePaidTicket = function(dataStr,callback){
 			}
 	    }
 
-	console.log('加密数据结果: '+ crypt_result,'\n')
+	console.log('加密数据结果: '+ crypt_result)
     console.log('请求选项:')
-    console.log(options,'\n')
-    console.log('post_data: '+post_data,'\n')
+    console.log(options)
+    console.log('post_data: '+post_data)
 
     var req = http.request(options,function(res){
     	console.log('------------------------------  sendRequest  -------------------------------')
@@ -1138,7 +1138,7 @@ exports.CheckPrePaidTicket = function(dataStr,callback){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result,'\n')
+    		console.log(result)
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -1176,10 +1176,10 @@ exports.GetCapImgInfo = function(dataStr,callback){
 			}
 	    }
 
-	console.log('加密数据结果: '+ crypt_result,'\n')
+	console.log('加密数据结果: '+ crypt_result)
     console.log('请求选项:')
-    console.log(options,'\n')
-    console.log('post_data: '+post_data,'\n')
+    console.log(options)
+    console.log('post_data: '+post_data)
 
     var req = http.request(options,function(res){
     	console.log('------------------------------  sendRequest  -------------------------------')
@@ -1189,7 +1189,7 @@ exports.GetCapImgInfo = function(dataStr,callback){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result,'\n')
+    		console.log(result)
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -1228,10 +1228,10 @@ exports.GetCarCardInfo = function(plateNo,callback){
 			}
 	    }
 
-	console.log('加密数据结果: '+ crypt_result,'\n')
+	console.log('加密数据结果: '+ crypt_result)
     console.log('请求选项:')
-    console.log(options,'\n')
-    console.log('post_data: '+post_data,'\n')
+    console.log(options)
+    console.log('post_data: '+post_data)
 
     var req = http.request(options,function(res){
     	console.log('------------------------------  sendRequest  -------------------------------')
@@ -1241,7 +1241,7 @@ exports.GetCarCardInfo = function(plateNo,callback){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result,'\n')
+    		console.log(result)
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -1280,10 +1280,10 @@ exports.GetCarTypeList = function(callback){
 			}
 	    }
 
-	console.log('加密数据结果: '+ crypt_result,'\n')
+	console.log('加密数据结果: '+ crypt_result)
     console.log('请求选项:')
-    console.log(options,'\n')
-    console.log('post_data: '+post_data,'\n')
+    console.log(options)
+    console.log('post_data: '+post_data)
 
     var req = http.request(options,function(res){
     	console.log('------------------------------  sendRequest  -------------------------------')
@@ -1293,7 +1293,7 @@ exports.GetCarTypeList = function(callback){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result,'\n')
+    		console.log(result)
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -1332,10 +1332,10 @@ exports.GetCardRule = function(carType,callback){
 			}
 	    }
 
-	console.log('加密数据结果: '+ crypt_result,'\n')
+	console.log('加密数据结果: '+ crypt_result)
     console.log('请求选项:')
     console.log(options)
-    console.log('post_data: '+post_data,'\n')
+    console.log('post_data: '+post_data)
 
     var req = http.request(options,function(res){
     	console.log('------------------------------  sendRequest  -------------------------------')
@@ -1345,7 +1345,7 @@ exports.GetCardRule = function(carType,callback){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result,'\n')
+    		console.log(result)
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -1384,10 +1384,10 @@ exports.CardRecharge = function(dataStr,callback){
 			}
 	    }
 
-	console.log('加密数据结果: '+ crypt_result,'\n')
+	console.log('加密数据结果: '+ crypt_result)
     console.log('请求选项:')
-    console.log(options,'\n')
-    console.log('post_data: '+post_data,'\n')
+    console.log(options)
+    console.log('post_data: '+post_data)
 
     var req = http.request(options,function(res){
     	console.log('------------------------------  sendRequest  -------------------------------')
@@ -1397,7 +1397,7 @@ exports.CardRecharge = function(dataStr,callback){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result,'\n')
+    		console.log(result)
     		result = JSON.parse(result)
     		return callback(result)
     	})
