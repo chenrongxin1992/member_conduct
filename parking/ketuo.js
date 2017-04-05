@@ -7,10 +7,11 @@ var http = require('http'),
 	ketuoConfig = require('../config/parking/ketuo'),
 	error = require('../Exception/error'),
 	moment = require('moment'),
-	crypto3DES = require('../Tools/crypto3DES'),
-	querystring = require('querystring')
+	crypto3DES = require('../Tools/crypto3DES')
+	//JSON = require('JSON')
 
-var content_type = 'application/x-www-form-urlencoded; charset=UTF-8',
+
+var content_type = 'application/json; charset=UTF-8',
 	user = 'ktapi',
 	pwd = '0306A9',
 	alg = 'des-ede3-cbc',
@@ -30,8 +31,8 @@ exports.GetParkingLotInfo = function(callback){
 			'pwd' : pwd
 		}
 	}
-	console.log(options)
-	console.log()
+	console.log(options,'\n')
+
 	var req = http.request(options,function(res){
 		res.setEncoding('utf8')
 		var result = ''
@@ -94,7 +95,7 @@ exports.GetAreaList = function(floorId,callback){
 
 	    crypt_result = crypto3DES.encrypt3DES(data),
 	    
-	    post_data = querystring.stringify({
+	    post_data = JSON.stringify({
 	    	data : crypt_result
 	    }),
 
@@ -109,20 +110,18 @@ exports.GetAreaList = function(floorId,callback){
 				'pwd' : pwd
 			}
 	    }
-    console.log(crypt_result)
-    console.log()
-    console.log(options)
-    console.log()
+    console.log(crypt_result,'\n')
+    console.log(options,'\n')
+
     var req = http.request(options,function(res){
-    	console.log('+++++++  here  +++++++')
+    	console.log('------------------------------  sendRequest  -------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result)
-    		console.log()
+    		console.log(result,'\n')
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -145,7 +144,7 @@ exports.GetCarLocInfo = function(plateNo,callback){
 
 	    crypt_result = crypto3DES.encrypt3DES(data),
 	    
-	    post_data = querystring.stringify({
+	    post_data = JSON.stringify({
 	    	data : crypt_result
 	    }),
 
@@ -160,21 +159,18 @@ exports.GetCarLocInfo = function(plateNo,callback){
 				'pwd' : pwd
 			}
 	    }
-    console.log(crypt_result)
-    console.log()
-    console.log(options)
-    console.log()
+    console.log(crypt_result,'\n')
+    console.log(options,'\n')
 
     var req = http.request(options,function(res){
-    	console.log('+++++++  here  +++++++')
+    	console.log('------------------------------  sendRequest  -------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result)
-    		console.log()
+    		console.log(result,'\n')
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -187,17 +183,18 @@ exports.GetCarLocInfo = function(plateNo,callback){
     req.end()
 }
 //5．车辆停放位置查询接口(模糊) GetCarLocList
-exports.GetCarLocList = function(plateNo,count,callback){
+exports.GetCarLocList = function(dataStr,callback){
 	var data = {
 	        alg: alg,   
 	        autoPad: true,
 	        key: key,
-	        text: '{"plateNo":"'+plateNo+'","count":"'+count+'"}',
+	        text: dataStr,
 	        iv: iv
 	    },
+
     	crypt_result = crypto3DES.encrypt3DES(data),
     
-    	post_data = querystring.stringify({
+    	post_data = JSON.stringify({
 	    	data : crypt_result
 	    }),
 
@@ -212,21 +209,18 @@ exports.GetCarLocList = function(plateNo,count,callback){
 				'pwd' : pwd
 			}
 	    }
-    console.log(crypt_result)
-    console.log()
-    console.log(options)
-    console.log()
+    console.log(crypt_result,'\n')
+    console.log(options,'\n')
 
     var req = http.request(options,function(res){
-    	console.log('+++++++  here  +++++++')
+    	console.log('------------------------------  sendRequest  -------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result)
-    		console.log()
+    		console.log(result,'\n')
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -239,18 +233,18 @@ exports.GetCarLocList = function(plateNo,count,callback){
     req.end()
 }
 //6．车辆停放位置查询接口2(模糊) GetCarLocList2
-exports.GetCarLocList2 = function(plateNo,pageIndex,pageSize,callback){
+exports.GetCarLocList2 = function(dataStr,callback){
 	var data = {
 	        alg: alg,   
 	        autoPad: true,
 	        key: key,
-	        text: '{"plateNo":"'+plateNo+'","pageIndex":"'+pageIndex+'","pageSize":"'+pageSize+'"}',
+	        text: dataStr,
 	        iv: iv
     	},
 
 	    crypt_result = crypto3DES.encrypt3DES(data),
 	    
-	    post_data = querystring.stringify({
+	    post_data = JSON.stringify({
 	    	data : crypt_result
 	    }),
 
@@ -265,21 +259,18 @@ exports.GetCarLocList2 = function(plateNo,pageIndex,pageSize,callback){
 				'pwd' : pwd
 			}
 	    }
-    console.log(crypt_result)
-    console.log()
-    console.log(options)
-    console.log()
+    console.log(crypt_result,'\n')
+    console.log(options,'\n')
 
     var req = http.request(options,function(res){
-    	console.log('+++++++  sendrequest  +++++++')
+    	console.log('------------------------------  sendRequest  -------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result)
-    		console.log()
+    		console.log(result,'\n')
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -292,18 +283,18 @@ exports.GetCarLocList2 = function(plateNo,pageIndex,pageSize,callback){
     req.end()
 }
 //7．空余车位数查询接口 GetFreeSpaceNum
-exports.GetFreeSpaceNum = function(floorId,areaId,callback){
+exports.GetFreeSpaceNum = function(dataStr,callback){
 	var data = {
 	        alg: alg,   
 	        autoPad: true,
 	        key: key,
-	        text: '{"floorId":"'+floorId+'","areaId":"'+areaId+'"}',
+	        text: dataStr,
 	        iv: iv
    		},
 
     	crypt_result = crypto3DES.encrypt3DES(data),
     
-    	post_data = querystring.stringify({
+    	post_data = JSON.stringify({
 	    	data : crypt_result
 	    }),
 
@@ -318,21 +309,18 @@ exports.GetFreeSpaceNum = function(floorId,areaId,callback){
 				'pwd' : pwd
 			}
 	    }
-    console.log(crypt_result)
-    console.log()
-    console.log(options)
-    console.log()
+    console.log(crypt_result,'\n')
+    console.log(options,'\n')
 
     var req = http.request(options,function(res){
-    	console.log('+++++++  sendrequest  +++++++')
+    	console.log('------------------------------  sendRequest  -------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result)
-    		console.log()
+    		console.log(result,'\n')
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -345,18 +333,18 @@ exports.GetFreeSpaceNum = function(floorId,areaId,callback){
     req.end()
 }
 //8．楼层车位状态查询接口 GetSpaceInfo
-exports.GetSpaceInfo = function(floorId,areaId,callback){
+exports.GetSpaceInfo = function(dataStr,callback){
 	var data = {
 	        alg: alg,   
 	        autoPad: true,
 	        key: key,
-	        text: '{"floorId":"'+floorId+'","areaId":"'+areaId+'"}',
+	        text: dataStr,
 	        iv: iv
     	},
 
     	crypt_result = crypto3DES.encrypt3DES(data),
     
-    	post_data = querystring.stringify({
+    	post_data = JSON.stringify({
 	    	data : crypt_result
 	    }),
 
@@ -371,21 +359,18 @@ exports.GetSpaceInfo = function(floorId,areaId,callback){
 				'pwd' : pwd
 			}
 	    }
-    console.log(crypt_result)
-    console.log()
-    console.log(options)
-    console.log()
+    console.log(crypt_result,'\n')
+    console.log(options,'\n')
 
     var req = http.request(options,function(res){
-    	console.log('+++++++  sendrequest  +++++++')
+    	console.log('------------------------------  sendRequest  -------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result)
-    		console.log()
+    		console.log(result,'\n')
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -398,18 +383,18 @@ exports.GetSpaceInfo = function(floorId,areaId,callback){
     req.end()
 }
 //9．可预订车位查询接口 GetReservableInfo（定制）
-exports.GetReservableInfo = function(enterTime,leaveTime,callback){
+exports.GetReservableInfo = function(dataStr,callback){
 	var data = {
 	        alg: alg,   
 	        autoPad: true,
 	        key: key,
-	        text: '{"enterTime":"'+enterTime+'","leaveTime":"'+leaveTime+'"}',
+	        text: dataStr,
 	        iv: iv
 	    },
 
     	crypt_result = crypto3DES.encrypt3DES(data),
     
-    	post_data = querystring.stringify({
+    	post_data = JSON.stringify({
     		data : crypt_result
    		}),
 
@@ -424,21 +409,18 @@ exports.GetReservableInfo = function(enterTime,leaveTime,callback){
 				'pwd' : pwd
 			}
 	    }
-    console.log(crypt_result)
-    console.log()
-    console.log(options)
-    console.log()
+    console.log(crypt_result,'\n')
+    console.log(options,'\n')
 
     var req = http.request(options,function(res){
-    	console.log('+++++++  sendrequest  +++++++')
+    	console.log('------------------------------  sendRequest  -------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result)
-    		console.log()
+    		console.log(result,'\n')
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -451,18 +433,18 @@ exports.GetReservableInfo = function(enterTime,leaveTime,callback){
     req.end()
 }
 //10．车位预订接口 ReserveSpace（定制）
-exports.ReserveSpace = function(plateNo,type,addrId,enterTime,leaveTime,userName,tel,callback){
+exports.ReserveSpace = function(dataStr,callback){
 	var data = {
 	        alg: alg,   
 	        autoPad: true,
 	        key: key,
-	        text: '{"plateNo":"'+plateNo+'","type":"'+type+'","addrId":"'+addrId+'","enterTime":"'+enterTime+'","leaveTime":"'+leaveTime+'","userName":"'+userName+'","tel":"'+tel+'"}',
+	        text: dataStr,
 	        iv: iv
 	    },
 
 	    crypt_result = crypto3DES.encrypt3DES(data),
 	    
-	    post_data = querystring.stringify({
+	    post_data = JSON.stringify({
 	    	data : crypt_result
 	    }),
 
@@ -477,21 +459,18 @@ exports.ReserveSpace = function(plateNo,type,addrId,enterTime,leaveTime,userName
 				'pwd' : pwd
 			}
 	    }
-    console.log(crypt_result)
-    console.log()
-    console.log(options)
-    console.log()
+    console.log(crypt_result,'\n')
+    console.log(options,'\n')
 
     var req = http.request(options,function(res){
-    	console.log('+++++++  sendrequest  +++++++')
+    	console.log('------------------------------  sendRequest  -------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result)
-    		console.log()
+    		console.log(result,'\n')
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -515,7 +494,7 @@ exports.GetReserveState = function(plateNo,callback){
 
 	    crypt_result = crypto3DES.encrypt3DES(data),
 	    
-	    post_data = querystring.stringify({
+	    post_data = JSON.stringify({
 	    	data : crypt_result
 	    }),
 
@@ -530,21 +509,18 @@ exports.GetReserveState = function(plateNo,callback){
 				'pwd' : pwd
 			}
 	    }
-    console.log(crypt_result)
-    console.log()
-    console.log(options)
-    console.log()
+    console.log(crypt_result,'\n')
+    console.log(options,'\n')
 
     var req = http.request(options,function(res){
-    	console.log('+++++++  sendrequest  +++++++')
+    	console.log('------------------------------  sendRequest  -------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result)
-    		console.log()
+    		console.log(result,'\n')
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -568,7 +544,7 @@ exports.CancelReserve = function(plateNo,callback){
 
 	    crypt_result = crypto3DES.encrypt3DES(data),
 	    
-	    post_data = querystring.stringify({
+	    post_data = JSON.stringify({
 	    	data : crypt_result
 	    }),
 
@@ -583,21 +559,18 @@ exports.CancelReserve = function(plateNo,callback){
 				'pwd' : pwd
 			}
 	    }
-    console.log(crypt_result)
-    console.log()
-    console.log(options)
-    console.log()
+    console.log(crypt_result,'\n')
+    console.log(options,'\n')
 
     var req = http.request(options,function(res){
-    	console.log('+++++++  sendrequest  +++++++')
+    	console.log('------------------------------  sendRequest  -------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result)
-    		console.log()
+    		console.log(result,'\n')
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -610,17 +583,17 @@ exports.CancelReserve = function(plateNo,callback){
     req.end()
 }
 //13．反向寻车路线 GetCarLocRoute
-exports.GetCarLocRoute = function(beginNo,endNo,callback){
+exports.GetCarLocRoute = function(dataStr,callback){
 	var data = {
 	        alg: alg,   
 	        autoPad: true,
 	        key: key,
-	        text: '{"beginNo":"'+beginNo+'","endNo":"'+endNo+'"}',
+	        text: dataStr,
 	        iv: iv
    		},
    		crypt_result = crypto3DES.encrypt3DES(data),
 	    
-    	post_data = querystring.stringify({
+    	post_data = JSON.stringify({
 	    	data : crypt_result
 	    }),
 	    options = {
@@ -635,24 +608,20 @@ exports.GetCarLocRoute = function(beginNo,endNo,callback){
 			}
 	    }
 
-	console.log('加密数据结果: '+ crypt_result)
-	console.log()
+	console.log('加密数据结果: '+ crypt_result,'\n')
     console.log('请求选项:')
-    console.log(options)
-    console.log()
-    console.log('post_data: '+post_data)
-    console.log()
+    console.log(options,'\n')
+    console.log('post_data: '+post_data,'\n')
 
     var req = http.request(options,function(res){
-    	console.log('+++++++  sendrequest  +++++++')
+    	console.log('------------------------------  sendRequest  -------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result)
-    		console.log()
+    		console.log(result,'\n')
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -667,18 +636,18 @@ exports.GetCarLocRoute = function(beginNo,endNo,callback){
 
 //免取卡收费系统接口
 //1．车流量查询接口GetTrafficNum
-exports.GetTrafficNum = function(startDate,endDate,callback){
+exports.GetTrafficNum = function(dataStr,callback){
 	var data = {
 	         alg: alg,   
 	         autoPad: true,
 	         key: key,
-	         text: '{"startDate":"'+startDate+'","endDate":"'+endDate+'"}',
+	         text: dataStr,
 	         iv: iv
     	},
 
     	crypt_result = crypto3DES.encrypt3DES(data),
 	    
-    	post_data = querystring.stringify({
+    	post_data = JSON.stringify({
 	    	data : crypt_result
 	    }),
 	    options = {
@@ -693,21 +662,18 @@ exports.GetTrafficNum = function(startDate,endDate,callback){
 			}
 	    }
 
-	console.log(crypt_result)
-	console.log()
-    console.log(options)
-    console.log()
+	console.log(crypt_result,'\n')
+    console.log(options,'\n')
 
     var req = http.request(options,function(res){
-    	console.log('+++++++  sendrequest  +++++++')
+    	console.log('------------------------------  sendRequest  -------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result)
-    		console.log()
+    		console.log(result,'\n')
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -727,10 +693,10 @@ exports.GetParkingPaymentInfo = function(plateNo,callback){
 	         key: key,
 	         text: '{"plateNo":"'+plateNo+'"}',
 	         iv: iv
-   		}
+   		},
    		crypt_result = crypto3DES.encrypt3DES(data),
 	    
-    	post_data = querystring.stringify({
+    	post_data = JSON.stringify({
 	    	data : crypt_result
 	    }),
 	    options = {
@@ -744,21 +710,18 @@ exports.GetParkingPaymentInfo = function(plateNo,callback){
 				'pwd' : pwd
 			}
 	    }
-	console.log(crypt_result)
-	console.log()
-    console.log(options)
-    console.log()
+	console.log(crypt_result,'\n')
+    console.log(options,'\n')
 
     var req = http.request(options,function(res){
-    	console.log('+++++++  sendrequest  +++++++')
+    	console.log('------------------------------  sendRequest  -------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result)
-    		console.log()
+    		console.log(result,'\n')
     		// if(result.resCode != 0)
     		// 	return callback(error.ThrowError(1,result.resMsg))
     		result = JSON.parse(result)
@@ -782,10 +745,10 @@ exports.GetParkingPaymentInfoByCard = function(cardNo,callback){
 	         key: key,
 	         text: '{"cardNo":"'+res_cardNo+'"}',
 	         iv: iv
-   		}
+   		},
    		crypt_result = crypto3DES.encrypt3DES(data),
 	    
-    	post_data = querystring.stringify({
+    	post_data = JSON.stringify({
 	    	data : crypt_result
 	    }),
 	    options = {
@@ -800,24 +763,20 @@ exports.GetParkingPaymentInfoByCard = function(cardNo,callback){
 			}
 	    }
 
-	console.log('加密数据结果: '+ crypt_result)
-	console.log()
+	console.log('加密数据结果: '+ crypt_result,'\n')
     console.log('请求选项:')
-    console.log(options)
-    console.log()
-    console.log('post_data: '+post_data)
-    console.log()
+    console.log(options,'\n')
+    console.log('post_data: '+post_data,'\n')
 
     var req = http.request(options,function(res){
-    	console.log('+++++++  sendrequest  +++++++')
+    	console.log('------------------------------  sendRequest  -------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result)
-    		console.log()
+    		console.log(result,'\n')
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -830,15 +789,16 @@ exports.GetParkingPaymentInfoByCard = function(cardNo,callback){
     req.end()
 }
 //4.账单减免计费接口GetPaymentRecharge
-exports.GetPaymentRecharge = function(datastr,callback){
+exports.GetPaymentRecharge = function(dataStr,callback){
 	var data = {
 	         alg: alg,   
 	         autoPad: true,
 	         key: key,
-	         text : datastr,
+	         text : dataStr
+	         ,
 	         iv: iv
    		};
-   		console.log('data 2',data);
+
    	var	crypt_result = crypto3DES.encrypt3DES(data),
 	    
     	post_data = JSON.stringify({
@@ -856,24 +816,20 @@ exports.GetPaymentRecharge = function(datastr,callback){
 			}
 	    };
 
-	console.log('加密数据结果: '+ crypt_result)
-	console.log()
+	console.log('加密数据结果: '+ crypt_result,'\n')
     console.log('请求选项:')
-    console.log(options)
-    console.log()
-    console.log('post_data: '+post_data)
-    console.log()
+    console.log(options,'\n')
+    console.log('post_data: '+post_data,'\n')
 
     var req = http.request(options,function(res){
-    	console.log('+++++++  sendrequest  +++++++')
+    	console.log('------------------------------  sendRequest  -------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result)
-    		console.log()
+    		console.log(result,'\n')
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -886,12 +842,12 @@ exports.GetPaymentRecharge = function(datastr,callback){
     req.end()
 }
 //5.停车费支付(账单同步)接口PayParkingFee
-exports.PayParkingFee = function(datastr,callback){
+exports.PayParkingFee = function(dataStr,callback){
 	var data = {
 	         alg: alg,   
 	         autoPad: true,
 	         key: key,
-	         text:datastr,
+	         text:dataStr,
 	         iv: iv
    		},
    		crypt_result = crypto3DES.encrypt3DES(data),
@@ -899,6 +855,7 @@ exports.PayParkingFee = function(datastr,callback){
     	post_data = JSON.stringify({
 	    	data : crypt_result
 	    }),
+
 	    options = {
 	    	host : ketuoConfig.host,
 			port : ketuoConfig.port,
@@ -911,24 +868,20 @@ exports.PayParkingFee = function(datastr,callback){
 			}
 	    }
 
-	console.log('加密数据结果: '+ crypt_result)
-	console.log()
+	console.log('加密数据结果: '+ crypt_result,'\n')
     console.log('请求选项:')
-    console.log(options)
-    console.log()
-    console.log('post_data: '+post_data)
-    console.log()
+    console.log(options,'\n')
+    console.log('post_data: '+post_data,'\n')
 
     var req = http.request(options,function(res){
-    	console.log('+++++++  sendrequest  +++++++')
+    	console.log('------------------------------  sendRequest  -------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result)
-    		console.log()
+    		console.log(result,'\n')
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -941,17 +894,17 @@ exports.PayParkingFee = function(datastr,callback){
     req.end()
 }
 //6．按车牌查询停车信息接口GetCarInOutInfoByPlate
-exports.GetCarInOutInfoByPlate = function(plateNo,startTime,endTime,pageIndex,pageCount,callback){
+exports.GetCarInOutInfoByPlate = function(dataStr,callback){
 	var data = {
 	         alg: alg,   
 	         autoPad: true,
 	         key: key,
-	         text: '{"plateNo":"'+plateNo+'","startTime":"'+startTime+'","endTime":"'+endTime+'","pageIndex":"'+pageIndex+'","pageCount":"'+pageCount+'"}',
+	         text: dataStr,
 	         iv: iv
-   		}
+   		},
    		crypt_result = crypto3DES.encrypt3DES(data),
 	    
-    	post_data = querystring.stringify({
+    	post_data = JSON.stringify({
 	    	data : crypt_result
 	    }),
 	    options = {
@@ -966,24 +919,20 @@ exports.GetCarInOutInfoByPlate = function(plateNo,startTime,endTime,pageIndex,pa
 			}
 	    }
 
-	console.log('加密数据结果: '+ crypt_result)
-	console.log()
+	console.log('加密数据结果: '+ crypt_result,'\n')
     console.log('请求选项:')
-    console.log(options)
-    console.log()
-    console.log('post_data: '+post_data)
-    console.log()
+    console.log(options,'\n')
+    console.log('post_data: '+post_data,'\n')
 
     var req = http.request(options,function(res){
-    	console.log('+++++++  sendrequest  +++++++')
+    	console.log('------------------------------  sendRequest  -------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result)
-    		console.log()
+    		console.log(result,'\n')
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -996,17 +945,17 @@ exports.GetCarInOutInfoByPlate = function(plateNo,startTime,endTime,pageIndex,pa
     req.end()
 }
 //7．按出入口查询停车信息接口GetCarInOutInfoByPlace
-exports.GetCarInOutInfoByPlace = function(entryPlace,leavePlace,startTime,endTime,pageIndex,pageCount,callback){
+exports.GetCarInOutInfoByPlace = function(dataStr,callback){
 	var data = {
 	         alg: alg,   
 	         autoPad: true,
 	         key: key,
-	         text: '{"entryPlace":"'+entryPlace+'","leavePlace":"'+leavePlace+'","startTime":"'+startTime+'","endTime":"'+endTime+'","pageIndex":"'+pageIndex+'","pageCount":"'+pageCount+'"}',
+	         text: dataStr,
 	         iv: iv
-   		}
+   		},
    		crypt_result = crypto3DES.encrypt3DES(data),
 	    
-    	post_data = querystring.stringify({
+    	post_data = JSON.stringify({
 	    	data : crypt_result
 	    }),
 	    options = {
@@ -1021,24 +970,20 @@ exports.GetCarInOutInfoByPlace = function(entryPlace,leavePlace,startTime,endTim
 			}
 	    }
 
-	console.log('加密数据结果: '+ crypt_result)
-	console.log()
+	console.log('加密数据结果: '+ crypt_result,'\n')
     console.log('请求选项:')
-    console.log(options)
-    console.log()
-    console.log('post_data: '+post_data)
-    console.log()
+    console.log(options,'\n')
+    console.log('post_data: '+post_data,'\n')
 
     var req = http.request(options,function(res){
-    	console.log('+++++++  sendrequest  +++++++')
+    	console.log('------------------------------  sendRequest  -------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result)
-    		console.log()
+    		console.log(result,'\n')
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -1058,12 +1003,13 @@ exports.GetPaymentStatus = function(orderNo,callback){
 	         key: key,
 	         text: '{"orderNo":"'+orderNo+'"}',
 	         iv: iv
-   		}
+   		},
    		crypt_result = crypto3DES.encrypt3DES(data),
 	    
-    	post_data = querystring.stringify({
+    	post_data = JSON.stringify({
 	    	data : crypt_result
 	    }),
+
 	    options = {
 	    	host : ketuoConfig.host,
 			port : ketuoConfig.port,
@@ -1076,24 +1022,20 @@ exports.GetPaymentStatus = function(orderNo,callback){
 			}
 	    }
 
-	console.log('加密数据结果: '+ crypt_result)
-	console.log()
+	console.log('加密数据结果: '+ crypt_result,'\n')
     console.log('请求选项:')
-    console.log(options)
-    console.log()
-    console.log('post_data: '+post_data)
-    console.log()
+    console.log(options,'\n')
+    console.log('post_data: '+post_data,'\n')
 
     var req = http.request(options,function(res){
-    	console.log('+++++++  sendrequest  +++++++')
+    	console.log('------------------------------  sendRequest  -------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result)
-    		console.log()
+    		console.log(result,'\n')
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -1106,17 +1048,17 @@ exports.GetPaymentStatus = function(orderNo,callback){
     req.end()
 }
 //9．模糊查找入场车牌列表接口GetFuzzyCarInfo
-exports.GetFuzzyCarInfo = function(plateNo,pageIndex,pageSize,callback){
+exports.GetFuzzyCarInfo = function(dataStr,callback){
 	var data = {
 	         alg: alg,   
 	         autoPad: true,
 	         key: key,
-	         text: '{"plateNo":"'+plateNo+'","pageIndex":"'+pageIndex+'","pageSize":"'+pageSize+'"}',
+	         text: dataStr,
 	         iv: iv
-   		}
+   		},
    		crypt_result = crypto3DES.encrypt3DES(data),
 	    
-    	post_data = querystring.stringify({
+    	post_data = JSON.stringify({
 	    	data : crypt_result
 	    }),
 	    options = {
@@ -1131,24 +1073,20 @@ exports.GetFuzzyCarInfo = function(plateNo,pageIndex,pageSize,callback){
 			}
 	    }
 
-	console.log('加密数据结果: '+ crypt_result)
-	console.log()
+	console.log('加密数据结果: '+ crypt_result,'\n')
     console.log('请求选项:')
-    console.log(options)
-    console.log()
-    console.log('post_data: '+post_data)
-    console.log()
+    console.log(options,'\n')
+    console.log('post_data: '+post_data,'\n')
 
     var req = http.request(options,function(res){
-    	console.log('+++++++  sendrequest  +++++++')
+    	console.log('------------------------------  sendRequest  -------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result)
-    		console.log()
+    		console.log(result,'\n')
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -1161,17 +1099,18 @@ exports.GetFuzzyCarInfo = function(plateNo,pageIndex,pageSize,callback){
     req.end()
 }
 //10．是否使用优惠抵扣查询接口 CheckPrePaidTicket
-exports.CheckPrePaidTicket = function(plateNo,inTime,callback){
+exports.CheckPrePaidTicket = function(dataStr,callback){
 	var data = {
 	         alg: alg,   
 	         autoPad: true,
 	         key: key,
-	         text: '{"plateNo":"'+plateNo+'","inTime":"'+inTime+'"}',
+	         text: dataStr,
 	         iv: iv
-   		}
+   		},
+
    		crypt_result = crypto3DES.encrypt3DES(data),
 	    
-    	post_data = querystring.stringify({
+    	post_data = JSON.stringify({
 	    	data : crypt_result
 	    }),
 	    options = {
@@ -1186,24 +1125,20 @@ exports.CheckPrePaidTicket = function(plateNo,inTime,callback){
 			}
 	    }
 
-	console.log('加密数据结果: '+ crypt_result)
-	console.log()
+	console.log('加密数据结果: '+ crypt_result,'\n')
     console.log('请求选项:')
-    console.log(options)
-    console.log()
-    console.log('post_data: '+post_data)
-    console.log()
+    console.log(options,'\n')
+    console.log('post_data: '+post_data,'\n')
 
     var req = http.request(options,function(res){
-    	console.log('+++++++  sendrequest  +++++++')
+    	console.log('------------------------------  sendRequest  -------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result)
-    		console.log()
+    		console.log(result,'\n')
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -1216,17 +1151,17 @@ exports.CheckPrePaidTicket = function(plateNo,inTime,callback){
     req.end()
 }
 //11.按查询进出场纪录列表接口GetCapImgInfo
-exports.GetCapImgInfo = function(plateNo,type,startTime,endTime,pageIndex,pageCount,callback){
+exports.GetCapImgInfo = function(dataStr,callback){
 	var data = {
 	         alg: alg,   
 	         autoPad: true,
 	         key: key,
-	         text: '{"plateNo":"'+plateNo+'","type":"'+type+'","startTime":"'+startTime+'","endTime":"'+endTime+'","pageIndex":"'+pageIndex+'","pageCount":"'+pageCount+'"}',
+	         text: dataStr,
 	         iv: iv
    		}
    		crypt_result = crypto3DES.encrypt3DES(data),
 	    
-    	post_data = querystring.stringify({
+    	post_data = JSON.stringify({
 	    	data : crypt_result
 	    }),
 	    options = {
@@ -1241,24 +1176,20 @@ exports.GetCapImgInfo = function(plateNo,type,startTime,endTime,pageIndex,pageCo
 			}
 	    }
 
-	console.log('加密数据结果: '+ crypt_result)
-	console.log()
+	console.log('加密数据结果: '+ crypt_result,'\n')
     console.log('请求选项:')
-    console.log(options)
-    console.log()
-    console.log('post_data: '+post_data)
-    console.log()
+    console.log(options,'\n')
+    console.log('post_data: '+post_data,'\n')
 
     var req = http.request(options,function(res){
-    	console.log('+++++++  sendrequest  +++++++')
+    	console.log('------------------------------  sendRequest  -------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result)
-    		console.log()
+    		console.log(result,'\n')
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -1278,10 +1209,11 @@ exports.GetCarCardInfo = function(plateNo,callback){
 	         key: key,
 	         text: '{"plateNo":"'+plateNo+'"}',
 	         iv: iv
-   		}
+   		},
+
    		crypt_result = crypto3DES.encrypt3DES(data),
 	    
-    	post_data = querystring.stringify({
+    	post_data = JSON.stringify({
 	    	data : crypt_result
 	    }),
 	    options = {
@@ -1296,24 +1228,20 @@ exports.GetCarCardInfo = function(plateNo,callback){
 			}
 	    }
 
-	console.log('加密数据结果: '+ crypt_result)
-	console.log()
+	console.log('加密数据结果: '+ crypt_result,'\n')
     console.log('请求选项:')
-    console.log(options)
-    console.log()
-    console.log('post_data: '+post_data)
-    console.log()
+    console.log(options,'\n')
+    console.log('post_data: '+post_data,'\n')
 
     var req = http.request(options,function(res){
-    	console.log('+++++++  sendrequest  +++++++')
+    	console.log('------------------------------  sendRequest  -------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result)
-    		console.log()
+    		console.log(result,'\n')
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -1333,10 +1261,11 @@ exports.GetCarTypeList = function(callback){
 	         key: key,
 	         text: '',
 	         iv: iv
-   		}
+   		},
+
    		crypt_result = crypto3DES.encrypt3DES(data),
 	    
-    	post_data = querystring.stringify({
+    	post_data = JSON.stringify({
 	    	data : crypt_result
 	    }),
 	    options = {
@@ -1351,24 +1280,20 @@ exports.GetCarTypeList = function(callback){
 			}
 	    }
 
-	console.log('加密数据结果: '+ crypt_result)
-	console.log()
+	console.log('加密数据结果: '+ crypt_result,'\n')
     console.log('请求选项:')
-    console.log(options)
-    console.log()
-    console.log('post_data: '+post_data)
-    console.log()
+    console.log(options,'\n')
+    console.log('post_data: '+post_data,'\n')
 
     var req = http.request(options,function(res){
-    	console.log('+++++++  sendrequest  +++++++')
+    	console.log('------------------------------  sendRequest  -------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result)
-    		console.log()
+    		console.log(result,'\n')
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -1388,10 +1313,11 @@ exports.GetCardRule = function(carType,callback){
 	         key: key,
 	         text: '{"carType":"'+carType+'"}',
 	         iv: iv
-   		}
+   		},
+
    		crypt_result = crypto3DES.encrypt3DES(data),
 	    
-    	post_data = querystring.stringify({
+    	post_data = JSON.stringify({
 	    	data : crypt_result
 	    }),
 	    options = {
@@ -1406,24 +1332,20 @@ exports.GetCardRule = function(carType,callback){
 			}
 	    }
 
-	console.log('加密数据结果: '+ crypt_result)
-	console.log()
+	console.log('加密数据结果: '+ crypt_result,'\n')
     console.log('请求选项:')
     console.log(options)
-    console.log()
-    console.log('post_data: '+post_data)
-    console.log()
+    console.log('post_data: '+post_data,'\n')
 
     var req = http.request(options,function(res){
-    	console.log('+++++++  sendrequest  +++++++')
+    	console.log('------------------------------  sendRequest  -------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result)
-    		console.log()
+    		console.log(result,'\n')
     		result = JSON.parse(result)
     		return callback(result)
     	})
@@ -1436,17 +1358,18 @@ exports.GetCardRule = function(carType,callback){
     req.end()
 }
 //15.内部车充值接口CardRecharge（定制）
-exports.CardRecharge = function(cardId,ruleType,ruleAmount,payMoney,startTime,endTime,callback){
+exports.CardRecharge = function(dataStr,callback){
 	var data = {
 	         alg: alg,   
 	         autoPad: true,
 	         key: key,
-	         text: '{"cardId":"'+cardId+'","ruleType":"'+ruleType+'","ruleAmount":"'+ruleAmount+'","payMoney":"'+payMoney+'","startTime":"'+startTime+'","endTime":"'+endTime+'"}',
+	         text: dataStr,
 	         iv: iv
-   		}
+   		},
+
    		crypt_result = crypto3DES.encrypt3DES(data),
 	    
-    	post_data = querystring.stringify({
+    	post_data = JSON.stringify({
 	    	data : crypt_result
 	    }),
 	    options = {
@@ -1461,24 +1384,20 @@ exports.CardRecharge = function(cardId,ruleType,ruleAmount,payMoney,startTime,en
 			}
 	    }
 
-	console.log('加密数据结果: '+ crypt_result)
-	console.log()
+	console.log('加密数据结果: '+ crypt_result,'\n')
     console.log('请求选项:')
-    console.log(options)
-    console.log()
-    console.log('post_data: '+post_data)
-    console.log()
+    console.log(options,'\n')
+    console.log('post_data: '+post_data,'\n')
 
     var req = http.request(options,function(res){
-    	console.log('+++++++  sendrequest  +++++++')
+    	console.log('------------------------------  sendRequest  -------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
     		result += chunk
     	})
     	res.on('end',function(){
-    		console.log(result)
-    		console.log()
+    		console.log(result,'\n')
     		result = JSON.parse(result)
     		return callback(result)
     	})

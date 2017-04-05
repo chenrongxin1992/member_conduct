@@ -67,7 +67,7 @@ keTuo.prototype.GetCarDetial = function(attribute,callback){
 				})
 				console.log(ketuoCar)
 				ketuoCar.save(function(err){
-					console.log('++++++++++++++++++++++++  save process  +++++++++++++++++++++++++++++')
+					console.log('-----------------------------  save process  -------------------------')
 					if(err){				
 						cb(error.ThrowError(err))
 					}
@@ -102,9 +102,16 @@ keTuo.prototype.GetCarDetial = function(attribute,callback){
 				})
 			},
 			//是否使用优惠抵扣
+			//0402
 			function(arg1,arg2,cb){
-				var inTime = arg2.data[0].entryTime
-				ketuo.CheckPrePaidTicket(plateNo,inTime,function(res){
+				//var inTime = arg2.data[0].entryTime
+				var tempData = {
+						plateNo : plateNo,
+						inTime : arg2.data[0].entryTime
+					},
+					data = JSON.stringify(tempData)
+
+				ketuo.CheckPrePaidTicket(data,function(res){
 					if(res.resCode != 0){
 						return cb(error.ThrowError(res.resMsg))
 					}
@@ -225,7 +232,24 @@ keTuo.prototype.PaySuccess = function(attribute,callback){
 		//取到orderNo时，先调用支付同步接口，返回parkingTIme，返回之后status会被置1
 		function(cb){
 			var parkingTime = 0
-			ketuo.PayParkingFee(orderNo,amount,discount,payType,payMethod,freeMoney,freeTime,freeDetail,function(res){
+			//0402
+			var reqData = {
+				orderNo : req.body.orderNo,//'0001201704011126596133',//有parkingTIme
+				amount : parseInt(req.body.amount),//120,
+				discount : parseInt(req.body.discount),//60,
+				payType : parseInt(req.body.payType),//4,
+				payMethod : parseInt(req.body.payMethod),//4,
+				freeMoney : parseInt(req.body.freeMoney),//100,
+				freeTime : parseInt(req.body.freeTime),//60,
+				freeDetail : [{
+					"type" : req.body.freeDetail.type,
+					"money" : req.body.freeDetail.money,
+					"time" : req.body.freeDetail.time,
+					"code" : req.body.freeDetail.code
+				}]
+			},
+			data = JSON.stringify(reqData)
+			ketuo.PayParkingFee(data,function(res){
 				if(res.resCode !=0){
 					return cb(error.ThrowError(res.resMsg))
 				}
@@ -240,12 +264,28 @@ keTuo.prototype.PaySuccess = function(attribute,callback){
 				console.log(parkingTime)
 				cb(null,parkingTime)
 			})
+			//0401
+			/*ketuo.PayParkingFee(orderNo,amount,discount,payType,payMethod,freeMoney,freeTime,freeDetail,function(res){
+				if(res.resCode !=0){
+					return cb(error.ThrowError(res.resMsg))
+				}
+				if(res.data == null){
+					//支付状态为1，但是调用支付接口返回结果中data为null，设置parkingTime为0
+					parkingTime = 0
+				}
+				if(res.data != null){
+					parkingTime = res.data.parkingTime
+				}
+				console.log('----------------------------  parkingTime  ---------------------------------')
+				console.log(parkingTime)
+				cb(null,parkingTime)
+			})*/
 		},
 		function(arg1,cb){
 			ketuo.GetPaymentStatus(orderNo,function(res){
 				var parkingTime = arg1
 				if(res.resCode != 0){
-					cb(error.ThrowError(res.resMsg))
+					cb(res.resCode,error.ThrowError(res.resMsg))
 				}
 				if(res.data.status == 1){//支付成功
 					console.log('--------------------------------  支付成功  ----------------------------------')
@@ -275,7 +315,7 @@ keTuo.prototype.PaySuccess = function(attribute,callback){
 				})
 			ketuoOrder.save(function(err){
 				if(err){
-					cb(error.ThrowError(err))
+					cb(1,error.ThrowError(err))
 				}
 				cb(null,ketuoOrder)
 			})

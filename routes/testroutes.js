@@ -54,9 +54,13 @@ var express = require('express'),
 		if(!req.body.count){
 			return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'列表数count不能为空'))
 		}
-		var plateNo = req.body.plateNo,
-		    count = parseInt(req.body.count)
-		ketuo.GetCarLocList(plateNo,count,function(result){
+		var reqData = {
+			plateNo : req.body.plateNo,
+			count : parseInt(req.body.count)
+			},
+			data = JSON.stringify(reqData)
+
+		ketuo.GetCarLocList(data,function(result){
 			res.json(result)
 		})
 	})
@@ -73,11 +77,14 @@ var express = require('express'),
 		if(!req.body.pageSize){
 			return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'每页数pageSize不能为空'))
 		}
-		var plateNo = req.body.plateNo,//'AJQ003',
-			pageIndex = parseInt(req.body.pageIndex),//1,
-			pageSize = parseInt(req.body.pageSize)
-		//var pageIndex = (pageIndex !== 1) ? pageIndex : 1 
-		ketuo.GetCarLocList2(plateNo,pageIndex,pageSize,function(result){
+		var reqData = {
+			plateNo : req.body.plateNo,//'AJQ003',
+			pageIndex : parseInt(req.body.pageIndex),
+			pageSize : parseInt(req.body.pageSize)
+			},
+			data = JSON.stringify(reqData)
+
+		ketuo.GetCarLocList2(data,function(result){
 			res.json(result)
 		})
 	})
@@ -90,12 +97,13 @@ var express = require('express'),
 		if(!req.body.areaId){
 			return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'区域号areaId不能为空'))
 		}*/
-		var floorId = parseInt(req.body.floorId),//4 ,
-			areaId = parseInt(req.body.areaId)//13
-		if(floorId < -1)
-			return res.json(error.ThrowError(0,'floorId参数有误!'))
+		var reqData = {
+				floorId : parseInt(req.body.floorId),
+				areaId : parseInt(req.body.areaId)
+			},
+			data = JSON.stringify(reqData)
 
-		ketuo.GetFreeSpaceNum(floorId,areaId,function(result){
+		ketuo.GetFreeSpaceNum(data,function(result){
 			res.json(result)
 		})
 	})
@@ -108,12 +116,13 @@ var express = require('express'),
 		if(!req.body.areaId){
 			return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'区域号areaId不能为空'))
 		}
-		var floorId = parseInt(req.body.floorId),//4 ,
-			areaId = parseInt(req.body.areaId)//13
-		if(floorId <= 0)
-			return res.json(error.ThrowError(0,'floorId参数有误!'))
+		var reqData = {
+				floorId : parseInt(req.body.floorId),
+				areaId : parseInt(req.body.areaId)
+			},
+			data = JSON.stringify(reqData)
 
-		ketuo.GetSpaceInfo(floorId,areaId,function(result){
+		ketuo.GetSpaceInfo(data,function(result){
 			res.json(result)
 		})
 	})
@@ -125,9 +134,13 @@ var express = require('express'),
 		if(!req.body.leaveTime){
 			return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'离场时间leaveTIme不能为空'))
 		}
-		var enterTime = req.body.enterTime,//'2017-03-30 18:00:00',
-			leaveTime = req.body.leaveTime//'2017-03-30 20:00:00'
-		ketuo.GetReservableInfo(enterTime,leaveTime,function(result){
+		var reqData = {
+				enterTime : req.body.entryTime,//'2017-03-30 18:00:00',
+				leaveTime : req.body.leaveTime//'2017-03-30 20:00:00'
+			},
+			data = JSON.stringify(reqData)
+		
+		ketuo.GetReservableInfo(data,function(result){
 			res.json(result)
 		})
 	})
@@ -155,14 +168,18 @@ var express = require('express'),
 		if(!req.body.tel){
 			return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'tel不能为空'))
 		}
-		var plateNo = req.body.plateNo,//'AJQ003',
-			enterTime = req.body.enterTime,//'2017-03-30 18:00:00',
-			leaveTime = req.body.leaveTime,//'2017-03-30 20:00:00',
-			type = parseInt(req.body.type),//1,
-			addrId = parseInt(req.body.addrId),//1,
-			userName = req.body.userName,//'aa',
-			tel = req.body.tel//'1234567890'
-		ketuo.ReserveSpace(plateNo,type,addrId,enterTime,leaveTime,userName,tel,function(result){
+		var reqData = {
+				plateNo : req.body.plateNo,//'AJQ003',
+				enterTime : req.body.enterTime,//'2017-03-30 18:00:00',
+				leaveTime : req.body.leaveTime,//'2017-03-30 20:00:00',
+				type : parseInt(req.body.type),//1,
+				addrId : parseInt(req.body.addrId),//1,
+				userName : req.body.userName,//'aa',
+				tel : req.body.tel//'1234567890'
+			},
+			data = JSON.stringify(reqData)
+
+		ketuo.ReserveSpace(data,function(result){
 			res.json(result)
 		})
 	})
@@ -196,9 +213,13 @@ var express = require('express'),
 		if(!req.body.endNo){
 			return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'endNo不能为空'))
 		}
-		var beginNo = req.body.beginNo,//'G100',
-			endNo = req.body.endNo//'G129'
-		ketuo.GetCarLocRoute(beginNo,endNo,function(result){
+		var reqData = {
+				beginNo : req.body.beginNo,//'G100',
+				endNo : req.body.endNo//'G129'
+			},
+			data = JSON.stringify(reqData)
+		
+		ketuo.GetCarLocRoute(data,function(result){
 			res.json(result)
 		})
 	})
@@ -212,19 +233,23 @@ var express = require('express'),
 		if(!req.body.endDate){
 			return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'endDate不能为空'))
 		}
-		var startDate = req.body.startDate,//'2016-12-12',
-			endDate = req.body.endDate//'2016-12-15'
-		ketuo.GetTrafficNum(startDate,endDate,function(result){
+		var reqData = {
+				startDate : req.body.startDate,//'2016-12-12',
+				endDate : req.body.endDate//'2016-12-15'
+			},
+			data = JSON.stringify(reqData)
+		
+		ketuo.GetTrafficNum(data,function(result){
 			res.json(result)
 		})
 	})
 	//2．停车费(账单)查询接口GetParkingPaymentInfo
 	router.post('/GetParkingPaymentInfo',function(req,res){
-		var plateNo = 'AJQ002'
-		// if(!req.body.plateNo){
-		// 	return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'plateNo不能为空'))
-		// }
-		// var plateNo = req.body.plateNo//'KEY180'
+		//var plateNo = 'AJQ002'
+		if(!req.body.plateNo){
+			return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'plateNo不能为空'))
+		}
+		var plateNo = req.body.plateNo//'KEY180'
 
 		ketuo.GetParkingPaymentInfo(plateNo,function(result){
 			res.json(result)
@@ -255,20 +280,8 @@ var express = require('express'),
 		if(!req.body.freeDetail){
 			return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'freeDetail不能为空'))
 		}
-		/*var orderNo = req.body.orderNo,//'0001201703301406404536',
-			freeMoney = parseInt(req.body.freeMoney),//100,
-			freeTime = parseInt(req.body.freeTime),//60,
-			freeDetail = [{
-				"type" : "0",
-				"money" : "100",
-				"time" : "60",
-				"code" : "00000"
-			}]
-			freeDetail = req.body.freeDetail,
-		freeDetail = JSON.stringify(freeDetail)*/
-		/*	var detial=req.body.freeDetail;
-			console.log('detial',typeof detial,detial);*/
-		var data={
+
+		var reqData={
 			orderNo : req.body.orderNo,//'0001201703301406404536',
 			freeMoney : req.body.freeMoney,//100,
 			freeTime : req.body.freeTime,//60,
@@ -279,12 +292,10 @@ var express = require('express'),
 				"code" : req.body.freeDetail.code
 			}]
 		};
-		console.log('data',data);	
-	var	data = JSON.stringify(data);
+		var	data = JSON.stringify(reqData);
 	
-		/*console.log('-----------------------------------------------------------------------------------')
-		console.log(typeof freeDetail)
-		console.log('data',data,'\n');*/
+		console.log('---------------------------------- check data --------------------------------------')
+		console.log('data',data,'\n');
 		ketuo.GetPaymentRecharge(data,function(result){
 			res.json(result)
 		})
@@ -316,39 +327,24 @@ var express = require('express'),
 		if(!req.body.freeDetail){
 			return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'freeDetail不能为空'))
 		}
-		// var orderNo = req.body.orderNo,//'0001201704011126596133',//有parkingTIme
-		// 	amount = parseInt(req.body.amount),//120,
-		// 	discount = parseInt(req.body.discount),//60,
-		// 	payType = parseInt(req.body.payType),//4,
-		// 	payMethod = parseInt(req.body.payMethod),//4,
-		// 	freeMoney = parseInt(req.body.freeMoney),//100,
-		// 	freeTime = parseInt(req.body.freeTime),//60,
-		// 	/*freeDetail = [{
-		// 		"type" : "0",
-		// 		"money" : "100",
-		// 		"time" : "60",
-		// 		"code" : "00000"
-		// 	}]*/
-		// 	freeDetail = req.body.freeDetail
-		// freeDetail = JSON.stringify(freeDetail)
-		var data = {
-			orderNo : req.body.orderNo,//'0001201704011126596133',//有parkingTIme
-			amount : parseInt(req.body.amount),//120,
-			discount : parseInt(req.body.discount),//60,
-			payType : parseInt(req.body.payType),//4,
-			payMethod : parseInt(req.body.payMethod),//4,
-			freeMoney : parseInt(req.body.freeMoney),//100,
-			freeTime : parseInt(req.body.freeTime),//60,
-			freeDetail : [{
-				"type" : req.body.freeDetail.type,
-				"money" : req.body.freeDetail.money,
-				"time" : req.body.freeDetail.time,
-				"code" : req.body.freeDetail.code
-			}]
-			//freeDetail = req.body.freeDetail
-		}
-		data = JSON.stringify(data)
-		console.log('data: ',data)
+
+		var reqData = {
+				orderNo : req.body.orderNo,//'0001201704011126596133',//有parkingTIme
+				amount : parseInt(req.body.amount),//120,
+				discount : parseInt(req.body.discount),//60,
+				payType : parseInt(req.body.payType),//4,
+				payMethod : parseInt(req.body.payMethod),//4,
+				freeMoney : parseInt(req.body.freeMoney),//100,
+				freeTime : parseInt(req.body.freeTime),//60,
+				freeDetail : [{
+					"type" : req.body.freeDetail.type,
+					"money" : req.body.freeDetail.money,
+					"time" : req.body.freeDetail.time,
+					"code" : req.body.freeDetail.code
+				}]
+			},
+			data = JSON.stringify(reqData)
+		console.log('data: ',data,'\n')
 		ketuo.PayParkingFee(data,function(result){
 			res.json(result)
 		})
@@ -370,13 +366,16 @@ var express = require('express'),
 		if(!req.body.pageCount){
 			return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'pagecount不能为空'))
 		}
-		var plateNo = req.body.plateNo,//'A12345',
-			startTime = req.body.startTime,//'2014-01-11 00:00:00',
-			endTime = req.body.endTime,//'2016-12-27 23:59:59',
-			pageIndex = parseInt(req.body.pageIndex),//1,
-			pageCount = parseInt(req.body.pageCount)//1
-
-		ketuo.GetCarInOutInfoByPlate(plateNo,startTime,endTime,pageIndex,pageCount,function(result){
+		var reqData = {
+				plateNo : req.body.plateNo,//'A12345',
+				startTime : req.body.startTime,//'2014-01-11 00:00:00',
+				endTime : req.body.endTime,//'2016-12-27 23:59:59',
+				pageIndex : parseInt(req.body.pageIndex),//1,
+				pageCount : parseInt(req.body.pageCount)//1
+			},
+			data = JSON.stringify(reqData)
+		
+		ketuo.GetCarInOutInfoByPlate(data,function(result){
 			res.json(result)
 		})
 	})
@@ -400,14 +399,17 @@ var express = require('express'),
 		if(!req.body.pageCount){
 			return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'pageCount不能为空'))
 		}
-		var entryPlace = req.body.entryPlace,//'仙岳入口',
-			leavePlace = req.body.leavePlace,//'',
-			startTime = req.body.startTime,//'2016-01-01 00:00:00',
-			endTime = req.body.endTime,//'2016-12-12 23:59:00',
-			pageIndex = parseInt(req.body.pageIndex),//1,
-			pageCount = parseInt(req.body.pageCount)//1
-
-		ketuo.GetCarInOutInfoByPlace(entryPlace,leavePlace,startTime,endTime,pageIndex,pageCount,function(result){
+		var reqData = {
+				entryPlace : req.body.entryPlace,//'仙岳入口',
+				leavePlace : req.body.leavePlace,//'',
+				startTime : req.body.startTime,//'2016-01-01 00:00:00',
+				endTime : req.body.endTime,//'2016-12-12 23:59:00',
+				pageIndex : parseInt(req.body.pageIndex),//1,
+				pageCount : parseInt(req.body.pageCount)//1
+			},
+			data = JSON.stringify(reqData)
+		
+		ketuo.GetCarInOutInfoByPlace(data,function(result){
 			res.json(result)
 		})
 	})
@@ -433,11 +435,14 @@ var express = require('express'),
 		if(!req.body.pageSize){
 			return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'pageSize不能为空'))
 		}
-		var plateNo = req.body.plateNo,//"003",
-			pageIndex = parseInt(req.body.pageIndex),//1,
-			pageSize = parseInt(req.body.pageSize)//5
+		var reqData = {
+				plateNo : req.body.plateNo,//"003",
+				pageIndex : parseInt(req.body.pageIndex),//1,
+				pageSize : parseInt(req.body.pageSize)//5
+			},
+			data = JSON.stringify(reqData)
 
-		ketuo.GetFuzzyCarInfo(plateNo,pageIndex,pageSize,function(result){
+		ketuo.GetFuzzyCarInfo(data,function(result){
 			res.json(result)
 		})
 	})
@@ -449,10 +454,13 @@ var express = require('express'),
 		if(!req.body.inTime){
 			return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'inTime不能为空'))
 		}
-		var plateNo = req.body.plateNo,//'DJQ003',
-			inTime = req.body.inTime//'2016-10-11 10:19:03'
+		var reqData = {
+				plateNo : req.body.plateNo,//'DJQ003',
+				inTime : req.body.inTime//'2016-10-11 10:19:03'
+			},
+			data = JSON.stringify(reqData)
 
-		ketuo.CheckPrePaidTicket(plateNo,inTime,function(result){
+		ketuo.CheckPrePaidTicket(data,function(result){
 			res.json(result)
 		})
 	})
@@ -476,24 +484,27 @@ var express = require('express'),
 		if(!req.body.pageCount){
 			return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'pageCount不能为空'))
 		}
-		var plateNo = req.body.plateNo,//'',//非必填
-			type = parseInt(req.body.type),//0, //必填
-			startTime = req.body.startTime,//'',//非必填
-			endTime = req.body.endTime,//'',//非必填
-			pageIndex = parseInt(req.body.pageIndex),//1,//必填 >=1
-			pageCount = parseInt(req.body.pageCount)//2  //必填 >=1
+		var reqData = {
+				plateNo : req.body.plateNo,//'',//非必填
+				type : parseInt(req.body.type),//0, //必填
+				startTime : req.body.startTime,//'',//非必填
+				endTime : req.body.endTime,//'',//非必填
+				pageIndex : parseInt(req.body.pageIndex),//1,//必填 >=1
+				pageCount : parseInt(req.body.pageCount)//2  //必填 >=1
+			},
+			data = JSON.stringify(reqData)
 
-		ketuo.GetCapImgInfo(plateNo,type,startTime,endTime,pageIndex,pageCount,function(result){
+		ketuo.GetCapImgInfo(data,function(result){
 			res.json(result)
 		})
 	})
 	//12.内部车查询接口GetCarCardInfo（定制）
 	router.post('/GetCarCardInfo',function(req,res){
-		// if(!req.body.plateNo){
-		// 	return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'plateNo不能为空'))
-		// }
+		if(!req.body.plateNo){
+			return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'plateNo不能为空'))
+		}
 		var plateNo = req.body.plateNo//'A12345'
-		plateNo = 'KEY180'
+		//plateNo = 'KEY180'
 		ketuo.GetCarCardInfo(plateNo,function(result){
 			res.json(result)
 		})
@@ -536,14 +547,17 @@ var express = require('express'),
 		if(!req.body.endTime){
 			return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'endTime不能为空'))
 		}
-		var cardId = parseInt(req.body.cardId),//40,
-			ruleType =  parseInt(req.body.ruleType),//2,
-			ruleAmount =  parseInt(req.body.ruleAmount),//2,
-			payMoney =  parseInt(req.body.payMoney),//100,
-			startTime = req.body.startTime,//'2016-12-12 00:00:00',
-			endTime = req.body.endTime//'2016-12-13 23:59:59'
+		var reqData = {
+				cardId : parseInt(req.body.cardId),//40,
+				ruleType :  parseInt(req.body.ruleType),//2,
+				ruleAmount :  parseInt(req.body.ruleAmount),//2,
+				payMoney :  parseInt(req.body.payMoney),//100,
+				startTime : req.body.startTime,//'2016-12-12 00:00:00',
+				endTime : req.body.endTime//'2016-12-13 23:59:59'
+			},
+			data = JSON.stringify(reqData)
 
-		ketuo.CardRecharge(cardId,ruleType,ruleAmount,payMoney,startTime,endTime,function(result){
+		ketuo.CardRecharge(data,function(result){
 			res.json(result)
 		})
 	})
