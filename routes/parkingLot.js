@@ -37,8 +37,8 @@ router.post('/ketuoCarDetail',function(req,res){
     })
 })
 //支付成功调用
-router.post('/PaySuccess',CheckBid)
-router.post('/PaySuccess',function(req,res){
+router.post('/ketuoPaySuccess',CheckBid)
+router.post('/ketuoPaySuccess',function(req,res){
     var bid = req.body.bid ? parseInt(req.body.bid) : 0
     var logic = factory(bid)
     logic.PaySuccess(req.body,function(result){

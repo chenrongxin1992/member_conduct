@@ -280,16 +280,16 @@ var express = require('express'),
 		if(!req.body.freeDetail){
 			return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'freeDetail不能为空'))
 		}
-
+		var freeDetail = req.body.freeDetail
 		var reqData={
 			orderNo : req.body.orderNo,//'0001201703301406404536',
 			freeMoney : req.body.freeMoney,//100,
 			freeTime : req.body.freeTime,//60,
 			freeDetail : [{
-				"type" : req.body.freeDetail.type,
-				"money" : req.body.freeDetail.money,
-				"time" : req.body.freeDetail.time,
-				"code" : req.body.freeDetail.code
+				"type" : freeDetail[0].type,
+				"money" : freeDetail[0].money,
+				"time" : freeDetail[0].time,
+				"code" : freeDetail[0].code
 			}]
 		};
 		var	data = JSON.stringify(reqData);
@@ -327,6 +327,8 @@ var express = require('express'),
 		if(!req.body.freeDetail){
 			return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'freeDetail不能为空'))
 		}
+		
+		var freeDetail = req.body.freeDetail
 
 		var reqData = {
 				orderNo : req.body.orderNo,//'0001201704011126596133',//有parkingTIme
@@ -337,10 +339,10 @@ var express = require('express'),
 				freeMoney : parseInt(req.body.freeMoney),//100,
 				freeTime : parseInt(req.body.freeTime),//60,
 				freeDetail : [{
-					"type" : req.body.freeDetail.type,
-					"money" : req.body.freeDetail.money,
-					"time" : req.body.freeDetail.time,
-					"code" : req.body.freeDetail.code
+					"type" : freeDetail[0].type,
+					"money" : freeDetail[0].money,
+					"time" : freeDetail[0].time,
+					"code" : freeDetail[0].code
 				}]
 			},
 			data = JSON.stringify(reqData)

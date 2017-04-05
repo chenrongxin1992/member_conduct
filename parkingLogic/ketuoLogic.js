@@ -21,19 +21,24 @@ keTuo.prototype.GetCarDetial = function(attribute,callback){
 	var plateNo = attribute.plateNo, //车牌号
 		cardNo = attribute.cardNo    //卡号
 
+	//console.log('---------------------------------   ketuo  ------------------------------------------')
 	//plateNo = 'KEY180'  //临时测试车牌
 	//plateNo = 'A12345'
 	//cardNo = '112318010578' //临时卡号
-
+	
+	if(typeof(plateNo) == 'undefined' && typeof(cardNo) == 'undefined')
+		return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '车牌plateNo或卡号carNo不能为空!'))
 	if(plateNo == '' && cardNo == '')
 		return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '车牌plateNo或卡号carNo不能为空!'))
+	if(plateNo && cardNo)
+		return callback(error.ThrowError(-1,'请输入车牌号或者卡号'))
 	if(plateNo && plateNo.length != 6)
 		return callback(error.ThrowError(0,'车牌号长度有误!'))
 	if(cardNo && cardNo.length != 12)
 		return callback(error.ThrowError(0,'卡号长度有误!'))
 
 	//传递的是车牌号，可以确认车类型，若是卡号，确认不了,也确认不了是否使用优惠券
-	if(cardNo != '' && typeof cardNo != 'undefined'){
+	if(cardNo != '' && typeof(cardNo) != 'undefined'){
 		async.waterfall([
 			function(cb){
 				ketuo.GetParkingPaymentInfoByCard(cardNo,function(res){ //停车费(账单)查询
@@ -81,7 +86,7 @@ keTuo.prototype.GetCarDetial = function(attribute,callback){
 			return callback(result)
 		})	
 	}
-	if(plateNo != '' && typeof plateNo != 'undefined'){
+	if(plateNo != '' && typeof(plateNo) != 'undefined'){
 		async.waterfall([
 			//获取车类型
 			function(cb){
@@ -231,21 +236,22 @@ keTuo.prototype.PaySuccess = function(attribute,callback){
 	async.waterfall([
 		//取到orderNo时，先调用支付同步接口，返回parkingTIme，返回之后status会被置1
 		function(cb){
-			var parkingTime = 0
+			var parkingTime = 0,
+				freeDetail = attribute.freeDetail
 			//0402
 			var reqData = {
-				orderNo : req.body.orderNo,//'0001201704011126596133',//有parkingTIme
-				amount : parseInt(req.body.amount),//120,
-				discount : parseInt(req.body.discount),//60,
-				payType : parseInt(req.body.payType),//4,
-				payMethod : parseInt(req.body.payMethod),//4,
-				freeMoney : parseInt(req.body.freeMoney),//100,
-				freeTime : parseInt(req.body.freeTime),//60,
+				orderNo : attribute.orderNo,//'0001201704011126596133',//有parkingTIme
+				amount : parseInt(attribute.amount),//120,
+				discount : parseInt(attribute.discount),//60,
+				payType : parseInt(attribute.payType),//4,
+				payMethod : parseInt(attribute.payMethod),//4,
+				freeMoney : parseInt(attribute.freeMoney),//100,
+				freeTime : parseInt(attribute.freeTime),//60,
 				freeDetail : [{
-					"type" : req.body.freeDetail.type,
-					"money" : req.body.freeDetail.money,
-					"time" : req.body.freeDetail.time,
-					"code" : req.body.freeDetail.code
+					"type" : freeDetail[0].type,
+					"money" : freeDetail[0].money,
+					"time" : freeDetail[0].time,
+					"code" : freeDetail[0].code
 				}]
 			},
 			data = JSON.stringify(reqData)
