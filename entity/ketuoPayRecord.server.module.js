@@ -21,7 +21,7 @@ var ketuoPayRecordSchema = new mongoose.Schema({
     payMethod : Number,
     freeMoney : Number,
     freeTime : Number,
-    freeDetail : String,
+    freeDetail : Object,
     createTime: {
         type: Date,
         default: Date.now()

@@ -328,10 +328,13 @@ keTuo.prototype.PaySuccess = function(attribute,callback){
 					payMethod : payMethod,
 					freeMoney : freeMoney,
 					freeTime : freeTime,
-					freeDetail : freeDetail[0]
+					freeDetail : [{
+						"type" : freeDetail[0].type,
+						"money" : freeDetail[0].money,
+						"time" : freeDetail[0].time,
+						"code" : freeDetail[0].code
+					}]
 				})
-			console.log('-------------------------------------------------------------------------------')
-			console.log(ketuoOrder)
 			ketuoOrder.save(function(err){
 				if(err){
 					cb(1,error.ThrowError(err))
