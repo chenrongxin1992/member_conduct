@@ -10,7 +10,7 @@ var env = process.env.NODE_MEMBER_CONDUCT_ENV || 'test';
 env = env.toLowerCase();
 
 //console.log('process.env' , process.env)
-console.log('env-in-prepay-pinganfu:', env);
+//console.log('env-in-prepay-pinganfu:', env);
 //console.log('dirName:', __dirname);
 var file = path.resolve(__dirname, env);
 //console.log('loadFile:',file)

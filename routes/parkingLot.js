@@ -47,7 +47,7 @@ router.post('/ketuoPaySuccess',function(req,res){
 })
 
 module.exports = router;
-function CheckBid(req, res, next) {
+function CheckBid(req, res, next) {console.log(req.body)
     if (!req.body.bid) {
         res.json(error.ThrowError(error.ErrorCode.InfoIncomplete, 'bid不能为空'));
         return;

@@ -126,9 +126,9 @@ keTuo.prototype.GetCarDetial = function(attribute,callback){
 			function(arg1,arg2,arg3,cb){
 				console.log('---------------------  result of GetCarCardInfo  -------------------------')
 				console.log(arg1)
-				console.log('---------------------  result of GetParkingPaymentInfo  -------------------------')
+				console.log('-------------------  result of GetParkingPaymentInfo  --------------------')
 				console.log(arg2)
-				console.log('---------------------  result of CheckPrePaidTicket  -------------------------')
+				console.log('--------------------  result of CheckPrePaidTicket  ----------------------')
 				console.log(arg3)
 				if(arg1.data == null){//车牌号对应的车辆类型为空，默认设置参数的值
 					arg1 = {
@@ -168,7 +168,7 @@ keTuo.prototype.GetCarDetial = function(attribute,callback){
 				console.log('---------------------  save detail  -------------------------')
 				console.log(ketuoCar)
 				ketuoCar.save(function(err){
-					console.log('++++++++++++++++++++++++  save process  +++++++++++++++++++++++++++++')
+					console.log('---------------------  save process  -----------------------')
 					if(err){				
 						cb(error.ThrowError(err))
 					}
@@ -233,20 +233,31 @@ keTuo.prototype.PaySuccess = function(attribute,callback){
 	if(!freeDetail){
 		return callback(error.ThrowError(error.ErrorCode.InfoIncomplete,'减免详情不能为空'))
 	}
+	if(!freeDetail[0].type){
+		return callback(error.ThrowError(error.ErrorCode.InfoIncomplete,'减免详情有误，请检查'))
+	}
+	if(!freeDetail[0].money){
+		return callback(error.ThrowError(error.ErrorCode.InfoIncomplete,'减免详情有误，请检查'))
+	}
+	if(!freeDetail[0].time){
+		return callback(error.ThrowError(error.ErrorCode.InfoIncomplete,'减免详情有误，请检查'))
+	}
+	if(!freeDetail[0].code){
+		return callback(error.ThrowError(error.ErrorCode.InfoIncomplete,'减免详情有误，请检查'))
+	}
 	async.waterfall([
 		//取到orderNo时，先调用支付同步接口，返回parkingTIme，返回之后status会被置1
 		function(cb){
-			var parkingTime = 0,
-				freeDetail = attribute.freeDetail
+			var parkingTime = 0
 			//0402
 			var reqData = {
-				orderNo : attribute.orderNo,//'0001201704011126596133',//有parkingTIme
-				amount : parseInt(attribute.amount),//120,
-				discount : parseInt(attribute.discount),//60,
-				payType : parseInt(attribute.payType),//4,
-				payMethod : parseInt(attribute.payMethod),//4,
-				freeMoney : parseInt(attribute.freeMoney),//100,
-				freeTime : parseInt(attribute.freeTime),//60,
+				orderNo : orderNo,
+				amount : parseInt(amount),
+				discount : parseInt(discount),
+				payType : parseInt(payType),
+				payMethod : parseInt(payMethod),
+				freeMoney : parseInt(freeMoney),
+				freeTime : parseInt(freeTime),
 				freeDetail : [{
 					"type" : freeDetail[0].type,
 					"money" : freeDetail[0].money,

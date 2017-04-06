@@ -302,7 +302,7 @@ var express = require('express'),
 	})
 	//5.停车费支付(账单同步)接口PayParkingFee
 	//orderNo,amount,discount,payType,payMethod,freeMoney,freeTime,freeDetail,
-	router.post('/PayParkingFee',function(req,res){//0001201704011104300364,0001201704010941533474
+	router.post('/PayParkingFee',function(req,res){
 		if(!req.body.orderNo){
 			return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'orderNo不能为空'))
 		}
@@ -420,7 +420,7 @@ var express = require('express'),
 		if(!req.body.orderNo){
 			return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'orderNo不能为空'))
 		}
-		var orderNo = req.body.orderNo//'0001201704011126596133'
+		var orderNo = req.body.orderNo
 
 		ketuo.GetPaymentStatus(orderNo,function(result){
 			res.json(result)
@@ -487,12 +487,12 @@ var express = require('express'),
 			return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'pageCount不能为空'))
 		}
 		var reqData = {
-				plateNo : req.body.plateNo,//'',//非必填
-				type : parseInt(req.body.type),//0, //必填
-				startTime : req.body.startTime,//'',//非必填
-				endTime : req.body.endTime,//'',//非必填
-				pageIndex : parseInt(req.body.pageIndex),//1,//必填 >=1
-				pageCount : parseInt(req.body.pageCount)//2  //必填 >=1
+				plateNo : req.body.plateNo,
+				type : parseInt(req.body.type),
+				startTime : req.body.startTime,
+				endTime : req.body.endTime,
+				pageIndex : parseInt(req.body.pageIndex),
+				pageCount : parseInt(req.body.pageCount)
 			},
 			data = JSON.stringify(reqData)
 
