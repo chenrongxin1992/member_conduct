@@ -72,7 +72,7 @@ keTuo.prototype.GetCarDetial = function(attribute,callback){
 				})
 				console.log(ketuoCar)
 				ketuoCar.save(function(err){
-					console.log('-----------------------------  save process  -------------------------')
+					console.log('--------------------------------  save process  --------------------------------')
 					if(err){				
 						cb(error.ThrowError(err))
 					}
@@ -124,11 +124,11 @@ keTuo.prototype.GetCarDetial = function(attribute,callback){
 				})
 			},
 			function(arg1,arg2,arg3,cb){
-				console.log('---------------------  result of GetCarCardInfo  -------------------------')
+				console.log('--------------------------------  arg1  ---------------------------------')
 				console.log(arg1)
-				console.log('-------------------  result of GetParkingPaymentInfo  --------------------')
+				console.log('--------------------------------  arg2  --------------------------------')
 				console.log(arg2)
-				console.log('--------------------  result of CheckPrePaidTicket  ----------------------')
+				console.log('--------------------------------  arg3  --------------------------------')
 				console.log(arg3)
 				if(arg1.data == null){//车牌号对应的车辆类型为空，默认设置参数的值
 					arg1 = {
@@ -165,10 +165,10 @@ keTuo.prototype.GetCarDetial = function(attribute,callback){
 						detailSearchType : '车牌号',
 						note : arg1.note
 					})
-				console.log('---------------------  save detail  -------------------------')
+				console.log('--------------------------------  save detail  --------------------------------')
 				console.log(ketuoCar)
 				ketuoCar.save(function(err){
-					console.log('---------------------  save process  -----------------------')
+					console.log('--------------------------------  save process  --------------------------------')
 					if(err){				
 						cb(error.ThrowError(err))
 					}
@@ -277,7 +277,7 @@ keTuo.prototype.PaySuccess = function(attribute,callback){
 				if(res.data != null){
 					parkingTime = res.data.parkingTime
 				}
-				console.log('----------------------------  parkingTime  ---------------------------------')
+				console.log('--------------------------------  parkingTime  --------------------------------')
 				console.log(parkingTime)
 				cb(null,parkingTime)
 			})
@@ -305,11 +305,11 @@ keTuo.prototype.PaySuccess = function(attribute,callback){
 					cb(res.resCode,error.ThrowError(res.resMsg))
 				}
 				if(res.data.status == 1){//支付成功
-					console.log('--------------------------------  支付成功  ----------------------------------')
+					console.log('--------------------------------  支付成功  --------------------------------')
 					cb(null,res,parkingTime)
 				}
 				if (res.data.status == 0) {
-					console.log('--------------------------------  支付失败  ----------------------------------')
+					console.log('--------------------------------  支付失败  --------------------------------')
 					//支付状态为0，未成功
 					cb(error.ThrowError(res.resMsg))
 				}
@@ -342,7 +342,7 @@ keTuo.prototype.PaySuccess = function(attribute,callback){
 		if(err){
 			return callback(err)
 		}
-		console.log('--------------------------------   all success   -----------------------------------')
+		console.log('--------------------------------   all success   --------------------------------')
 		return callback(result)
 	})
 }

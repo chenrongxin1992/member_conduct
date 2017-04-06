@@ -114,7 +114,7 @@ exports.GetAreaList = function(floorId,callback){
     console.log(options)
 
     var req = http.request(options,function(res){
-    	console.log('------------------------------  sendRequest  -------------------------------')
+    	console.log('--------------------------------  sendRequest  --------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
@@ -163,7 +163,7 @@ exports.GetCarLocInfo = function(plateNo,callback){
     console.log(options)
 
     var req = http.request(options,function(res){
-    	console.log('------------------------------  sendRequest  -------------------------------')
+    	console.log('--------------------------------  sendRequest  --------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
@@ -213,7 +213,7 @@ exports.GetCarLocList = function(dataStr,callback){
     console.log(options)
 
     var req = http.request(options,function(res){
-    	console.log('------------------------------  sendRequest  -------------------------------')
+    	console.log('--------------------------------  sendRequest  --------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
@@ -263,7 +263,7 @@ exports.GetCarLocList2 = function(dataStr,callback){
     console.log(options)
 
     var req = http.request(options,function(res){
-    	console.log('------------------------------  sendRequest  -------------------------------')
+    	console.log('--------------------------------  sendRequest  --------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
@@ -313,7 +313,7 @@ exports.GetFreeSpaceNum = function(dataStr,callback){
     console.log(options)
 
     var req = http.request(options,function(res){
-    	console.log('------------------------------  sendRequest  -------------------------------')
+    	console.log('--------------------------------  sendRequest  --------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
@@ -363,7 +363,7 @@ exports.GetSpaceInfo = function(dataStr,callback){
     console.log(options)
 
     var req = http.request(options,function(res){
-    	console.log('------------------------------  sendRequest  -------------------------------')
+    	console.log('--------------------------------  sendRequest  --------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
@@ -413,7 +413,7 @@ exports.GetReservableInfo = function(dataStr,callback){
     console.log(options)
 
     var req = http.request(options,function(res){
-    	console.log('------------------------------  sendRequest  -------------------------------')
+    	console.log('--------------------------------  sendRequest  --------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
@@ -463,7 +463,7 @@ exports.ReserveSpace = function(dataStr,callback){
     console.log(options)
 
     var req = http.request(options,function(res){
-    	console.log('------------------------------  sendRequest  -------------------------------')
+    	console.log('--------------------------------  sendRequest  --------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
@@ -513,7 +513,7 @@ exports.GetReserveState = function(plateNo,callback){
     console.log(options)
 
     var req = http.request(options,function(res){
-    	console.log('------------------------------  sendRequest  -------------------------------')
+    	console.log('--------------------------------  sendRequest  --------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
@@ -563,7 +563,7 @@ exports.CancelReserve = function(plateNo,callback){
     console.log(options)
 
     var req = http.request(options,function(res){
-    	console.log('------------------------------  sendRequest  -------------------------------')
+    	console.log('--------------------------------  sendRequest  --------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
@@ -614,7 +614,7 @@ exports.GetCarLocRoute = function(dataStr,callback){
     console.log('post_data: '+post_data)
 
     var req = http.request(options,function(res){
-    	console.log('------------------------------  sendRequest  -------------------------------')
+    	console.log('--------------------------------  sendRequest  --------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
@@ -666,7 +666,7 @@ exports.GetTrafficNum = function(dataStr,callback){
     console.log(options)
 
     var req = http.request(options,function(res){
-    	console.log('------------------------------  sendRequest  -------------------------------')
+    	console.log('--------------------------------  sendRequest  --------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
@@ -714,7 +714,7 @@ exports.GetParkingPaymentInfo = function(plateNo,callback){
     console.log(options)
 
     var req = http.request(options,function(res){
-    	console.log('------------------------------  sendRequest  -------------------------------')
+    	console.log('--------------------------------  sendRequest  --------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
@@ -769,7 +769,7 @@ exports.GetParkingPaymentInfoByCard = function(cardNo,callback){
     console.log('post_data: '+post_data)
 
     var req = http.request(options,function(res){
-    	console.log('------------------------------  sendRequest  -------------------------------')
+    	console.log('--------------------------------  sendRequest  --------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
@@ -822,7 +822,7 @@ exports.GetPaymentRecharge = function(dataStr,callback){
     //console.log('post_data: '+post_data)
 
     var req = http.request(options,function(res){
-    	console.log('------------------------------  sendRequest  -------------------------------')
+    	console.log('--------------------------------  sendRequest  --------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
@@ -874,7 +874,7 @@ exports.PayParkingFee = function(dataStr,callback){
     console.log('post_data: '+post_data)
 
     var req = http.request(options,function(res){
-    	console.log('------------------------------  sendRequest  -------------------------------')
+    	console.log('--------------------------------  sendRequest  --------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
@@ -925,7 +925,7 @@ exports.GetCarInOutInfoByPlate = function(dataStr,callback){
     console.log('post_data: '+post_data)
 
     var req = http.request(options,function(res){
-    	console.log('------------------------------  sendRequest  -------------------------------')
+    	console.log('--------------------------------  sendRequest  --------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
@@ -976,7 +976,7 @@ exports.GetCarInOutInfoByPlace = function(dataStr,callback){
     console.log('post_data: '+post_data)
 
     var req = http.request(options,function(res){
-    	console.log('------------------------------  sendRequest  -------------------------------')
+    	console.log('--------------------------------  sendRequest  --------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
@@ -1028,7 +1028,7 @@ exports.GetPaymentStatus = function(orderNo,callback){
     console.log('post_data: '+post_data)
 
     var req = http.request(options,function(res){
-    	console.log('------------------------------  sendRequest  -------------------------------')
+    	console.log('--------------------------------  sendRequest  --------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
@@ -1079,7 +1079,7 @@ exports.GetFuzzyCarInfo = function(dataStr,callback){
     console.log('post_data: '+post_data)
 
     var req = http.request(options,function(res){
-    	console.log('------------------------------  sendRequest  -------------------------------')
+    	console.log('--------------------------------  sendRequest  --------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
@@ -1131,7 +1131,7 @@ exports.CheckPrePaidTicket = function(dataStr,callback){
     console.log('post_data: '+post_data)
 
     var req = http.request(options,function(res){
-    	console.log('------------------------------  sendRequest  -------------------------------')
+    	console.log('--------------------------------  sendRequest  --------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
@@ -1182,7 +1182,7 @@ exports.GetCapImgInfo = function(dataStr,callback){
     console.log('post_data: '+post_data)
 
     var req = http.request(options,function(res){
-    	console.log('------------------------------  sendRequest  -------------------------------')
+    	console.log('--------------------------------  sendRequest  --------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
@@ -1234,7 +1234,7 @@ exports.GetCarCardInfo = function(plateNo,callback){
     console.log('post_data: '+post_data)
 
     var req = http.request(options,function(res){
-    	console.log('------------------------------  sendRequest  -------------------------------')
+    	console.log('--------------------------------  sendRequest  --------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
@@ -1286,7 +1286,7 @@ exports.GetCarTypeList = function(callback){
     console.log('post_data: '+post_data)
 
     var req = http.request(options,function(res){
-    	console.log('------------------------------  sendRequest  -------------------------------')
+    	console.log('--------------------------------  sendRequest  --------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
@@ -1338,7 +1338,7 @@ exports.GetCardRule = function(carType,callback){
     console.log('post_data: '+post_data)
 
     var req = http.request(options,function(res){
-    	console.log('------------------------------  sendRequest  -------------------------------')
+    	console.log('--------------------------------  sendRequest  --------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){
@@ -1390,7 +1390,7 @@ exports.CardRecharge = function(dataStr,callback){
     console.log('post_data: '+post_data)
 
     var req = http.request(options,function(res){
-    	console.log('------------------------------  sendRequest  -------------------------------')
+    	console.log('--------------------------------  sendRequest  --------------------------------')
     	res.setEncoding('utf8')
     	var result = ''
     	res.on('data',function(chunk){

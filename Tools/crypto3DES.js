@@ -7,7 +7,7 @@ exports.encrypt3DES = function (param) {
     var text = param.text;
     var alg = param.alg;
     var autoPad = param.autoPad;
-    console.log('+++++++++++++++++++++  process of encrypt  +++++++++++++++++++++')
+    console.log('--------------------------------  process of encrypt  --------------------------------')
     console.log(text);
     console.log(alg)
     console.log(iv)

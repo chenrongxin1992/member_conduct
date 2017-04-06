@@ -294,7 +294,7 @@ var express = require('express'),
 		};
 		var	data = JSON.stringify(reqData);
 	
-		console.log('---------------------------------- check data --------------------------------------')
+		console.log('-------------------------------- check data --------------------------------')
 		console.log('data',data);
 		ketuo.GetPaymentRecharge(data,function(result){
 			res.json(result)
@@ -567,7 +567,7 @@ var express = require('express'),
 	//科拓接口   bid = 18
 //router.post('/ketuoCarDetail',CheckBid)
 router.post('/ketuoCarDetail',function(req,res){
-	console.log('++++++++++++++++++++++++  in router  +++++++++++++++++++++++++++++')
+	console.log('--------------------------------  in router  --------------------------------')
     var bid = req.body.bid ? parseInt(req.body.bid) : 0
     bid = 18
     var logic = factory(bid)
@@ -576,7 +576,7 @@ router.post('/ketuoCarDetail',function(req,res){
     })
 })
 router.post('/ketuoPaySuccess',function(req,res){
-	console.log('++++++++++++++++++++++++  in router  +++++++++++++++++++++++++++++')
+	console.log('--------------------------------  in router  --------------------------------')
     var bid = req.body.bid ? parseInt(req.body.bid) : 0
     bid = 18
     var logic = factory(bid)
