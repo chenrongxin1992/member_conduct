@@ -328,7 +328,7 @@ keTuo.prototype.PaySuccess = function(attribute,callback){
 					payMethod : payMethod,
 					freeMoney : freeMoney,
 					freeTime : freeTime,
-					freeDetail : freeDetail
+					freeDetail : freeDetail[0]
 				})
 			ketuoOrder.save(function(err){
 				if(err){
