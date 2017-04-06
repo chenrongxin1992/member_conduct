@@ -330,6 +330,8 @@ keTuo.prototype.PaySuccess = function(attribute,callback){
 					freeTime : freeTime,
 					freeDetail : freeDetail[0]
 				})
+			console.log('-------------------------------------------------------------------------------')
+			console.log(ketuoOrder)
 			ketuoOrder.save(function(err){
 				if(err){
 					cb(1,error.ThrowError(err))
