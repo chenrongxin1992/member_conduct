@@ -12,6 +12,7 @@ var prepay = require('./prepayLogic'),
     config = require('../config/sys'),
     mongoose = require('mongoose'),
     PrepayCard = mongoose.model(config.prepayCard),
+    async = require('async'),
     PrePayCardPushRecord = mongoose.model(config.prepayCardPushRecord);
 
 function GanZhouWXC() {
@@ -49,7 +50,7 @@ GanZhouWXC.prototype.BindCard = function (attribute, callback) {
     if (!password) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '密码不能为空'));
     }
-    PrepayCard.FindOneByCarBindNo(cardBindNo, function (err, result) {
+    /*PrepayCard.FindOneByCarBindNo(cardBindNo, function (err, result) {
         if (err) {
             return callback(error.ThrowError(error.ErrorCode.Error, err.message));
         }
@@ -102,7 +103,74 @@ GanZhouWXC.prototype.BindCard = function (attribute, callback) {
                 });
             });
         });
-    });
+    });*/
+    async.waterfall([
+        function(cb){
+            PrepayCard.FindOneByCarBindNo(cardBindNo, function (err, result) {
+                if (err) {
+                    return cb(error.ThrowError(error.ErrorCode.Error, err.message));
+                }
+                if (result && result.length > 0) {
+                    return cb(error.ThrowError(error.ErrorCode.PrepayError.CardBindNoIsBind));
+                }
+                cb(null,result)
+            })
+        },
+        function(arg,cb){
+            //卡密 明码转密码
+            ys.PwdCrypto(cardBindNo, cardNo, password, function (err, result) {
+                if (err) {
+                    return cb(err);
+                }
+                if (!result) {
+                    return cb(error.ThrowError(error.ErrorCode.PrepayError.PwdCryptoError));
+                }
+                cb(null,result)
+            })
+        },
+        function(arg,cb){
+            ys.BindCard(cardBindNo, cardNo, arg, phone, name, function (err, result) {
+                if (err) {
+                    return cb(err);
+                }
+                if (!result) {
+                    return cb(error.ThrowError(error.ErrorCode.Error, '绑卡失败'));
+                }
+                cb(null,result)
+            })
+        },
+        function(arg,cb){
+            var prepayCard = new PrepayCard({
+                bid: bid,
+                userId: userId,
+                cardBindNo: cardBindNo,
+                cardNo: cardNo,
+                pwd: password,
+                phone: phone,
+                name: name,
+                bindSerialNumber: arg.rrn
+            });
+            prepayCard.save(function (err) {
+                if (err) {
+                    return cb(error.ThrowError(error.ErrorCode.Error, err.message));
+                }
+                cb(null,result)
+            })
+        },
+        function(arg,cb){
+            ys.CardDetial(cardBindNo, cardNo, '', function (err, result) {
+                if (err) {
+                    return cb(err);
+                }
+                cb(null,result)
+            })
+        }
+    ],function(err,result){
+        if(err){
+            return callback(err)
+        }
+        return callback(error.Success(result))
+    })
 };
 
 /**
