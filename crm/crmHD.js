@@ -416,3 +416,31 @@ function ToCardResult(result) {
     //console.log('str2:', str);
     return str;
 };
+
+//接口平台调用接口
+exports.hdGetApiStatus = function(cardNo,callback){
+    var sCommand = 'QUERYMEMBERINFOJSON',
+        sParams = {
+            FCARDNUM: cardNo,
+            FMOBILEPHONE: '',
+            FQUERYTYPE: '0'
+        };
+    sParams = JSON.stringify(sParams);
+
+    console.log('--------------------------------  sParams  --------------------------------')
+    console.log(sParams)
+
+    command(sCommand, sParams, function (err, result) {
+        if (err) {
+            return callback(err);
+        }
+        if (result) {
+            try {
+                result = JSON.parse(result);
+            } catch (e) {
+
+            }
+        }
+        return callback(null, ToCardResult(result));
+    });
+}

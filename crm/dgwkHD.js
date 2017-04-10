@@ -359,3 +359,42 @@ function ToCardResult(result) {
     //console.log('str2:', str);
     return str;
 };
+
+//接口平台调用接口(获取接口状态)
+exports.dgwkhdGetApiStatus = function(cardNo,callback){
+    var post_data = {cardNo: cardNo},
+        content = qs.stringify(post_data),
+        options = {
+            host: hdHost,
+            port: hdPort,
+            path: '/HdCrm/GetUserInfByCardNo',
+            method: 'post',
+            headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+        };
+    var req = http.request(options, function (res) {
+        res.setEncoding('utf8');
+        var result = '';
+        res.on('data', function (chunk) {
+            result += chunk;
+        });
+        res.on('end', function () {
+            try {
+                result = JSON.parse(result);
+                if (typeof result == typeof '')
+                    result = JSON.parse(result);
+                if (result.errCode != 0) {
+                    return callback(error.ThrowError(result.errCode, result.errMsg), result);
+                } else {
+                    return callback(null, ToCardResult(result.data));
+                }
+            } catch (e) {
+                callback(error.ThrowError(error.ErrorCode.Error, e.message));
+            }
+        });
+    });
+    req.on('error', function (e) {
+        callback(error.ThrowError(error.ErrorCode.Error, e.message));
+    });
+    req.write(content);
+    req.end();
+}

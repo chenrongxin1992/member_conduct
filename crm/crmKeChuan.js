@@ -621,3 +621,67 @@ exports.GetBonusledgerRecord = function (cardNumber, callback) {
     });
 };
 
+exports.kechuanGetApiStatus = function(cardNumber,callback){
+    var reqDate = Moment().format('YYYYMMDD'),
+        reqTime = Moment().format('HH24mmss'),
+        signStr = reqDate + reqTime + cardNumber + key,
+        sign = Md5(signStr);
+    var xmlOptions = {
+            GetBonusledgerRecord: [
+                {_attr: {xmlns: 'http://www.tech-trans.com.cn/'}},
+                {
+                    request: [
+                        {
+                            Header: [
+                                {REQDATE: reqDate},
+                                {REQTIME: reqTime},
+                                {SIGN: sign},
+                                {USER: user}
+                            ]
+                        },
+                        {
+                            Data: [
+                                {vipcode: cardNumber}
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        xmlStr = Xml(xmlOptions);
+    Soap.createClient(url, function (err, client) {
+        if (err) {
+            callback(Error.ThrowError(Error.ErrorCode.Error, err));
+            return;
+        }
+        client.GetBonusledgerRecord(xmlStr, function (err, result) {
+            if (err) {
+                callback(Error.ThrowError(Error.ErrorCode.Error, err));
+                return;
+            }
+            var code = result.GetBonusledgerRecordResult.Header.ERRCODE;
+            if (code != 0) {
+                callback(Error.ThrowError(Error.ErrorCode.Error, result.GetBonusledgerRecordResult.Header.ERRMSG));
+                return;
+            }
+            var data = result.GetBonusledgerRecordResult.DATA.xf_bonusledger;
+            var values = new Array();
+            for (var i in data) {
+                var item = data[i];
+                console.log('item:', item);
+                values.push({
+                    CrmName: '科传CRM',
+                    CardNumber: item.XF_VIPCODE,
+                    DateTime: verify.CheckDate(item.EB_CREATE_DATETIME) ? Moment(item.EB_CREATE_DATETIME, 'YYYY/MM/DD HH:mm:ss').format('YYYY/MM/DD HH:mm:ss') : '',
+                    ShopId: item.XF_STORECODE,
+                    ShopName: item.STOREDESC,
+                    Action: item.XF_ACTION,
+                    Integral: item.XF_BONUS ? parseInt(String(item.XF_BONUS).replace(',', '')) : 0,
+                    Amount: item.XF_AMOUNT,
+                    Remark: item.XF_REMARK
+                });
+            }
+            callback(err, values);
+        });
+    });
+}

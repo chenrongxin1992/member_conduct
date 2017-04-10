@@ -947,3 +947,95 @@ function ToCardDetial(result, callback) {
         return callback(null, cardDetial);
     });
 };
+
+exports.asqGetApiStatus = function (args,callback){
+    var bid = args.bid ? args.bid : null,
+        guid = args.guid ? args.guid : null
+
+    var _orgId = GetOrgIdByBid[bid],
+        xmlContent_api = {
+            cmd: [
+                {_attr: {type: 'VoucherInfo'}},
+                {_attr: {appCode: appCode}},
+                {
+                    shared: [
+                        {companyID: companyId},
+                        {orgID: _orgId},
+                        {storeID: storeId},
+                        {cashierID: caShierId}
+                    ]
+                },
+                {voucheId: guid}
+            ]
+        },
+        strXml = xml(xmlContent_api);
+
+    console.log('--------------------------------  xmlContent_api  --------------------------------')
+    console.log(strXml)
+
+    strXml = '<?xml version="1.0" encoding="utf-8"?>' + strXml;
+    var xmlContent = {
+            Cmd: [
+                {_attr: {xmlns: 'http://tempuri.org/'}},
+                {reqXMLString: strXml}
+            ]
+        },
+        xmlHeaders = {
+            WebPOSCredentials: [
+                {_attr: {xmlns: 'http://tempuri.org/'}},
+                {Username: soapUserName},
+                {Password: soapPassword}
+            ]
+        },
+        strXmlHeaders = xml(xmlHeaders);
+    strXml = xml(xmlContent);
+
+    console.log('--------------------------------  xmlContent  --------------------------------')
+    console.log(strXml)
+
+    soap.createClient(url, function (err, client) {
+        if (err) {
+            return callback(err);
+        }
+        client.addSoapHeader(strXmlHeaders);
+        client.Cmd(strXml, function (err, result) {
+            if (err) {
+                console.log('SendCommod Error  strXml:', strXml);
+                return callback(err, result.CmdResult);
+            }
+            //console.log('XML:', '\n', result);
+            //console.log('XML:', '\n', result.CmdResult);
+            
+            console.log('--------------------------------  result  --------------------------------')
+            console.log(result)
+            
+            var cmdResult = result.CmdResult.replace(/&/g, ' '); //替换Xml重点的特殊字符
+            xmlParser(cmdResult, function (err, result) {
+                //console.log('err:', err, '\n', 'xmlParse:', JSON.stringify(result));
+                if (err) {
+                    return callback(error.ThrowError(error.ErrorCode.Error, err.message));
+                }
+                result = result.return;
+                //console.log('result:', JSON.stringify(result));
+                var isError = result.$ ? result.$.hasError : result.hasError[0];
+                if (isError != 'false') {
+                    var errCode = result.error[0].$.code,
+                        errMsg = result.error[0].$.message;
+                    console.log('isError:', isError, ' errCode:', errCode, ' errMsg:', errMsg);
+                    return callback(error.ThrowError(error.ErrorCode.Error, errCode + ':' + errMsg));
+                }
+                //return callback(null, result);
+                var voucher = result.voucher[0];
+                var detial = {
+                    id: voucher.$.id,
+                    voucherCode: voucher.$.voucherCode,
+                    validFrom: voucher.$.validFrom,
+                    validTo: voucher.$.validTo,
+                    type: voucher.$.type,
+                    amount: voucher.$.amount,
+                };
+                return callback(null, detial);
+            });
+        });
+    });
+};
