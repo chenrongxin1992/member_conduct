@@ -656,8 +656,9 @@ exports.laoximenGetApiStatus = function(vipCode,callback){
                 callback(err);
                 return;
             }
+            //console.log(data)
             var cardDetail = {
-                CardNumber: data.xf_vipcode,
+                CardNumber: data.xf_bankcardno,
                 Name: data.xf_surname,
                 Phone: data.xf_telephone,
                 Birthday: data.xf_birthdayyyyy + '/' + data.xf_birthdaymm + '/' + data.xf_birthdaydd,
@@ -667,9 +668,14 @@ exports.laoximenGetApiStatus = function(vipCode,callback){
                 CardGrade: data.xf_grade,
                 Email: data.xf_vipemail,
                 CardSource: data.xf_issuestore,
-                IdNo: data.xf_vipid
+                IdNo: data.xf_vipid,
+                Grade:data.xf_grade,
+                Jointdate:data.xf_jointdate,
+                Expirydate:data.xf_expirydate
+                
             };
-            callback(err, cardDetail);
+            //console.log(cardDetail)
+            callback(cardDetail);
         });
     });
 }

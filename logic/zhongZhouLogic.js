@@ -51,33 +51,33 @@ ZhongZhou.prototype.Register = function (attribute, callback) {
         return;
     }
     //判断当前OpenId是否已有绑定会员卡
-    // kechuan.GetVipInfoByMobileOpenId(openId, function (err, result) {
-    //     if (!err) {
-    //         callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
-    //         return;
-    //     }
-    //     //注册 (判断当前手机号是否已经注册）
-    //     kechuan.VipCreate(name, phone, sex, function (err, result) {
-    //         if (err) {  //注册失败
-    //             callback(err);
-    //             return;
-    //         }
-    //         //注册成功，绑定OpenId
-    //         kechuan.BindOpenID(result.CardNumber, phone, openId, function (err) {
-    //             if (err) {
-    //                 callback(err);
-    //                 return;
-    //             }
-    //             kechuan.GetVipInfo(result.CardNumber, function (err, result) {
-    //                 if (err)
-    //                     callback(err);
-    //                 else
-    //                     callback(error.Success(result));
-    //             });
-    //         });
-    //     });
-    // });
-    async.waterfall([
+    kechuan.GetVipInfoByMobileOpenId(openId, function (err, result) {
+        if (!err) {
+            callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
+            return;
+        }
+        //注册 (判断当前手机号是否已经注册）
+        kechuan.VipCreate(name, phone, sex, function (err, result) {
+            if (err) {  //注册失败
+                callback(err);
+                return;
+            }
+            //注册成功，绑定OpenId
+            kechuan.BindOpenID(result.CardNumber, phone, openId, function (err) {
+                if (err) {
+                    callback(err);
+                    return;
+                }
+                kechuan.GetVipInfo(result.CardNumber, function (err, result) {
+                    if (err)
+                        callback(err);
+                    else
+                        callback(error.Success(result));
+                });
+            });
+        });
+    });
+    /*async.waterfall([
         function(cb){
             kechuan.GetVipInfoByMobileOpenId(openId,function(err,result){
                 if(!err){
@@ -97,7 +97,7 @@ ZhongZhou.prototype.Register = function (attribute, callback) {
             })
         },
         function(result,cb){
-            kechuan.BindOpenID(result.cardNumber,phone,openid,function(err){
+            kechuan.BindOpenID(result.cardNumber,phone,openId,function(err){
                 if(err){
                     cb(err)
                     return
@@ -118,7 +118,7 @@ ZhongZhou.prototype.Register = function (attribute, callback) {
                 callback(err)
             }
             callback(error.Success(result))
-        })
+        })*/
 };
 
 /**

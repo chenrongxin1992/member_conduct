@@ -417,7 +417,7 @@ function ToCardResult(result) {
     return str;
 };
 
-//接口平台调用接口
+//接口平台调用接口(getUserByCardNo)
 exports.hdGetApiStatus = function(cardNo,callback){
     var sCommand = 'QUERYMEMBERINFOJSON',
         sParams = {
@@ -426,10 +426,6 @@ exports.hdGetApiStatus = function(cardNo,callback){
             FQUERYTYPE: '0'
         };
     sParams = JSON.stringify(sParams);
-
-    console.log('--------------------------------  sParams  --------------------------------')
-    console.log(sParams)
-
     command(sCommand, sParams, function (err, result) {
         if (err) {
             return callback(err);
@@ -441,6 +437,6 @@ exports.hdGetApiStatus = function(cardNo,callback){
 
             }
         }
-        return callback(null, ToCardResult(result));
+        return callback(ToCardResult(result));
     });
 }

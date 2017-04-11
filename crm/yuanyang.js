@@ -69,7 +69,7 @@ exports.VipCreate = function (name, phone, sex, grade, callback) {
             ]
         },
         strXml = Xml(xmlOptions);
-    //console.log('strXml', strXml);
+    console.log('strXml', strXml);
     Soap.createClient(url, function (err, client) {
             if (err) {
                 console.log('crmKeChuan>VipCreate>Soap.CreateClient Error:', err);

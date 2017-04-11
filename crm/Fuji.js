@@ -460,13 +460,14 @@ exports.fujiGetApiStatus = function(cardNumber,callback){
         res.on('end', function () {
             console.log('result', result);
             try {
+                console.log(result)
                 result = JSON.parse(result);
                 if (typeof result == typeof '')
                     result = JSON.parse(result);
                 if (result.ErrorCode == 0)
                     return callback(error.ThrowError(error.ErrorCode.CardUndefined, '会员卡不存在'), result);
                 else
-                    return callback(null, ToCardResult(result));
+                    return callback(ToCardResult(result));
             } catch (e) {
                 return callback(error.ThrowError(error.ErrorCode.Error, e.message));
             }

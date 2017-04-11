@@ -371,6 +371,8 @@ exports.dgwkhdGetApiStatus = function(cardNo,callback){
             method: 'post',
             headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
         };
+        console.log('----------------------------------------------------------------')
+        console.log(content)
     var req = http.request(options, function (res) {
         res.setEncoding('utf8');
         var result = '';
@@ -380,6 +382,7 @@ exports.dgwkhdGetApiStatus = function(cardNo,callback){
         res.on('end', function () {
             try {
                 result = JSON.parse(result);
+                console.log(result)
                 if (typeof result == typeof '')
                     result = JSON.parse(result);
                 if (result.errCode != 0) {

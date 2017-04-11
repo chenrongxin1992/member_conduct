@@ -29,7 +29,7 @@ JJBN.prototype.Register = function (attribute, callback) {
         if (!verify.Phone(phone)) { //验证手机号的有效性
             return callback(error.ThrowError(error.ErrorCode.DateFormatError, 'Phone格式错误'));
         }
-        /*asq.GetCardByPhone(bid, phone, function (err, result) {
+        asq.GetCardByPhone(bid, phone, function (err, result) {
             if (result) { //手机号已经注册其他会员卡
                 return callback(error.ThrowError(error.ErrorCode.PhoneHasEmploy));
             }
@@ -45,41 +45,11 @@ JJBN.prototype.Register = function (attribute, callback) {
                     return callback(error.Success(result));
                 });
             });
-        });*/
-        async.waterfall([
-            function(cb){
-                asq.GetCardByPhone(bid,phone,function(err,result){
-                    if(result){
-                        return cb(error.ThrowError(error.ErrorCode.PhoneHasEmploy))
-                    }
-                    cb(null,result)
-                })
-            },
-            function(result,cb){
-                asq.GetCardByOpenId(bid,openId,function(err,result){
-                    if(result){
-                        return cb(error.ThrowError(error.ErrorCode.OpenIdHasEmploy))
-                    }
-                    cb(null,result)
-                })
-            },
-            function (result,cb) {
-                asq.OpenCard(bid,openId,phone,cardType,function(err,result){
-                    if(err){
-                        return cb(err)
-                    }
-                    cb(null.result)
-                })
-            }
-        ],function(err,result){
-            if(err){
-                return callback(err)
-            }
-            return callback(error.Success(result))
-        })
+        });
+        
     }
     else {
-        /*asq.GetCardByOpenId(openId, function (err, result) {
+        asq.GetCardByOpenId(openId, function (err, result) {
             if (result) {  //OpenId已经绑定其他会员卡了
                 return callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
             }
@@ -94,38 +64,8 @@ JJBN.prototype.Register = function (attribute, callback) {
                     return callback(error.Success(result));
                 });
             });
-        });*/
-        async.waterfall([
-             function(cb){
-                asq.GetCardByPhone(bid,phone,function(err,result){
-                    if(result){
-                        return cb(error.ThrowError(error.ErrorCode.PhoneHasEmploy))
-                    }
-                    cb(null,result)
-                })
-            },
-            function (result,cb) {
-                asq.OpenCard(bid,openId,phone,cardType,function(err,result){
-                    if(err){
-                        return cb(err)
-                    }
-                    cb(null.result)
-                })
-            },
-            function(result,cb){
-                asq.GetCardByOpenId(bid,openId,function(err,result){
-                    if(result){
-                        return cb(error.ThrowError(error.ErrorCode.OpenIdHasEmploy))
-                    }
-                    cb(null,result)
-                })
-            }
-        ],function(err,result){
-            if(err){
-                return callback(err)
-            }
-            return callback(error.Success(result))
-        })
+        });
+        
     }
 };
 

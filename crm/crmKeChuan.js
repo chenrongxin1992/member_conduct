@@ -621,13 +621,13 @@ exports.GetBonusledgerRecord = function (cardNumber, callback) {
     });
 };
 
-exports.kechuanGetApiStatus = function(cardNumber,callback){
+exports.kechuanGetApiStatus = function(vipCode,callback){
     var reqDate = Moment().format('YYYYMMDD'),
         reqTime = Moment().format('HH24mmss'),
-        signStr = reqDate + reqTime + cardNumber + key,
+        signStr = reqDate + reqTime + key,
         sign = Md5(signStr);
     var xmlOptions = {
-            GetBonusledgerRecord: [
+            GetVipInfo: [
                 {_attr: {xmlns: 'http://www.tech-trans.com.cn/'}},
                 {
                     request: [
@@ -640,48 +640,50 @@ exports.kechuanGetApiStatus = function(cardNumber,callback){
                             ]
                         },
                         {
-                            Data: [
-                                {vipcode: cardNumber}
-                            ]
+                            Data: [{vipcode: vipCode}]
                         }
                     ]
                 }
             ]
         },
-        xmlStr = Xml(xmlOptions);
+        strXml = Xml(xmlOptions);
     Soap.createClient(url, function (err, client) {
         if (err) {
             callback(Error.ThrowError(Error.ErrorCode.Error, err));
             return;
         }
-        client.GetBonusledgerRecord(xmlStr, function (err, result) {
+        client.GetVipInfo(strXml, function (err, result) {
             if (err) {
                 callback(Error.ThrowError(Error.ErrorCode.Error, err));
                 return;
             }
-            var code = result.GetBonusledgerRecordResult.Header.ERRCODE;
+            var code = result.GetVipInfoResult.Header.ERRCODE;
             if (code != 0) {
-                callback(Error.ThrowError(Error.ErrorCode.Error, result.GetBonusledgerRecordResult.Header.ERRMSG));
+                callback(Error.ThrowError(Error.ErrorCode.CardUndefined, result.GetVipInfoResult.Header.ERRMSG));
                 return;
             }
-            var data = result.GetBonusledgerRecordResult.DATA.xf_bonusledger;
-            var values = new Array();
-            for (var i in data) {
-                var item = data[i];
-                console.log('item:', item);
-                values.push({
-                    CrmName: '科传CRM',
-                    CardNumber: item.XF_VIPCODE,
-                    DateTime: verify.CheckDate(item.EB_CREATE_DATETIME) ? Moment(item.EB_CREATE_DATETIME, 'YYYY/MM/DD HH:mm:ss').format('YYYY/MM/DD HH:mm:ss') : '',
-                    ShopId: item.XF_STORECODE,
-                    ShopName: item.STOREDESC,
-                    Action: item.XF_ACTION,
-                    Integral: item.XF_BONUS ? parseInt(String(item.XF_BONUS).replace(',', '')) : 0,
-                    Amount: item.XF_AMOUNT,
-                    Remark: item.XF_REMARK
-                });
+            var data = result.GetVipInfoResult.DATA.VIP[0];
+            if (!data) {
+                callback(err);
+                return;
             }
-            callback(err, values);
+            var _cardNumber = data.xf_vipcardno;
+            if (!_cardNumber)
+                _cardNumber = data.xf_vipcode;
+            var cardDetail = {
+                CardNumber: _cardNumber,
+                Name: data.xf_surname,
+                Phone: data.xf_telephone,
+                Birthday: data.xf_birthdayyyyy + '/' + data.xf_birthdaymm + '/' + data.xf_birthdaydd,
+                Sex: data.xf_sex == 'M' ? 1 : 0,
+                Integral: data.xf_bonus ? parseInt(String(data.xf_bonus).replace(',', '')) : 0,
+                OpenId: data.xf_weixin,
+                CardGrade: data.xf_grade,
+                Email: data.xf_vipemail,
+                CardSource: data.xf_issuestore,
+                IdNo: data.xf_vipid
+            };
+            callback(cardDetail);
         });
     });
 }

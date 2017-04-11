@@ -950,12 +950,13 @@ function ToCardDetial(result, callback) {
 
 exports.asqGetApiStatus = function (args,callback){
     var bid = args.bid ? args.bid : null,
-        guid = args.guid ? args.guid : null
+        memberId = args.memberId ? args.memberId : null
+       
 
-    var _orgId = GetOrgIdByBid[bid],
-        xmlContent_api = {
+    var _orgId = GetOrgIdByBid[bid];
+    var xmlContent_api = {
             cmd: [
-                {_attr: {type: 'VoucherInfo'}},
+                {_attr: {type: 'GetCardList'}},
                 {_attr: {appCode: appCode}},
                 {
                     shared: [
@@ -965,7 +966,7 @@ exports.asqGetApiStatus = function (args,callback){
                         {cashierID: caShierId}
                     ]
                 },
-                {voucheId: guid}
+                {memberId: memberId}
             ]
         },
         strXml = xml(xmlContent_api);
@@ -1025,16 +1026,17 @@ exports.asqGetApiStatus = function (args,callback){
                     return callback(error.ThrowError(error.ErrorCode.Error, errCode + ':' + errMsg));
                 }
                 //return callback(null, result);
-                var voucher = result.voucher[0];
-                var detial = {
-                    id: voucher.$.id,
-                    voucherCode: voucher.$.voucherCode,
-                    validFrom: voucher.$.validFrom,
-                    validTo: voucher.$.validTo,
-                    type: voucher.$.type,
-                    amount: voucher.$.amount,
-                };
-                return callback(null, detial);
+                var cardList = result.cardList[0].card;
+                var array = new Array();
+                for (var i in cardList) {
+                    var item = cardList[i];
+                    array.push({
+                        cardNumber: item.$.cardCode,
+                        cardTypeName: item.$.cardTypeName,
+                        cardTypeCode: item.$.cardTypeCode
+                    });
+                }
+                return callback(array);
             });
         });
     });
