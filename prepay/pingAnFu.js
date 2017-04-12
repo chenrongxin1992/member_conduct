@@ -34,8 +34,6 @@ if (pinganfu_stg_env != 'shengchan') {
  */
 exports.GetAccessor_Token = function (callback) {
     var _config = configs;
-    console.log('-------------------------------------------------')
-    console.log(configs)
     var timeStamp = moment().format('YYYYMMDDHHmmss'),
         sign_data = {
             state: timeStamp,

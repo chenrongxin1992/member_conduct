@@ -17,7 +17,6 @@ var file = path.resolve(__dirname, env);
 try {
     var config = module.exports = require(file);
     //console.log('Load Sys Config:[%s] %s', env, file);
-    console.log(config)
 }
 catch (e) {
     console.error('Cannot load parking config:[%s] %s', env, file);
