@@ -27,7 +27,7 @@ var testroutes = require('./routes/testroutes')
 //routes for apiManagetest
 var crmtestroutes = require('./routes/crmtestroutes')
 //record requestTime
-var responseTime = require('response-time')
+//var responseTime = require('response-time')
 
 var app = express();
 
@@ -51,7 +51,7 @@ app.post('/aaa', test.AAA);
 
 app.use('/testroutes',testroutes)
 app.use('/crmtestroutes',crmtestroutes)
-app.use(responseTime())
+//app.use(responseTime())
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

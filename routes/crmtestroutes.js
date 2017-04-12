@@ -11,7 +11,7 @@ var express = require('express'),
     kechuan = require('../crm/crmKeChuan'),
     dgwkhd = require('../crm/dgwkHD'),
     fuji = require('../crm/Fuji'),
-    laoximenkechuan = require('../crm/laoXiMenKeChuan'),
+    laoximenkechuan = require('../crm/laoXiMenKechuan'),
     yuanyang = require('../crm/yuanyang');
 
 //安胜奇crm接口(asqGetApiStatus/GetGradList----done(对应关系crmASQ对应jingjiBaiNaLogic))
