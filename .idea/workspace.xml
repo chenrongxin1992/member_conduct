@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00a831d3-6f98-489a-b9df-c9ed98e0405b" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/test/test02.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/test/restart.sh" afterPath="$PROJECT_DIR$/bin/test/restart.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/test/start.sh" afterPath="$PROJECT_DIR$/bin/test/start.sh" />
     </list>
     <ignored path="MemberConduct.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,13 +36,23 @@
             <entry file="file://$PROJECT_DIR$/bin/test/start.sh">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="95">
-                  <caret line="5" column="27" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="58" />
+                  <caret line="5" column="56" lean-forward="false" selection-start-line="5" selection-start-column="56" selection-end-line="5" selection-end-column="56" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="restart.sh" pinned="false" current-in-tab="true">
+          <file leaf-file-name="test02.sh" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/bin/test/test02.sh">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="95">
+                  <caret line="5" column="58" lean-forward="false" selection-start-line="5" selection-start-column="58" selection-end-line="5" selection-end-column="58" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="restart.sh" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/bin/test/restart.sh">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="76">
@@ -281,8 +290,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/parkingLogic/parkingLogic.js" />
-        <option value="$PROJECT_DIR$/routes/parkingLot.js" />
         <option value="$PROJECT_DIR$/entity/parkingPayRecord.server.module.js" />
         <option value="$PROJECT_DIR$/parkingLogic/laoXiMenLogic.js" />
         <option value="$PROJECT_DIR$/node_modules/soap/lib/client.js" />
@@ -330,8 +337,10 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/routes/crmtestroutes.js" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/bin/test/start.sh" />
         <option value="$PROJECT_DIR$/bin/test/restart.sh" />
+        <option value="$PROJECT_DIR$/bin/test/start.sh" />
+        <option value="$PROJECT_DIR$/bin/test/test02.js" />
+        <option value="$PROJECT_DIR$/bin/test/test02.sh" />
       </list>
     </option>
   </component>
@@ -1084,7 +1093,7 @@
       <workItem from="1488943401489" duration="42389000" />
       <workItem from="1489715441904" duration="32952000" />
       <workItem from="1490336459606" duration="14418000" />
-      <workItem from="1491964822748" duration="4493000" />
+      <workItem from="1491964822748" duration="4733000" />
     </task>
     <task id="LOCAL-00001" summary="测试 push">
       <created>1464938639203</created>
@@ -1314,7 +1323,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1293333000" />
+    <option name="totallyTimeSpent" value="1293573000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1425,14 +1434,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/mongoose.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="2" lean-forward="false" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/sysConfig.js" />
     <entry file="file://$PROJECT_DIR$/parking/zhongzhou.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1895,18 +1896,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/test/start.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="27" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/test/restart.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="4" column="22" lean-forward="true" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/test/test02.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="5" lean-forward="false" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/test/start.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="56" lean-forward="false" selection-start-line="5" selection-start-column="56" selection-end-line="5" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/test/test02.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="58" lean-forward="false" selection-start-line="5" selection-start-column="58" selection-end-line="5" selection-end-column="58" />
           <folding />
         </state>
       </provider>
