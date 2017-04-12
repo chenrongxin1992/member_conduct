@@ -58,31 +58,31 @@ YuanYang.prototype.Register = function (attribute, callback) {
         return;
     }
     //判断当前OpenId是否已有绑定会员卡
-    // yuanYang.GetVipInfoByMobileOpenId(openId, function (err, result) {
-    //     if (result) {
-    //         callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
-    //         return;
-    //     }
-    //     //注册 (判断当前手机号是否已经注册）
-    //     yuanYang.VipCreate(name, phone, sex, grade, function (err, result) {
-    //         if (err) {  //注册失败
-    //             return callback(err);
-    //         }
-    //         //注册成功，绑定OpenId
-    //         yuanYang.BindOpenID(result.CardNumber, phone, openId, function (err) {
-    //             if (err) {
-    //                 return callback(err);
-    //             }
-    //             yuanYang.GetVipInfo(result.CardNumber, function (err, result) {
-    //                 if (err)
-    //                     callback(err);
-    //                 else
-    //                     callback(error.Success(result));
-    //             });
-    //         });
-    //     });
-    // });
-    async.waterfall([
+    yuanYang.GetVipInfoByMobileOpenId(openId, function (err, result) {
+        if (result) {
+            callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
+            return;
+        }
+        //注册 (判断当前手机号是否已经注册）
+        yuanYang.VipCreate(name, phone, sex, grade, function (err, result) {
+            if (err) {  //注册失败
+                return callback(err);
+            }
+            //注册成功，绑定OpenId
+            yuanYang.BindOpenID(result.CardNumber, phone, openId, function (err) {
+                if (err) {
+                    return callback(err);
+                }
+                yuanYang.GetVipInfo(result.CardNumber, function (err, result) {
+                    if (err)
+                        callback(err);
+                    else
+                        callback(error.Success(result));
+                });
+            });
+        });
+    });
+/*    async.waterfall([
         function(cb){
             yuanYang.GetVipInfoByMobileOpenId(openId,function(err,result){
                 if (err) {
@@ -114,7 +114,7 @@ YuanYang.prototype.Register = function (attribute, callback) {
             return
         }
         callback(error.Success(result))
-    })
+    })*/
 };
 
 /**

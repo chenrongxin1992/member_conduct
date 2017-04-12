@@ -608,3 +608,74 @@ exports.GetBonusledgerRecord = function (cardNumber, callback) {
     });
 };
 
+//接口平台调用接口
+exports.laoximenGetApiStatus = function(vipCode,callback){
+    var reqDate = Moment().format('YYYYMMDD'),
+        reqTime = Moment().format('HHmmss'),
+        signStr = reqDate + reqTime + key,
+        sign = Md5(signStr);
+    var xmlOptions = {
+            GetVipInfo: [
+                {_attr: {xmlns: 'http://www.tech-trans.com.cn/'}},
+                {
+                    request: [
+                        {
+                            Header: [
+                                {REQDATE: reqDate},
+                                {REQTIME: reqTime},
+                                {SIGN: sign}
+                            ]
+                        },
+                        {
+                            Data: [{vipcode: vipCode}]
+                        }
+                    ]
+                }
+            ]
+        },
+        strXml = Xml(xmlOptions);
+    Soap.createClient(url, function (err, client) {
+        if (err) {
+            callback(Error.ThrowError(Error.ErrorCode.Error, err));
+            return;
+        }
+        console.log('stXml:', strXml);
+        client.GetVipInfo(strXml, function (err, result) {
+            console.log('err:', err, 'result:', result);
+            if (err) {
+                callback(Error.ThrowError(Error.ErrorCode.Error, err));
+                return;
+            }
+            var code = result.GetVipInfoResult.Header.ERRCODE;
+            if (code != 0) {
+                callback(Error.ThrowError(Error.ErrorCode.CardUndefined, result.GetVipInfoResult.Header.ERRMSG));
+                return;
+            }
+            var data = result.GetVipInfoResult.DATA.VIP[0];
+            if (!data) {
+                callback(err);
+                return;
+            }
+            //console.log(data)
+            var cardDetail = {
+                CardNumber: data.xf_bankcardno,
+                Name: data.xf_surname,
+                Phone: data.xf_telephone,
+                Birthday: data.xf_birthdayyyyy + '/' + data.xf_birthdaymm + '/' + data.xf_birthdaydd,
+                Sex: data.xf_sex == 'M' ? 1 : 0,
+                Integral: data.xf_bonus,
+                OpenId: data.xf_weixin,
+                CardGrade: data.xf_grade,
+                Email: data.xf_vipemail,
+                CardSource: data.xf_issuestore,
+                IdNo: data.xf_vipid,
+                Grade:data.xf_grade,
+                Jointdate:data.xf_jointdate,
+                Expirydate:data.xf_expirydate
+                
+            };
+            //console.log(cardDetail)
+            callback(cardDetail);
+        });
+    });
+}

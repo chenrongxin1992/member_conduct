@@ -24,6 +24,10 @@ var prepay = require('./routes/prepay');
 
 //routes for test
 var testroutes = require('./routes/testroutes')
+//routes for apiManagetest
+var crmtestroutes = require('./routes/crmtestroutes')
+//record requestTime
+var responseTime = require('response-time')
 
 var app = express();
 
@@ -46,6 +50,8 @@ app.use('/prepay', prepay);
 app.post('/aaa', test.AAA);
 
 app.use('/testroutes',testroutes)
+app.use('/crmtestroutes',crmtestroutes)
+app.use(responseTime())
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

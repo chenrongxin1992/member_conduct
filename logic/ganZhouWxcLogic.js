@@ -49,7 +49,7 @@ GanZhouWXC.prototype.Register = function (attribute, callback) {
      * 3>注册用户
      * 4>用户与微信OpenId绑定
      */
-    /*CardBinding.FindByOpenId(bid, openId, function (err, result) {
+    CardBinding.FindByOpenId(bid, openId, function (err, result) {
         if (err) {
             return callback(error.ThrowError(error.ErrorCode.Error, err.message));
         }
@@ -89,8 +89,8 @@ GanZhouWXC.prototype.Register = function (attribute, callback) {
                     return callback(error.ThrowError(error.ErrorCode.Error, '注册失败'));
             });
         });
-    });*/
-    async.waterfall([
+    });
+    /*async.waterfall([
         function(cb){
             CardBinding.FindByOpenId(bid, openId, function (err, result){
                 if (err) {
@@ -143,7 +143,7 @@ GanZhouWXC.prototype.Register = function (attribute, callback) {
             return callback(err)
         }
         return callback(error.Success(result))
-    })
+    })*/
 };
 
 /**

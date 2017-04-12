@@ -118,7 +118,7 @@ Dgwk.prototype.Register = function (attribute, callback) {
             })
         },
         function(arg,cb){
-            hd.getUserByCardNo(result, function (err, result) {
+            hd.getUserByCardNo(arg, function (err, result) {
                 if (err) {
                      cb(err);
                 }
@@ -140,7 +140,7 @@ Dgwk.prototype.Register = function (attribute, callback) {
                 if (err) {
                      cb(error.ThrowError(error.ErrorCode.Error, err.message));
                 } else {
-                    cb(null,error.Success(result))
+                    cb(null,error.Success(cardBinding))
                 }
             })
         }

@@ -439,3 +439,44 @@ function ToCardResult(result) {
     };
     return str;
 };
+
+//接口平台调用接口
+exports.fujiGetApiStatus = function(cardNumber,callback){
+    var post_data = {cardNumber: cardNumber},
+        content = qs.stringify(post_data),
+        options = {
+            host: fujiHost,
+            port: fujiPort,
+            path: '/Index/CardDetial',
+            method: 'post',
+            headers: {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+        };
+    var req = http.request(options, function (res) {
+        res.setEncoding('utf8');
+        var result = '';
+        res.on('data', function (chunk) {
+            result += chunk;
+        });
+        res.on('end', function () {
+            console.log('result', result);
+            try {
+                console.log(result)
+                result = JSON.parse(result);
+                if (typeof result == typeof '')
+                    result = JSON.parse(result);
+                if (result.ErrorCode == 0)
+                    return callback(error.ThrowError(error.ErrorCode.CardUndefined, '会员卡不存在'), result);
+                else
+                    return callback(ToCardResult(result));
+            } catch (e) {
+                return callback(error.ThrowError(error.ErrorCode.Error, e.message));
+            }
+        });
+    });
+    req.on('error', function (e) {
+        console.log('error:', e.message);
+        callback(error.ThrowError(error.ErrorCode.Error, e.message));
+    });
+    req.write(content);
+    req.end();
+}

@@ -57,7 +57,7 @@ LaoXiMen.prototype.Register = function (attribute, callback) {
         return;
     }
     //判断当前OpenId是否已有绑定会员卡
-   /* kechuan.GetVipInfoByMobileOpenId(openId, function (err, result) {
+    kechuan.GetVipInfoByMobileOpenId(openId, function (err, result) {
         console.log('step1 err:', err);
         if (!err) {
             callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
@@ -84,8 +84,8 @@ LaoXiMen.prototype.Register = function (attribute, callback) {
                 });
             });
         });
-    });*/
-    async.waterfall([
+    });
+    /*async.waterfall([
         function(cb){
             kechuan.GetVipInfoByMobileOpenId(openId,function(err,result){
                 console.log('step 1 err:', err)
@@ -129,7 +129,7 @@ LaoXiMen.prototype.Register = function (attribute, callback) {
         }
         callback(error.ThrowError(error.ErrorCode>OpenIdHasEmploy))
         return 
-    })
+    })*/
 };
 
 /**
@@ -159,7 +159,7 @@ LaoXiMen.prototype.CardBinding = function (attribute, callback) {
     }
     //查询OpenId是否已绑定
     //判断当前OpenId是否已有绑定会员卡
-   /* kechuan.GetVipInfoByMobileOpenId(openId, function (err, result) {
+    kechuan.GetVipInfoByMobileOpenId(openId, function (err, result) {
         if (!err && result.CardGrade != kechuan.VipGrade) {
             return callback(error.ThrowError(error.ErrorCode.OpenIdHasEmploy));
         }
@@ -185,8 +185,8 @@ LaoXiMen.prototype.CardBinding = function (attribute, callback) {
                     callback(error.Success(result)); //返回会员卡信息
             });
         });
-    });*/
-    async.waterfall([
+    });
+    /*async.waterfall([
         function(cb){
             kechuan.GetVipInfoByMobileOpenId(openId,function(err,result){
                 if(!err && result.CardGrade != kechuan.VipGrade){
@@ -225,7 +225,7 @@ LaoXiMen.prototype.CardBinding = function (attribute, callback) {
             callback(err)
         }
         callback(error.Success(result))
-    })
+    })*/
 };
 
 /**
@@ -283,44 +283,44 @@ LaoXiMen.prototype.CardModify = function (attribute, callback) {
         callback(error.ThrowError(error.ErrorCode.DateFormatError, 'birthday格式错误'));
         return;
     }
-    // kechuan.GetVipInfo(cardNumber, function (err, result) {
-    //     if (err) {
-    //         callback(err);
-    //         return;
-    //     }
-    //     if (!result) {
-    //         callback(error.ThrowError(error.ErrorCode.CardUndefined));
-    //         return;
-    //     }
-    //     //差异化信息提交  若信息没有修改，则传空值
-    //     phone = phone == result.Phone ? '' : phone;
-    //     email = email == result.Email ? '' : email;
-    //     idNo = idNo == result.IdNo ? '' : idNo;
-    //     birthday = birthday == result.birthday ? '' : birthday;
-    //     sex = sex == result.Sex ? '' : sex;
-    //     name = name == result.Name ? '' : name;
-    //     kechuan.VipModify(cardNumber, name, phone, sex, birthday, idNo, address, email, function (err, result) {
-    //         if (err) {
-    //             callback(err);
-    //             return;
-    //         }
-    //         kechuan.GetVipInfo(cardNumber, function (err, result) {
-    //             if (err) {
-    //                 callback(err);
-    //                 return;
-    //             }
-    //             callback(error.Success(result));
-    //         });
-    //     });
-    // });
-    //差异化信息提交  若信息没有修改，则传空值
+    kechuan.GetVipInfo(cardNumber, function (err, result) {
+        if (err) {
+            callback(err);
+            return;
+        }
+        if (!result) {
+            callback(error.ThrowError(error.ErrorCode.CardUndefined));
+            return;
+        }
+        //差异化信息提交  若信息没有修改，则传空值
         phone = phone == result.Phone ? '' : phone;
         email = email == result.Email ? '' : email;
         idNo = idNo == result.IdNo ? '' : idNo;
         birthday = birthday == result.birthday ? '' : birthday;
         sex = sex == result.Sex ? '' : sex;
         name = name == result.Name ? '' : name;
-    async.waterfall([
+        kechuan.VipModify(cardNumber, name, phone, sex, birthday, idNo, address, email, function (err, result) {
+            if (err) {
+                callback(err);
+                return;
+            }
+            kechuan.GetVipInfo(cardNumber, function (err, result) {
+                if (err) {
+                    callback(err);
+                    return;
+                }
+                callback(error.Success(result));
+            });
+        });
+    });
+    //差异化信息提交  若信息没有修改，则传空值
+       /* phone = phone == result.Phone ? '' : phone;
+        email = email == result.Email ? '' : email;
+        idNo = idNo == result.IdNo ? '' : idNo;
+        birthday = birthday == result.birthday ? '' : birthday;
+        sex = sex == result.Sex ? '' : sex;
+        name = name == result.Name ? '' : name;*/
+   /* async.waterfall([
         function(cb){
             kechuan.GetVipInfo(cardNumber,function(err,result){
                 if(err){
@@ -356,7 +356,7 @@ LaoXiMen.prototype.CardModify = function (attribute, callback) {
             callback(err)
         }
         callback(error.Success(result))
-    })
+    })*/
 };
 
 /**
