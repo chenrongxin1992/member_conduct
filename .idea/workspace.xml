@@ -33,21 +33,21 @@
     <splitter split-orientation="horizontal" split-proportion="0.5528744">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="start.sh" pinned="false" current-in-tab="true">
+          <file leaf-file-name="start.sh" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/bin/test/start.sh">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="76">
-                  <caret line="4" column="22" lean-forward="false" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+                <state relative-caret-position="95">
+                  <caret line="5" column="27" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="58" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="start.sh" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/bin/start.sh">
+          <file leaf-file-name="restart.sh" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/bin/test/restart.sh">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="57">
-                  <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+                <state relative-caret-position="76">
+                  <caret line="4" column="22" lean-forward="true" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
                   <folding />
                 </state>
               </provider>
@@ -137,16 +137,6 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="323">
                   <caret line="17" column="36" lean-forward="false" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="restart.sh" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/bin/test/restart.sh">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="57">
-                  <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="4" selection-end-column="22" />
                   <folding />
                 </state>
               </provider>
@@ -340,8 +330,8 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/routes/crmtestroutes.js" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/bin/test/restart.sh" />
         <option value="$PROJECT_DIR$/bin/test/start.sh" />
+        <option value="$PROJECT_DIR$/bin/test/restart.sh" />
       </list>
     </option>
   </component>
@@ -1094,7 +1084,7 @@
       <workItem from="1488943401489" duration="42389000" />
       <workItem from="1489715441904" duration="32952000" />
       <workItem from="1490336459606" duration="14418000" />
-      <workItem from="1491964822748" duration="4313000" />
+      <workItem from="1491964822748" duration="4493000" />
     </task>
     <task id="LOCAL-00001" summary="测试 push">
       <created>1464938639203</created>
@@ -1324,7 +1314,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1293153000" />
+    <option name="totallyTimeSpent" value="1293333000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1806,14 +1796,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/start.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -1905,18 +1887,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/test/restart.sh">
+    <entry file="file://$PROJECT_DIR$/bin/start.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="4" selection-end-column="22" />
+          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bin/test/start.sh">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="27" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/test/restart.sh">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
-          <caret line="4" column="22" lean-forward="false" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+          <caret line="4" column="22" lean-forward="true" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
           <folding />
         </state>
       </provider>
