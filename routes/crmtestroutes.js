@@ -12,8 +12,7 @@ var express = require('express'),
 	dgwkhd = require('../crm/dgwkHD'),
 	fuji = require('../crm/Fuji'),
 	laoximenkechuan = require('../crm/laoXiMenKeChuan'),
-	yuanyang = require('../crm/yuanyang'),
-	responseTime = require('response-time')
+	yuanyang = require('../crm/yuanyang')
 
 //安胜奇crm接口(asqGetApiStatus/GetGradList----done(对应关系crmASQ对应jingjiBaiNaLogic))
 router.post('/asqGetApiStatus',CheckBid)
