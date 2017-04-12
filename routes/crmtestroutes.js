@@ -12,23 +12,24 @@ var express = require('express'),
 	dgwkhd = require('../crm/dgwkHD'),
 	fuji = require('../crm/Fuji'),
 	laoximenkechuan = require('../crm/laoXiMenKeChuan'),
-	yuanyang = require('../crm/yuanyang')
+	yuanyang = require('../crm/yuanyang'),
+	responseTime = require('response-time')
 
 //安胜奇crm接口(asqGetApiStatus/GetGradList----done(对应关系crmASQ对应jingjiBaiNaLogic))
+router.post('/asqGetApiStatus',CheckBid)
 router.post('/asqGetApiStatus',function(req,res){
-	if(!req.body.bid){
-		return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'bid不能为空'))
-	}
 	if(!req.body.memberId){
 		return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'memberId不能为空'))
 	}
-	
+
 	asq.asqGetApiStatus(req.body,function(result){
 		res.json(result)
+		//return json(result)
 	})
 })
 
 //crmHD接口(crmhdGetApiStatus/getUserByCardNo----done(对应关系crmHD对应dgwkLogicV2))
+router.post('/crmhdGetApiStatus',CheckBid)
 router.post('/crmhdGetApiStatus',function(req,res){
 	if(!req.body.cardNo){
 		return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'cardNo不能为空'))
@@ -39,6 +40,7 @@ router.post('/crmhdGetApiStatus',function(req,res){
 })
 
 //crmkechuan接口(kechuanGetApiStatus/GetVipInfo----done(对应关系crmKeChuan对应zhongZhouLogic))
+router.post('/kechuanGetApiStatus',CheckBid)
 router.post('/kechuanGetApiStatus',function(req,res){
 	if(!req.body.vipCode){
 		return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'vipCode不能为空'))	
@@ -49,6 +51,7 @@ router.post('/kechuanGetApiStatus',function(req,res){
 })
 
 //Fuji接口(fujiGetApiStatus/GetMemberByCardNumber----done(对应关系Fuji对应ganZhouWxLogic))
+router.post('/fujiGetApiStatus',CheckBid)
 router.post('/fujiGetApiStatus',function(req,res){
 	if(!req.body.cardNumber){
 		return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'cardNumber不能为空'))	
@@ -59,6 +62,7 @@ router.post('/fujiGetApiStatus',function(req,res){
 })
 
 //laoximen接口(laoximenGetApiStatus/GetVipInfo----done(对应关系laoXiMenKeChuan对应laoXiMenLogic))
+router.post('/laoximenGetApiStatus',CheckBid)
 router.post('/laoximenGetApiStatus',function(req,res){
 	if(!req.body.vipCode){
 		return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'vipCode不能为空'))	
@@ -68,6 +72,7 @@ router.post('/laoximenGetApiStatus',function(req,res){
 	})
 })
 //yuanyang接口(yuanyangGetApiStatus/GetVipInfo)
+router.post('/yuanyangGetApiStatus',CheckBid)
 router.post('/yuanyangGetApiStatus',function(req,res){
 	if(!req.body.vipCode){
 		return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete,'vipCode不能为空'))	
@@ -77,3 +82,11 @@ router.post('/yuanyangGetApiStatus',function(req,res){
 	})
 })
 module.exports = router
+
+function CheckBid(req, res, next) {console.log(req.body)
+    if (!req.body.bid) {
+        res.json(error.ThrowError(error.ErrorCode.InfoIncomplete, 'bid不能为空'));
+        return;
+    }
+    next();
+}
