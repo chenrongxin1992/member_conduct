@@ -76,7 +76,7 @@ router.post('/yuanyangGetApiStatus', function (req, res) {
         return res.json(error.ThrowError(error.ErrorCode.InfoIncomplete, 'vipCode不能为空'))
     }
     yuanyang.yuanyangGetApiStatus(req.body.vipCode, function (result) {
-        result.json(result)
+        res.json(result)
     })
 })
 module.exports = router
