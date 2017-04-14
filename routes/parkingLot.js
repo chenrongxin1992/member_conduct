@@ -45,9 +45,28 @@ router.post('/ketuoPaySuccess',function(req,res){
         return res.json(result)
     })
 })
+//中州接口  bid = 19
+//反向停车
+router.post('/getPlatCarParkingLocation',CheckBid)
+router.post('/getPlatCarParkingLocation',function(req,res){
+    var bid = parseInt(req.body.bid)
+    if(bid !== 19)
+        return res.json(error.ThrowError(error.ErrorCode.Error, 'bid参数错误'))
+    if(!req.body.plateNo)
+        res.json(error.ThrowError(error.ErrorCode.InfoIncomplete, 'plateNo不能为空'))
+    if(!req.body.pageNo)
+        res.json(error.ThrowError(error.ErrorCode.InfoIncomplete, 'pageNo不能为空'))
+    if(!req.body.pageSize)
+        res.json(error.ThrowError(error.ErrorCode.InfoIncomplete, 'pageSize不能为空'))
+
+    var logic = factory(bid)
+    logic.getPlatCarParkingLocation(req.body,function(result){
+        return res.json(result)
+    })
+})
 
 module.exports = router;
-function CheckBid(req, res, next) {console.log(req.body)
+function CheckBid(req, res, next) {
     if (!req.body.bid) {
         res.json(error.ThrowError(error.ErrorCode.InfoIncomplete, 'bid不能为空'));
         return;
