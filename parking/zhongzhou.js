@@ -52,6 +52,7 @@ function getAccessInfo(apiName,reqParam,callback){
     req.write(post_data)
     req.end()
 }
+//反向停车
 exports.getPlatCarParkingLocation = function(plateNo,pageNo,pageSize,callback){
 	var param = {
 			plateNo : plateNo,
@@ -79,9 +80,6 @@ exports.getPlatCarParkingLocation = function(plateNo,pageNo,pageSize,callback){
 					port : zhongzhouConfig.port,
 					method : 'get',
 					path : pathstr,
-					//path : pathstr,
-					//path : '/webapi/service/pms/getPlatCarParkingLocation?plateNo=B1M8B2&pageNo=1&pageSize=15&time=1492167176845&appkey=61ce4dbe&token=1D51A1A6DA4D10A219C0EBA71F3888F4',
-					//path : '/webapi/service/pms/getPlatCarParkingLocation?plateNo=B4C20S&pageNo=1&pageSize=15&time=1492167395843&appkey=61ce4dbe&token=DB957BE46B97FC153FFB50FD206DB01B',
 					headers : {
 						'content-type': 'application/json; charset=UTF-8',
 					}
@@ -112,46 +110,62 @@ exports.getPlatCarParkingLocation = function(plateNo,pageNo,pageSize,callback){
 		}
 		return callback(result)
 	})
+}
+exports.fetchParkingRecordFuzzy = function(plateNo,parkingSyscode,callback){
+	var param = {
+			plateNo:plateNo,
+			parkingSyscode:parkingSyscode
+		},
+		apiName = 'fetchParkingRecordFuzzy'
 
-/*	getAccessInfo(apiName,param,function(result){
-		console.log('--------------------------------------   here   -----------------------------------')
-		console.log(result)
-		console.log()
-		res = result
-		console.log(res)
-	})*/
-
-	/*var	pathstr = res.pathstr,
-		options = {
-			host : zhongzhouConfig.apiUrl,
-			port : zhongzhouConfig.port,
-			method : 'get',
-			path : pathstr,
-			//path : pathstr,
-			//path : '/webapi/service/pms/getPlatCarParkingLocation?plateNo=B1M8B2&pageNo=1&pageSize=15&time=1492167176845&appkey=61ce4dbe&token=1D51A1A6DA4D10A219C0EBA71F3888F4',
-			//path : '/webapi/service/pms/getPlatCarParkingLocation?plateNo=B4C20S&pageNo=1&pageSize=15&time=1492167395843&appkey=61ce4dbe&token=DB957BE46B97FC153FFB50FD206DB01B',
-			headers : {
-				'content-type': 'application/json; charset=UTF-8',
-			}
-		}*/
-
-	/*var req = http.request(options,function(res){  
-		console.log('--------------------------------  apiSendRequest  --------------------------------')
-	    res.setEncoding('utf-8');  
-	    var result = ''
-	    res.on('data',function(chunk){  
-	    	result += chunk
-	    });  
-	    res.on('end',function(){  
-	        console.log('--------------------------------  apiResult  --------------------------------')
-	        result = JSON.parse(result)
-	        console.log(result)
-	        callback(result)
-	    });  
-	});  
-	req.on('error',function(err){  
-	    console.error(err)
-	    return callback(err)
-	});  
-	req.end();*/
+	async.waterfall([
+		function(cb){
+			getAccessInfo(apiName,param,function(result){
+				if(result.ErrCode != -1){
+					console.log('--------------------------------------   here   -----------------------------------')
+					console.log(result)
+					cb(null,result)
+				}else{
+					cb(result)
+				}
+			})
+		},
+		function(arg,cb){console.log('-------------------------    &&&&&&&&&&    -----------------------------')
+		console.log(arg.pathstr)
+			var	pathstr = arg.pathstr,
+				options = {
+					host : zhongzhouConfig.apiUrl,
+					port : zhongzhouConfig.port,
+					method : 'get',
+					path : pathstr,
+					headers : {
+						'content-type': 'application/json; charset=UTF-8',
+					}
+				}
+			var req = http.request(options,function(res){  
+				console.log('--------------------------------  apiSendRequest  --------------------------------')
+			    res.setEncoding('utf-8');  
+			    var result = ''
+			    res.on('data',function(chunk){  
+			    	result += chunk
+			    });  
+			    res.on('end',function(){  
+			        console.log('--------------------------------  apiResult  --------------------------------')
+			        result = JSON.parse(result)
+			        console.log(result)
+			        cb(null,result)
+			    });  
+			});  
+			req.on('error',function(err){  
+			    console.error(err)
+			    return cb(err)
+			});  
+			req.end();
+		}
+	],function(err,result){
+		if(err){
+			callback(err)
+		}
+		return callback(result)
+	})
 }

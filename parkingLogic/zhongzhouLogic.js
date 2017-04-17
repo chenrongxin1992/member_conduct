@@ -19,4 +19,11 @@ zhongZhou.prototype.getPlatCarParkingLocation = function(attribute,callback){
 		callback(result)
 	})
 }
+zhongZhou.prototype.fetchParkingRecordFuzzy = function(attribute,callback){
+	var plateNo = attribute.plateNo,
+		parkingSyscode = attribute.parkingSyscode
+	zhongzhou.fetchParkingRecordFuzzy(plateNo,parkingSyscode,function(result){
+		callback(result)
+	})
+}
 module.exports = zhongZhou
