@@ -64,6 +64,20 @@ router.post('/getPlatCarParkingLocation',function(req,res){
         return res.json(result)
     })
 })
+//停车位模糊查询
+router.post('/fetchParkingRecordFuzzy',CheckBid)
+router.post('/fetchParkingRecordFuzzy',function(req,res){
+    var bid = parseInt(req.body.bid)
+    if(bid != 19)
+        return res.json(error.ThrowError(error.ErrorCode.Error, 'bid参数错误'))
+    if(!req.body.plateNo)
+        res.json(error.ThrowError(error.ErrorCode.InfoIncomplete, 'plateNo不能为空'))
+
+    var logic = factory(bid)
+    logic.fetchParkingRecordFuzzy(req.body,function(result){
+        return res.json(result)
+    })
+})
 
 module.exports = router;
 function CheckBid(req, res, next) {
