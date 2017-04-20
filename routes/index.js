@@ -176,7 +176,7 @@ var jieshun = require('../parking/jieshun');
 router.post('/JSLogin', function (req, res, next) {
     var config = {
         loginUrl: 'http://syx.jslife.com.cn/jsaims/login',
-        url: '',
+        url: 'http://syx.jslife.com.cn/jsaims/as',
         cid: '880075500000001',
         usr: '880075500000001',
         psw: '888888',
@@ -196,7 +196,7 @@ router.post('/JSLogin', function (req, res, next) {
 router.post('/JSCarDetial', function (req, res, next) {
     var config = {
         loginUrl: 'http://syx.jslife.com.cn/jsaims/login',
-        url: '',
+        url: 'http://syx.jslife.com.cn/jsaims/as',
         cid: '880075500000001',
         usr: '880075500000001',
         psw: '888888',
@@ -228,7 +228,7 @@ router.post('/JSCarDetial', function (req, res, next) {
 router.post('/JSCardDetialFee', function (req, res, next) {
     var config = {
         loginUrl: 'http://syx.jslife.com.cn/jsaims/login',
-        url: '',
+        url: 'http://syx.jslife.com.cn/jsaims/as',
         cid: '880075500000001',
         usr: '880075500000001',
         psw: '888888',
@@ -292,7 +292,7 @@ router.post('/JSCardDetialFee', function (req, res, next) {
 router.post('/JSPaySuccess', function (req, res, next) {
     var config = {
         loginUrl: 'http://syx.jslife.com.cn/jsaims/login',
-        url: '',
+        url: 'http://syx.jslife.com.cn/jsaims/as',
         cid: '880075500000001',
         usr: '880075500000001',
         psw: '888888',
