@@ -170,4 +170,23 @@ function random(num, callback) {
         callback(err, buf ? buf.toString('hex') : '');
     });
 };
+
+var jieshun = require('../parking/jieshun');
+router.post('/JXLogin', function (req, res, next) {
+    var config = {
+        loginUrl: 'http://syx.jslife.com.cn/jsaims/login',
+        cid: '880075500000001',
+        usr: '880075500000001',
+        psw: '888888',
+        v: '2',
+        parkCode: '0000001234'
+    };
+    jieshun.Login(config, function (err, result) {
+        if(err){
+            res.json(err);
+        }else{
+            res.json(result);
+        }
+    });
+});
 module.exports = router;

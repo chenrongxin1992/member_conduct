@@ -5,7 +5,7 @@
  */
 
 module.exports = {
-    port: 5001,
+    port: 5501,
     // mongodbPath: 'mongodb://interface:p4v0ziPeY9ZmybV2!@dds-wz95978ef59a37542.mongodb.rds.aliyuncs.com:3717,dds-wz95978ef59a37541.mongodb.rds.aliyuncs.com:3717/woxbuttjoint?replicaSet=mgset-2752095', //数据链接地址
     // dbCollections: {//数据库数据表命名常量
     //     dataBox: {
