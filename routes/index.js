@@ -289,7 +289,7 @@ router.post('/JSCardDetialFee', function (req, res, next) {
     })
 });
 
-router.pos('/JSPaySuccess', function (req, res, next) {
+router.post('/JSPaySuccess', function (req, res, next) {
     var config = {
         loginUrl: 'http://syx.jslife.com.cn/jsaims/login',
         url: '',
