@@ -36,7 +36,12 @@ var CardBindingSchema = new mongoose.Schema({
  */
 CardBindingSchema.statics.FindByOpenId = function (bid, openId, callback) {
     this.find({bid: bid, openId: openId}, function (err, doc) {
-        return callback(err, doc);
+        if(callback){
+            return callback(err, doc);
+        }
+
+        return ;
+        
     });
 };
 /**

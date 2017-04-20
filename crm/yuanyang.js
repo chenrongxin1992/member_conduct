@@ -683,7 +683,7 @@ exports.yuanyangGetApiStatus = function(vipCode,callback){
                 CardSource: data.xf_issuestore,
                 IdNo: data.xf_vipid
             };
-            callback(err, cardDetail);
+            callback(cardDetail);
         });
     });
 }
