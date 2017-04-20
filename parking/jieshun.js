@@ -63,6 +63,7 @@ exports.CarDetial = function (config, token, carNo, callback) {
             p: contentStr
         },
         url = config.url + '?' + qs.stringify(param);
+    console.log('url', url);
     var req = http.request(url, function (res) {
         res.setEncoding('utf8');
         var result = '';
@@ -70,6 +71,7 @@ exports.CarDetial = function (config, token, carNo, callback) {
             result += chunk;
         });
         res.on('end', function () {
+            console.log('result', result);
             try {
                 result = JSON.parse(result);
                 if (typeof result == typeof '') {
@@ -81,7 +83,6 @@ exports.CarDetial = function (config, token, carNo, callback) {
                         return callback(error.ThrowError(error.ErrorCode.error, '车辆未入场'));
                     }
                     _result = _result[0].attributes;
-
                     return callback(null, {
                         parkingCard: _result.parkPlaceCode, //停车位编号
                         carNo: _result.carNo, //车牌号
@@ -91,6 +92,7 @@ exports.CarDetial = function (config, token, carNo, callback) {
                 }
                 return callback(error.ThrowError(error.ErrorCode.error, result.message));
             } catch (e) {
+                console.log('e', e);
                 return callback(error.ThrowError(error.ErrorCode.error, e.message));
             }
         });
