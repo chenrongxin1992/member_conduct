@@ -63,6 +63,9 @@ exports.CarDetial = function (config, token, carNo, callback) {
             p: contentStr
         },
         url = config.url + '?' + qs.stringify(param);
+    console.log('contentStr', contentStr);
+    console.log('md5', sign);
+    console.log('param', param, qs.stringify(param));
     console.log('url', url);
     var req = http.request(url, function (res) {
         res.setEncoding('utf8');

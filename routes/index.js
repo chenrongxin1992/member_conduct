@@ -182,7 +182,8 @@ router.post('/JSLogin', function (req, res, next) {
         psw: '888888',
         v: '2',
         parkCode: '0000001234',
-        businessCode: '880075500000001'
+        businessCode: '880075500000001',
+        secret:''
     };
     jieshun.Login(config, function (err, result) {
         if (err) {
@@ -202,7 +203,8 @@ router.post('/JSCarDetial', function (req, res, next) {
         psw: '888888',
         v: '2',
         parkCode: '0000001234',
-        businessCode: '880075500000001'
+        businessCode: '880075500000001',
+        secret:''
     };
     var carNo = req.body.carNo;
     async.waterfall([
@@ -234,7 +236,8 @@ router.post('/JSCardDetialFee', function (req, res, next) {
         psw: '888888',
         v: '2',
         parkCode: '0000001234',
-        businessCode: '880075500000001'
+        businessCode: '880075500000001',
+        secret:''
     };
     var carNo = req.body.carNo;
     async.waterfall([
@@ -298,7 +301,8 @@ router.post('/JSPaySuccess', function (req, res, next) {
         psw: '888888',
         v: '2',
         parkCode: '0000001234',
-        businessCode: '880075500000001'
+        businessCode: '880075500000001',
+        secret:''
     };
     var carNo = req.body.carNo,
         orderNo = req.body.orderNo;
