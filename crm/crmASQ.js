@@ -494,7 +494,7 @@ exports.IntegralRecord = function (bid, cardNo, pn, callback) {
                 CardNumber: cardNo,
                 DateTime: log.$.datetime ? moment(log.$.datetime, 'YYYY-MM-DD HH:mm:ss').format('YYYY/MM/DD HH:mm:ss') : '',
                 ShopId: log.$.store,
-                shopName: log.$.store,
+                ShopName: log.$.store,
                 Action: movememtType[log.$.movementType],
                 Type: log.$.type,
                 Integral: (log.$.type == 2 ? '-' : '') + log.$.value,
