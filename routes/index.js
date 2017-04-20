@@ -6,7 +6,7 @@ var soap = require('soap');
 var http = require('http');
 var xml = require('xml');
 var crypto = require('crypto');
-
+var async = require('async');
 var mongoose = require('mongoose');
 
 
@@ -172,21 +172,154 @@ function random(num, callback) {
 };
 
 var jieshun = require('../parking/jieshun');
-router.post('/JXLogin', function (req, res, next) {
+//捷顺
+router.post('/JSLogin', function (req, res, next) {
     var config = {
         loginUrl: 'http://syx.jslife.com.cn/jsaims/login',
+        url: '',
         cid: '880075500000001',
         usr: '880075500000001',
         psw: '888888',
         v: '2',
-        parkCode: '0000001234'
+        parkCode: '0000001234',
+        businessCode: '880075500000001'
     };
     jieshun.Login(config, function (err, result) {
-        if(err){
+        if (err) {
             res.json(err);
-        }else{
+        } else {
             res.json(result);
         }
     });
 });
+
+router.post('/JSCarDetial', function (req, res, next) {
+    var config = {
+        loginUrl: 'http://syx.jslife.com.cn/jsaims/login',
+        url: '',
+        cid: '880075500000001',
+        usr: '880075500000001',
+        psw: '888888',
+        v: '2',
+        parkCode: '0000001234',
+        businessCode: '880075500000001'
+    };
+    var carNo = req.body.carNo;
+    async.waterfall([
+        function (cb) {
+            jieshun.Login(config, function (err, result) {
+                cb(err, result);
+            })
+        },
+        function (token, cb) {
+            jieshun.CarDetial(config, token, carNo, function (err, result) {
+                cb(err, result);
+            })
+        }
+    ], function (err, result) {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(result);
+        }
+    });
+});
+
+router.post('/JSCardDetialFee', function (req, res, next) {
+    var config = {
+        loginUrl: 'http://syx.jslife.com.cn/jsaims/login',
+        url: '',
+        cid: '880075500000001',
+        usr: '880075500000001',
+        psw: '888888',
+        v: '2',
+        parkCode: '0000001234',
+        businessCode: '880075500000001'
+    };
+    var carNo = req.body.carNo;
+    async.waterfall([
+        function (cb) {
+            jieshun.Login(config, function (err, result) {
+                cb(err, result);
+            })
+        },
+        function (token, cb) {
+            jieshun.CarDetial(config, token, carNo, function (err, result) {
+                if (err) {
+                    cb(err);
+                } else {
+                    cb(err, token, result);
+                }
+            })
+        },
+        function (token, carDetial, cb) {
+            jieshun.PlaceOrder(config, token, carNo, function (err, result) {
+                if (err) {
+                    cb(err);
+                } else {
+                    var detial = {
+                        carNo: carDetial.carNo,
+                        parkingCard: carDetial.parkingCard,
+                        floor: carDetial.floor,
+                        areaName: carDetial.areaName,
+                        parkCode: result.parkCode, //停车场编号
+                        parkName: result.parkName, //停车场名称
+                        orderNo: result.orderNo,//订单编号
+                        cardNo: result.cardNo,//停车卡ID
+                        carNo: result.carNo,//车牌号
+                        beginTime: result.startTime,//入场时间
+                        longStop: result.serviceTime,//停车时长
+                        endTime: result.endTime,//离场时间
+                        fee: result.totalFee,//应付金额,
+                        deductFee: result.deductFee,//减扣金额
+                        discountFee: result.discountFee,//优惠金额
+                        serviceFee: result.serviceFee,//应缴金额
+                        tradeStatus: result.tradeStatus,//状态 -1未支付
+                    }
+                    cb(null, detial);
+                }
+            });
+        }
+    ], function (err, result) {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(result);
+        }
+    })
+});
+
+router.pos('/JSPaySuccess', function (req, res, next) {
+    var config = {
+        loginUrl: 'http://syx.jslife.com.cn/jsaims/login',
+        url: '',
+        cid: '880075500000001',
+        usr: '880075500000001',
+        psw: '888888',
+        v: '2',
+        parkCode: '0000001234',
+        businessCode: '880075500000001'
+    };
+    var carNo = req.body.carNo,
+        orderNo = req.body.orderNo;
+    async.waterfall([
+        function (cb) {
+            jieshun.Login(config, function (err, result) {
+                cb(err, result);
+            })
+        },
+        function (token, cb) {
+            jieshun.PaySuccess(config, token, carNo, orderNo, function (err, result) {
+                cb(err, result);
+            })
+        }
+    ], function (err, result) {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(result);
+        }
+    });
+});
+
 module.exports = router;
