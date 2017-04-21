@@ -182,11 +182,11 @@
           <file leaf-file-name="jieshun.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/parking/jieshun.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="399">
-                  <caret line="70" column="29" lean-forward="true" selection-start-line="70" selection-start-column="29" selection-end-line="70" selection-end-column="29" />
+                <state relative-caret-position="361">
+                  <caret line="71" column="29" lean-forward="true" selection-start-line="71" selection-start-column="29" selection-end-line="71" selection-end-column="29" />
                   <folding>
                     <element signature="e#308#1303#0" expanded="false" />
-                    <element signature="e#5997#6446#0" expanded="false" />
+                    <element signature="e#6003#6452#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -1040,7 +1040,7 @@
       <workItem from="1491964822748" duration="4881000" />
       <workItem from="1492049039669" duration="5540000" />
       <workItem from="1492419334163" duration="23173000" />
-      <workItem from="1492738090491" duration="6525000" />
+      <workItem from="1492738090491" duration="7174000" />
     </task>
     <task id="LOCAL-00001" summary="测试 push">
       <created>1464938639203</created>
@@ -1270,7 +1270,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1328959000" />
+    <option name="totallyTimeSpent" value="1329608000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1818,11 +1818,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/parking/jieshun.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="70" column="29" lean-forward="true" selection-start-line="70" selection-start-column="29" selection-end-line="70" selection-end-column="29" />
+        <state relative-caret-position="361">
+          <caret line="71" column="29" lean-forward="true" selection-start-line="71" selection-start-column="29" selection-end-line="71" selection-end-column="29" />
           <folding>
             <element signature="e#308#1303#0" expanded="false" />
-            <element signature="e#5997#6446#0" expanded="false" />
+            <element signature="e#6003#6452#0" expanded="false" />
           </folding>
         </state>
       </provider>

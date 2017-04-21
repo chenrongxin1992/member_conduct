@@ -61,9 +61,10 @@ exports.CarDetial = function (config, token, carNo, callback) {
             cid: config.cid,
             tn: token,
             sn: sign.toUpperCase(),
-            v: config.v
+            v: config.v,
+            p: contentStr
         },
-        _url = config.url + '?' + qs.stringify(param) + '&p=' + contentStr,
+        _url = config.url + '?' + qs.stringify(param),
         options = url.parse(_url);
     options.headers = {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'};
     console.log('contentStr', contentStr);
