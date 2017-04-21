@@ -62,13 +62,13 @@ exports.CarDetial = function (config, token, carNo, callback) {
             sn: sign.toUpperCase(),
             v: config.v
         },
-        options = config.url + '?' + qs.stringify(param) + '&p=' + contentStr;
-    options = url.parse(options);
+        _url = config.url + '?' + qs.stringify(param) + '&p=' + contentStr,
+        options = url.parse(_url);
     options.headers = {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'};
     console.log('contentStr', contentStr);
     console.log('md5', sign);
-    console.log('param', param, '\n', qs.stringify(param));
-    console.log('url', options);
+    console.log('url', _url);
+    console.log('options', options);
 
     var req = http.request(options, function (res) {
         res.setEncoding('utf8');
