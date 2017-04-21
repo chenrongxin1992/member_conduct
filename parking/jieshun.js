@@ -7,7 +7,8 @@
 var http = require('http'),
     md5 = require('md5'),
     error = require('../Exception/error'),
-    qs = require('querystring');
+    qs = require('querystring'),
+    url = require('url');
 
 //登录 获得接口调用令牌
 exports.Login = function (config, callback) {
@@ -61,12 +62,15 @@ exports.CarDetial = function (config, token, carNo, callback) {
             sn: sign.toUpperCase(),
             v: config.v
         },
-        url = config.url + '?' + qs.stringify(param) + '&p=' + contentStr;
+        options = config.url + '?' + qs.stringify(param) + '&p=' + contentStr;
+    options = url.parse(options);
+    options.headers = {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'};
     console.log('contentStr', contentStr);
     console.log('md5', sign);
     console.log('param', param, '\n', qs.stringify(param));
-    console.log('url', url);
-    var req = http.request(url, function (res) {
+    console.log('url', options);
+
+    var req = http.request(options, function (res) {
         res.setEncoding('utf8');
         var result = '';
         res.on('data', function (chunk) {
