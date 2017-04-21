@@ -55,7 +55,8 @@ exports.CarDetial = function (config, token, carNo, callback) {
             }
         },
         contentStr = JSON.stringify(content),
-        sign = md5(contentStr + config.secret),
+        stringA = contentStr + config.secret,
+        sign = md5(stringA),
         param = {
             cid: config.cid,
             tn: token,
@@ -66,6 +67,7 @@ exports.CarDetial = function (config, token, carNo, callback) {
         options = url.parse(_url);
     options.headers = {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'};
     console.log('contentStr', contentStr);
+    console.log('stringA', stringA);
     console.log('md5', sign);
     console.log('url', _url);
     console.log('options', options);
