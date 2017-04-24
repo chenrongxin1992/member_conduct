@@ -67,6 +67,7 @@ exports.CarDetial = function (config, token, carNo, callback) {
         urlStr = config.url + '?' + qs.stringify(param),
         options = url.parse(urlStr);
     options.headers = {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'};
+    console.log('url', urlStr);
     var req = http.request(options, function (res) {
         res.setEncoding('utf8');
         var result = '';

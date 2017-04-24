@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00a831d3-6f98-489a-b9df-c9ed98e0405b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/sys/sysConfig.js" afterPath="$PROJECT_DIR$/config/sys/sysConfig.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parking/jieshun.js" afterPath="$PROJECT_DIR$/parking/jieshun.js" />
     </list>
     <ignored path="MemberConduct.iws" />
@@ -94,11 +93,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/routes/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="438">
-                  <caret line="204" column="31" lean-forward="true" selection-start-line="204" selection-start-column="31" selection-end-line="204" selection-end-column="31" />
+                <state relative-caret-position="353">
+                  <caret line="290" column="9" lean-forward="true" selection-start-line="290" selection-start-column="9" selection-end-line="290" selection-end-column="9" />
                   <folding>
                     <element signature="e#1007#2900#0" expanded="false" />
                     <element signature="e#2994#3610#0" expanded="false" />
@@ -109,14 +108,14 @@
                     <element signature="e#5470#6058#0" expanded="false" />
                     <element signature="e#6119#6404#0" expanded="false" />
                     <element signature="n#!!block;n#random#0" expanded="false" />
-                    <element signature="e#8175#10459#0" expanded="false" />
+                    <element signature="e#9130#10303#0" expanded="false" />
                     <element signature="e#10518#11434#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="sysConfig.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="sysConfig.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/config/sys/sysConfig.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="171">
@@ -183,14 +182,12 @@
           <file leaf-file-name="jieshun.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/parking/jieshun.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1303">
-                  <caret line="246" column="13" lean-forward="false" selection-start-line="246" selection-start-column="13" selection-end-line="246" selection-end-column="13" />
+                <state relative-caret-position="-156">
+                  <caret line="69" column="31" lean-forward="false" selection-start-line="69" selection-start-column="31" selection-end-line="69" selection-end-column="31" />
                   <folding>
                     <element signature="e#308#1303#0" expanded="false" />
-                    <element signature="e#1379#3463#0" expanded="false" />
-                    <element signature="e#2137#3444#0" expanded="false" />
-                    <element signature="e#3534#6770#0" expanded="false" />
-                    <element signature="e#5966#6415#0" expanded="false" />
+                    <element signature="e#3566#6802#0" expanded="false" />
+                    <element signature="e#5998#6447#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -299,8 +296,8 @@
         <option value="$PROJECT_DIR$/prepay/pingAnFu.js" />
         <option value="$PROJECT_DIR$/config/sys/test.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
-        <option value="$PROJECT_DIR$/parking/jieshun.js" />
         <option value="$PROJECT_DIR$/config/sys/sysConfig.js" />
+        <option value="$PROJECT_DIR$/parking/jieshun.js" />
       </list>
     </option>
   </component>
@@ -1042,7 +1039,7 @@
       <workItem from="1491964822748" duration="4881000" />
       <workItem from="1492049039669" duration="5540000" />
       <workItem from="1492419334163" duration="23173000" />
-      <workItem from="1492738090491" duration="12588000" />
+      <workItem from="1492738090491" duration="14655000" />
     </task>
     <task id="LOCAL-00001" summary="测试 push">
       <created>1464938639203</created>
@@ -1272,7 +1269,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1335022000" />
+    <option name="totallyTimeSpent" value="1337089000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1285,7 +1282,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17966281" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32321042" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1295,7 +1292,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38937092" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3177874" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3177874" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3965054" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1783,26 +1780,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="204" column="31" lean-forward="true" selection-start-line="204" selection-start-column="31" selection-end-line="204" selection-end-column="31" />
-          <folding>
-            <element signature="e#1007#2900#0" expanded="false" />
-            <element signature="e#2994#3610#0" expanded="false" />
-            <element signature="e#3663#3940#0" expanded="false" />
-            <element signature="e#3994#4653#0" expanded="false" />
-            <element signature="e#4705#5143#0" expanded="false" />
-            <element signature="e#5203#5410#0" expanded="false" />
-            <element signature="e#5470#6058#0" expanded="false" />
-            <element signature="e#6119#6404#0" expanded="false" />
-            <element signature="n#!!block;n#random#0" expanded="false" />
-            <element signature="e#8175#10459#0" expanded="false" />
-            <element signature="e#10518#11434#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/sys/production.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
@@ -1819,16 +1796,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="290" column="9" lean-forward="true" selection-start-line="290" selection-start-column="9" selection-end-line="290" selection-end-column="9" />
+          <folding>
+            <element signature="e#1007#2900#0" expanded="false" />
+            <element signature="e#2994#3610#0" expanded="false" />
+            <element signature="e#3663#3940#0" expanded="false" />
+            <element signature="e#3994#4653#0" expanded="false" />
+            <element signature="e#4705#5143#0" expanded="false" />
+            <element signature="e#5203#5410#0" expanded="false" />
+            <element signature="e#5470#6058#0" expanded="false" />
+            <element signature="e#6119#6404#0" expanded="false" />
+            <element signature="n#!!block;n#random#0" expanded="false" />
+            <element signature="e#9130#10303#0" expanded="false" />
+            <element signature="e#10518#11434#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/parking/jieshun.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1303">
-          <caret line="246" column="13" lean-forward="false" selection-start-line="246" selection-start-column="13" selection-end-line="246" selection-end-column="13" />
+        <state relative-caret-position="-156">
+          <caret line="69" column="31" lean-forward="false" selection-start-line="69" selection-start-column="31" selection-end-line="69" selection-end-column="31" />
           <folding>
             <element signature="e#308#1303#0" expanded="false" />
-            <element signature="e#1379#3463#0" expanded="false" />
-            <element signature="e#2137#3444#0" expanded="false" />
-            <element signature="e#3534#6770#0" expanded="false" />
-            <element signature="e#5966#6415#0" expanded="false" />
+            <element signature="e#3566#6802#0" expanded="false" />
+            <element signature="e#5998#6447#0" expanded="false" />
           </folding>
         </state>
       </provider>
