@@ -64,15 +64,9 @@ exports.CarDetial = function (config, token, carNo, callback) {
             v: config.v,
             p: contentStr
         },
-        _url = config.url + '?' + qs.stringify(param),
-        options = url.parse(_url);
+        urlStr = config.url + '?' + qs.stringify(param),
+        options = url.parse(urlStr);
     options.headers = {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'};
-    console.log('contentStr', contentStr);
-    console.log('stringA', stringA);
-    console.log('md5', sign);
-    console.log('url', _url);
-    console.log('options', options);
-
     var req = http.request(options, function (res) {
         res.setEncoding('utf8');
         var result = '';
@@ -130,8 +124,11 @@ exports.PlaceOrder = function (config, token, carNo, callback) {
             v: config.v,
             p: contentStr
         },
-        url = config.url + '?' + qs.stringify(param);
-    var req = http.request(url, function (res) {
+        urlStr = config.url + '?' + qs.stringify(param),
+        options = url.parse(urlStr);
+    options.headers = {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'};
+
+    var req = http.request(options, function (res) {
         res.setEncoding('utf8');
         var result = '';
         res.on('data', function (chunk) {
@@ -210,8 +207,10 @@ exports.PaySuccess = function (config, token, carNo, orderNo, callback) {
             v: config.v,
             p: contentStr
         },
-        url = config.url + '?' + qs.stringify(param);
-    var req = http.request(url, function (res) {
+        urlStr = config.url + '?' + qs.stringify(param),
+        options = url.parse(urlStr);
+    options.headers = {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'};
+    var req = http.request(options, function (res) {
         res.setEncoding('utf8');
         var result = '';
         res.on('data', function (chunk) {
