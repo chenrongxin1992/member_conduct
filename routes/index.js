@@ -181,7 +181,7 @@ var jieshun_config = {
     v: '2',
     parkCode: '0010015555',
     businessCode: '880075500000001',
-    secret:'7ac3e2ee1075bf4bb6b816c1e80126c0'
+    secret: '7ac3e2ee1075bf4bb6b816c1e80126c0'
 };
 //捷顺
 router.post('/JSLogin', function (req, res, next) {
@@ -199,11 +199,12 @@ router.post('/JSCarDetial', function (req, res, next) {
     async.waterfall([
         function (cb) {
             jieshun.Login(jieshun_config, function (err, result) {
+                console.log('Login err', err, 'result', result);
                 cb(err, result);
             })
         },
         function (token, cb) {
-            jieshun.CarDetial(config, token, carNo, function (err, result) {
+            jieshun.CarDetial(jieshun_config, token, carNo, function (err, result) {
                 cb(err, result);
             })
         }
