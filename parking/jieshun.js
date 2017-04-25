@@ -109,7 +109,7 @@ exports.CarDetial = function (config, token, carNo, callback) {
 //下单
 exports.PlaceOrder = function (config, token, carNo, callback) {
     if (carNo.indexOf('-') < 0) {
-        carNo = carNo.substring(0, 1) + '-' + carNo.substring(2);
+        carNo = carNo.substring(0, 1) + '-' + carNo.substring(1);
     }
     console.log('PlaceOrder carNo', carNo);
     var content = {
