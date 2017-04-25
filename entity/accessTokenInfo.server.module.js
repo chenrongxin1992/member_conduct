@@ -3,9 +3,15 @@ var mongoose = require('mongoose'),
 
 var accessTokenInfoSchema = new mongoose.Schema({
     bid: Number,
+    module: String, //模块
     accessToken: {
         type: String,
         trim: true
+    },
+    accessTokenRefreshDate: Date, //accessToken 最后刷新时间
+    accessTokenValidDate: {  //accessToken 有效期  时间戳
+        type: Number,
+        default: 0
     },
     appKey: String,
     appSecret: String,

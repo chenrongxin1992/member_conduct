@@ -35,6 +35,7 @@ module.exports = function (bid) {
             break;
         default:
             _m = new _default();
+            break;
     }
     return _m;
 };
