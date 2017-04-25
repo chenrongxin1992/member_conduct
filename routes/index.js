@@ -236,7 +236,7 @@ router.post('/JSCardDetialFee', function (req, res, next) {
         },
         function (token, carDetial, cb) {
             jieshun.PlaceOrder(jieshun_config, token, carNo, function (err, result) {
-                console.log('PlaceOrder err', err, 'result', result);
+                console.log('PlaceOrder err', err, 'result', result, 'carDetial', carDetial);
                 if (err) {
                     cb(err);
                 } else {
