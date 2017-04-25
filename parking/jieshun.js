@@ -136,6 +136,7 @@ exports.PlaceOrder = function (config, token, carNo, callback) {
             result += chunk;
         });
         res.on('end', function () {
+            console.log('PlaceOrder  Result',result);
             try {
                 result = JSON.parse(result);
                 if (typeof result == typeof '') {
