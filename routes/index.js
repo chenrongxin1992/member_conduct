@@ -249,15 +249,15 @@ router.post('/JSCardDetialFee', function (req, res, next) {
                         orderNo: result.orderNo,//订单编号
                         cardNo: result.cardNo,//停车卡ID
                         carNo: result.carNo,//车牌号
-                        beginTime: result.startTime,//入场时间
-                        longStop: result.serviceTime,//停车时长
+                        beginTime: result.beginTime,//入场时间
+                        longStop: result.longStop,//停车时长
                         endTime: result.endTime,//离场时间
-                        fee: result.totalFee,//应付金额,
+                        fee: result.free,//应付金额,
                         deductFee: result.deductFee,//减扣金额
                         discountFee: result.discountFee,//优惠金额
                         serviceFee: result.serviceFee,//应缴金额
                         tradeStatus: result.tradeStatus,//状态 -1未支付
-                    }
+                    };
                     cb(null, detial);
                 }
             });
