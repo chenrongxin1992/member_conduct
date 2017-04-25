@@ -111,7 +111,6 @@ exports.PlaceOrder = function (config, token, carNo, callback) {
     if (carNo.indexOf('-') < 0) {
         carNo = carNo.substring(0, 1) + '-' + carNo.substring(1);
     }
-    console.log('PlaceOrder carNo', carNo);
     var content = {
             serviceId: '3c.pay.createorderbycarno',
             requestType: 'DATA',
@@ -154,22 +153,29 @@ exports.PlaceOrder = function (config, token, carNo, callback) {
                         return callback(error.ThrowError(error.ErrorCode.error, '车牌支付下单错误，订单信息未返回'));
                     }
                     _result = _result[0].attributes;
-                    return callback(null, {
-                        parkCode: _result.parkCode, //停车场编号
-                        parkName: _result.parkName, //停车场名称
-                        orderNo: _result.orderNo,//订单编号
-                        cardNo: _result.cardNo,//停车卡ID
-                        carNo: _result.carNo,//车牌号
-                        parkingName: '',//停车卡位
-                        beginTime: _result.startTime,//入场时间
-                        longStop: _result.serviceTime,//停车时长
-                        endTime: _result.endTime,//离场时间
-                        fee: _result.totalFee,//应付金额,
-                        deductFee: _result.deductFee,//减扣金额
-                        discountFee: _result.discountFee,//优惠金额
-                        serviceFee: _result.serviceFee,//应缴金额
-                        tradeStatus: _result.tradeStatus,//状态 -1未支付
-                    });
+                    var retCode = _result.retcode;
+                    if (retCode == '0') {
+                        return callback(null, {
+                            parkCode: _result.parkCode, //停车场编号
+                            parkName: _result.parkName, //停车场名称
+                            orderNo: _result.orderNo,//订单编号
+                            cardNo: _result.cardNo,//停车卡ID
+                            carNo: _result.carNo,//车牌号
+                            parkingName: '',//停车卡位
+                            beginTime: _result.startTime,//入场时间
+                            longStop: _result.serviceTime,//停车时长
+                            endTime: _result.endTime,//离场时间
+                            fee: _result.totalFee,//应付金额,
+                            deductFee: _result.deductFee,//减扣金额
+                            discountFee: _result.discountFee,//优惠金额
+                            serviceFee: _result.serviceFee,//应缴金额
+                            tradeStatus: _result.tradeStatus,//状态 -1未支付
+                        });
+                    } else if (retCode == '2') {
+                        return callback(error.ThrowError(error.ErrorCode.ParkingError.CardInfoUndefind, _result.retmsg));  //车辆未入场
+                    } else {
+                        return callback(error.ThrowError(error.ErrorCode.ParkingError))
+                    }
                 }
                 var retcodeList = {
                     0: '正常，正常订单',
