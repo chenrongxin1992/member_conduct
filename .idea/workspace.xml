@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00a831d3-6f98-489a-b9df-c9ed98e0405b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parking/jieshun.js" afterPath="$PROJECT_DIR$/parking/jieshun.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
     </list>
     <ignored path="MemberConduct.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -96,8 +97,8 @@
           <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/routes/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="353">
-                  <caret line="290" column="9" lean-forward="true" selection-start-line="290" selection-start-column="9" selection-end-line="290" selection-end-column="9" />
+                <state relative-caret-position="334">
+                  <caret line="180" column="11" lean-forward="true" selection-start-line="180" selection-start-column="11" selection-end-line="180" selection-end-column="11" />
                   <folding>
                     <element signature="e#1007#2900#0" expanded="false" />
                     <element signature="e#2994#3610#0" expanded="false" />
@@ -108,8 +109,7 @@
                     <element signature="e#5470#6058#0" expanded="false" />
                     <element signature="e#6119#6404#0" expanded="false" />
                     <element signature="n#!!block;n#random#0" expanded="false" />
-                    <element signature="e#9130#10303#0" expanded="false" />
-                    <element signature="e#10518#11434#0" expanded="false" />
+                    <element signature="e#8410#9583#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -182,8 +182,8 @@
           <file leaf-file-name="jieshun.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/parking/jieshun.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-156">
-                  <caret line="69" column="31" lean-forward="false" selection-start-line="69" selection-start-column="31" selection-end-line="69" selection-end-column="31" />
+                <state relative-caret-position="357">
+                  <caret line="72" column="24" lean-forward="true" selection-start-line="72" selection-start-column="24" selection-end-line="72" selection-end-column="24" />
                   <folding>
                     <element signature="e#308#1303#0" expanded="false" />
                     <element signature="e#3566#6802#0" expanded="false" />
@@ -295,9 +295,9 @@
         <option value="$PROJECT_DIR$/crm/crmASQ.js" />
         <option value="$PROJECT_DIR$/prepay/pingAnFu.js" />
         <option value="$PROJECT_DIR$/config/sys/test.js" />
-        <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/config/sys/sysConfig.js" />
         <option value="$PROJECT_DIR$/parking/jieshun.js" />
+        <option value="$PROJECT_DIR$/routes/index.js" />
       </list>
     </option>
   </component>
@@ -1039,7 +1039,7 @@
       <workItem from="1491964822748" duration="4881000" />
       <workItem from="1492049039669" duration="5540000" />
       <workItem from="1492419334163" duration="23173000" />
-      <workItem from="1492738090491" duration="14655000" />
+      <workItem from="1492738090491" duration="19108000" />
     </task>
     <task id="LOCAL-00001" summary="测试 push">
       <created>1464938639203</created>
@@ -1269,7 +1269,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1337089000" />
+    <option name="totallyTimeSpent" value="1341542000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1796,10 +1796,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/parking/jieshun.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="72" column="24" lean-forward="true" selection-start-line="72" selection-start-column="24" selection-end-line="72" selection-end-column="24" />
+          <folding>
+            <element signature="e#308#1303#0" expanded="false" />
+            <element signature="e#3566#6802#0" expanded="false" />
+            <element signature="e#5998#6447#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="290" column="9" lean-forward="true" selection-start-line="290" selection-start-column="9" selection-end-line="290" selection-end-column="9" />
+        <state relative-caret-position="334">
+          <caret line="180" column="11" lean-forward="true" selection-start-line="180" selection-start-column="11" selection-end-line="180" selection-end-column="11" />
           <folding>
             <element signature="e#1007#2900#0" expanded="false" />
             <element signature="e#2994#3610#0" expanded="false" />
@@ -1810,20 +1822,7 @@
             <element signature="e#5470#6058#0" expanded="false" />
             <element signature="e#6119#6404#0" expanded="false" />
             <element signature="n#!!block;n#random#0" expanded="false" />
-            <element signature="e#9130#10303#0" expanded="false" />
-            <element signature="e#10518#11434#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/parking/jieshun.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-156">
-          <caret line="69" column="31" lean-forward="false" selection-start-line="69" selection-start-column="31" selection-end-line="69" selection-end-column="31" />
-          <folding>
-            <element signature="e#308#1303#0" expanded="false" />
-            <element signature="e#3566#6802#0" expanded="false" />
-            <element signature="e#5998#6447#0" expanded="false" />
+            <element signature="e#8410#9583#0" expanded="false" />
           </folding>
         </state>
       </provider>

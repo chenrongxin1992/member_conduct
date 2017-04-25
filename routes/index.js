@@ -172,20 +172,20 @@ function random(num, callback) {
 };
 
 var jieshun = require('../parking/jieshun');
+var jieshun_config = {
+    loginUrl: 'http://syx.jslife.com.cn/jsaims/login',
+    url: 'http://syx.jslife.com.cn/jsaims/as',
+    cid: '880075500000001',
+    usr: '880075500000001',
+    psw: '888888',
+    v: '2',
+    parkCode: '0010015555',
+    businessCode: '880075500000001',
+    secret:'7ac3e2ee1075bf4bb6b816c1e80126c0'
+};
 //捷顺
 router.post('/JSLogin', function (req, res, next) {
-    var config = {
-        loginUrl: 'http://syx.jslife.com.cn/jsaims/login',
-        url: 'http://syx.jslife.com.cn/jsaims/as',
-        cid: '880075500000001',
-        usr: '880075500000001',
-        psw: '888888',
-        v: '2',
-        parkCode: '0000001234',
-        businessCode: '880075500000001',
-        secret:'7ac3e2ee1075bf4bb6b816c1e80126c0'
-    };
-    jieshun.Login(config, function (err, result) {
+    jieshun.Login(jieshun_config, function (err, result) {
         if (err) {
             res.json(err);
         } else {
@@ -195,21 +195,10 @@ router.post('/JSLogin', function (req, res, next) {
 });
 
 router.post('/JSCarDetial', function (req, res, next) {
-    var config = {
-        loginUrl: 'http://syx.jslife.com.cn/jsaims/login',
-        url: 'http://syx.jslife.com.cn/jsaims/as',
-        cid: '880075500000001',
-        usr: '880075500000001',
-        psw: '888888',
-        v: '2',
-        parkCode: '0000001234',
-        businessCode: '880075500000001',
-        secret:'7ac3e2ee1075bf4bb6b816c1e80126c0'
-    };
     var carNo = req.body.carNo;
     async.waterfall([
         function (cb) {
-            jieshun.Login(config, function (err, result) {
+            jieshun.Login(jieshun_config, function (err, result) {
                 cb(err, result);
             })
         },
@@ -228,26 +217,15 @@ router.post('/JSCarDetial', function (req, res, next) {
 });
 
 router.post('/JSCardDetialFee', function (req, res, next) {
-    var config = {
-        loginUrl: 'http://syx.jslife.com.cn/jsaims/login',
-        url: 'http://syx.jslife.com.cn/jsaims/as',
-        cid: '880075500000001',
-        usr: '880075500000001',
-        psw: '888888',
-        v: '2',
-        parkCode: '0000001234',
-        businessCode: '880075500000001',
-        secret:'7ac3e2ee1075bf4bb6b816c1e80126c0'
-    };
     var carNo = req.body.carNo;
     async.waterfall([
         function (cb) {
-            jieshun.Login(config, function (err, result) {
+            jieshun.Login(jieshun_config, function (err, result) {
                 cb(err, result);
             })
         },
         function (token, cb) {
-            jieshun.CarDetial(config, token, carNo, function (err, result) {
+            jieshun.CarDetial(jieshun_config, token, carNo, function (err, result) {
                 if (err) {
                     cb(err);
                 } else {
@@ -256,7 +234,7 @@ router.post('/JSCardDetialFee', function (req, res, next) {
             })
         },
         function (token, carDetial, cb) {
-            jieshun.PlaceOrder(config, token, carNo, function (err, result) {
+            jieshun.PlaceOrder(jieshun_config, token, carNo, function (err, result) {
                 if (err) {
                     cb(err);
                 } else {
@@ -293,27 +271,16 @@ router.post('/JSCardDetialFee', function (req, res, next) {
 });
 
 router.post('/JSPaySuccess', function (req, res, next) {
-    var config = {
-        loginUrl: 'http://syx.jslife.com.cn/jsaims/login',
-        url: 'http://syx.jslife.com.cn/jsaims/as',
-        cid: '880075500000001',
-        usr: '880075500000001',
-        psw: '888888',
-        v: '2',
-        parkCode: '0000001234',
-        businessCode: '880075500000001',
-        secret:'7ac3e2ee1075bf4bb6b816c1e80126c0'
-    };
     var carNo = req.body.carNo,
         orderNo = req.body.orderNo;
     async.waterfall([
         function (cb) {
-            jieshun.Login(config, function (err, result) {
+            jieshun.Login(jieshun_config, function (err, result) {
                 cb(err, result);
             })
         },
         function (token, cb) {
-            jieshun.PaySuccess(config, token, carNo, orderNo, function (err, result) {
+            jieshun.PaySuccess(jieshun_config, token, carNo, orderNo, function (err, result) {
                 cb(err, result);
             })
         }
