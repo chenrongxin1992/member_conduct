@@ -253,7 +253,7 @@ router.post('/JSCardDetialFee', function (req, res, next) {
                         beginTime: result.beginTime,//入场时间
                         longStop: result.longStop,//停车时长
                         endTime: result.endTime,//离场时间
-                        fee: result.free,//应付金额,
+                        fee: result.fee,//应付金额,
                         deductFee: result.deductFee,//减扣金额
                         discountFee: result.discountFee,//优惠金额
                         serviceFee: result.serviceFee,//应缴金额
