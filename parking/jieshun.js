@@ -46,6 +46,8 @@ exports.Login = function (config, callback) {
 
 //查询车辆停车信息
 exports.CarDetial = function (config, token, carNo, callback) {
+    carNo = carNo.replace('-', '');
+    console.log('CarDetial carNo', carNo);
     var content = {
             serviceId: '3c.park.querycarparkingspot',
             requestType: 'DATA',
@@ -106,6 +108,10 @@ exports.CarDetial = function (config, token, carNo, callback) {
 
 //下单
 exports.PlaceOrder = function (config, token, carNo, callback) {
+    if (!carNo.indexOf('-')) {
+        carNo = carNo.substring(0, 1) + '-' + carNo.substring(2);
+    }
+    console.log('PlaceOrder carNo', carNo);
     var content = {
             serviceId: '3c.pay.createorderbycarno',
             requestType: 'DATA',
@@ -136,7 +142,7 @@ exports.PlaceOrder = function (config, token, carNo, callback) {
             result += chunk;
         });
         res.on('end', function () {
-            console.log('PlaceOrder  Result',result);
+            console.log('PlaceOrder  Result', result);
             try {
                 result = JSON.parse(result);
                 if (typeof result == typeof '') {
