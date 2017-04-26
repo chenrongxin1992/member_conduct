@@ -38,7 +38,7 @@ exports.RefreshAccessToken = function (bid, module, accessToken, validDate, call
         if (err) {
             return callback(error.ThrowError(error.ErrorCode.error, err.message));
         }
-        return callback();
+        return callback(null, accessToken);
     });
 };
 

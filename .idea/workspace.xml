@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00a831d3-6f98-489a-b9df-c9ed98e0405b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/entity/accessTokenInfoLogic.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/parkingLogic/yifangtiandi.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Tools/load.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/entity/accessTokenInfo.server.module.js" afterPath="$PROJECT_DIR$/entity/accessTokenInfo.server.module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logic/factoryLogic.js" afterPath="$PROJECT_DIR$/logic/factoryLogic.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/entity/accessTokenInfoLogic.js" afterPath="$PROJECT_DIR$/entity/accessTokenInfoLogic.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parking/jieshun.js" afterPath="$PROJECT_DIR$/parking/jieshun.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parkingLogic/yifangtiandi.js" afterPath="$PROJECT_DIR$/parkingLogic/yifangtiandi.js" />
     </list>
     <ignored path="MemberConduct.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,73 +35,36 @@
     <splitter split-orientation="horizontal" split-proportion="0.4553629">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="yuanyang.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/crm/yuanyang.js">
+          <file leaf-file-name="yifangtiandi.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/parkingLogic/yifangtiandi.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="418">
-                  <caret line="22" column="3" lean-forward="false" selection-start-line="22" selection-start-column="3" selection-end-line="22" selection-end-column="3" />
+                <state relative-caret-position="760">
+                  <caret line="150" column="0" lean-forward="true" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
                   <folding>
-                    <element signature="e#1107#2198#0" expanded="false" />
+                    <element signature="e#516#2989#0" expanded="false" />
+                    <element signature="e#3060#4482#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="member.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/routes/member.js">
+          <file leaf-file-name="load.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Tools/load.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1349">
-                  <caret line="71" column="20" lean-forward="false" selection-start-line="71" selection-start-column="10" selection-end-line="71" selection-end-column="20" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="yuanYangLogic.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/logic/yuanYangLogic.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="6232">
-                  <caret line="328" column="31" lean-forward="false" selection-start-line="328" selection-start-column="31" selection-end-line="328" selection-end-column="31" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/routes/index.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="704">
-                  <caret line="242" column="20" lean-forward="true" selection-start-line="242" selection-start-column="20" selection-end-line="242" selection-end-column="20" />
+                <state relative-caret-position="114">
+                  <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
                   <folding>
-                    <element signature="e#1007#2900#0" expanded="false" />
-                    <element signature="e#2994#3610#0" expanded="false" />
-                    <element signature="e#3663#3940#0" expanded="false" />
-                    <element signature="e#3994#4653#0" expanded="false" />
-                    <element signature="e#4705#5143#0" expanded="false" />
-                    <element signature="e#5203#5410#0" expanded="false" />
-                    <element signature="e#5470#6058#0" expanded="false" />
-                    <element signature="e#6119#6404#0" expanded="false" />
-                    <element signature="n#!!block;n#random#0" expanded="false" />
+                    <element signature="n#!!doc" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="laoXiMenLogic.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/logic/laoXiMenLogic.js">
+          <file leaf-file-name="jingJiBaiNa.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/prepayLogic/jingJiBaiNa.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-285">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="sysConfig.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/config/sys/sysConfig.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="171">
-                  <caret line="8" column="2" lean-forward="true" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
+                <state relative-caret-position="133">
+                  <caret line="7" column="2" lean-forward="true" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
                   <folding />
                 </state>
               </provider>
@@ -111,38 +73,18 @@
           <file leaf-file-name="error.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Exception/error.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="323">
-                  <caret line="17" column="18" lean-forward="true" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+                <state relative-caret-position="266">
+                  <caret line="14" column="8" lean-forward="false" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="laoXiMenLogic.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/parkingLogic/laoXiMenLogic.js">
+          <file leaf-file-name="ketuoLogic.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/parkingLogic/ketuoLogic.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="342">
-                  <caret line="23" column="39" lean-forward="true" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="yifangtiandi.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/parkingLogic/yifangtiandi.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="722">
-                  <caret line="45" column="17" lean-forward="false" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="accessTokenInfo.server.module.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/entity/accessTokenInfo.server.module.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="551">
-                  <caret line="29" column="3" lean-forward="true" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
+                <state relative-caret-position="190">
+                  <caret line="186" column="26" lean-forward="false" selection-start-line="186" selection-start-column="16" selection-end-line="186" selection-end-column="26" />
                   <folding />
                 </state>
               </provider>
@@ -155,7 +97,7 @@
           <file leaf-file-name="ketuo.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/parking/ketuo.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="209">
+                <state relative-caret-position="570">
                   <caret line="30" column="23" lean-forward="true" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
                   <folding />
                 </state>
@@ -168,20 +110,6 @@
                 <state relative-caret-position="798">
                   <caret line="42" column="19" lean-forward="true" selection-start-line="42" selection-start-column="19" selection-end-line="42" selection-end-column="19" />
                   <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="test1.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/routes/test1.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="114">
-                  <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-                  <folding>
-                    <element signature="e#282#480#0" expanded="false" />
-                    <element signature="e#515#781#0" expanded="false" />
-                    <element signature="e#832#1488#0" expanded="false" />
-                  </folding>
                 </state>
               </provider>
             </entry>
@@ -199,8 +127,8 @@
           <file leaf-file-name="accessTokenInfoLogic.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/entity/accessTokenInfoLogic.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="361">
-                  <caret line="25" column="7" lean-forward="true" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
+                <state relative-caret-position="525">
+                  <caret line="40" column="42" lean-forward="false" selection-start-line="40" selection-start-column="42" selection-end-line="40" selection-end-column="42" />
                   <folding />
                 </state>
               </provider>
@@ -216,7 +144,22 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="start.sh" pinned="false" current-in-tab="true">
+          <file leaf-file-name="jieshun.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/parking/jieshun.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-947">
+                  <caret line="54" column="28" lean-forward="true" selection-start-line="54" selection-start-column="28" selection-end-line="54" selection-end-column="28" />
+                  <folding>
+                    <element signature="e#3439#3734#0" expanded="false" />
+                    <element signature="e#3846#3996#0" expanded="false" />
+                    <element signature="e#5037#5486#0" expanded="false" />
+                    <element signature="e#6288#6438#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="start.sh" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/bin/start.sh">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="57">
@@ -240,8 +183,28 @@
             <entry file="file://$PROJECT_DIR$/entity/cardDetail.local.module.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="0">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <caret line="0" column="5" lean-forward="false" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
                   <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/routes/index.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="419">
+                  <caret line="188" column="18" lean-forward="true" selection-start-line="188" selection-start-column="18" selection-end-line="188" selection-end-column="18" />
+                  <folding>
+                    <element signature="e#1007#2900#0" expanded="false" />
+                    <element signature="e#2994#3610#0" expanded="false" />
+                    <element signature="e#3663#3940#0" expanded="false" />
+                    <element signature="e#3994#4653#0" expanded="false" />
+                    <element signature="e#4705#5143#0" expanded="false" />
+                    <element signature="e#5203#5410#0" expanded="false" />
+                    <element signature="e#5470#6058#0" expanded="false" />
+                    <element signature="e#6119#6404#0" expanded="false" />
+                    <element signature="n#!!block;n#random#0" expanded="false" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -281,7 +244,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Tools/verify.js" />
         <option value="$PROJECT_DIR$/routes/other.js" />
         <option value="$PROJECT_DIR$/entity/prepayCard.server.module.js" />
         <option value="$PROJECT_DIR$/routes/test1.js" />
@@ -326,11 +288,12 @@
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/routes/test.js" />
         <option value="$PROJECT_DIR$/Exception/error.js" />
-        <option value="$PROJECT_DIR$/parking/jieshun.js" />
         <option value="$PROJECT_DIR$/parkingLogic/yifangzhongxin.js" />
         <option value="$PROJECT_DIR$/logic/factoryLogic.js" />
         <option value="$PROJECT_DIR$/entity/accessTokenInfo.server.module.js" />
         <option value="$PROJECT_DIR$/entity/accessTokenInfoLogic.js" />
+        <option value="$PROJECT_DIR$/parking/jieshun.js" />
+        <option value="$PROJECT_DIR$/Tools/load.js" />
         <option value="$PROJECT_DIR$/parkingLogic/yifangtiandi.js" />
       </list>
     </option>
@@ -386,6 +349,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -395,6 +359,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="member_conduct" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="member_conduct" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="member_conduct" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Tools" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -524,7 +502,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="sys" />
+              <option name="myItemId" value="parking" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -545,7 +523,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1117,6 +1094,7 @@
       <workItem from="1492419334163" duration="23173000" />
       <workItem from="1492738090491" duration="29591000" />
       <workItem from="1493106796135" duration="7883000" />
+      <workItem from="1493178796657" duration="7688000" />
     </task>
     <task id="LOCAL-00001" summary="测试 push">
       <created>1464938639203</created>
@@ -1346,7 +1324,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1359908000" />
+    <option name="totallyTimeSpent" value="1367596000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1452,25 +1430,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="148" />
+      <option name="time" value="149" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/bin/test/restart.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="22" lean-forward="false" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/test/start.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="56" lean-forward="false" selection-start-line="5" selection-start-column="56" selection-end-line="5" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/crm/asq/production.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
@@ -1510,10 +1474,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="496">
           <caret line="138" column="47" lean-forward="true" selection-start-line="138" selection-start-column="47" selection-end-line="138" selection-end-column="47" />
-          <folding>
-            <element signature="e#657#2032#0" expanded="false" />
-            <element signature="e#2161#3407#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1521,10 +1481,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="466">
           <caret line="254" column="46" lean-forward="true" selection-start-line="254" selection-start-column="46" selection-end-line="254" selection-end-column="46" />
-          <folding>
-            <element signature="e#670#5118#0" expanded="false" />
-            <element signature="e#5302#8017#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1582,7 +1538,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="17" column="32" lean-forward="false" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1597,7 +1552,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
           <caret line="14" column="2" lean-forward="false" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1605,34 +1559,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-76">
           <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding>
-            <element signature="e#2872#2988#0" expanded="false" />
-            <element signature="e#3062#4295#0" expanded="false" />
-            <element signature="e#5566#6345#0" expanded="false" />
-            <element signature="e#6883#7684#0" expanded="false" />
-            <element signature="e#8179#9358#0" expanded="false" />
-            <element signature="e#8239#9019#0" expanded="false" />
-            <element signature="e#9547#10730#0" expanded="false" />
-            <element signature="n#!!block;n#GetIntegral#0" expanded="false" />
-            <element signature="e#11751#12284#0" expanded="false" />
-            <element signature="e#12492#13235#0" expanded="false" />
-            <element signature="e#14371#15346#0" expanded="false" />
-            <element signature="e#14431#14837#0" expanded="false" />
-            <element signature="e#15634#17017#0" expanded="false" />
-            <element signature="e#15694#16583#0" expanded="false" />
-            <element signature="e#17194#18683#0" expanded="false" />
-            <element signature="e#18767#20089#0" expanded="false" />
-            <element signature="e#20200#21229#0" expanded="false" />
-            <element signature="e#21361#22406#0" expanded="false" />
-            <element signature="e#22531#23533#0" expanded="false" />
-            <element signature="e#23690#25026#0" expanded="false" />
-            <element signature="n#!!block;n#SendCommod#0" expanded="false" />
-            <element signature="e#25161#25301#0" expanded="false" />
-            <element signature="e#25324#25522#0" expanded="false" />
-            <element signature="n#!!block;n#ToCardDetial#0" expanded="false" />
-            <element signature="e#28387#31929#0" expanded="false" />
-            <element signature="e#29862#31925#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1651,22 +1577,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/member.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1349">
-          <caret line="71" column="20" lean-forward="false" selection-start-line="71" selection-start-column="10" selection-end-line="71" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logic/yuanYangLogic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6232">
-          <caret line="328" column="31" lean-forward="false" selection-start-line="328" selection-start-column="31" selection-end-line="328" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/crm/yuanyang/test.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
@@ -1680,16 +1590,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/crm/yuanyang.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="22" column="3" lean-forward="false" selection-start-line="22" selection-start-column="3" selection-end-line="22" selection-end-column="3" />
-          <folding>
-            <element signature="e#1107#2198#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1744,33 +1644,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Exception/error.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" column="18" lean-forward="true" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/parkingLogic/ketuoLogic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/parkingLogic/yifangzhongxin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/parkingLogic/yifangzhongxin.js" />
     <entry file="file://$PROJECT_DIR$/parkingLogic/laoXiMenLogic.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
+        <state relative-caret-position="437">
           <caret line="23" column="39" lean-forward="true" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
           <folding />
         </state>
@@ -1784,62 +1661,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="242" column="20" lean-forward="true" selection-start-line="242" selection-start-column="20" selection-end-line="242" selection-end-column="20" />
-          <folding>
-            <element signature="e#1007#2900#0" expanded="false" />
-            <element signature="e#2994#3610#0" expanded="false" />
-            <element signature="e#3663#3940#0" expanded="false" />
-            <element signature="e#3994#4653#0" expanded="false" />
-            <element signature="e#4705#5143#0" expanded="false" />
-            <element signature="e#5203#5410#0" expanded="false" />
-            <element signature="e#5470#6058#0" expanded="false" />
-            <element signature="e#6119#6404#0" expanded="false" />
-            <element signature="n#!!block;n#random#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logic/laoXiMenLogic.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-285">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/logic/factoryLogic.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="494">
           <caret line="26" column="35" lean-forward="true" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/sys/sysConfig.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
+        <state relative-caret-position="152">
           <caret line="8" column="2" lean-forward="true" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/parking/jieshun.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="17" lean-forward="true" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-          <folding>
-            <element signature="e#1379#3227#0" expanded="false" />
-            <element signature="e#3298#5826#0" expanded="false" />
-            <element signature="e#3424#3719#0" expanded="false" />
-            <element signature="e#3831#3981#0" expanded="false" />
-            <element signature="e#5022#5471#0" expanded="false" />
-            <element signature="e#5910#8158#0" expanded="false" />
-            <element signature="e#5930#6161#0" expanded="false" />
-            <element signature="e#6273#6423#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1859,17 +1692,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/entity/cardDetail.local.module.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/parking/ketuo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
+        <state relative-caret-position="570">
           <caret line="30" column="23" lean-forward="true" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
           <folding />
         </state>
@@ -1879,7 +1704,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
           <caret line="8" column="42" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1891,18 +1715,76 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parkingLogic/yifangtiandi.js">
+    <entry file="file://$PROJECT_DIR$/bin/start.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="722">
-          <caret line="45" column="17" lean-forward="false" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
+        <state relative-caret-position="57">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/entity/accessTokenInfoLogic.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="25" column="7" lean-forward="true" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
+        <state relative-caret-position="525">
+          <caret line="40" column="42" lean-forward="false" selection-start-line="40" selection-start-column="42" selection-end-line="40" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/member.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="855">
+          <caret line="71" column="20" lean-forward="false" selection-start-line="71" selection-start-column="10" selection-end-line="71" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logic/yuanYangLogic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="855">
+          <caret line="328" column="31" lean-forward="false" selection-start-line="328" selection-start-column="31" selection-end-line="328" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crm/yuanyang.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="22" column="3" lean-forward="false" selection-start-line="22" selection-start-column="3" selection-end-line="22" selection-end-column="3" />
+          <folding>
+            <element signature="e#1107#2198#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logic/laoXiMenLogic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Exception/error.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="8" lean-forward="false" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parkingLogic/ketuoLogic.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="186" column="26" lean-forward="false" selection-start-line="186" selection-start-column="16" selection-end-line="186" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/entity/cardDetail.local.module.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="5" lean-forward="false" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -1915,11 +1797,63 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/start.sh">
+    <entry file="file://$PROJECT_DIR$/parking/jieshun.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        <state relative-caret-position="-947">
+          <caret line="54" column="28" lean-forward="true" selection-start-line="54" selection-start-column="28" selection-end-line="54" selection-end-column="28" />
+          <folding>
+            <element signature="e#3439#3734#0" expanded="false" />
+            <element signature="e#3846#3996#0" expanded="false" />
+            <element signature="e#5037#5486#0" expanded="false" />
+            <element signature="e#6288#6438#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/prepayLogic/jingJiBaiNa.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="2" lean-forward="true" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="188" column="18" lean-forward="true" selection-start-line="188" selection-start-column="18" selection-end-line="188" selection-end-column="18" />
+          <folding>
+            <element signature="e#1007#2900#0" expanded="false" />
+            <element signature="e#2994#3610#0" expanded="false" />
+            <element signature="e#3663#3940#0" expanded="false" />
+            <element signature="e#3994#4653#0" expanded="false" />
+            <element signature="e#4705#5143#0" expanded="false" />
+            <element signature="e#5203#5410#0" expanded="false" />
+            <element signature="e#5470#6058#0" expanded="false" />
+            <element signature="e#6119#6404#0" expanded="false" />
+            <element signature="n#!!block;n#random#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tools/load.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parkingLogic/yifangtiandi.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="760">
+          <caret line="150" column="0" lean-forward="true" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
+          <folding>
+            <element signature="e#516#2989#0" expanded="false" />
+            <element signature="e#3060#4482#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

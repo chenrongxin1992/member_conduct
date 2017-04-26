@@ -84,7 +84,7 @@ exports.CarDetial = function (config, token, carNo, callback) {
                 if (result.resultCode == 0) {
                     var _result = result.dataItems;
                     if (!_result || _result.length <= 0) {
-                        return callback(error.ThrowError(error.ErrorCode.error, '车辆未入场'));
+                        return callback(error.ThrowError(error.ErrorCode.ParkingError.CardInfoUndefind));
                     }
                     return callback(null, _result[0].attributes);
                 }
