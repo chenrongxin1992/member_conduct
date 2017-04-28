@@ -26,7 +26,6 @@ exports.Login = function (config, callback) {
             result += chunk;
         });
         res.on('end', function () {
-            try {
                 result = JSON.parse(result);
                 if (typeof result == typeof '') {
                     result = JSON.parse(result);
@@ -35,10 +34,7 @@ exports.Login = function (config, callback) {
                     return callback(null, result.token);
                 }
                 return callback(error.ThrowError(error.ErrorCode.error, result.message));
-            }
-            catch (e) {
-                return callback(error.ThrowError(error.ErrorCode.error, e.message));
-            }
+            
         });
     });
     req.end();
