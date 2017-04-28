@@ -26,6 +26,14 @@ router.post('/PaySuccess',function(req,res){
         return res.json(result)
     })
 })
+router.post('/getPayResult',CheckBid)
+router.post('/getPayResult',function(req,res){
+    var bid = req.body.bid ? parseInt(req.body.bid) : 0
+    var logic = factory(bid)
+    logic.getPayResult(req.body,function(err,result){
+        return res.json(result)
+    })
+})
 //获取车辆信息
 router.post('/CarDetial', CheckBid);
 router.post('/CarDetial', function (req, res) {

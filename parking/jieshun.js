@@ -171,6 +171,51 @@ exports.PlaceOrder = function (config, token, carNo, callback) {
     req.end();
 };
 
+//查询订单支付结果
+exports.getPayResult = function(config,token,orderNo,callback){
+    var content = {
+            serviceId: '3c.pay.createorderbycarno',
+            requestType: 'DATA',
+            attributes: {
+                orderNo : orderNo
+            }
+        },
+        contentStr = JSON.stringify(content),
+        sign = md5(contentStr + config.secret),
+        param = {
+            cid: config.cid,
+            tn: token,
+            sn: sign.toUpperCase(),
+            v: config.v,
+            p: contentStr
+        },
+        urlStr = config.url + '?' + qs.stringify(param),
+        options = url.parse(urlStr);
+    options.headers = {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'};
+    var req = http.request(options,function(res){
+        res.setEncoding('utf8')
+        var result = ''
+        res.on('data',function(chunk){
+            result += chunk
+        })
+        res.on('end',function(){
+            result = JSON.parse(result);
+            console.log('----- result -----')
+                if (typeof result == typeof '') {
+                    result = JSON.parse(result);
+                }
+                if (result.resultCode == 0) {
+                    var _result = result.dataItems;
+                    if (_result.length <= 0) {
+                        return callback(error.ThrowError(error.ErrorCode.error, '车牌支付下单错误，订单信息未返回'));
+                    }
+                    return callback(null, _result[0].attributes);
+                }
+        })
+        req.end()
+    })
+}
+
 //支付成功通知
 exports.PaySuccess = function (config, token, carNo, orderNo, callback) {
     var content = {
