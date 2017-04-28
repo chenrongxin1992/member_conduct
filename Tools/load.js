@@ -81,7 +81,7 @@ function scheduleCronstyle(){
 	}) 
 }
 
-scheduleCronstyle()
+//scheduleCronstyle()
 
 var refreshAccessToken = function (bid, module, config, callback) {
 	console.log('-----  in refreshAccessToken  -----')
