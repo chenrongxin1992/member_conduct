@@ -22,7 +22,7 @@ router.post('/PaySuccess',CheckBid)
 router.post('/PaySuccess',function(req,res){
     var bid = req.body.bid ? parseInt(req.body.bid) : 0
     var logic = factory(bid)
-    logic.PaySuccess(req.body,function(result){
+    logic.PaySuccess(req.body,function(err,result){
         return res.json(result)
     })
 })

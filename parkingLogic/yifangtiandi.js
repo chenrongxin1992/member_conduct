@@ -124,11 +124,13 @@ yifangtiandi.prototype.PaySuccess = function (attribute, callback) {
     }
     async.waterfall([
         function (cb) {
+            console.log('----- 1 -----')
             logic.GetAccessToken(bid, module, function (err, result) {
                 cb(err, result);
             })
         },
         function (token, cb) {
+            console.log('----- 2 -----')
             if (token) {
                 cb(null, token);
             } else {
@@ -138,11 +140,18 @@ yifangtiandi.prototype.PaySuccess = function (attribute, callback) {
             }
         },
         function (token, cb) {
+            console.log('----- 3 -----')
             jieshun.PaySuccess(config, token, carNo, orderNo, function (err, result) {
                 cb(err, result);
             });
         }
     ], function (err, result) {
+        if(err){
+            console.log('----- logic async err -----')
+            console.error(err)
+        }
+        console.log('----- final result -----')
+        console.log(result)
         callback(err, result);
     });
 };
