@@ -14,7 +14,7 @@ router.post('/GetCardDetial',CheckBid)
 router.post('/GetCardDetial',function(req,res){
     var bid = req.body.bid ? parseInt(req.body.bid) : 0
     var logic = factory(bid)
-    logic.GetCardDetial(req.body,function(result){
+    logic.GetCardDetial(req.body,function(err,result){
         return res.json(result)
     })
 })

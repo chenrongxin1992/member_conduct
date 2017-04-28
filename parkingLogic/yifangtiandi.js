@@ -89,6 +89,12 @@ yifangtiandi.prototype.GetCardDetial = function (attribute, callback) {
             }
         }
     ], function (err, result) {
+        if(err){
+            console.log('----- logic async err -----')
+            console.error(err)
+        }
+        console.log('----- final result -----')
+        console.log(result)
         callback(err, result);
     });
 };
