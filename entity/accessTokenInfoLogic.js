@@ -82,5 +82,6 @@ exports.createAppInfo = function(bid,module,appSecret,callback){
                 callback(null)
             })
         }
+        console.log(doc)
     })
 }
