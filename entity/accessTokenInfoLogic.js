@@ -78,7 +78,7 @@ exports.createAppInfo = function(bid,module,appSecret,callback){
                     callback(err)
                 }
                 console.log('----- create appInfo success -----')
-                console.log(doc)
+                console.log(obj)
                 callback(null)
             })
         }

@@ -87,8 +87,8 @@ var refreshAccessToken = function (bid, module, config, callback) {
 	console.log('-----  in refreshAccessToken  -----')
     async.waterfall([
         function (cb) {
+        	console.log('----- in login  -----')
             Login(config, function (err, result) {
-            	console.log('----- in login  -----')
                 cb(err, result);
             });
         },
