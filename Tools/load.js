@@ -73,7 +73,7 @@ var refreshAccessToken = function (bid, module, config, callback) {
 	console.log('-----  in refreshAccessToken  -----')
     async.waterfall([
         function (cb) {
-            jieshun.Login(config, function (err, result) {
+            Login(config, function (err, result) {
             	console.log('----- in login  -----')
                 cb(err, result);
             });
@@ -90,4 +90,40 @@ var refreshAccessToken = function (bid, module, config, callback) {
     	console.log(result)
         return callback(err, result);
     });
+};
+
+
+var Login = function (config, callback) {
+    var param = {
+            cid: config.cid,
+            usr: config.usr,
+            psw: config.psw
+        },
+        paramStr = qs.stringify(param),
+        url = config.loginUrl + '?' + paramStr;
+    var req = http.request(url, function (res) {
+        res.setEncoding('utf8');
+        var result = '';
+        res.on('data', function (chunk) {
+            result += chunk;
+        });
+        res.on('end', function () {
+            try {
+            	console.log('----- res end -----')
+                result = JSON.parse(result);
+                console.log(result)
+                if (typeof result == typeof '') {
+                    result = JSON.parse(result);
+                }
+                if (result.resultCode == 0) {
+                    return callback(null, result.token);
+                }
+                return callback(error.ThrowError(error.ErrorCode.error, result.message));
+            }
+            catch (e) {
+                return callback(error.ThrowError(error.ErrorCode.error, e.message));
+            }
+        });
+    });
+    req.end();
 };
