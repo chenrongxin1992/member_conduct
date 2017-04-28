@@ -108,21 +108,16 @@ var Login = function (config, callback) {
             result += chunk;
         });
         res.on('end', function () {
-            try {
-            	console.log('----- res end -----')
+            console.log('----- res end -----')
+            result = JSON.parse(result);
+            console.log(result)
+            if (typeof result == typeof '') {
                 result = JSON.parse(result);
-                console.log(result)
-                if (typeof result == typeof '') {
-                    result = JSON.parse(result);
-                }
-                if (result.resultCode == 0) {
-                    return callback(null, result.token);
-                }
-                return callback(error.ThrowError(error.ErrorCode.error, result.message));
             }
-            catch (e) {
-                return callback(error.ThrowError(error.ErrorCode.error, e.message));
+            if (result.resultCode == 0) {
+                return callback(null, result.token);
             }
+            return callback(error.ThrowError(error.ErrorCode.error, result.message));
         });
     });
     req.end();
