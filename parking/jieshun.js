@@ -203,6 +203,8 @@ exports.PaySuccess = function (config, token, carNo, orderNo, callback) {
         res.on('end', function () {
             try {
                 result = JSON.parse(result);
+                console.log('----- PaySuccess result -----')
+                console.log(result)
                 if (typeof result == typeof '') {
                     result = JSON.parse(result);
                 }

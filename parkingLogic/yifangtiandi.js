@@ -125,12 +125,15 @@ yifangtiandi.prototype.PaySuccess = function (attribute, callback) {
     async.waterfall([
         function (cb) {
             console.log('----- 1 -----')
+            console.log('----- get accessToken -----')
             logic.GetAccessToken(bid, module, function (err, result) {
                 cb(err, result);
             })
         },
         function (token, cb) {
             console.log('----- 2 -----')
+            console.log('----- accessToken -----')
+            console.log(token)
             if (token) {
                 cb(null, token);
             } else {
