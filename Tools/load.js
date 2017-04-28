@@ -31,7 +31,7 @@ var config = {
 	bid = 20
 
 function scheduleCronstyle(){
-    schedule.scheduleJob('1 */5 * * * *', function(){
+    schedule.scheduleJob('1 */1 * * * *', function(){
        async.waterfall([
 			function(cb){
 				accessTokenInfoLogic.createAppInfo(bid,module,config.secret,function(result){
@@ -81,7 +81,7 @@ function scheduleCronstyle(){
 	}) 
 }
 
-//scheduleCronstyle()
+scheduleCronstyle()
 
 var refreshAccessToken = function (bid, module, config, callback) {
 	console.log('-----  in refreshAccessToken  -----')
