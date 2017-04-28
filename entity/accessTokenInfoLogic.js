@@ -11,6 +11,8 @@ var mongose = require('mongoose'),
 
 exports.GetAccessToken = function (bid, module, callback) {
     var time = moment().add(300, 's').format('X');
+    console.log('----- check time -----')
+    console.log(time)
     entity.findOne({bid: bid, module: module, accessTokenValidDate: {$gt: time}}, {
         _id: -1,
         accessToken: 1
@@ -28,6 +30,9 @@ exports.GetAccessToken = function (bid, module, callback) {
 
 exports.RefreshAccessToken = function (bid, module, accessToken, validDate, callback) {
     var refreshDate = moment().format('YYYY/MM/DD HH:mm:ss');
+    console.log('-----  refreshDate  -----')
+    console.log(typeof refreshDate)
+    console.log(refreshDate)
     entity.update({bid: bid, module: module}, {
         $set: {
             accessToken: accessToken,
