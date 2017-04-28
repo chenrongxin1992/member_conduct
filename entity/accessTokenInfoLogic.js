@@ -66,11 +66,11 @@ exports.createAppInfo = function(bid,module,appSecret,callback){
         }
         if(!doc){
             console.log('----- create appInfo now -----')
-            var obj = {
+            var obj = new entity({
                 bid : bid,
                 module : module,
                 appSecret : appSecret
-            }
+            })
             obj.save(function(err){
                 if(err){
                     console.log('----- create obj err -----')
