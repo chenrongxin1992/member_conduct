@@ -64,7 +64,7 @@ exports.createAppInfo = function(bid,module,appSecret,callback){
             console.error(err)
             callback(err)
         }
-        if(!doc){
+        else if(!doc){
             console.log('----- create appInfo now -----')
             var obj = new entity({
                 bid : bid,
@@ -82,6 +82,10 @@ exports.createAppInfo = function(bid,module,appSecret,callback){
                 callback(null)
             })
         }
-        console.log(doc)
+        else{
+            console.log(doc)
+            callback(null)
+        }
+
     })
 }
