@@ -37,11 +37,15 @@ yifangtiandi.prototype.GetCardDetial = function (attribute, callback) {
     };
     async.waterfall([
         function (cb) {
+            console.log('----- 1 -----')
             logic.GetAccessToken(bid, module, function (err, result) {
                 cb(err, result);
             });
         },
         function (token, cb) {
+            console.log('----- 2 -----')
+            console.log('----- token -----')
+            console.log(token)
             if (token) {
                 cb(null, token);
             } else {
@@ -51,11 +55,15 @@ yifangtiandi.prototype.GetCardDetial = function (attribute, callback) {
             }
         },
         function (token, cb) {
+            console.log('----- 3 -----')
             jieshun.CarDetial(config, token, carNo, function (err, result) {
                 cb(err, token, result);
             });
         },
         function (token, carDetial, cb) {
+            console.log('----- 4 -----')
+            console.log('----- carDetial -----')
+            console.log(carDetial)
             if (carDetial) {
                 jieshun.PlaceOrder(config, token, carNo, function (err, result) {
                     var info = {
