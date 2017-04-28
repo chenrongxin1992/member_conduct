@@ -64,7 +64,8 @@ exports.createAppInfo = function(bid,module,appSecret,callback){
             console.error(err)
             callback(err)
         }
-        if(!result){
+        if(!doc){
+            console.log('----- create appInfo now -----')
             var obj = {
                 bid : bid,
                 module : module,
@@ -76,6 +77,8 @@ exports.createAppInfo = function(bid,module,appSecret,callback){
                     console.error(err)
                     callback(err)
                 }
+                console.log('----- create appInfo success -----')
+                console.log(doc)
                 callback(null)
             })
         }
