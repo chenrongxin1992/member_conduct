@@ -29,6 +29,9 @@ var crmtestroutes = require('./routes/crmtestroutes')
 //record requestTime
 //var responseTime = require('response-time')
 
+//autoRefreshAccessToken
+var autoRefreshAccessToken = require('./Tools/load')
+
 var app = express();
 
 // view engine setup
