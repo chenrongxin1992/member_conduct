@@ -2,7 +2,8 @@ var _default = require('./parkingLogic');
 
 var laoXimen = require('./laoXiMenLogic'),
     keTuo = require('./ketuoLogic'),
-    zhongZhou = require('./zhongzhouLogic')
+    zhongZhou = require('./zhongzhouLogic'),
+    yifangtiandi = require('./yifangtiandi')
 
 module.exports = function (bid) {
     var _p;
@@ -15,6 +16,9 @@ module.exports = function (bid) {
             break
         case 19:
             _p = new zhongZhou()
+            break
+        case 20:
+            _p = new yifangtiandi()
             break
         default:
             _p = new _default();

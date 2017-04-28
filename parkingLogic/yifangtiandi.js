@@ -10,11 +10,12 @@ var jieshun = require('../parking/jieshun'),
     async = require('async'),
     logic = require('../entity/accessTokenInfoLogic'),
     moment = require('moment'),
-    error = require('../Exception/error');
+    error = require('../Exception/error'),
+    parent = require('./parkingLogic');
 
 function yifangtiandi() {
 };
-utils.inherits(jieshun, yifangtiandi);
+utils.inherits(yifangtiandi,parent);
 
 yifangtiandi.prototype.GetCardDetial = function (attribute, callback) {
     var bid = attribute.bid,
@@ -149,3 +150,4 @@ var refreshAccessToken = function (bid, module, config, callback) {
     });
 };
 
+module.exports = yifangtiandi

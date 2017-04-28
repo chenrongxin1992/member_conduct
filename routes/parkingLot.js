@@ -8,6 +8,24 @@ var express = require('express'),
     router = express.Router(),
     factory = require('../parkingLogic/factoryLogic'),
     error = require('../Exception/error')
+
+//20170428一方天地
+router.post('/GetCardDetial',CheckBid)
+router.post('/GetCardDetial',function(req,res){
+    var bid = req.body.bid ? parseInt(req.body.bid) : 0
+    var logic = factory(bid)
+    logic.GetCardDetial(req.body,function(result){
+        return res.json(result)
+    })
+})
+router.post('/PaySuccess',CheckBid)
+router.post('/PaySuccess',function(req,res){
+    var bid = req.body.bid ? parseInt(req.body.bid) : 0
+    var logic = factory(bid)
+    logic.PaySuccess(req.body,function(result){
+        return res.json(result)
+    })
+})
 //获取车辆信息
 router.post('/CarDetial', CheckBid);
 router.post('/CarDetial', function (req, res) {

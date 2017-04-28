@@ -34,7 +34,7 @@ function scheduleCronstyle(){
     schedule.scheduleJob('1 */5 * * * *', function(){
        async.waterfall([
 			function(cb){
-				accessTokenInfoLogic.createAppInfo(bid,module,config.appSecret,function(result){
+				accessTokenInfoLogic.createAppInfo(bid,module,config.secret,function(result){
 					if(result){
 						console('----- first step err -----')
 						cb(result)
