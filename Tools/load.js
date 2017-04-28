@@ -94,7 +94,7 @@ var refreshAccessToken = function (bid, module, config, callback) {
         },
         function (token, cb) {
         	console.log('----- refreshAccessToken  -----')
-            var validDate = moment().add(2, 'HH').format('X');
+            var validDate = moment().add(2, 'H').format('X');
             console.log('----- validDate -----')
             console.log(typeof validDate)
             console.log(validDate)
