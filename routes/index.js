@@ -196,6 +196,8 @@ router.post('/JSLogin', function (req, res, next) {
 
 router.post('/JSCarDetial', function (req, res, next) {
     var carNo = req.body.carNo;
+    console.log('----- config -----')
+    console.log(jieshun_config)
     async.waterfall([
         function (cb) {
             jieshun.Login(jieshun_config, function (err, result) {

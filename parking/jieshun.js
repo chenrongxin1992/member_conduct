@@ -66,6 +66,10 @@ exports.CarDetial = function (config, token, carNo, callback) {
         urlStr = config.url + '?' + qs.stringify(param),
         options = url.parse(urlStr);
     options.headers = {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'};
+
+    console.log('----- options -----')
+    console.log(options)
+
     var req = http.request(options, function (res) {
         res.setEncoding('utf8');
         var result = '';
@@ -76,7 +80,7 @@ exports.CarDetial = function (config, token, carNo, callback) {
             console.log('CarDetial result', result);
             try {
                 result = JSON.parse(result);
-                console.log('----- result -----')
+                console.log('----- CarDetial result -----')
                 console.log(result)
                 if (typeof result == typeof '') {
                     result = JSON.parse(result);
