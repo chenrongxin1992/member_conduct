@@ -56,3 +56,28 @@ exports.AppendAppInfo = function (bid, module, appKey, appSecret, callback) {
         return callback();
     });
 };
+
+exports.createAppInfo = function(bid,module,appSecret,callback){
+    entity.findOne({bid:bid,module:module,appSecret:appSecret},function(err,doc){
+        if(err){
+            console.log('----- search err -----')
+            console.error(err)
+            callback(err)
+        }
+        if(!result){
+            var obj = {
+                bid : bid,
+                module : module,
+                appSecret : appSecret
+            }
+            obj.save(function(err){
+                if(err){
+                    console.log('----- create obj err -----')
+                    console.error(err)
+                    callback(err)
+                }
+                callback(null)
+            })
+        }
+    })
+}

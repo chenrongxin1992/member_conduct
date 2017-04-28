@@ -11,7 +11,10 @@ var accessTokenInfoLogic = require('../entity/accessTokenInfoLogic'),
 	qs = require('querystring'),
 	http = require('http'),
 	moment = require('moment'),
-    error = require('../Exception/error')
+    error = require('../Exception/error'),
+    mongose = require('mongoose'),
+    sysConfig = require('../config/sys'),
+    entity = mongose.model(sysConfig.accessTokenInfo)
 
 var config = {
 	 	loginUrl: 'http://syx.jslife.com.cn/jsaims/login',
@@ -30,6 +33,17 @@ var config = {
 function scheduleCronstyle(){
     schedule.scheduleJob('*/10 * * * * *', function(){
        async.waterfall([
+			function(cb){
+				accessTokenInfoLogic.createAppInfo(bid,module,config.appSecret,function(result){
+					if(result){
+						console('----- first step err -----')
+						cb(result)
+					}
+					else{
+						cb(null)
+					}
+				})
+			},
 			function(cb){
 				accessTokenInfoLogic.GetAccessToken(bid,module,function(err,result){
 					if(err){
