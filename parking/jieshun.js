@@ -46,6 +46,8 @@ exports.Login = function (config, callback) {
 
 //查询车辆停车信息
 exports.CarDetial = function (config, token, carNo, callback) {
+    console.log('----- check token -----')
+    console.log(token)
     carNo = carNo.replace('-', '');
     var content = {
             serviceId: '3c.park.querycarparkingspot',
@@ -78,6 +80,8 @@ exports.CarDetial = function (config, token, carNo, callback) {
             console.log('CarDetial result', result);
             try {
                 result = JSON.parse(result);
+                console.log('----- result -----')
+                console.log(result)
                 if (typeof result == typeof '') {
                     result = JSON.parse(result);
                 }
