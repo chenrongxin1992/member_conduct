@@ -35,7 +35,7 @@ router.post('/getPayResult',function(req,res){
     var logic = factory(bid)
     logic.getPayResult(req.body,function(err,result){
         if(err){
-            return res.json(result)
+            return res.json(err)
         }
         return res.json(result)
     })

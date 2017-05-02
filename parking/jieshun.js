@@ -174,7 +174,7 @@ exports.PlaceOrder = function (config, token, carNo, callback) {
 //查询订单支付结果
 exports.getPayResult = function(config,token,orderNo,callback){
     var content = {
-            serviceId: '3c.pay.createorderbycarno',
+            serviceId: '3c.pay.queryorder',
             requestType: 'DATA',
             attributes: {
                 orderNo : orderNo
