@@ -192,6 +192,7 @@ exports.getPayResult = function(config,token,orderNo,callback){
         urlStr = config.url + '?' + qs.stringify(param),
         options = url.parse(urlStr);
     options.headers = {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'};
+
     var req = http.request(options,function(res){
         res.setEncoding('utf8')
         var result = ''
@@ -201,6 +202,7 @@ exports.getPayResult = function(config,token,orderNo,callback){
         res.on('end',function(){
             result = JSON.parse(result);
             console.log('----- result -----')
+            console.log(result)
                 if (typeof result == typeof '') {
                     result = JSON.parse(result);
                 }
@@ -212,8 +214,12 @@ exports.getPayResult = function(config,token,orderNo,callback){
                     return callback(null, _result[0].attributes);
                 }
         })
-        req.end()
+        res.on('error',function(e){
+            console.log('----- req err -----')
+            console.error(e)
+        })
     })
+    req.end()
 }
 
 //出场信息查询
