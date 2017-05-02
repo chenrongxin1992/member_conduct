@@ -205,11 +205,11 @@ yifangtiandi.prototype.getPayResult = function(attribute,callback){
         if(err){
             console.log('----- logic async err -----')
             console.error(err)
-            callback(err)
+            return callback(err)
         }
         console.log('----- final result -----')
         console.log(result)
-        callback(err, result);
+        return callback(err, result);
     });
 }
 
