@@ -234,7 +234,7 @@ yifangtiandi.prototype.getParkOutInfo = function(attribute,callback){
     if(!pageSize){
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '查询页码pageSize不能为空'));
     }
-    if(!apageIndex){
+    if(!pageIndex){
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '查询条数pageIndex不能为空'));
     }
     if(!carNo){

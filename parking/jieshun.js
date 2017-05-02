@@ -228,7 +228,7 @@ exports.getPayResult = function(config,token,orderNo,callback){
 //出场信息查询
 exports.getParkOutInfo = function(config,token,parkCode,carNo,cardNo,beginDate,endDate,pageSize,pageIndex,callback){
     var content = {
-            serviceId: '3c.pay.createorderbycarno',
+            serviceId: '3c.park.queryparkout',
             requestType: 'DATA',
             attributes: {
                 parkCode : parkCode,
@@ -261,6 +261,7 @@ exports.getParkOutInfo = function(config,token,parkCode,carNo,cardNo,beginDate,e
         res.on('end',function(){
             result = JSON.parse(result);
             console.log('----- result -----')
+            console.log(result)
                 if (typeof result == typeof '') {
                     result = JSON.parse(result);
                 }
@@ -271,9 +272,16 @@ exports.getParkOutInfo = function(config,token,parkCode,carNo,cardNo,beginDate,e
                     }
                     return callback(null, _result[0].attributes);
                 }
+                if(result.resultCode != 0){
+                    return callback(error.ThrowError(error.ErrorCode.error, result.message))
+                }
         })
-        req.end()
+        res.on('error',function(e){
+            console.log('----- req err -----')
+            console.error(e)
+        })
     })
+        req.end()
 }
 //支付成功通知
 exports.PaySuccess = function (config, token, carNo, orderNo, callback) {

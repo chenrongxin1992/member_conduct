@@ -44,7 +44,10 @@ router.post('/getParkOutInfo',CheckBid)
 router.post('/getParkOutInfo',function(req,res){
     var bid = req.body.bid ? parseInt(req.body.bid) : 0
     var logic = factory(bid)
-    logic.PaySuccess(req.body,function(err,result){
+    logic.getParkOutInfo(req.body,function(err,result){
+        if(err){
+            return res.json(err)
+        }
         return res.json(result)
     })
 })
