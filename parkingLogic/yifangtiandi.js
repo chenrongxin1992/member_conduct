@@ -11,6 +11,7 @@ var jieshun = require('../parking/jieshun'),
     logic = require('../entity/accessTokenInfoLogic'),
     moment = require('moment'),
     error = require('../Exception/error'),
+    config = require('../config/parking/yifangtiandi'),
     parent = require('./parkingLogic');
 
 function yifangtiandi() {
@@ -24,7 +25,7 @@ yifangtiandi.prototype.GetCardDetial = function (attribute, callback) {
     if (!carNo) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '车牌carNo不能为空'));
     }
-    var config = {
+    /*var config = {
         loginUrl: 'http://syx.jslife.com.cn/jsaims/login',
         url: 'http://syx.jslife.com.cn/jsaims/as',
         cid: '880075500000001',
@@ -34,7 +35,7 @@ yifangtiandi.prototype.GetCardDetial = function (attribute, callback) {
         parkCode: '0010015555',
         businessCode: '880075500000001',
         secret: '7ac3e2ee1075bf4bb6b816c1e80126c0'
-    };
+    };*/
     async.waterfall([
         function (cb) {
             console.log('----- 1 -----')
@@ -104,7 +105,7 @@ yifangtiandi.prototype.PaySuccess = function (attribute, callback) {
         orderNo = attribute.orderNo,
         bid = attribute.bid,
         module = 'parking';
-    var config ={
+    /*var config ={
         loginUrl: 'http://syx.jslife.com.cn/jsaims/login',
         url: 'http://syx.jslife.com.cn/jsaims/as',
         cid: '880075500000001',
@@ -114,7 +115,7 @@ yifangtiandi.prototype.PaySuccess = function (attribute, callback) {
         parkCode: '0010015555',
         businessCode: '880075500000001',
         secret: '7ac3e2ee1075bf4bb6b816c1e80126c0'
-    };
+    };*/
     if (!carNo) {
         return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '车牌carNo不能为空'));
     }
@@ -163,7 +164,7 @@ yifangtiandi.prototype.getPayResult = function(attribute,callback){
         bid = attribute.bid,
         module = 'parking';
 
-    var config ={
+    /*var config ={
         loginUrl: 'http://syx.jslife.com.cn/jsaims/login',
         url: 'http://syx.jslife.com.cn/jsaims/as',
         cid: '880075500000001',
@@ -173,7 +174,7 @@ yifangtiandi.prototype.getPayResult = function(attribute,callback){
         parkCode: '0010015555',
         businessCode: '880075500000001',
         secret: '7ac3e2ee1075bf4bb6b816c1e80126c0'
-    };
+    };*/
 
     async.waterfall([
         function (cb) {
@@ -218,7 +219,7 @@ yifangtiandi.prototype.getParkSpace = function(attribute,callback){
         bid = attribute.bid,
         module = 'parking';
 
-    var config ={
+    /*var config ={
         loginUrl: 'http://syx.jslife.com.cn/jsaims/login',
         url: 'http://syx.jslife.com.cn/jsaims/as',
         cid: '880075500000001',
@@ -228,7 +229,7 @@ yifangtiandi.prototype.getParkSpace = function(attribute,callback){
         parkCode: '0010015555',
         businessCode: '880075500000001',
         secret: '7ac3e2ee1075bf4bb6b816c1e80126c0'
-    };
+    };*/
 
     async.waterfall([
         function (cb) {
@@ -302,7 +303,7 @@ yifangtiandi.prototype.getParkOutInfo = function(attribute,callback){
     var bid = attribute.bid,
         module = 'parking';
 
-    var config ={
+    /*var config ={
         loginUrl: 'http://syx.jslife.com.cn/jsaims/login',
         url: 'http://syx.jslife.com.cn/jsaims/as',
         cid: '880075500000001',
@@ -312,7 +313,7 @@ yifangtiandi.prototype.getParkOutInfo = function(attribute,callback){
         parkCode: '0010015555',
         businessCode: '880075500000001',
         secret: '7ac3e2ee1075bf4bb6b816c1e80126c0'
-    };
+    };*/
 
     async.waterfall([
         function (cb) {
