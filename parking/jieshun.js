@@ -213,6 +213,9 @@ exports.getPayResult = function(config,token,orderNo,callback){
                     }
                     return callback(null, _result[0].attributes);
                 }
+                if(result.resultCode != 0){
+                    return callback(error.ThrowError(error.ErrorCode.error, result.message))
+                }
         })
         res.on('error',function(e){
             console.log('----- req err -----')
