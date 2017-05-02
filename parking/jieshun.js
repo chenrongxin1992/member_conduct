@@ -268,7 +268,7 @@ exports.getParkOutInfo = function(config,token,parkCode,carNo,cardNo,beginDate,e
                 if (result.resultCode == 0) {
                     var _result = result.dataItems;
                     if (_result.length <= 0) {
-                        return callback(error.ThrowError(error.ErrorCode.error, result.message));
+                        return callback(error.success(result.message));
                     }
                     return callback(null, _result[0].attributes);
                 }

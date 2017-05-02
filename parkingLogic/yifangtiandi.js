@@ -289,10 +289,11 @@ yifangtiandi.prototype.getParkOutInfo = function(attribute,callback){
         if(err){
             console.log('----- logic async err -----')
             console.error(err)
+            return callback(err)
         }
         console.log('----- final result -----')
         console.log(result)
-        callback(err, result);
+        return callback(err, result);
     });
 }
 
