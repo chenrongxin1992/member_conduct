@@ -162,6 +162,7 @@ yifangtiandi.prototype.getPayResult = function(attribute,callback){
     var orderNo = attribute.orderNo,
         bid = attribute.bid,
         module = 'parking';
+
     var config ={
         loginUrl: 'http://syx.jslife.com.cn/jsaims/login',
         url: 'http://syx.jslife.com.cn/jsaims/as',
@@ -174,9 +175,6 @@ yifangtiandi.prototype.getPayResult = function(attribute,callback){
         secret: '7ac3e2ee1075bf4bb6b816c1e80126c0'
     };
 
-    if (!orderNo) {
-        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '订单号orderNo不能为空'));
-    }
     async.waterfall([
         function (cb) {
             console.log('----- 1 -----')
@@ -213,6 +211,90 @@ yifangtiandi.prototype.getPayResult = function(attribute,callback){
         callback(err, result);
     });
 }
+
+yifangtiandi.prototype.getParkOutInfo = function(attribute,callback){
+    var parkCode = attribute.parkCode,
+        carNo = attribute.carNo,
+        cardNo = attribute.cardNo,
+        beginDate = attribute.beginDate,
+        endDate = attribute.endDate,
+        pageSize = attribute.pageSize,
+        pageIndex = attribute.pageIndex;
+
+    if(!parkCode){
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '停车场编号parkCode不能为空'));
+    }
+    if(!beginDate){
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '开始日期beginDate不能为空'));
+    }
+    if(!endDate){
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '结束日期endDate不能为空'));
+    }
+    if(!pageSize){
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '查询页码pageSize不能为空'));
+    }
+    if(!apageIndex){
+        return callback(error.ThrowError(error.ErrorCode.InfoIncomplete, '查询条数pageIndex不能为空'));
+    }
+    if(!carNo){
+        carNo = ''
+    }
+    if(!cardNo){
+        cardNo = ''
+    }
+
+    var bid = attribute.bid,
+        module = 'parking';
+
+    var config ={
+        loginUrl: 'http://syx.jslife.com.cn/jsaims/login',
+        url: 'http://syx.jslife.com.cn/jsaims/as',
+        cid: '880075500000001',
+        usr: '880075500000001',
+        psw: '888888',
+        v: '2',
+        parkCode: '0010015555',
+        businessCode: '880075500000001',
+        secret: '7ac3e2ee1075bf4bb6b816c1e80126c0'
+    };
+
+    async.waterfall([
+        function (cb) {
+            console.log('----- 1 -----')
+            console.log('----- get accessToken -----')
+            logic.GetAccessToken(bid, module, function (err, result) {
+                cb(err, result);
+            })
+        },
+        function (token, cb) {
+            console.log('----- 2 -----')
+            console.log('----- accessToken -----')
+            console.log(token)
+            if (token) {
+                cb(null, token);
+            } else {
+                refreshAccessToken(bid, module, config, function (err, result) {
+                    cb(err, result);
+                })
+            }
+        },
+        function (token, cb) {
+            console.log('----- 3 -----')
+            jieshun.getParkOutInfo(config,token,parkCode,carNo,cardNo,beginDate,endDate,pageSize,pageIndex,function (err, result) {
+                cb(err, result);
+            });
+        }
+    ], function (err, result) {
+        if(err){
+            console.log('----- logic async err -----')
+            console.error(err)
+        }
+        console.log('----- final result -----')
+        console.log(result)
+        callback(err, result);
+    });
+}
+
 var refreshAccessToken = function (bid, module, config, callback) {
     async.waterfall([
         function (cb) {

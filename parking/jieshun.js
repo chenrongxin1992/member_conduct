@@ -207,7 +207,7 @@ exports.getPayResult = function(config,token,orderNo,callback){
                 if (result.resultCode == 0) {
                     var _result = result.dataItems;
                     if (_result.length <= 0) {
-                        return callback(error.ThrowError(error.ErrorCode.error, '车牌支付下单错误，订单信息未返回'));
+                        return callback(error.ThrowError(error.ErrorCode.error, '没有订单支付信息'));
                     }
                     return callback(null, _result[0].attributes);
                 }
@@ -216,6 +216,56 @@ exports.getPayResult = function(config,token,orderNo,callback){
     })
 }
 
+//出场信息查询
+exports.getParkOutInfo = function(config,token,parkCode,carNo,cardNo,beginDate,endDate,pageSize,pageIndex,callback){
+    var content = {
+            serviceId: '3c.pay.createorderbycarno',
+            requestType: 'DATA',
+            attributes: {
+                parkCode : parkCode,
+                carNo : carNo,
+                cardNo : cardNo,
+                beginDate : beginDate,
+                endDate : endDate,
+                pageSize : pageSize,
+                pageIndex : pageIndex
+            }
+        },
+        contentStr = JSON.stringify(content),
+        sign = md5(contentStr + config.secret),
+        param = {
+            cid: config.cid,
+            tn: token,
+            sn: sign.toUpperCase(),
+            v: config.v,
+            p: contentStr
+        },
+        urlStr = config.url + '?' + qs.stringify(param),
+        options = url.parse(urlStr);
+    options.headers = {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'};
+    var req = http.request(options,function(res){
+        res.setEncoding('utf8')
+        var result = ''
+        res.on('data',function(chunk){
+            result += chunk
+        })
+        res.on('end',function(){
+            result = JSON.parse(result);
+            console.log('----- result -----')
+                if (typeof result == typeof '') {
+                    result = JSON.parse(result);
+                }
+                if (result.resultCode == 0) {
+                    var _result = result.dataItems;
+                    if (_result.length <= 0) {
+                        return callback(error.ThrowError(error.ErrorCode.error, '没有出场信息'));
+                    }
+                    return callback(null, _result[0].attributes);
+                }
+        })
+        req.end()
+    })
+}
 //支付成功通知
 exports.PaySuccess = function (config, token, carNo, orderNo, callback) {
     var content = {

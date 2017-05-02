@@ -31,7 +31,7 @@ var config = {
 	bid = 20
 
 function scheduleCronstyle(){
-    schedule.scheduleJob('1 */10 * * * *', function(){
+    schedule.scheduleJob('1 */1 * * * *', function(){
        async.waterfall([
 			function(cb){
 				accessTokenInfoLogic.createAppInfo(bid,module,config.secret,function(result){
