@@ -51,7 +51,17 @@ router.post('/getParkOutInfo',function(req,res){
         return res.json(result)
     })
 })
-
+router.post('/getParkSpace',CheckBid)
+router.post('/getParkSpace',function(req,res){
+    var bid = req.body.bid ? parseInt(req.body.bid) : 0
+    var logic = factory(bid)
+    logic.getParkSpace(req.body,function(err,result){
+        if(err){
+            return res.json(err)
+        }
+        return res.json(result)
+    })
+})
 //获取车辆信息
 router.post('/CarDetial', CheckBid);
 router.post('/CarDetial', function (req, res) {

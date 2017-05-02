@@ -213,6 +213,61 @@ yifangtiandi.prototype.getPayResult = function(attribute,callback){
     });
 }
 
+yifangtiandi.prototype.getParkSpace = function(attribute,callback){
+    var parkCodes = attribute.parkCodes,
+        bid = attribute.bid,
+        module = 'parking';
+
+    var config ={
+        loginUrl: 'http://syx.jslife.com.cn/jsaims/login',
+        url: 'http://syx.jslife.com.cn/jsaims/as',
+        cid: '880075500000001',
+        usr: '880075500000001',
+        psw: '888888',
+        v: '2',
+        parkCode: '0010015555',
+        businessCode: '880075500000001',
+        secret: '7ac3e2ee1075bf4bb6b816c1e80126c0'
+    };
+
+    async.waterfall([
+        function (cb) {
+            console.log('----- 1 -----')
+            console.log('----- get accessToken -----')
+            logic.GetAccessToken(bid, module, function (err, result) {
+                cb(err, result);
+            })
+        },
+        function (token, cb) {
+            console.log('----- 2 -----')
+            console.log('----- accessToken -----')
+            console.log(token)
+            if (token) {
+                cb(null, token);
+            } else {
+                refreshAccessToken(bid, module, config, function (err, result) {
+                    cb(err, result);
+                })
+            }
+        },
+        function (token, cb) {
+            console.log('----- 3 -----')
+            jieshun.getParkSpace(config, token, parkCodes, function (err, result) {
+                cb(err, result);
+            });
+        }
+    ], function (err, result) {
+        if(err){
+            console.log('----- logic async err -----')
+            console.error(err)
+            return callback(err)
+        }
+        console.log('----- final result -----')
+        console.log(result)
+        return callback(err, result);
+    });
+}
+
 yifangtiandi.prototype.getParkOutInfo = function(attribute,callback){
     var parkCode = attribute.parkCode,
         carNo = attribute.carNo,

@@ -225,6 +225,59 @@ exports.getPayResult = function(config,token,orderNo,callback){
     req.end()
 }
 
+//空余车位查询
+exports.getParkSpace = function(config,token,parkCodes,callback){
+    var content = {
+            serviceId: '3c.park.queryparkspace',
+            requestType: 'DATA',
+            attributes: {
+                parkCodes : parkCodes
+            }
+        },
+        contentStr = JSON.stringify(content),
+        sign = md5(contentStr + config.secret),
+        param = {
+            cid: config.cid,
+            tn: token,
+            sn: sign.toUpperCase(),
+            v: config.v,
+            p: contentStr
+        },
+        urlStr = config.url + '?' + qs.stringify(param),
+        options = url.parse(urlStr);
+    options.headers = {'content-type': 'application/x-www-form-urlencoded; charset=UTF-8'};
+
+    var req = http.request(options,function(res){
+        res.setEncoding('utf8')
+        var result = ''
+        res.on('data',function(chunk){
+            result += chunk
+        })
+        res.on('end',function(){
+            result = JSON.parse(result);
+            console.log('----- result -----')
+            console.log(result)
+                if (typeof result == typeof '') {
+                    result = JSON.parse(result);
+                }
+                if (result.resultCode == 0) {
+                    var _result = result.dataItems;
+                    if (_result.length <= 0) {
+                        return callback(error.ThrowError(error.ErrorCode.error, result.message));
+                    }
+                    return callback(null, _result[0].attributes);
+                }
+                if(result.resultCode != 0){
+                    return callback(error.ThrowError(error.ErrorCode.error, result.message))
+                }
+        })
+        res.on('error',function(e){
+            console.log('----- req err -----')
+            console.error(e)
+        })
+    })
+    req.end()    
+}
 //出场信息查询
 exports.getParkOutInfo = function(config,token,parkCode,carNo,cardNo,beginDate,endDate,pageSize,pageIndex,callback){
     var content = {
